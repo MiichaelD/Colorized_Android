@@ -1,5 +1,6 @@
 package com.webs.itmexicali.colorized;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
@@ -32,7 +33,7 @@ public class SplashScreen extends Activity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
-                Intent i = new Intent(SplashScreen.this, MainMenu.class);
+                Intent i = new Intent(SplashScreen.this, GameActivity.class);
                 startActivity(i);
  
                 // close this activity
@@ -42,6 +43,7 @@ public class SplashScreen extends Activity {
 	}
 	
 	/** Hide Action Bar in devices that support it */
+	@SuppressLint("InlinedApi")
 	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 	private void setFullScreen(){
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {

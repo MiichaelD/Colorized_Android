@@ -30,7 +30,7 @@ public class MainMenu extends Activity {
 		}
 		
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN ,
-		WindowManager.LayoutParams.FLAG_FULLSCREEN);
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		
 
 		View decorView = getWindow().getDecorView();
