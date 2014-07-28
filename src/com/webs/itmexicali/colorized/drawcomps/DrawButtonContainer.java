@@ -13,29 +13,48 @@ public class DrawButtonContainer {
 	public static final byte PRESS_EVENT = 0, RELEASE_EVENT = 1, MOVE_EVENT = 2;
 	
 	//Container's buttons
-	DrawButton buttons[];
+	private DrawButton buttons[];
 	
 	//Number of buttons this container will handle
-	int num_buttons;
+	private int num_buttons;
 	
 	//This array will keep the relation between pointerID and a buttonID
-	byte point_button_rel[];
+	private byte point_button_rel[];
 	
 	/**Create a new DrawButtonContainer
-	 * @param num_buttons amount of buttons to be handled	 */
-	public DrawButtonContainer(int num_buttons){
+	 * @param num_buttons amount of buttons to be handled
+	 * @param initButtons whether let the constructor to initialize the
+	 * buttons with its coordinates equal to 0*/
+	public DrawButtonContainer(int num_buttons, boolean initButtons){
 		this.num_buttons = num_buttons;
 		buttons = new DrawButton[num_buttons];
 		point_button_rel = new byte[MAX_TOUCH_POINTERS];
+		if(initButtons)
+			for(int i = 0; i < num_buttons; i++)
+				buttons[i] = new DrawButton();
 	}
 	
-	/** Initialize the DrawButton specified by it's index
-	 * the last 4 params are the specific coordinates for specific button.
+	
+	/** Initialize the {@link DrawButton} specified by it's index
+	 * the last 4 parameters are the specific coordinates for specific button.
 	 * @param index the button's index, if its a greater than this containers capacity
 	 * or less than zero, nothing will be initialized */
 	public void initDrawButton(int index, float left, float top, float right, float bottom){
 		if(index < num_buttons && index >= 0)
 			buttons[index] = new DrawButton(left, top, right, bottom);
+	}
+	
+	/** Change the given {@link DrawButton}'s position
+	 * the first parameter is the index of the {@link DrawButton}
+	 * the last 4 parameters are the specific coordinates for specific button.
+	 * @param index the button's index
+	 * @param l left bound of button
+	 * @param t top bound of button
+	 * @param r right bound of button
+	 * @param b bottom bound of button*/
+	public void repositionDButton(int index, float l, float t, float r, float b){
+		if(index < num_buttons && index >= 0)
+			buttons[index].set(l, t, r, b);
 	}
 	
 	/**Get the DrawButton Specified by this index
@@ -48,7 +67,7 @@ public class DrawButtonContainer {
 		return null;
 	}	
 	
-	/** Bound an {@link DrawButton.ActionListener} listener to a {@link DrawButton}
+	/** Bound an {@link DrawButton.ActionListener} to a {@link DrawButton}
 	 * @param index button index
 	 * @param event_type is the type of events registered in this class as constants 
 	 * @param al the {@link DrawButton.ActionListener} that will be registered to given event and given button	 */
@@ -104,10 +123,10 @@ public class DrawButtonContainer {
 	
 	/** Return the number of buttons being pressed*/
 	public int getPressedButtons(){
-		int i;
-		for(i = 0 ; i < num_buttons; i++)
+		int i,j;
+		for(i = 0, j = 0; i < num_buttons; i++)
 			if(buttons[i].isPressed())
-				i++;
-		return i;
+				j++;
+		return j;
 	}
 }

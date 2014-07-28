@@ -16,7 +16,7 @@ import android.view.WindowManager;
 public class SplashScreen extends Activity {
 	
 	// Splash screen timer
-    private static int SPLASH_TIME_OUT = 2500;
+    private static int SPLASH_TIME_OUT = 400;//2500;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +24,9 @@ public class SplashScreen extends Activity {
 
 		setContentView(R.layout.splash_screen);
 		
-		//Set FullScreen with no ActionBar
-		setFullScreen();
+		
+		//run on FullScreen with no Action and Navigation Bars
+		Const.setFullScreen(this);
 
 		//set the timer to start the new activity
 		new Handler().postDelayed(new Runnable() {
@@ -42,26 +43,4 @@ public class SplashScreen extends Activity {
         }, SPLASH_TIME_OUT);
 	}
 	
-	/** Hide Action Bar in devices that support it */
-	@SuppressLint("InlinedApi")
-	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-	private void setFullScreen(){
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			getActionBar().hide();
-		}
-		
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN ,
-		WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		
-
-		View decorView = getWindow().getDecorView();
-		// Hide both the navigation bar and the status bar.
-		// SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as
-		// a general rule, you should design your app to hide the status bar whenever you
-		// hide the navigation bar.
-		int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
-				View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-
-		decorView.setSystemUiVisibility(uiOptions);
-	}
 }

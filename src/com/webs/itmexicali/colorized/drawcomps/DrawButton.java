@@ -10,7 +10,7 @@ public class DrawButton  extends RectF{
 
 	private ActionListener onPress, onRelease;
 	
-	/** Create a new DrawButton with the specified coordinates.
+	/** Create a new {@link DrawButton} with the specified coordinates.
 	 * Note: no range checking is performed, so the caller must
 	 * ensure that left <= right and top <= bottom.
 	 * @param left  The X coordinate of the left side of the DrawButton 
@@ -19,7 +19,18 @@ public class DrawButton  extends RectF{
 	 * @param bottom  The Y coordinate of the bottom of the DrawButton	*/
 	public DrawButton(float left, float top, float right, float bottom){
 		super(left,top,right,bottom);
-	} 
+	}
+	
+	/** Create a new {@link DrawButton} with its coordinates equal to 0
+	 * @param left  The X coordinate of the left side of the DrawButton 
+	 * @param top  The Y coordinate of the top of the DrawButton
+	 * @param right  The X coordinate of the right side of the DrawButton 
+	 * @param bottom  The Y coordinate of the bottom of the DrawButton	*/
+	public DrawButton(){
+		super();
+	}
+	
+	
 	
 	public boolean isPressed(){
 		return isPressed;
