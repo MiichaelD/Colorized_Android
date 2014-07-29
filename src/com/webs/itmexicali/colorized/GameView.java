@@ -44,7 +44,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	DrawButtonContainer dbc;
 	
 	
-	protected int bgColor=Color.WHITE;
+	protected int bgColor=Color.BLACK;
 	
 	protected float width, height, ratio;
 	
@@ -225,12 +225,38 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		mPaints[7].setAlpha(120);
 		
 		mPaints[8] = new Paint();
-		mPaints[8].setColor(Color.BLACK);
+		mPaints[8].setColor(Color.WHITE);
 		mPaints[8].setStyle(Paint.Style.STROKE);
-		mPaints[8].setTextSize(width/12);
+		mPaints[8].setTextSize(width/11);
 		mPaints[8].setTextAlign(Align.CENTER);
 		mPaints[8].setAntiAlias(true);
 	}
+	
+	/** This method will be called when the surface has been resized, so all
+	 * screen width and height dependents must be reloaded - 
+	 * NOTE: DO NOT INCLUDE initPaints()*/
+	protected void reloadByResize() {		
+		if( mPortrait){
+			mRectFs[0] = new RectF(width/16, 2*height/5-5*width/16, 15*width/16, 2*height/5+9*width/16);
+			mRectFs[1] = new RectF(0, height/2+23*width/48, width, height/2+31*width/48);
+			
+			dbc.repositionDButton(0, 3*width/28, height/2+width/2, 6*width/28, height/2+5*width/8);
+			dbc.repositionDButton(1, 7*width/28, height/2+width/2, 10*width/28, height/2+5*width/8);
+			dbc.repositionDButton(2, 11*width/28, height/2+width/2, 14*width/28, height/2+5*width/8);
+			dbc.repositionDButton(3, 15*width/28, height/2+width/2, 18*width/28, height/2+5*width/8);
+			dbc.repositionDButton(4, 19*width/28, height/2+width/2, 22*width/28, height/2+5*width/8);
+			dbc.repositionDButton(5, 23*width/28, height/2+width/2, 26*width/28, height/2+5*width/8);
+		}
+		else{
+			mRectFs[0] = new RectF(0, 0, height, height);
+		}
+		
+		mBitmaps = new Bitmap[2];
+		float val = mPortrait ? width/8 : height/8;
+		mBitmaps[0] = BitmapLoader.resizeImage(GameActivity.getIns(),R.drawable.ic_launcher, val, val);
+		mBitmaps[1] = BitmapLoader.resizeImage(GameActivity.getIns(),R.drawable.ic_launcher, val, val);
+	}
+	
 	
 	/** This is what is going to be shown on the canvas
 	 * @see android.view.View#onDraw(android.graphics.Canvas)	 */
@@ -258,18 +284,18 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		
 		mColorBoard.updateBoard(canvas, mRectFs[0], mPaints);
 		
-		canvas.drawText("Moves: "+mColorBoard.getMoves()+"/21", width/2, 2*height/5-15*width/32, mPaints[8]);
+		canvas.drawText("Moves: "+mColorBoard.getMoves()+"/21", width/2, 2*height/5-13*width/32, mPaints[8]);
 		
-		/*  //Picture  - 2.0f*w, 2.0f*w, 40.0f*w, 20.0f*height
-		if ( mBitmaps[0] != null )
-			canvas.drawBitmap(mBitmaps[0], 50, 50, mPaints[5]);
-			float val = mPortrait ? width/8 : height/8;
-			canvas.drawRect(50f,50f,50f+val,50f+val,mPaints[1]);
-		*/
-		
+		 //Picture  - 2.0f*w, 2.0f*w, 40.0f*w, 20.0f*height
+		if ( mBitmaps != null ){
+			canvas.drawBitmap(mBitmaps[0], width/16, 2*height/5-width/2, null);
+			canvas.drawBitmap(mBitmaps[1], 15*width/16-mBitmaps[1].getWidth(), 2*height/5-width/2, null);
+			
+		}
 		
 		for(int i =0 ; i < dbc.getButtonsCount();i++){
-			canvas.drawRoundRect(dbc.getDButton(i), 25.0f, 20.0f, mPaints[i]);
+			canvas.drawRect(dbc.getDButton(i), mPaints[i]);
+			canvas.drawRect(dbc.getDButton(i), mPaints[8]);
 			if( dbc.getDButton(i).isPressed() )
 				canvas.drawRoundRect(dbc.getDButton(i), 25.0f, 20.0f, mPaints[7]);
 		}
@@ -281,34 +307,6 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	public void drawLandscape(Canvas canvas){
 		
 	}
-	
-	
-	/** This method will be called when the surface has been resized, so all
-	 * screen width and height dependents must be reloaded - 
-	 * NOTE: DO NOT INCLUDE initPaints()*/
-	protected void reloadByResize() {		
-		if( mPortrait){
-			mRectFs[0] = new RectF(width/16, 2*height/5-7*width/16, 15*width/16, 2*height/5+7*width/16);
-			mRectFs[1] = new RectF(0, height/2+6*width/16, width, 9*height/10);
-			
-			dbc.repositionDButton(0, width/14, height/2+6*width/16, 3*width/14, 9*height/10);
-			dbc.repositionDButton(1, 3*width/14, height/2+6*width/16, 5*width/14, 9*height/10);
-			dbc.repositionDButton(2, 5*width/14, height/2+6*width/16, width/2, 9*height/10);
-			dbc.repositionDButton(3, width/2, height/2+6*width/16, 9*width/14, 9*height/10);
-			dbc.repositionDButton(4, 9*width/14, height/2+6*width/16, 11*width/14, 9*height/10);
-			dbc.repositionDButton(5, 11*width/14, height/2+6*width/16, 13*width/14, 9*height/10);
-		}
-		else{
-			mRectFs[0] = new RectF(0, 0, height, height);
-		}
-		/*
-		mBitmaps = new Bitmap[1];
-		float val = mPortrait ? width/8 : height/8;
-		mBitmaps[0] = BitmapLoader.resizeImage(GameActivity.getIns(),R.drawable.ic_launcher, val, val);
-		*/
-	}
-	
-	
 	
 	@SuppressLint("ClickableViewAccessibility")
 	public boolean onTouchEvent( MotionEvent event) {
