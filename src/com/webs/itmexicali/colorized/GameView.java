@@ -113,7 +113,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		surfaceCreated=true;
 
 		mRectFs = new RectF[2];
-		dbc = new DrawButtonContainer(6,true);
+		dbc = new DrawButtonContainer(8,true);
 		
 		//register actions to the buttons created:
 		dbc.setOnActionListener(0, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
@@ -156,6 +156,20 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 					mColorBoard.colorize(5);
 				}}).start();}
 		});
+		
+		dbc.setOnActionListener(6, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
+			@Override public void onActionPerformed() {
+				new Thread(new Runnable(){public void run(){
+					//OpenSettings;
+				}}).start();}
+		});
+		
+		dbc.setOnActionListener(7, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
+			@Override public void onActionPerformed() {
+				GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
+					GameActivity.instance.showRestartDialog();
+				}});
+			}});
 	}
     
 	@Override
@@ -214,6 +228,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		
 		mPaints[5] = new Paint();
 		mPaints[5].setColor(Color.rgb(21, 183, 46));
+		//mPaints[5].setColor(Color.rgb(0, 159, 60));
 		mPaints[5].setStyle(Paint.Style.FILL);
 		mPaints[5].setAntiAlias(true);
 		
@@ -234,8 +249,8 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		
 		mPaints[8] = new Paint();
 		mPaints[8].setColor(Color.WHITE);
-		mPaints[8].setStyle(Paint.Style.STROKE);
-		mPaints[8].setTextSize(width/11);
+		mPaints[8].setStyle(Paint.Style.FILL);
+		mPaints[8].setTextSize(mPortrait? width/11 : height/11);
 		mPaints[8].setTextAlign(Align.CENTER);
 		mPaints[8].setAntiAlias(true);
 	}
@@ -247,6 +262,11 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		if( mPortrait){
 			mRectFs[0] = new RectF(width/16, 2*height/5-5*width/16, 15*width/16, 2*height/5+9*width/16);
 			mRectFs[1] = new RectF(0, height/2+23*width/48, width, height/2+31*width/48);
+
+			mBitmaps = new Bitmap[2];
+			float val = mPortrait ? width/8 : height/8;
+			mBitmaps[0] = BitmapLoader.resizeImage(getContext(),R.drawable.ic_settings, val, val);
+			mBitmaps[1] = BitmapLoader.resizeImage(getContext(),R.drawable.ic_restart, val, val);
 			
 			dbc.repositionDButton(0, 3*width/28, height/2+width/2, 6*width/28, height/2+5*width/8);
 			dbc.repositionDButton(1, 7*width/28, height/2+width/2, 10*width/28, height/2+5*width/8);
@@ -254,15 +274,19 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			dbc.repositionDButton(3, 15*width/28, height/2+width/2, 18*width/28, height/2+5*width/8);
 			dbc.repositionDButton(4, 19*width/28, height/2+width/2, 22*width/28, height/2+5*width/8);
 			dbc.repositionDButton(5, 23*width/28, height/2+width/2, 26*width/28, height/2+5*width/8);
+			
+			//settings buttons
+			dbc.repositionDButton(6, width/16, 2*height/5-width/2, width/16+val, 2*height/5-width/2+val);
+			dbc.repositionDButton(7, 15*width/16-mBitmaps[1].getWidth(), 2*height/5-width/2, 
+					15*width/16-mBitmaps[1].getWidth()+val, 2*height/5-width/2+val);
+			
+
+			
 		}
 		else{
 			mRectFs[0] = new RectF(0, 0, height, height);
 		}
 		
-		mBitmaps = new Bitmap[2];
-		float val = mPortrait ? width/8 : height/8;
-		mBitmaps[0] = BitmapLoader.resizeImage(getContext(),R.drawable.ic_launcher, val, val);
-		mBitmaps[1] = BitmapLoader.resizeImage(getContext(),R.drawable.ic_launcher, val, val);
 	}
 	
 	
@@ -295,7 +319,6 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		
 		canvas.drawText("Moves: "+mColorBoard.getMoves()+"/21", width/2, 2*height/5-13*width/32, mPaints[8]);
 		
-		 //Picture  - 2.0f*w, 2.0f*w, 40.0f*w, 20.0f*height
 		if ( mBitmaps != null ){
 			canvas.drawBitmap(mBitmaps[0], width/16, 2*height/5-width/2, null);
 			canvas.drawBitmap(mBitmaps[1], 15*width/16-mBitmaps[1].getWidth(), 2*height/5-width/2, null);
@@ -303,8 +326,8 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		}
 		
 		for(int i =0 ; i < dbc.getButtonsCount();i++){
-			canvas.drawRect(dbc.getDButton(i), mPaints[i]);
-			canvas.drawRect(dbc.getDButton(i), mPaints[8]);
+			if(i < 6)//after position 5, we are painting bitmaps instead of buttons
+				canvas.drawRect(dbc.getDButton(i), mPaints[i]);
 			if( dbc.getDButton(i).isPressed() )
 				canvas.drawRoundRect(dbc.getDButton(i), 25.0f, 20.0f, mPaints[7]);
 		}
@@ -428,7 +451,11 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	
 	/** Create a new random board*/
 	public void createNewBoard(int blocks){
-		mColorBoard = new ColorBoard(blocks);
+		if(blocks < 0)//if blocks is negative, this will have the same blocks #
+			mColorBoard.startRandomColorBoard();
+		else
+			mColorBoard = new ColorBoard(blocks);
+		refreshUI();
 	}
 	
 	/** Given a string containing a saved ColorBoard state,

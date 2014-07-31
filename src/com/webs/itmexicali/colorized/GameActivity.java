@@ -20,12 +20,15 @@ public class GameActivity extends Activity {
     /** The view to show the ad. */
     private AdView adView = null;
 	
-	
+	//this activity instance, to access its members from other classes
+    public static GameActivity instance;
 
 	@SuppressLint("InlinedApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		instance = this;
+		
 		//set the game screen
 		setContentView(R.layout.game_screen);
 	
@@ -161,6 +164,28 @@ public class GameActivity extends Activity {
         	   GameView.getIns().createNewBoard(getSharedPreferences(Const.TAG, 0).
         			   getInt(getString(R.string.key_board_size), 12));
         	   
+        	   Const.setFullScreen(GameActivity.this);
+           }
+		})
+		.create()
+		.show();
+	}
+	
+	/** Display dialog informing that there is a gamestate saved
+	 * and ask if the user wants to play it or prefers a new match*/
+	public void showRestartDialog(){	    
+		//Use the Builder class for convenient dialog construction
+		new AlertDialog.Builder(GameActivity.this)
+		.setMessage(R.string.restart_game_confirmation)
+		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int id) {
+        	   GameView.getIns().createNewBoard(-1);
+        	   Const.setFullScreen(GameActivity.this);
+           }
+		})
+		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int id) {// dismiss menu
+        	   dialog.cancel();
         	   Const.setFullScreen(GameActivity.this);
            }
 		})

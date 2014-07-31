@@ -51,7 +51,8 @@ public class ColorBoard {
 		totalBlocks = blocks * blocks;
 	}
 	
-	/** Start a new random matrix and set moves to 0*/
+	/** Start a new random matrix and set moves to 0
+	 * @param blocks the new number of blocks per side of the matrix*/
 	public void startRandomColorBoard(int blocks){
 		moves = 0;
 		setDerivedBlocksInfo(blocks);
@@ -60,6 +61,16 @@ public class ColorBoard {
 			for(int j=0; j<blocks; j++)
 				mColorBoard[i][j] = (int)(Math.random()*6);
 	}
+	
+	/** Start a new random matrix and reset moves counter*/
+	public void startRandomColorBoard(){
+		moves = 0;
+		for(int i=0; i<blocksPerSide; i++)
+			for(int j=0; j<blocksPerSide; j++)
+				mColorBoard[i][j] = (int)(Math.random()*6);
+	}
+	
+	
 	
 	/** change the color of the blocks neighbor the main block
 	 * which are from the same color (than the main block as well) */

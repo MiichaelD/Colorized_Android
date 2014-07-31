@@ -2,12 +2,17 @@
 <resources>
 
     <string name="app_name">Colorized</string>
-    <string name="exit_confirmation">Are you sure you want to quit</string>
+    
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-    <string name="saved_game_confirmation">There is an unfinished game saved, do you want to continue?</string>
+    <string name="no">NO</string>
     
-    <!-- Settings Keys!-->
+    <!-- Dialogs messages !-->
+    <string name="exit_confirmation">Are you sure you want to quit?</string>
+    <string name="restart_game_confirmation">Are you sure you want to restart current game?</string>
+    <string name="saved_game_confirmation">There is an unfinished game saved, do you want to continue?</string>
+        
+    <!-- Settings Keys !-->
     <string name="key_game_saved" translatable="false">key_game_saved</string>
     <string name="key_tutorial_played" translatable="false">key_tutorial_played</string>
     <string name="key_music" translatable="false">key_music</string>
