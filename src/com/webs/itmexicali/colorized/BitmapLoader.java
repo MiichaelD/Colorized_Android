@@ -1,45 +1,15 @@
 package com.webs.itmexicali.colorized;
 
-import java.io.InputStream;
 import java.util.HashMap;
-
-import com.webs.itmexicali.colorized.comm.ServerConn;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.util.Log;
 
 public class BitmapLoader {
 	
 	static HashMap<String,Bitmap> bitmaps=new HashMap<String,Bitmap>();
 
-	
-	/** load the origial Bitmap from URL*/
-	public static Bitmap resizeImage(Context ctx, String URL, float w, float h) {
-		
-		if (bitmaps.containsKey(URL))
-			return bitmaps.get(URL);
-		
-		Bitmap BitmapOrg = null;
-		InputStream is = null;
-		try {
-			is = ServerConn.Connect(-1, URL, null).getInputStream();
-			BitmapOrg = BitmapFactory.decodeStream(is);
-			bitmaps.put(URL, resizeImage(BitmapOrg, w, h));
-		} catch (Exception e) {
-			if (Const.D){
-				Log.e(Const.TAG+" - BitmapLoader","Problem fetching Bitmap from: "+URL);
-				e.printStackTrace();
-			}
-			Log.e(Const.TAG+" - BitmapLoader","loading default Bitmap for: " + URL);
-			BitmapOrg = BitmapFactory.decodeResource(ctx.getResources(),R.drawable.ic_launcher);
-		}
-		
-        return resizeImage(BitmapOrg, w, h);
-    }
-	
 	
 	/** load the origial Bitmap from resource ID	 */
 	public static Bitmap resizeImage(Context ctx, int resId, float w, float h) {

@@ -2,7 +2,18 @@
 <resources>
 
     <string name="app_name">Colorized</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="exit_confirmation">Are you sure you want to quit</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="saved_game_confirmation">There is an unfinished game saved, do you want to continue?</string>
+    
+    <!-- Settings Keys!-->
+    <string name="key_game_saved" translatable="false">key_game_saved</string>
+    <string name="key_tutorial_played" translatable="false">key_tutorial_played</string>
+    <string name="key_music" translatable="false">key_music</string>
+    <string name="key_sound" translatable="false">key_sound</string>
+    <string name="key_board_saved" translatable="false">key_board_saved</string>
+    <string name="key_board_size" translatable="false">key_board_size</string>
+    
 
 </resources>

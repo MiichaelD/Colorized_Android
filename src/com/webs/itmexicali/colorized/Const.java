@@ -7,7 +7,7 @@ import android.os.Build;
 import android.view.View;
 import android.view.WindowManager;
 
-
+/** Class containing constants and static methods accessible across the app*/ 
 public class Const {
 
 	//Debug variable
@@ -21,7 +21,6 @@ public class Const {
     /** Your ad unit id. Replace with your actual ad unit id. */
     protected static final String AD_UNIT_ID = "ca-app-pub-4741238402050454/3079300200";
 
-    
     
     /** Hide Action Bar in devices that support it */
 	@SuppressLint("InlinedApi")

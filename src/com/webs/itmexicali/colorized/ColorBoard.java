@@ -26,24 +26,35 @@ public class ColorBoard {
 	
 	/** Initialize a new random {@link ColorBoard} matrix*/
 	ColorBoard(int blocks){
-		moves = 0;
 		startRandomColorBoard(blocks);
 	}
 	
-	/** Load a given {@link ColorBoard} matrix*/
-	ColorBoard(int blocks, int[][] mat){
-		moves = 0;
-		blocksPerSide = blocks;
-		totalBlocks = blocks * blocks;
-		if(mat == null)
+	
+	/** Load a given {@link ColorBoard} matrix
+	 * @param blocks number of blocks per side of board
+	 * @param moves number of user interactions in loaded board
+	 * @param mat the board representation as an array of integers*/
+	ColorBoard(int blocks, int moves, int[][] mat){
+		if(mat == null){
 			startRandomColorBoard(blocks);
+			return;
+		}
+		this.moves = moves;
+		setDerivedBlocksInfo(blocks);
 		mColorBoard = mat;
 	}
 	
-	/** Start a random matrix */
-	public void startRandomColorBoard(int blocks){
+	
+	/** Init the derived blocks information*/
+	private void setDerivedBlocksInfo(int blocks){
 		blocksPerSide = blocks;
 		totalBlocks = blocks * blocks;
+	}
+	
+	/** Start a new random matrix and set moves to 0*/
+	public void startRandomColorBoard(int blocks){
+		moves = 0;
+		setDerivedBlocksInfo(blocks);
 		mColorBoard = new int[blocks][blocks];
 		for(int i=0; i<blocks; i++)
 			for(int j=0; j<blocks; j++)
@@ -68,7 +79,7 @@ public class ColorBoard {
 		mColorBoard[0][0] = newColor; //update the main block's color
 		
 		boolean finished = blocksUpdatedCount == totalBlocks;
-		GameView.getIns().boardOpFinish(finished);
+		GameView.getIns().onBoardOpFinish(finished);
 		
 	}
 	
@@ -94,6 +105,7 @@ public class ColorBoard {
 		return mColorBoard;
 	}
 	
+	/** The amount of moves this game has processed*/
 	public int getMoves(){
 		return moves;
 	}
@@ -111,5 +123,22 @@ public class ColorBoard {
 				canvas.drawRect(left+blockPixels*j, top, left+blockPixels*(j+1), top+blockPixels, paints[mColorBoard[i][j]]);
 		}
 		
+	}
+	
+	/** Representation of current {@link ColorBoard} state
+	 * @return string formated as follows: "<b>i j []</b>",
+	 * where <b>i</b> is the number of blocks per side
+	 * <b>j</b> is the number of moves at current time and
+	 * <b>[]</b> is the representation of the board as a sucession of numbers*/
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(blocksPerSide);
+		sb.append(" ");
+		sb.append(moves);
+		for(int i=0;i<blocksPerSide;i++)
+			for(int k=0;k<blocksPerSide;k++)
+				sb.append(" ").append(mColorBoard[i][k]);
+		return sb.toString();
 	}
 }

@@ -6,27 +6,19 @@ import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.os.Build;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 public class GameActivity extends Activity {
 	
-	//this Activity instance
-	private static GameActivity m_instance = null;
-	
 	//AdMob Advertising
     /** The view to show the ad. */
     private AdView adView = null;
-	
-	public static GameActivity getIns(){
-		return m_instance;
-	}
 	
 	
 
@@ -34,13 +26,16 @@ public class GameActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		m_instance = this;
-
+		//set the game screen
 		setContentView(R.layout.game_screen);
 	
 		//run on FullScreen with no Action and Navigation Bars
 		Const.setFullScreen(this);
+		
+		//check if there is a saved game and ask the user if he'd like to keep
+		//playing it
+		if (getSharedPreferences(Const.TAG, 0).getBoolean(getString(R.string.key_game_saved), false))
+			showSavedGameDialog();
 		
 		/*************************************	ADS ADMOB	*********************************************/
 		// Create an ad.
@@ -87,8 +82,96 @@ public class GameActivity extends Activity {
         // Start loading the ad in the background.
         adView.loadAd(adRequest);
         /*************************************	ADS ADMOB	*********************************************/
-		
-        
 	}
+	
+	@Override
+	public void onPause(){
+		//ads
+		if (adView != null) {
+  	      adView.pause();
+  		}
+		super.onPause();
+	}
+	
+	@Override
+	public void onResume(){
+		//ads
+		if (adView != null) {
+  	      adView.resume();
+  		}
+		super.onPause();
+	}
+	
+	/** If there is any progress in the game, save it in case the user
+	 * wants to continue the next time he gets back to the game*/
+	private void saveProgress(){
+		if(GameView.getIns().getMoves() > 0){
+			// the game was started, lets save it 
+			SharedPreferences settings= getSharedPreferences(Const.TAG, 0); 
+		    SharedPreferences.Editor settingsEditor = settings.edit();
+		    
+		    settingsEditor.putBoolean(getString(R.string.key_game_saved),true);
+		    settingsEditor.putString(getString(R.string.key_board_saved),GameView.getIns().getBoardAsString());
+		    settingsEditor.commit();
+		}
+	}
+	
+	/** Display an exit confirmation dialog to prevent accidentally quitting the game*/
+	private void showExitDialog(){
+		//Use the Builder class for convenient dialog construction
+		new AlertDialog.Builder(GameActivity.this)
+		.setMessage(R.string.exit_confirmation)
+		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int id) { // Exit the game
+        	   saveProgress();
+               GameActivity.this.finish();
+           }
+		})
+		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int id) {// dismiss menu
+               dialog.cancel();
+               Const.setFullScreen(GameActivity.this);
+           }
+		})
+		.create()
+		.show();
+	}
+	
+	/** Display dialog informing that there is a gamestate saved
+	 * and ask if the user wants to play it or prefers a new match*/
+	private void showSavedGameDialog(){
+		//remove the saved game from the sharedPreferences file
+	    SharedPreferences.Editor settingsEditor = getSharedPreferences(Const.TAG, 0).edit();
+	    settingsEditor.remove(getString(R.string.key_game_saved));
+	    settingsEditor.remove(getString(R.string.key_board_saved));
+	    settingsEditor.commit();
+	    
+		//Use the Builder class for convenient dialog construction
+		new AlertDialog.Builder(GameActivity.this)
+		.setMessage(R.string.saved_game_confirmation)
+		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int id) { // Exit the game
+        	   dialog.cancel();
+        	   Const.setFullScreen(GameActivity.this);
+           }
+		})
+		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int id) {// dismiss menu
+        	   dialog.cancel();
+        	   GameView.getIns().createNewBoard(getSharedPreferences(Const.TAG, 0).
+        			   getInt(getString(R.string.key_board_size), 12));
+        	   
+        	   Const.setFullScreen(GameActivity.this);
+           }
+		})
+		.create()
+		.show();
+	}
+	
+	@Override
+	public void onBackPressed(){
+		showExitDialog();		
+	}
+	
 	
 }

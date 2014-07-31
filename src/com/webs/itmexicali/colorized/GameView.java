@@ -1,10 +1,13 @@
 package com.webs.itmexicali.colorized;
 
+import java.util.Scanner;
+
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -26,13 +29,10 @@ import android.view.SurfaceView;
 @SuppressLint("WrongCall")
 public class GameView extends SurfaceView implements Callback, Runnable{
 	
-	//this clas TAG
-	protected String TAG = Const.TAG + "-GameView";
-	
 	// mPortrait true to indicate that the width is smaller than the heigth
 	public boolean mPortrait;
 	
-	public 	  boolean 	run, selected, surfaceCreated=false;
+	private 	  boolean 	run, selected, surfaceCreated=false;
 	protected SurfaceHolder sh;
 	
 	//Paints to be used to Draw text and shapes
@@ -63,20 +63,17 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	/********************************************CONSTRUCTORS*****************************/
 	public GameView(Context context) {
 		super(context);
-		mContext = context;
-		initHolder(context);
+		init();
 	}
 	
 	public GameView(Context context, AttributeSet attrs, int defStyle){
         super( context , attrs , defStyle );
-        mContext = context;
-        initHolder(context);
+        init();
     }
 
     public GameView(Context context, AttributeSet attrs){
         super( context , attrs );
-        mContext = context;
-        initHolder(context);
+        init();
     }
     /**************************************************************************************/
 
@@ -85,16 +82,27 @@ public class GameView extends SurfaceView implements Callback, Runnable{
     }
     
     /** Init this SurfaceView's Holder    */
-	public final void initHolder(Context context){
+	public final void init(){
 		instance = this;
-		if(mColorBoard == null){
-			mColorBoard = new ColorBoard(12);
+		
+		// load the shared preferences
+		SharedPreferences sp = getContext().getSharedPreferences(Const.TAG, 0);
+		//if there is a gamestate saved, load it again
+		if( sp.getBoolean(getContext().getString(R.string.key_game_saved), false)){
+			//parse the gamestate
+			parseBoardFromString(sp.getString(getContext().getString(R.string.key_board_saved),null));
 		}
+		
+		if(mColorBoard == null){
+			createNewBoard(sp.getInt(getContext().getString(R.string.key_board_size), 12));
+		}
+		
 		sh = getHolder();
 		sh.setFormat(PixelFormat.TRANSLUCENT);
 		sh.addCallback(this);
 		
 	}
+	
     
     /***************************SURFACE HOLDER CALLBACK METHODS*****************************/
     
@@ -158,8 +166,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		ratio = ((float) width) / height;
 		mPortrait = ratio > 1.0f ? false : true;
 		//GameActivity.getIns().setAdsPosition(mPortrait);
-		if(Const.D)
-			Log.v(TAG,"ratio: "+ratio+". width = "+width+", height = "+height+" so, portrait = "+mPortrait);
+		//Log.v(Const.TAG,"ratio: "+ratio+". width = "+width+", height = "+height+" so, portrait = "+mPortrait);
 		
 		initPaints();
 		reloadByResize();
@@ -175,6 +182,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		stopThread();
 	}
 	
+	/********************************* UI RESIZE METHODS *********************************/
 
 	/** Init the paints to be used on canvas */
 	public void initPaints() {
@@ -253,10 +261,12 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		
 		mBitmaps = new Bitmap[2];
 		float val = mPortrait ? width/8 : height/8;
-		mBitmaps[0] = BitmapLoader.resizeImage(GameActivity.getIns(),R.drawable.ic_launcher, val, val);
-		mBitmaps[1] = BitmapLoader.resizeImage(GameActivity.getIns(),R.drawable.ic_launcher, val, val);
+		mBitmaps[0] = BitmapLoader.resizeImage(getContext(),R.drawable.ic_launcher, val, val);
+		mBitmaps[1] = BitmapLoader.resizeImage(getContext(),R.drawable.ic_launcher, val, val);
 	}
 	
+	
+	/******************************* DRAWING METHODS *********************************/
 	
 	/** This is what is going to be shown on the canvas
 	 * @see android.view.View#onDraw(android.graphics.Canvas)	 */
@@ -270,8 +280,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			else	drawLandscape(canvas);
 			
 		} catch (Exception e) {
-			Log.e(TAG, "onDraw(canvas)");
-			e.printStackTrace();
+			//Log.e(Const.TAG, "onDraw(canvas)"+e.getLocalizedMessage());
 		}
 	}
 	
@@ -308,6 +317,83 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		
 	}
 	
+	/** Start a new thread to keep the UI refreshing constantly
+	 * restrict to create and start a thread JUST when:
+	 * There is no other thread running  and
+	 * The SurfaceView has been created */
+	public final synchronized void startThread(){
+		if(run == false){
+			tDraw = new Thread(this);
+			run = true;
+			tDraw.start();
+		}
+	}
+	
+	/** Stop any thread in charge of refreshing the UI*/
+	public final synchronized void stopThread(){
+		if(run){
+			run = false;
+			boolean retry = true;
+			while (retry) {
+				try {
+					if (tDraw != null)
+						tDraw.join();
+					retry = false;
+				} catch (InterruptedException e) {
+					//Log.e(Const.TAG, "stopThread: " + e.getMessage());
+				}
+			}
+		}
+	}
+
+	/** this thread is responsible for updating the canvas
+	 * @see java.lang.Runnable#run() */
+	public final void run() {		
+		while (run && surfaceCreated) {
+			try {
+				//sleep 20 millis to get around 50 FPS
+				Thread.sleep(20);
+			} catch (InterruptedException e) { }
+			refreshUI();
+		}
+	}
+	
+
+	/** Refresh the User Interface to show the updates*/
+	public final synchronized void refreshUI() {
+		//Log.v(Const.TAG,"Refreshing UI GameView");
+		canvas = null;
+		if (surfaceCreated && sh != null){
+			try {
+				canvas = sh.lockCanvas(null);
+				if(canvas != null)
+					synchronized (sh) {
+						onDraw(canvas);
+					}
+			} finally {
+				if (canvas != null)
+					sh.unlockCanvasAndPost(canvas);
+			}	
+		}
+		else{
+			//Log.e(Const.TAG,"Refreshing UI GameView CANCELLED because surface is not created");
+		}
+		canvas = null;
+	}
+	
+	/** Refresh the User Interface to show the updates in a new thread
+	 * {@link refreshUI}*/
+	public final void refreshUI_newThread() {
+		new Thread(new Runnable(){
+			public void run(){
+				refreshUI();
+			}
+		}).start();
+	}
+
+	/******************************* *********** *********************************/
+	
+	@Override
 	@SuppressLint("ClickableViewAccessibility")
 	public boolean onTouchEvent( MotionEvent event) {
 		//new Thread(new Runnable(){
@@ -338,85 +424,47 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	}
 	
 	
-	/** Start a new thread to keep the UI refreshing constantly
-	 * restrict to create and start a thread JUST when:
-	 * There is no other thread running  and
-	 * The SurfaceView has been created */
-	public final synchronized void startThread(){
-		if(run == false){
-			tDraw = new Thread(this);
-			run = true;
-			tDraw.start();
-		}
+	/********************************* BOARD METHODS *********************************/
+	
+	/** Create a new random board*/
+	public void createNewBoard(int blocks){
+		mColorBoard = new ColorBoard(blocks);
 	}
 	
-	/** Stop any thread in charge of refreshing the UI*/
-	public final synchronized void stopThread(){
-		if(run){
-			run = false;
-			boolean retry = true;
-			while (retry) {
-				try {
-					if (tDraw != null)
-						tDraw.join();
-					retry = false;
-				} catch (InterruptedException e) {
-					Log.e(TAG, "stopThread: " + e.getMessage());
-				}
-			}
+	/** Given a string containing a saved ColorBoard state,
+	 * parse it to create a new game state identical */
+	public void parseBoardFromString(String state){
+		if(state == null)
+			return;
+		Scanner scanner = null;
+		try{
+			scanner = new Scanner(state);
+			int bps = scanner.nextInt();
+			int moves = scanner.nextInt();
+			int[][] board = new int[bps][bps];
+			for(int i =0;i<bps;i++)
+				for(int j=0;j<bps;j++)
+					board[i][j] = scanner.nextInt();
+			mColorBoard = new ColorBoard(bps, moves, board);
+		}catch(Exception e){
 		}
-	}
-
-	/** this thread is responsible for updating the canvas
-	 * @see java.lang.Runnable#run() */
-	public final void run() {		
-		while (run && surfaceCreated) {
-			try {
-				//sleep 20 millis to get around 50 FPS
-				Thread.sleep(20);
-			} catch (InterruptedException e) { }
-			refreshUI();
-		}
+		finally{scanner.close();}
 	}
 	
-	/** Refresh the User Interface to show the updates*/
-
-	/** Refresh the User Interface to show the updates*/
-	public final synchronized void refreshUI() {
-		Log.v(TAG,"Refreshing UI GameView");
-		canvas = null;
-		if (surfaceCreated && sh != null){
-			try {
-				canvas = sh.lockCanvas(null);
-				if(canvas != null)
-					synchronized (sh) {
-						onDraw(canvas);
-					}
-			} finally {
-				if (canvas != null)
-					sh.unlockCanvasAndPost(canvas);
-			}	
-		}
-		else{
-			if(Const.D)
-				Log.e(TAG,"Refreshing UI GameView CANCELLED because surface is not created");
-		}
-		canvas = null;
-	}
-	
-	/** Refresh the User Interface to show the updates in a new thread
-	 * {@link refreshUI}*/
-	public final void refreshUI_newThread() {
-		new Thread(new Runnable(){
-			public void run(){
-				refreshUI();
-			}
-		}).start();
-	}
-
-	
-	public void boardOpFinish(boolean won){
+	/** The string representation of current game state*/
+	public String getBoardAsString(){
+		Log.d("string",mColorBoard.toString());
+		return mColorBoard.toString();
 		
+	}
+	
+	/** The number of moves (user interactions) in current game*/
+	public int getMoves(){
+		return mColorBoard.getMoves();
+	}
+	
+	/** Callback to let the game know that the user input has been processed*/
+	public void onBoardOpFinish(boolean won){
 		refreshUI();
 	}
 }
