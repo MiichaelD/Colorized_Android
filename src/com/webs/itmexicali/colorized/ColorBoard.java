@@ -21,6 +21,9 @@ public class ColorBoard {
 	/** Actual movements counter*/
 	private int moves;
 	
+	/** handle concurrent access to colorize method, not using blocking synchronized modifier*/
+	private boolean isColorizing = false;
+	
 	/** Counter to keep track of updated blocks*/
 	private int blocksUpdatedCount;
 	
@@ -75,10 +78,15 @@ public class ColorBoard {
 	/** change the color of the blocks neighbor the main block
 	 * which are from the same color (than the main block as well) */
 	public void colorize(int newColor){
-		Log.v("ColorBoard","colorise: "+newColor);
 		//check if the new color is different from last one
-		if(newColor == mColorBoard[0][0])
+		// not the best approach, but will block a few threads
+		if(isColorizing || newColor == mColorBoard[0][0])
 			return;
+		
+		isColorizing = true;
+		Log.v("ColorBoard","colorise: "+newColor);
+		
+		GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 		
 		moves++;//count this move
 		
@@ -91,6 +99,8 @@ public class ColorBoard {
 		
 		boolean finished = blocksUpdatedCount == totalBlocks;
 		GameView.getIns().onBoardOpFinish(finished);
+		
+		isColorizing = false;
 		
 	}
 	

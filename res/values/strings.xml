@@ -3,14 +3,16 @@
 
     <string name="app_name">Colorized</string>
     
-    <string name="ok">OK</string>
+    <string name="ok" translatable="false">OK</string>
     <string name="cancel">Cancel</string>
-    <string name="no">NO</string>
+    <string name="no" translatable="false">NO</string>
     
     <!-- Dialogs messages !-->
     <string name="exit_confirmation">Are you sure you want to quit?</string>
     <string name="restart_game_confirmation">Are you sure you want to restart current game?</string>
     <string name="saved_game_confirmation">There is an unfinished game saved, do you want to continue?</string>
+    <string name="game_over_lose">You ran out of moves, do you want to try again?</string>
+    <string name="game_over_win">Congratulations! you finished the game with %d moves. Do you want to play again?</string>
         
     <!-- Settings Keys !-->
     <string name="key_game_saved" translatable="false">key_game_saved</string>

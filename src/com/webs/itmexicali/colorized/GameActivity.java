@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.RelativeLayout;
@@ -22,6 +23,12 @@ public class GameActivity extends Activity {
 	
 	//this activity instance, to access its members from other classes
     public static GameActivity instance;
+    
+    // Media player to play sounds of user interactions & background music.
+    private MediaPlayer soundPlayer = null, musicPlayer = null;
+    private SoundType previousSound = SoundType.NONE;
+    private boolean wasSoundPlaying = false, wasMusicPlaying = false;
+    public static enum SoundType{ NONE, TOUCH, WIN, LOSE};
 
 	@SuppressLint("InlinedApi")
 	@Override
@@ -49,15 +56,11 @@ public class GameActivity extends Activity {
         	  @Override
         	  public void onAdOpened() {
         	    // Save app state before going to the ad overlay.
-        		  if(Const.D){
-        			  Log.d(Const.TAG,"AdView - Opened");
-        		  }
+        		Log.d(Const.TAG,"AdView - Opened");
         	  }
         	  @Override
         	  public void onAdFailedToLoad(int errorCode){
-        		  if(Const.D){
-        			  Log.d(Const.TAG,"AdView - FailedToLoad = "+errorCode);
-        		  }
+        		Log.d(Const.TAG,"AdView - FailedToLoad = "+errorCode);
         	  }
         	});
 		
@@ -88,20 +91,68 @@ public class GameActivity extends Activity {
 	}
 	
 	@Override
+	public void onStart(){
+		//start Player with a resource
+		
+		if( musicPlayer == null){
+			musicPlayer=MediaPlayer.create(this, R.raw.music);
+			musicPlayer.setLooping(true);
+		}
+		super.onStart();
+	}
+	
+	@Override
+	public void onStop(){
+		//release resources of the media player and delete it
+		if (soundPlayer != null){
+			soundPlayer.release();
+			soundPlayer = null;
+		}
+		
+		if (musicPlayer != null){
+			musicPlayer.release();
+			musicPlayer = null;
+		}
+		super.onStop();
+	}
+	
+	@Override
 	public void onPause(){
-		//ads
+		//ADMOB Advertising
 		if (adView != null) {
   	      adView.pause();
   		}
+		
+		//Stop audio playing
+		if (soundPlayer != null && soundPlayer.isPlaying()){
+			soundPlayer.pause();
+			wasSoundPlaying = true;
+		}
+		
+		if (musicPlayer != null && musicPlayer.isPlaying()){
+			musicPlayer.pause();
+			wasMusicPlaying = true;
+		}	
+		
 		super.onPause();
 	}
 	
 	@Override
 	public void onResume(){
-		//ads
+		//ADMOB Advertising
 		if (adView != null) {
   	      adView.resume();
   		}
+		
+		//Stop audio playing
+		if (soundPlayer != null && wasSoundPlaying){
+			soundPlayer.start();
+		}
+		
+		if (musicPlayer != null && wasMusicPlaying){
+			musicPlayer.start();
+		}
+		
 		super.onPause();
 	}
 	
@@ -193,10 +244,70 @@ public class GameActivity extends Activity {
 		.show();
 	}
 	
+	/** Display dialog informing that the game is over and restart again
+	 * @param win if true, show congratulations text, else show condolences*/
+	public void showRestartDialog(boolean win){	    
+		//Use the Builder class for convenient dialog construction
+		new AlertDialog.Builder(GameActivity.this)
+		.setMessage(win? R.string.game_over_win: R.string.game_over_lose)
+		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int id) {
+        	   GameView.getIns().createNewBoard(-1);
+        	   Const.setFullScreen(GameActivity.this);
+           }
+		})
+		.setOnCancelListener(new DialogInterface.OnCancelListener() {
+			@Override
+			public void onCancel(DialogInterface arg0) {
+				// GameView.getIns().createNewBoard(-1);
+	        	   Const.setFullScreen(GameActivity.this);
+				
+			}
+		})
+		.create()
+		.show();
+	}
+	
 	@Override
 	public void onBackPressed(){
 		showExitDialog();		
 	}
 	
+	/** Play sounds when user touch the controls
+	 * @param SoundType to select type of sound to play*/ 
+	public void playSound(SoundType s){
+		//if we have an instance of the player and the user wants to play sounds
+		if(getSharedPreferences(Const.TAG,0).getBoolean(getString(R.string.key_sound),true)){
+			if(previousSound != s){
+				previousSound = s;
+				if(soundPlayer != null)
+					soundPlayer.release();
+				switch(s){
+				case TOUCH:	soundPlayer = MediaPlayer.create(this, R.raw.confirm); break;
+				case WIN:	soundPlayer = MediaPlayer.create(this, R.raw.win); break;
+				case LOSE:	soundPlayer = MediaPlayer.create(this, R.raw.lose); break;
+				default:	break;
+				}				
+			}
+			else
+				//if it was playing, stop it to restart it
+				if(soundPlayer.isPlaying())
+					soundPlayer.stop();
+			soundPlayer.start();
+		}
+			
+	}
 	
+	/** Play/Stop Background music
+	 * @param play true to play music, false to stop it*/ 
+	public void playMusic(boolean play){
+		
+		//if we have an instance of the player and the user wants to play sounds
+		if(soundPlayer != null && getSharedPreferences(Const.TAG,0).getBoolean(getString(R.string.key_music),true))
+			if(play){
+				if(!soundPlayer.isPlaying())
+					soundPlayer.start();
+			}else
+				soundPlayer.stop();
+	}
 }

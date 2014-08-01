@@ -32,7 +32,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	// mPortrait true to indicate that the width is smaller than the heigth
 	public boolean mPortrait;
 	
-	private 	  boolean 	run, selected, surfaceCreated=false;
+	private 	  boolean 	run = false, selected, surfaceCreated=false;
 	protected SurfaceHolder sh;
 	
 	//Paints to be used to Draw text and shapes
@@ -41,6 +41,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	protected Rect		mRects[];
 	protected RectF		mRectFs[];
 	private Thread		tDraw;
+	private long 		lastUpdate = 0;
 	DrawButtonContainer dbc;
 	
 	
@@ -108,7 +109,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
     
     @Override
 	public void surfaceCreated(SurfaceHolder holder) {
-		//Log.d(TAG,"SurfaceCreated "+window);
+		Log.v(Const.TAG,"SurfaceCreated ");
 		canvas = null;
 		surfaceCreated=true;
 
@@ -160,6 +161,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		dbc.setOnActionListener(6, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
 				new Thread(new Runnable(){public void run(){
+					GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 					//OpenSettings;
 				}}).start();}
 		});
@@ -167,31 +169,33 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		dbc.setOnActionListener(7, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
 				GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
+					GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 					GameActivity.instance.showRestartDialog();
 				}});
 			}});
+
+		//Start painting thread
+		startThread();
 	}
     
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,	int height) {
-		//Log.v(TAG, "SurfaceChanged "+window );
+		Log.v(Const.TAG, "SurfaceChanged ");
 		this.width = width; 
 		this.height = height;
 		ratio = ((float) width) / height;
 		mPortrait = ratio > 1.0f ? false : true;
-		//GameActivity.getIns().setAdsPosition(mPortrait);
-		//Log.v(Const.TAG,"ratio: "+ratio+". width = "+width+", height = "+height+" so, portrait = "+mPortrait);
 		
 		initPaints();
 		reloadByResize();
 		
-		refreshUI();
+		updateNow();//refreshUI();
 		//startThread();
 	}
 
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
-		//Log.v(TAG, "surfaceDestroyed "+window);
+		Log.v(Const.TAG, "surfaceDestroyed ");
 		surfaceCreated = false;
 		stopThread();
 	}
@@ -297,8 +301,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	public void onDraw(Canvas canvas) {
 		try {
 			//Background
-			canvas.drawColor(bgColor);
-			//canvas.drawColor(mPaints[(int)(Math.random()*8)].getColor());
+			canvas.drawColor(bgColor);//(mPaints[(int)(Math.random()*8)].getColor());
 			
 			if( mPortrait ) drawPortrait(canvas);
 			else	drawLandscape(canvas);
@@ -340,11 +343,21 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		
 	}
 	
+	public final void updateNow(){
+		/*
+		if(run)
+			lastUpdate = System.currentTimeMillis();
+		else
+			startThread();
+			*/
+	}
+	
 	/** Start a new thread to keep the UI refreshing constantly
 	 * restrict to create and start a thread JUST when:
 	 * There is no other thread running  and
 	 * The SurfaceView has been created */
 	public final synchronized void startThread(){
+		Log.v(GameView.class.getName(), "Starting Thread" );
 		if(run == false){
 			tDraw = new Thread(this);
 			run = true;
@@ -354,6 +367,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	
 	/** Stop any thread in charge of refreshing the UI*/
 	public final synchronized void stopThread(){
+		Log.v(GameView.class.getName(), "Stoping Thread" );
 		if(run){
 			run = false;
 			boolean retry = true;
@@ -372,12 +386,14 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	/** this thread is responsible for updating the canvas
 	 * @see java.lang.Runnable#run() */
 	public final void run() {		
+		lastUpdate = System.currentTimeMillis();
 		while (run && surfaceCreated) {
 			try {
 				//sleep 20 millis to get around 50 FPS
 				Thread.sleep(20);
+				//if(System.currentTimeMillis() - lastUpdate < 2000)
+				refreshUI();
 			} catch (InterruptedException e) { }
-			refreshUI();
 		}
 	}
 	
@@ -399,7 +415,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			}	
 		}
 		else{
-			//Log.e(Const.TAG,"Refreshing UI GameView CANCELLED because surface is not created");
+			Log.e(Const.TAG,"Refreshing UI GameView CANCELLED because surface is not created");
 		}
 		canvas = null;
 	}
@@ -413,6 +429,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			}
 		}).start();
 	}
+	
 
 	/******************************* *********** *********************************/
 	
@@ -440,7 +457,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 					dbc.onMoveUpdate(event, pointerIndex);
 					break;
 				}
-				refreshUI_newThread();
+				updateNow();//refreshUI();
 		//	}
 		//}).start();
 		return true;
@@ -455,7 +472,8 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			mColorBoard.startRandomColorBoard();
 		else
 			mColorBoard = new ColorBoard(blocks);
-		refreshUI();
+		
+		updateNow();//refreshUI();
 	}
 	
 	/** Given a string containing a saved ColorBoard state,
@@ -480,7 +498,6 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	
 	/** The string representation of current game state*/
 	public String getBoardAsString(){
-		Log.d("string",mColorBoard.toString());
 		return mColorBoard.toString();
 		
 	}
@@ -492,6 +509,19 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	
 	/** Callback to let the game know that the user input has been processed*/
 	public void onBoardOpFinish(boolean won){
-		refreshUI();
+		if (won){
+			GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
+				GameActivity.instance.playSound(GameActivity.SoundType.WIN);
+				GameActivity.instance.showRestartDialog(true);
+			}});
+			
+		}
+		else if(getMoves() > 20){//TODO hardcoded value
+			GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
+				GameActivity.instance.playSound(GameActivity.SoundType.LOSE);
+				GameActivity.instance.showRestartDialog(false);
+			}});
+		}
+		updateNow();//refreshUI();
 	}
 }
