@@ -14,9 +14,8 @@ public class ColorBoard {
 	/** the matrix holding the color blocks*/
 	private int mColorBoard[][];
 	
-	/** number of blocks per side in the square matrix
-	 * and totalBlocks in matrix*/
-	private int blocksPerSide, totalBlocks;
+	/** number of blocks per side in the square matrix*/
+	private int blocksPerSide;
 	
 	/** Actual movements counter*/
 	private int moves;
@@ -24,8 +23,7 @@ public class ColorBoard {
 	/** handle concurrent access to colorize method, not using blocking synchronized modifier*/
 	private boolean isColorizing = false;
 	
-	/** Counter to keep track of updated blocks*/
-	private int blocksUpdatedCount;
+	
 	
 	/** Initialize a new random {@link ColorBoard} matrix*/
 	ColorBoard(int blocks){
@@ -43,22 +41,16 @@ public class ColorBoard {
 			return;
 		}
 		this.moves = moves;
-		setDerivedBlocksInfo(blocks);
+		blocksPerSide = blocks;
 		mColorBoard = mat;
 	}
 	
-	
-	/** Init the derived blocks information*/
-	private void setDerivedBlocksInfo(int blocks){
-		blocksPerSide = blocks;
-		totalBlocks = blocks * blocks;
-	}
 	
 	/** Start a new random matrix and set moves to 0
 	 * @param blocks the new number of blocks per side of the matrix*/
 	public void startRandomColorBoard(int blocks){
 		moves = 0;
-		setDerivedBlocksInfo(blocks);
+		blocksPerSide = blocks;
 		mColorBoard = new int[blocks][blocks];
 		for(int i=0; i<blocks; i++)
 			for(int j=0; j<blocks; j++)
@@ -91,13 +83,18 @@ public class ColorBoard {
 		moves++;//count this move
 		
 		//check the Neighbor block
-		blocksUpdatedCount = 1; // counting the main block
 		checkNeighborBlocks(1, 0, newColor);
 		checkNeighborBlocks(0, 1, newColor);
 		
 		mColorBoard[0][0] = newColor; //update the main block's color
 		
-		boolean finished = blocksUpdatedCount == totalBlocks;
+		int i=0,j=0;
+		for(;i<blocksPerSide;i++)
+			for(;j<blocksPerSide;j++)
+				if(newColor != mColorBoard[i][j])
+					break;
+		
+		boolean finished = i == blocksPerSide-1 && j == blocksPerSide-1;
 		GameView.getIns().onBoardOpFinish(finished);
 		
 		isColorizing = false;
@@ -114,7 +111,6 @@ public class ColorBoard {
 			return;
 		
 		mColorBoard[x][y] = newColor;
-		blocksUpdatedCount++;
 		checkNeighborBlocks(x-1, y ,newColor);//check left neighbor
 		checkNeighborBlocks(x+1, y, newColor);//check right neighbor
 		checkNeighborBlocks(x, y-1, newColor);//check upper neighbor

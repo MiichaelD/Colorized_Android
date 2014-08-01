@@ -45,7 +45,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	DrawButtonContainer dbc;
 	
 	
-	protected int bgColor=Color.BLACK;
+	protected int bgColor=Color.DKGRAY;
 	
 	protected float width, height, ratio;
 	
@@ -284,7 +284,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			dbc.repositionDButton(7, 15*width/16-mBitmaps[1].getWidth(), 2*height/5-width/2, 
 					15*width/16-mBitmaps[1].getWidth()+val, 2*height/5-width/2+val);
 			
-
+			
 			
 		}
 		else{
@@ -356,7 +356,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	 * restrict to create and start a thread JUST when:
 	 * There is no other thread running  and
 	 * The SurfaceView has been created */
-	public final synchronized void startThread(){
+	public final void startThread(){
 		Log.v(GameView.class.getName(), "Starting Thread" );
 		if(run == false){
 			tDraw = new Thread(this);
@@ -366,7 +366,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	}
 	
 	/** Stop any thread in charge of refreshing the UI*/
-	public final synchronized void stopThread(){
+	public final void stopThread(){
 		Log.v(GameView.class.getName(), "Stoping Thread" );
 		if(run){
 			run = false;
@@ -399,7 +399,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	
 
 	/** Refresh the User Interface to show the updates*/
-	public final synchronized void refreshUI() {
+	public final void refreshUI() {
 		//Log.v(Const.TAG,"Refreshing UI GameView");
 		canvas = null;
 		if (surfaceCreated && sh != null){
