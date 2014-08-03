@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
+import com.webs.itmexicali.colorized.gamestates.BaseState;
+import com.webs.itmexicali.colorized.gamestates.StateMachine;
+import com.webs.itmexicali.colorized.gamestates.TutoState;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -30,7 +33,7 @@ import android.view.SurfaceView;
 public class GameView extends SurfaceView implements Callback, Runnable{
 	
 	// mPortrait true to indicate that the width is smaller than the heigth
-	public boolean mPortrait;
+	static public boolean mPortrait;
 	
 	private 	  boolean 	run = false, selected, surfaceCreated=false;
 	protected SurfaceHolder sh;
@@ -47,7 +50,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	
 	protected int bgColor=Color.DKGRAY;
 	
-	protected float width, height, ratio;
+	public static float width, height, ratio;
 	
 	//the matrix of color
 	private ColorBoard mColorBoard = null;
@@ -88,10 +91,13 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		
 		// load the shared preferences
 		SharedPreferences sp = getContext().getSharedPreferences(Const.TAG, 0);
-		//if there is a gamestate saved, load it again
-		if( sp.getBoolean(getContext().getString(R.string.key_game_saved), false)){
-			//parse the gamestate
-			parseBoardFromString(sp.getString(getContext().getString(R.string.key_board_saved),null));
+		//If tutorial hasn't been played, do not load saved game
+		if(sp.getBoolean(getContext().getString(R.string.key_tutorial_played), false)){
+			//if there is a gamestate saved, load it again
+			if( sp.getBoolean(getContext().getString(R.string.key_is_game_saved), false)){
+				//parse the gamestate
+				parseBoardFromString(sp.getString(getContext().getString(R.string.key_board_saved),null));
+			}
 		}
 		
 		if(mColorBoard == null){
@@ -163,6 +169,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 				new Thread(new Runnable(){public void run(){
 					GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 					//OpenSettings;
+					StateMachine.getIns().pushState(BaseState.statesIDs.TUTO);
 				}}).start();}
 		});
 		
@@ -179,10 +186,10 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	}
     
 	@Override
-	public void surfaceChanged(SurfaceHolder holder, int format, int width,	int height) {
-		Log.v(Const.TAG, "SurfaceChanged ");
-		this.width = width; 
-		this.height = height;
+	public void surfaceChanged(SurfaceHolder holder, int format, int wi,	int he) {
+		Log.v(Const.TAG, "SurfaceChanged: "+wi+"x"+he+" Ratio = "+((double) width) / height);
+		GameView.width = wi; 
+		GameView.height = he;
 		ratio = ((float) width) / height;
 		mPortrait = ratio > 1.0f ? false : true;
 		
@@ -191,6 +198,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		
 		updateNow();//refreshUI();
 		//startThread();
+		StateMachine.getIns().surfaceChanged(width, height);
 	}
 
 	@Override
@@ -267,10 +275,11 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			mRectFs[0] = new RectF(width/16, 2*height/5-5*width/16, 15*width/16, 2*height/5+9*width/16);
 			mRectFs[1] = new RectF(0, height/2+23*width/48, width, height/2+31*width/48);
 
-			mBitmaps = new Bitmap[2];
+			mBitmaps = new Bitmap[3];
 			float val = mPortrait ? width/8 : height/8;
 			mBitmaps[0] = BitmapLoader.resizeImage(getContext(),R.drawable.ic_settings, val, val);
 			mBitmaps[1] = BitmapLoader.resizeImage(getContext(),R.drawable.ic_restart, val, val);
+			mBitmaps[2] = Bitmap.createBitmap(mBitmaps[0]);
 			
 			dbc.repositionDButton(0, 3*width/28, height/2+width/2, 6*width/28, height/2+5*width/8);
 			dbc.repositionDButton(1, 7*width/28, height/2+width/2, 10*width/28, height/2+5*width/8);
@@ -299,6 +308,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	/** This is what is going to be shown on the canvas
 	 * @see android.view.View#onDraw(android.graphics.Canvas)	 */
 	public void onDraw(Canvas canvas) {
+		super.onDraw(canvas);
 		try {
 			//Background
 			canvas.drawColor(bgColor);//(mPaints[(int)(Math.random()*8)].getColor());
@@ -306,12 +316,22 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			if( mPortrait ) drawPortrait(canvas);
 			else	drawLandscape(canvas);
 			
+			StateMachine.getIns().draw(canvas, mPortrait);
+			
+			
+		    canvas.setBitmap(mBitmaps[2]);
+		    canvas.drawColor(Color.CYAN);
+		    
+		    canvas.drawBitmap(mBitmaps[2], new Rect(0,0,50,50),new Rect(250,250, 750, 750), null);
+
+			
+			
 		} catch (Exception e) {
 			//Log.e(Const.TAG, "onDraw(canvas)"+e.getLocalizedMessage());
 		}
+		
 	}
 	
-	/** draw the UI in portrait mode*/
 	/** Draw the UI in Portrait mode */
 	public void drawPortrait(Canvas canvas){
 		//Color Div
@@ -325,19 +345,18 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		if ( mBitmaps != null ){
 			canvas.drawBitmap(mBitmaps[0], width/16, 2*height/5-width/2, null);
 			canvas.drawBitmap(mBitmaps[1], 15*width/16-mBitmaps[1].getWidth(), 2*height/5-width/2, null);
-			
 		}
 		
 		for(int i =0 ; i < dbc.getButtonsCount();i++){
 			if(i < 6)//after position 5, we are painting bitmaps instead of buttons
 				canvas.drawRect(dbc.getDButton(i), mPaints[i]);
 			if( dbc.getDButton(i).isPressed() )
-				canvas.drawRoundRect(dbc.getDButton(i), 25.0f, 20.0f, mPaints[7]);
+				canvas.drawRect(dbc.getDButton(i), mPaints[7]);
 		}
 		
 	}
 	
-	/** draw the UI in landscape mode*/
+	
 	/** Draw the UI in Landscape mode */
 	public void drawLandscape(Canvas canvas){
 		
@@ -436,6 +455,8 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	@Override
 	@SuppressLint("ClickableViewAccessibility")
 	public boolean onTouchEvent( MotionEvent event) {
+		if(StateMachine.getIns().touch(event))
+			return true;
 		//new Thread(new Runnable(){
 			//public void run(){
 				int action = event.getAction() & MotionEvent.ACTION_MASK;
@@ -456,8 +477,10 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 				case MotionEvent.ACTION_MOVE:
 					dbc.onMoveUpdate(event, pointerIndex);
 					break;
+				default:
+					return false;
 				}
-				updateNow();//refreshUI();
+				//refreshUI();
 		//	}
 		//}).start();
 		return true;
@@ -507,21 +530,34 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		return mColorBoard.getMoves();
 	}
 	
+	/** Check if the board is completed in one color
+	 * @return true if game is over, false if not */
+	public boolean isGameOver(){
+		return mColorBoard.isBoardCompleted();
+	}
+	
 	/** Callback to let the game know that the user input has been processed*/
 	public void onBoardOpFinish(boolean won){
 		if (won){
 			GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
 				GameActivity.instance.playSound(GameActivity.SoundType.WIN);
-				GameActivity.instance.showRestartDialog(true);
+				GameActivity.instance.showGamOverDialog(true);
 			}});
 			
 		}
 		else if(getMoves() > 20){//TODO hardcoded value
 			GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
 				GameActivity.instance.playSound(GameActivity.SoundType.LOSE);
-				GameActivity.instance.showRestartDialog(false);
+				GameActivity.instance.showGamOverDialog(false);
 			}});
 		}
 		updateNow();//refreshUI();
+	}
+
+	/********************************* STATE CALLING METHODS *********************************/
+
+	/** call this method to show tutorial UI*/
+	public void showTutorial(boolean show){
+		StateMachine.getIns().pushState(BaseState.statesIDs.TUTO);
 	}
 }

@@ -4,6 +4,9 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.webs.itmexicali.colorized.gamestates.BaseState;
+import com.webs.itmexicali.colorized.gamestates.StateMachine;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -12,7 +15,9 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 public class GameActivity extends Activity {
@@ -20,6 +25,8 @@ public class GameActivity extends Activity {
 	//AdMob Advertising
     /** The view to show the ad. */
     private AdView adView = null;
+     
+    private InterstitialAd interstitial =  null;
 	
 	//this activity instance, to access its members from other classes
     public static GameActivity instance;
@@ -28,6 +35,10 @@ public class GameActivity extends Activity {
     private MediaPlayer soundPlayer = null, musicPlayer = null;
     private SoundType previousSound = SoundType.NONE;
     public static enum SoundType{ NONE, TOUCH, WIN, LOSE};
+    
+    //PowerManager components to keep screen on while playing
+    PowerManager pm = null;
+    PowerManager.WakeLock wl = null;
 
 	@SuppressLint("InlinedApi")
 	@Override
@@ -42,27 +53,35 @@ public class GameActivity extends Activity {
 		//run on FullScreen with no Action and Navigation Bars
 		Const.setFullScreen(this);
 		
-		//check if there is a saved game and ask the user if he'd like to keep
-		//playing it
-		if (getSharedPreferences(Const.TAG, 0).getBoolean(getString(R.string.key_game_saved), false))
+		
+		SharedPreferences sh =getSharedPreferences(Const.TAG, 0);
+		if(!sh.getBoolean(getString(R.string.key_tutorial_played), false))
+			StateMachine.getIns().pushState(BaseState.statesIDs.TUTO);
+		
+		//check if there is a saved game and ask the user if he'd like to keep playing it
+		else if (sh.getBoolean(getString(R.string.key_is_game_saved), false))
 			showSavedGameDialog();
+		
+
+	    //Keep screen on
+	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
 		/*************************************	ADS ADMOB	*********************************************/
 		// Create an ad.
         adView = new AdView(this);
         adView.setAdSize(AdSize.SMART_BANNER);
-        adView.setAdUnitId(Const.AD_UNIT_ID);
+        adView.setAdUnitId(Const.ADVIEW_AD_UNIT_ID);
         adView.setAdListener(new AdListener() {
-        	  @Override
-        	  public void onAdOpened() {
-        	    // Save app state before going to the ad overlay.
-        		Log.d(Const.TAG,"AdView - Opened");
-        	  }
-        	  @Override
-        	  public void onAdFailedToLoad(int errorCode){
-        		Log.d(Const.TAG,"AdView - FailedToLoad = "+errorCode);
-        	  }
-        	});
+        	@Override
+    		public void onAdOpened() {
+    		// Save app state before going to the ad overlay.
+    			Log.d(Const.TAG,"AdView - Opened");
+    		}
+    		@Override
+    		public void onAdFailedToLoad(int errorCode){
+    			Log.d(Const.TAG,"AdView - FailedToLoad = "+errorCode);
+    		}
+    	});
 		
         
         // Add the AdView to the view hierarchy. The view will have no size
@@ -74,21 +93,53 @@ public class GameActivity extends Activity {
         }
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
         		RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        params.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
     	params.addRule(RelativeLayout.CENTER_HORIZONTAL);
 		layout.addView(adView, params);
 		
-        // Create an ad request. Check logcat output for the hashed device ID to
-        // get test ads on a physical device.
-        AdRequest adRequest = new AdRequest.Builder()
-            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-            .addTestDevice("584586A082596B5844C4E301E1285E95") //My Nexus 4
-            .build();
+
 
         // Start loading the ad in the background.
-        adView.loadAd(adRequest);
+       adView.loadAd(createAdRequest());
+        
+        
+        // Create the INTERSTTIAL.
+        interstitial = new InterstitialAd(this);
+        interstitial.setAdUnitId(Const.INTERSTITIAL_AD_UNIT_ID);
+        // Begin loading your interstitial.
+        interstitial.loadAd(createAdRequest());
+        interstitial.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+              interstitial.loadAd(createAdRequest());
+            }
+        });
+        
         /*************************************	ADS ADMOB	*********************************************/
+         
 	}
+	
+	/*************************************	ADS ADMOB	*********************************************/
+	/** Create an ad request. Check logcat output for the hashed device ID to
+     *	get test ads on a physical device.*/
+	private AdRequest createAdRequest(){
+		return new AdRequest.Builder()
+	            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+	            .addTestDevice("584586A082596B5844C4E301E1285E95") //My Nexus 4
+	            .build();
+	}
+	
+
+	// Invoke displayInterstitial() when you are ready to display an interstitial.
+	public void displayInterstitial() {
+		Log.v(this.getLocalClassName(),"ShowingInterstitials ");
+		if (interstitial.isLoaded()) {
+			interstitial.show();
+		}
+	}
+	  
+	/*************************************	ADS ADMOB	*********************************************/
+	
 	
 	@Override
 	public void onStart(){
@@ -123,6 +174,7 @@ public class GameActivity extends Activity {
 	public void onPause(){
 		super.onPause();
 		Log.v(GameActivity.class.getSimpleName(),"onPause()");
+		
 		//ADMOB Advertising
 		if (adView != null) {
 			adView.pause();
@@ -157,12 +209,12 @@ public class GameActivity extends Activity {
 	/** If there is any progress in the game, save it in case the user
 	 * wants to continue the next time he gets back to the game*/
 	private void saveProgress(){
-		if(GameView.getIns().getMoves() > 0){
+		if(GameView.getIns().getMoves() > 0 && !GameView.getIns().isGameOver()){
 			// the game was started, lets save it 
 			SharedPreferences settings= getSharedPreferences(Const.TAG, 0); 
 		    SharedPreferences.Editor settingsEditor = settings.edit();
 		    
-		    settingsEditor.putBoolean(getString(R.string.key_game_saved),true);
+		    settingsEditor.putBoolean(getString(R.string.key_is_game_saved),true);
 		    settingsEditor.putString(getString(R.string.key_board_saved),GameView.getIns().getBoardAsString());
 		    settingsEditor.commit();
 		}
@@ -181,9 +233,16 @@ public class GameActivity extends Activity {
 		})
 		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) {// dismiss menu
-               dialog.cancel();
                Const.setFullScreen(GameActivity.this);
+               playMusic(true);
            }
+		})
+		.setOnCancelListener(new DialogInterface.OnCancelListener() {
+			@Override
+			public void onCancel(DialogInterface arg0) {
+				Const.setFullScreen(GameActivity.this);
+	            playMusic(true);
+			}
 		})
 		.create()
 		.show();
@@ -194,7 +253,7 @@ public class GameActivity extends Activity {
 	private void showSavedGameDialog(){
 		//remove the saved game from the sharedPreferences file
 	    SharedPreferences.Editor settingsEditor = getSharedPreferences(Const.TAG, 0).edit();
-	    settingsEditor.remove(getString(R.string.key_game_saved));
+	    settingsEditor.remove(getString(R.string.key_is_game_saved));
 	    settingsEditor.remove(getString(R.string.key_board_saved));
 	    settingsEditor.commit();
 	    
@@ -202,14 +261,12 @@ public class GameActivity extends Activity {
 		new AlertDialog.Builder(GameActivity.this)
 		.setMessage(R.string.saved_game_confirmation)
 		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-           public void onClick(DialogInterface dialog, int id) { // Exit the game
-        	   dialog.cancel();
+           public void onClick(DialogInterface dialog, int id) { 
         	   Const.setFullScreen(GameActivity.this);
            }
 		})
 		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-           public void onClick(DialogInterface dialog, int id) {// dismiss menu
-        	   dialog.cancel();
+           public void onClick(DialogInterface dialog, int id) {
         	   GameView.getIns().createNewBoard(getSharedPreferences(Const.TAG, 0).
         			   getInt(getString(R.string.key_board_size), 12));
         	   
@@ -228,7 +285,9 @@ public class GameActivity extends Activity {
 		.setMessage(R.string.restart_game_confirmation)
 		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) {
-        	   GameView.getIns().createNewBoard(-1);
+        	   GameView.getIns().createNewBoard(getSharedPreferences(Const.TAG, 0).
+        			   getInt(getString(R.string.key_board_size), 12));
+        	   
         	   Const.setFullScreen(GameActivity.this);   
            }
 		})
@@ -243,10 +302,29 @@ public class GameActivity extends Activity {
 	
 	/** Display dialog informing that the game is over and restart again
 	 * @param win if true, show congratulations text, else show condolences*/
-	public void showRestartDialog(boolean win){	    
+	public void showGamOverDialog(boolean win){
+		Log.v(Const.TAG,"GameOver winning = "+win);
 		playMusic(false);
 		
-		String str =win? 
+		//update games finished count
+		String str = getString(R.string.key_times_finished); // store the key string
+		SharedPreferences sh = getSharedPreferences(Const.TAG,0); // get SharedPreferences
+		SharedPreferences.Editor editor = sh.edit();
+		int timesFinished = sh.getInt(str, 0)+1;
+		editor.putInt(str, timesFinished);
+		
+		if(win){//if won, update wins count
+			str = getString(R.string.key_times_won);// store the key string
+			int timesWon = sh.getInt(str, 0)+1;
+			editor.putInt(str, timesWon);
+		}
+		//commit changes
+		editor.commit();
+		
+		if(timesFinished%2 == 0)//each 2 games, show Interstitial
+			displayInterstitial();
+		
+		str =win? 
 				String.format(getString(R.string.game_over_win),GameView.getIns().getMoves()) :
 				getString(R.string.game_over_lose);
 		
@@ -255,17 +333,28 @@ public class GameActivity extends Activity {
 		.setMessage(str)
 		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) {
-        	   GameView.getIns().createNewBoard(-1);
+        	   GameView.getIns().createNewBoard(getSharedPreferences(Const.TAG, 0).
+        			   getInt(getString(R.string.key_board_size), 12));
+        	   
         	   Const.setFullScreen(GameActivity.this);
         	   playMusic(true);
+           }
+		})
+		.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int id) {
+        	   Const.setFullScreen(GameActivity.this);
+        	   GameView.getIns().createNewBoard(getSharedPreferences(Const.TAG, 0).
+        			   getInt(getString(R.string.key_board_size), 12));
+	        	//playMusic(true);
+	        	showExitDialog();
            }
 		})
 		.setOnCancelListener(new DialogInterface.OnCancelListener() {
 			@Override
 			public void onCancel(DialogInterface arg0) {
-				GameView.getIns().createNewBoard(-1);
+				GameView.getIns().createNewBoard(getSharedPreferences(Const.TAG, 0).
+	        			   getInt(getString(R.string.key_board_size), 12));
 	        	Const.setFullScreen(GameActivity.this);
-	        	//playMusic(true);
 	        	showExitDialog();
 			}
 		})
@@ -275,6 +364,12 @@ public class GameActivity extends Activity {
 	
 	@Override
 	public void onBackPressed(){
+		if(StateMachine.getIns().onBackPressed())
+			return;
+		
+		if(StateMachine.getIns().popState())
+			return;
+		
 		showExitDialog();
 		//super.onBackPressed();
 	}

@@ -19,7 +19,8 @@ public class Const {
 	
 	//AdMob Advertising
     /** Your ad unit id. Replace with your actual ad unit id. */
-    protected static final String AD_UNIT_ID = "ca-app-pub-4741238402050454/3079300200";
+    protected static final String ADVIEW_AD_UNIT_ID = "ca-app-pub-4741238402050454/6518301004",
+    		INTERSTITIAL_AD_UNIT_ID = "ca-app-pub-4741238402050454/7995034204" ;
 
     
     /** Hide Action Bar in devices that support it */

@@ -49,8 +49,8 @@ public class ColorBoard {
 	/** Start a new random matrix and set moves to 0
 	 * @param blocks the new number of blocks per side of the matrix*/
 	public void startRandomColorBoard(int blocks){
-		moves = 0;
 		blocksPerSide = blocks;
+		moves = 0;
 		mColorBoard = new int[blocks][blocks];
 		for(int i=0; i<blocks; i++)
 			for(int j=0; j<blocks; j++)
@@ -87,19 +87,21 @@ public class ColorBoard {
 		checkNeighborBlocks(0, 1, newColor);
 		
 		mColorBoard[0][0] = newColor; //update the main block's color
+		GameView.getIns().onBoardOpFinish(isBoardCompleted());
 		
-		int i=0,j=0;
-		for(;i<blocksPerSide;i++)
-			for(;j<blocksPerSide;j++)
-				if(newColor != mColorBoard[i][j])
-					break;
-		
-		boolean finished = i == blocksPerSide-1 && j == blocksPerSide-1;
-		GameView.getIns().onBoardOpFinish(finished);
-		
-		isColorizing = false;
-		
+		isColorizing = false;		
 	}
+	
+	/** check if the board is filled by 1 color
+	 * @return true if completed, false if not*/
+	public boolean isBoardCompleted(){
+		int i,j;
+		for(i=0;i<blocksPerSide;i++)
+			for(j=0;j<blocksPerSide;j++)
+				if(mColorBoard[0][0] != mColorBoard[i][j])
+					return false;
+		return true;
+	} 
 	
 	/** compare neighbors colors with main block's color to update
 	 * color recursively*/
@@ -137,7 +139,9 @@ public class ColorBoard {
 		for(int i=0; i<blocksPerSide; i++){
 			top+=blockPixels;
 			for(int j=0; j<blocksPerSide; j++)
-				canvas.drawRect(left+blockPixels*j, top, left+blockPixels*(j+1), top+blockPixels, paints[mColorBoard[i][j]]);
+				canvas.drawRect(left+blockPixels*j, top, left+blockPixels*(j+1) + (j == blocksPerSide-1 ? 0:5),
+						top+blockPixels + (i == blocksPerSide-1? 0:5), paints[mColorBoard[i][j]]);
+				
 		}
 		
 	}
