@@ -1,4 +1,4 @@
-package com.webs.itmexicali.colorized;
+package com.webs.itmexicali.colorized.drawcomps;
 
 import java.util.HashMap;
 import android.content.Context;

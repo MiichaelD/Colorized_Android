@@ -19,11 +19,11 @@ public class SplashScreen extends Activity {
 		super.onCreate(savedInstanceState);
 		Log.v(this.getLocalClassName(),"onCreate()");
 
-		setContentView(R.layout.splash_screen);
-		
 		//run on FullScreen with no Action and Navigation Bars
 		Const.setFullScreen(this);
 
+		setContentView(R.layout.splash_screen);
+		
 		//set the timer to start the new activity
 		new Handler().postDelayed(new Runnable() {
             @Override

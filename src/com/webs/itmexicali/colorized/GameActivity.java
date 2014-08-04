@@ -12,7 +12,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.PowerManager;
@@ -47,19 +46,22 @@ public class GameActivity extends Activity {
 		Log.v(GameActivity.class.getSimpleName(),"onCreate()");
 		instance = this;
 		
-		//set the game screen
-		setContentView(R.layout.game_screen);
-	
 		//run on FullScreen with no Action and Navigation Bars
 		Const.setFullScreen(this);
+
+		//set the game screen
+		setContentView(R.layout.game_screen);
 		
+		//Init Preferences once 
+		Preferences.initPreferences(this);
 		
-		SharedPreferences sh =getSharedPreferences(Const.TAG, 0);
-		if(!sh.getBoolean(getString(R.string.key_tutorial_played), false))
+		//check if the tutorial has been completed
+		if(!Preferences.getIns().isTutorialCompleted())
+			//if not, start it at game init
 			StateMachine.getIns().pushState(BaseState.statesIDs.TUTO);
 		
 		//check if there is a saved game and ask the user if he'd like to keep playing it
-		else if (sh.getBoolean(getString(R.string.key_is_game_saved), false))
+		else if (Preferences.getIns().isGameSaved())
 			showSavedGameDialog();
 		
 
@@ -211,12 +213,7 @@ public class GameActivity extends Activity {
 	private void saveProgress(){
 		if(GameView.getIns().getMoves() > 0 && !GameView.getIns().isGameOver()){
 			// the game was started, lets save it 
-			SharedPreferences settings= getSharedPreferences(Const.TAG, 0); 
-		    SharedPreferences.Editor settingsEditor = settings.edit();
-		    
-		    settingsEditor.putBoolean(getString(R.string.key_is_game_saved),true);
-		    settingsEditor.putString(getString(R.string.key_board_saved),GameView.getIns().getBoardAsString());
-		    settingsEditor.commit();
+			Preferences.getIns().saveGame(true,GameView.getIns().getBoardAsString());
 		}
 	}
 	
@@ -251,11 +248,8 @@ public class GameActivity extends Activity {
 	/** Display dialog informing that there is a gamestate saved
 	 * and ask if the user wants to play it or prefers a new match*/
 	private void showSavedGameDialog(){
-		//remove the saved game from the sharedPreferences file
-	    SharedPreferences.Editor settingsEditor = getSharedPreferences(Const.TAG, 0).edit();
-	    settingsEditor.remove(getString(R.string.key_is_game_saved));
-	    settingsEditor.remove(getString(R.string.key_board_saved));
-	    settingsEditor.commit();
+		//remove the saved game from the preferences
+	    Preferences.getIns().saveGame(false, null);
 	    
 		//Use the Builder class for convenient dialog construction
 		new AlertDialog.Builder(GameActivity.this)
@@ -267,8 +261,7 @@ public class GameActivity extends Activity {
 		})
 		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) {
-        	   GameView.getIns().createNewBoard(getSharedPreferences(Const.TAG, 0).
-        			   getInt(getString(R.string.key_board_size), 12));
+        	   GameView.getIns().createNewBoard(Preferences.getIns().getBoardSize());
         	   
         	   Const.setFullScreen(GameActivity.this);
            }
@@ -285,8 +278,7 @@ public class GameActivity extends Activity {
 		.setMessage(R.string.restart_game_confirmation)
 		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) {
-        	   GameView.getIns().createNewBoard(getSharedPreferences(Const.TAG, 0).
-        			   getInt(getString(R.string.key_board_size), 12));
+        	   GameView.getIns().createNewBoard(Preferences.getIns().getBoardSize());
         	   
         	   Const.setFullScreen(GameActivity.this);   
            }
@@ -307,24 +299,12 @@ public class GameActivity extends Activity {
 		playMusic(false);
 		
 		//update games finished count
-		String str = getString(R.string.key_times_finished); // store the key string
-		SharedPreferences sh = getSharedPreferences(Const.TAG,0); // get SharedPreferences
-		SharedPreferences.Editor editor = sh.edit();
-		int timesFinished = sh.getInt(str, 0)+1;
-		editor.putInt(str, timesFinished);
+		int[] results = Preferences.getIns().updateGameFinished( win);
 		
-		if(win){//if won, update wins count
-			str = getString(R.string.key_times_won);// store the key string
-			int timesWon = sh.getInt(str, 0)+1;
-			editor.putInt(str, timesWon);
-		}
-		//commit changes
-		editor.commit();
-		
-		if(timesFinished%2 == 0)//each 2 games, show Interstitial
+		if(results[0]%2 == 0)//each 2 games, show Interstitial
 			displayInterstitial();
 		
-		str =win? 
+		String str =win? 
 				String.format(getString(R.string.game_over_win),GameView.getIns().getMoves()) :
 				getString(R.string.game_over_lose);
 		
@@ -333,8 +313,7 @@ public class GameActivity extends Activity {
 		.setMessage(str)
 		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) {
-        	   GameView.getIns().createNewBoard(getSharedPreferences(Const.TAG, 0).
-        			   getInt(getString(R.string.key_board_size), 12));
+        	   GameView.getIns().createNewBoard(Preferences.getIns().getBoardSize());
         	   
         	   Const.setFullScreen(GameActivity.this);
         	   playMusic(true);
@@ -343,8 +322,7 @@ public class GameActivity extends Activity {
 		.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) {
         	   Const.setFullScreen(GameActivity.this);
-        	   GameView.getIns().createNewBoard(getSharedPreferences(Const.TAG, 0).
-        			   getInt(getString(R.string.key_board_size), 12));
+        	   GameView.getIns().createNewBoard(Preferences.getIns().getBoardSize());
 	        	//playMusic(true);
 	        	showExitDialog();
            }
@@ -352,8 +330,7 @@ public class GameActivity extends Activity {
 		.setOnCancelListener(new DialogInterface.OnCancelListener() {
 			@Override
 			public void onCancel(DialogInterface arg0) {
-				GameView.getIns().createNewBoard(getSharedPreferences(Const.TAG, 0).
-	        			   getInt(getString(R.string.key_board_size), 12));
+				GameView.getIns().createNewBoard(Preferences.getIns().getBoardSize());
 	        	Const.setFullScreen(GameActivity.this);
 	        	showExitDialog();
 			}
@@ -378,11 +355,15 @@ public class GameActivity extends Activity {
 	 * @param SoundType to select type of sound to play*/ 
 	public void playSound(SoundType s){
 		//if we have an instance of the player and the user wants to play sounds
-		if(getSharedPreferences(Const.TAG,0).getBoolean(getString(R.string.key_sound),true)){
+		if(Preferences.getIns().playSFX()){
 			if(previousSound != s || soundPlayer == null){
 				previousSound = s;
-				if(soundPlayer != null)
+				if(soundPlayer != null){
+					//if it was playing, stop it to restart it
+					if(soundPlayer.isPlaying())
+						soundPlayer.stop();
 					soundPlayer.release();
+				}
 				switch(s){
 				case TOUCH:	soundPlayer = MediaPlayer.create(this, R.raw.confirm); break;
 				case WIN:	soundPlayer = MediaPlayer.create(this, R.raw.win); break;
@@ -405,7 +386,7 @@ public class GameActivity extends Activity {
 		
 		//if we have an instance of the player and the user wants to play sounds
 		if(musicPlayer != null)
-			if (play && getSharedPreferences(Const.TAG,0).getBoolean(getString(R.string.key_music),true)){
+			if (play && Preferences.getIns().playMusic()){
 				if(!musicPlayer.isPlaying())
 					musicPlayer.start();
 			}else

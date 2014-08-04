@@ -10,6 +10,7 @@ import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.SweepGradient;
 import android.graphics.Paint.Align;
@@ -32,29 +33,33 @@ public class TutoState extends BaseState{
 	
 	//paints to be used on canvas
 	protected TextPaint 	mPaints[];
+	protected Rect			mRectFs[];
 	
 	@Override
 	public void onPopped() {
-		Log.d(TutoState.class.getSimpleName(),"onPopped");		
+		//Log.d(TutoState.class.getSimpleName(),"onPopped");		
 	}
 	
 	
 	@Override
 	public void surfaceChanged(float width, float height) {
-		Log.d(TutoState.class.getSimpleName(),"surfaceChanged");
+		//Log.d(TutoState.class.getSimpleName(),"surfaceChanged");
 		resizePaints(width, height);
+		mRectFs = new Rect[3];
+		mRectFs[0] = new Rect((int)(width/16), (int)(5*height/16-5*width/16), (int)(15*width/16), (int)(5*height/16+9*width/16));
+		mRectFs[1] = new Rect(0, (int)(2*height/5+23*width/48), (int)(width), (int)(2*height/5+31*width/48));
 		
 	}
 
 	@Override
 	public void onPushed() {
-		Log.d(TutoState.class.getSimpleName(),"onPushed");
+		//Log.d(TutoState.class.getSimpleName(),"onPushed");
 		mInnerState = innerStates.INIT;	
 		resizePaints(GameView.width,GameView.height);
 	}
 	
 	private void resizePaints(float width, float height){
-		Log.v("TutoState","canvas size: "+width+"x"+height);
+		//Log.v("TutoState","canvas size: "+width+"x"+height);
 		mPaints = new TextPaint[5];
 		
 		mPaints[0] = new TextPaint();
@@ -67,13 +72,13 @@ public class TutoState extends BaseState{
 		mPaints[1] = new TextPaint();
 		mPaints[1].setColor(Color.CYAN);
 		mPaints[1].setStyle(Paint.Style.FILL);
-		mPaints[1].setTextSize(GameView.mPortrait? width/11 : height/11);
+		mPaints[1].setTextSize(GameView.mPortrait? width/13 : height/13);
 		mPaints[1].setAntiAlias(true);
 		
 		mPaints[2] = new TextPaint();
 		mPaints[2].setColor(Color.RED);
 		mPaints[2].setStyle(Paint.Style.STROKE);
-		mPaints[2].setTextSize(GameView.mPortrait? width/11 : height/11);
+		mPaints[2].setTextSize(GameView.mPortrait? width/13 : height/13);
 		mPaints[2].setAntiAlias(true);
 		
 		mPaints[3] = new TextPaint(0);
@@ -92,22 +97,22 @@ public class TutoState extends BaseState{
 
 	@Override
 	public void draw(Canvas canvas, boolean isPotrait) {
-		canvas.drawRect(new Rect(0,0,(int)GameView.width,(int)GameView.height),mPaints[3]);
-		canvas.drawRect(new Rect(canvas.getWidth()/4,0,3*canvas.getWidth()/4,(int)GameView.height/14),mPaints[4]);
-		
-		canvas.drawText(GameActivity.instance.getString(R.string.tutorial),
-				GameView.width/2, GameView.height/20,	mPaints[0]);
-		
+		//canvas.drawRect(new Rect(0,0,(int)GameView.width,(int)GameView.height),mPaints[3]);
+		canvas.drawColor(mPaints[3].getColor());
 		
 		StaticLayout mTextLayout;
 		canvas.save();
 		switch(mInnerState){
 		case INIT:
+			
+			canvas.drawText(GameActivity.instance.getString(R.string.tutorial),
+					GameView.width/2, GameView.height/3,	mPaints[0]);
+			
 			mTextLayout = new StaticLayout(
 					GameActivity.instance.getString(R.string.tuto0), mPaints[1],
 					canvas.getWidth(), Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 
-				canvas.translate(0, GameView.height/2);
+				canvas.translate(0, GameView.height/2-mPaints[1].getTextSize());
 				mTextLayout.draw(canvas);
 			break;
 		case FIRST:
@@ -116,56 +121,56 @@ public class TutoState extends BaseState{
 				GameActivity.instance.getString(R.string.tuto1), mPaints[1],
 				canvas.getWidth(), Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 
-			canvas.translate(0, GameView.height/2);
+			canvas.translate(0, GameView.height/2 - 3*mPaints[1].getTextSize()/2);
 			mTextLayout.draw(canvas);
 			
 			break;
 		case SEC:
 			mTextLayout = new StaticLayout(
 				GameActivity.instance.getString(R.string.tuto2), mPaints[1],
-				canvas.getWidth(), Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+				canvas.getWidth()/2, Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 
-			canvas.translate(0, GameView.height/2);
+			canvas.translate(GameView.width/4, GameView.height/2);
 			mTextLayout.draw(canvas);
 			break;
 		case THIRD:	
 			mTextLayout = new StaticLayout(
 					GameActivity.instance.getString(R.string.tuto3), mPaints[1],
-					canvas.getWidth(), Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+					canvas.getWidth()/2, Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 
-				canvas.translate(0, GameView.height/2);
+			canvas.translate(GameView.width/4, GameView.height/2);
 				mTextLayout.draw(canvas);
 			break;
 		case FOURTH:	
 			mTextLayout = new StaticLayout(
 					GameActivity.instance.getString(R.string.tuto4), mPaints[1],
-					canvas.getWidth(), Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+					canvas.getWidth()/2, Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 
-				canvas.translate(0, GameView.height/2);
+			canvas.translate(GameView.width/4, GameView.height/2);
 				mTextLayout.draw(canvas);
 			break;
 		case FIFTH:
 			mTextLayout = new StaticLayout(
 					GameActivity.instance.getString(R.string.tuto5), mPaints[1],
-					canvas.getWidth(), Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+					canvas.getWidth()/2, Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 
-				canvas.translate(0, GameView.height/2);
+			canvas.translate(GameView.width/4, GameView.height/2);
 				mTextLayout.draw(canvas);
 			break;
 		case BACK:
 			mTextLayout = new StaticLayout(
 					GameActivity.instance.getString(R.string.tuto_exit), mPaints[1],
-					canvas.getWidth(), Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+					canvas.getWidth()/2, Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 
-				canvas.translate(0, GameView.height/2);
+			canvas.translate(GameView.width/4, GameView.height/2);
 				mTextLayout.draw(canvas);
 			break;
 		case FINAL:
 			mTextLayout = new StaticLayout(
 					GameActivity.instance.getString(R.string.tuto6), mPaints[1],
-					canvas.getWidth(), Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+					canvas.getWidth()/2, Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 
-				canvas.translate(0, GameView.height/2);
+			canvas.translate(GameView.width/4, GameView.height/2);
 				mTextLayout.draw(canvas);
 			break;
 		}
@@ -198,7 +203,7 @@ public class TutoState extends BaseState{
 			case FINAL: saveTutorialFinish(); 
 					StateMachine.getIns().popState(); break;
 			}
-			Log.d(TutoState.class.getSimpleName(),"mState: "+mInnerState);
+			//Log.d(TutoState.class.getSimpleName(),"mState: "+mInnerState);
 		}
 		
 	}

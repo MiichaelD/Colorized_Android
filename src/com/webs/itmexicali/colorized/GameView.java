@@ -2,16 +2,16 @@ package com.webs.itmexicali.colorized;
 
 import java.util.Scanner;
 
+import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.gamestates.BaseState;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
-import com.webs.itmexicali.colorized.gamestates.TutoState;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -35,7 +35,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	// mPortrait true to indicate that the width is smaller than the heigth
 	static public boolean mPortrait;
 	
-	private 	  boolean 	run = false, selected, surfaceCreated=false;
+	private boolean 	run = false, surfaceCreated=false;
 	protected SurfaceHolder sh;
 	
 	//Paints to be used to Draw text and shapes
@@ -44,7 +44,6 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	protected Rect		mRects[];
 	protected RectF		mRectFs[];
 	private Thread		tDraw;
-	private long 		lastUpdate = 0;
 	DrawButtonContainer dbc;
 	
 	
@@ -89,19 +88,17 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	public final void init(){
 		instance = this;
 		
-		// load the shared preferences
-		SharedPreferences sp = getContext().getSharedPreferences(Const.TAG, 0);
 		//If tutorial hasn't been played, do not load saved game
-		if(sp.getBoolean(getContext().getString(R.string.key_tutorial_played), false)){
+		if(Preferences.getIns().isTutorialCompleted()){
 			//if there is a gamestate saved, load it again
-			if( sp.getBoolean(getContext().getString(R.string.key_is_game_saved), false)){
+			if(Preferences.getIns().isGameSaved()){
 				//parse the gamestate
-				parseBoardFromString(sp.getString(getContext().getString(R.string.key_board_saved),null));
+				parseBoardFromString(Preferences.getIns().getSavedGame());
 			}
 		}
 		
 		if(mColorBoard == null){
-			createNewBoard(sp.getInt(getContext().getString(R.string.key_board_size), 12));
+			createNewBoard(Preferences.getIns().getBoardSize());
 		}
 		
 		sh = getHolder();
@@ -187,7 +184,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
     
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int wi,	int he) {
-		Log.v(Const.TAG, "SurfaceChanged: "+wi+"x"+he+" Ratio = "+((double) width) / height);
+		Log.v(Const.TAG, "SurfaceChanged: "+wi+"x"+he+" Ratio = "+((double) wi) / he);
 		GameView.width = wi; 
 		GameView.height = he;
 		ratio = ((float) width) / height;
@@ -272,26 +269,26 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	 * NOTE: DO NOT INCLUDE initPaints()*/
 	protected void reloadByResize() {		
 		if( mPortrait){
-			mRectFs[0] = new RectF(width/16, 2*height/5-5*width/16, 15*width/16, 2*height/5+9*width/16);
-			mRectFs[1] = new RectF(0, height/2+23*width/48, width, height/2+31*width/48);
+			mRectFs[0] = new RectF(width/16, 5*height/16-5*width/16, 15*width/16, 5*height/16+9*width/16);
+			mRectFs[1] = new RectF(0, 2*height/5+23*width/48, width, 2*height/5+31*width/48);
 
 			mBitmaps = new Bitmap[3];
 			float val = mPortrait ? width/8 : height/8;
 			mBitmaps[0] = BitmapLoader.resizeImage(getContext(),R.drawable.ic_settings, val, val);
 			mBitmaps[1] = BitmapLoader.resizeImage(getContext(),R.drawable.ic_restart, val, val);
-			mBitmaps[2] = Bitmap.createBitmap(mBitmaps[0]);
+			mBitmaps[2] = Bitmap.createBitmap(60, 60, Config.ARGB_8888);
 			
-			dbc.repositionDButton(0, 3*width/28, height/2+width/2, 6*width/28, height/2+5*width/8);
-			dbc.repositionDButton(1, 7*width/28, height/2+width/2, 10*width/28, height/2+5*width/8);
-			dbc.repositionDButton(2, 11*width/28, height/2+width/2, 14*width/28, height/2+5*width/8);
-			dbc.repositionDButton(3, 15*width/28, height/2+width/2, 18*width/28, height/2+5*width/8);
-			dbc.repositionDButton(4, 19*width/28, height/2+width/2, 22*width/28, height/2+5*width/8);
-			dbc.repositionDButton(5, 23*width/28, height/2+width/2, 26*width/28, height/2+5*width/8);
+			dbc.repositionDButton(0, 3*width/28, 2*height/5+width/2, 6*width/28, 2*height/5+5*width/8);
+			dbc.repositionDButton(1, 7*width/28, 2*height/5+width/2, 10*width/28, 2*height/5+5*width/8);
+			dbc.repositionDButton(2, 11*width/28, 2*height/5+width/2, 14*width/28, 2*height/5+5*width/8);
+			dbc.repositionDButton(3, 15*width/28, 2*height/5+width/2, 18*width/28, 2*height/5+5*width/8);
+			dbc.repositionDButton(4, 19*width/28, 2*height/5+width/2, 22*width/28, 2*height/5+5*width/8);
+			dbc.repositionDButton(5, 23*width/28, 2*height/5+width/2, 26*width/28, 2*height/5+5*width/8);
 			
 			//settings buttons
-			dbc.repositionDButton(6, width/16, 2*height/5-width/2, width/16+val, 2*height/5-width/2+val);
-			dbc.repositionDButton(7, 15*width/16-mBitmaps[1].getWidth(), 2*height/5-width/2, 
-					15*width/16-mBitmaps[1].getWidth()+val, 2*height/5-width/2+val);
+			dbc.repositionDButton(6, width/16, height/96, width/16+val,  height/96+val);
+			dbc.repositionDButton(7, 15*width/16-mBitmaps[1].getWidth(),  height/96, 
+					15*width/16-mBitmaps[1].getWidth()+val,  height/96+val);
 			
 			
 			
@@ -303,6 +300,8 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	}
 	
 	
+	Rect r1=new Rect(0,0,50,50),r2=new Rect(250,250, 750, 750);
+	
 	/******************************* DRAWING METHODS *********************************/
 	
 	/** This is what is going to be shown on the canvas
@@ -313,18 +312,11 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			//Background
 			canvas.drawColor(bgColor);//(mPaints[(int)(Math.random()*8)].getColor());
 			
-			if( mPortrait ) drawPortrait(canvas);
-			else	drawLandscape(canvas);
+			//TODO implement landscapemode
+			if( /**mPortrait*/ true ) drawPortrait(canvas);
+			else	drawPortrait(canvas);//drawLandscape(canvas);
 			
 			StateMachine.getIns().draw(canvas, mPortrait);
-			
-			
-		    canvas.setBitmap(mBitmaps[2]);
-		    canvas.drawColor(Color.CYAN);
-		    
-		    canvas.drawBitmap(mBitmaps[2], new Rect(0,0,50,50),new Rect(250,250, 750, 750), null);
-
-			
 			
 		} catch (Exception e) {
 			//Log.e(Const.TAG, "onDraw(canvas)"+e.getLocalizedMessage());
@@ -332,20 +324,28 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		
 	}
 	
+	
+	//float dg=0;
+	
 	/** Draw the UI in Portrait mode */
 	public void drawPortrait(Canvas canvas){
+		
 		//Color Div
 		canvas.drawRect(mRectFs[0].left-10, mRectFs[0].top-10, mRectFs[0].right+10, mRectFs[0].bottom+10, mPaints[6]);
 		canvas.drawRoundRect(mRectFs[1], 50.0f, 40.0f, mPaints[6]);
 		
+		//canvas.save(); dg = (dg+1)%360;
+		//canvas.rotate(dg, mRectFs[0].left+mRectFs[0].width()/2, mRectFs[0].top+mRectFs[0].height()/2);
 		mColorBoard.updateBoard(canvas, mRectFs[0], mPaints);
+		//canvas.restore();
 		
-		canvas.drawText("Moves: "+mColorBoard.getMoves()+"/21", width/2, 2*height/5-13*width/32, mPaints[8]);
+		canvas.drawText("Moves: "+mColorBoard.getMoves()+"/21", width/2, height/16, mPaints[8]);
 		
 		if ( mBitmaps != null ){
-			canvas.drawBitmap(mBitmaps[0], width/16, 2*height/5-width/2, null);
-			canvas.drawBitmap(mBitmaps[1], 15*width/16-mBitmaps[1].getWidth(), 2*height/5-width/2, null);
+			canvas.drawBitmap(mBitmaps[0], width/16, height/96, null);
+			canvas.drawBitmap(mBitmaps[1], 15*width/16-mBitmaps[1].getWidth(), height/96, null);
 		}
+		
 		
 		for(int i =0 ; i < dbc.getButtonsCount();i++){
 			if(i < 6)//after position 5, we are painting bitmaps instead of buttons
@@ -353,6 +353,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			if( dbc.getDButton(i).isPressed() )
 				canvas.drawRect(dbc.getDButton(i), mPaints[7]);
 		}
+		
 		
 	}
 	
@@ -405,7 +406,6 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	/** this thread is responsible for updating the canvas
 	 * @see java.lang.Runnable#run() */
 	public final void run() {		
-		lastUpdate = System.currentTimeMillis();
 		while (run && surfaceCreated) {
 			try {
 				//sleep 20 millis to get around 50 FPS
