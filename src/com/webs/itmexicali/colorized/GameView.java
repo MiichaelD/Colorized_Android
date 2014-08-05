@@ -39,10 +39,10 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	protected SurfaceHolder sh;
 	
 	//Paints to be used to Draw text and shapes
-	protected Paint 	mPaints[];
-	protected Bitmap	mBitmaps[];
-	protected Rect		mRects[];
-	protected RectF		mRectFs[];
+	public Paint 	mPaints[];
+	public Bitmap	mBitmaps[];
+	public Rect		mRects[];
+	public RectF		mRectFs[];
 	private Thread		tDraw;
 	DrawButtonContainer dbc;
 	
@@ -52,7 +52,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	public static float width, height, ratio;
 	
 	//the matrix of color
-	private ColorBoard mColorBoard = null;
+	public ColorBoard mColorBoard = null;
 	
 	//canvas to be drawn on
 	protected Canvas canvas;
@@ -188,7 +188,8 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		GameView.width = wi; 
 		GameView.height = he;
 		ratio = ((float) width) / height;
-		mPortrait = ratio > 1.0f ? false : true;
+		//mPortrait = ratio > 1.0f ? false : true;
+		mPortrait = true;
 		
 		initPaints();
 		reloadByResize();
@@ -299,9 +300,6 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		
 	}
 	
-	
-	Rect r1=new Rect(0,0,50,50),r2=new Rect(250,250, 750, 750);
-	
 	/******************************* DRAWING METHODS *********************************/
 	
 	/** This is what is going to be shown on the canvas
@@ -313,7 +311,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			canvas.drawColor(bgColor);//(mPaints[(int)(Math.random()*8)].getColor());
 			
 			//TODO implement landscapemode
-			if( /**mPortrait*/ true ) drawPortrait(canvas);
+			if( mPortrait ) drawPortrait(canvas);
 			else	drawPortrait(canvas);//drawLandscape(canvas);
 			
 			StateMachine.getIns().draw(canvas, mPortrait);
@@ -339,6 +337,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		mColorBoard.updateBoard(canvas, mRectFs[0], mPaints);
 		//canvas.restore();
 		
+		//TODO change hardcoded value
 		canvas.drawText("Moves: "+mColorBoard.getMoves()+"/21", width/2, height/16, mPaints[8]);
 		
 		if ( mBitmaps != null ){
@@ -346,14 +345,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			canvas.drawBitmap(mBitmaps[1], 15*width/16-mBitmaps[1].getWidth(), height/96, null);
 		}
 		
-		
-		for(int i =0 ; i < dbc.getButtonsCount();i++){
-			if(i < 6)//after position 5, we are painting bitmaps instead of buttons
-				canvas.drawRect(dbc.getDButton(i), mPaints[i]);
-			if( dbc.getDButton(i).isPressed() )
-				canvas.drawRect(dbc.getDButton(i), mPaints[7]);
-		}
-		
+		drawButtons(canvas);
 		
 	}
 	
@@ -361,6 +353,16 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	/** Draw the UI in Landscape mode */
 	public void drawLandscape(Canvas canvas){
 		
+	}
+	
+	/** Draw UI units capable to react to touch events*/
+	public void drawButtons(Canvas canvas){
+		for(int i =0 ; i < dbc.getButtonsCount();i++){
+			if(i < 6)//after position 5, we are painting bitmaps instead of buttons
+				canvas.drawRect(dbc.getDButton(i), mPaints[i]);
+			if( dbc.getDButton(i).isPressed() )
+				canvas.drawRect(dbc.getDButton(i), mPaints[7]);
+		}
 	}
 	
 	public final void updateNow(){

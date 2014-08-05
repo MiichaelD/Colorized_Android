@@ -21,8 +21,8 @@
     <string name="tuto2">You start with the top-left corner tile and should change color to control adjacent tiles of the same color.</string>
     <string name="tuto3">Use the color picker to change to a new color to control more tiles.</string>
     <string name="tuto4">Keep changing colors until the board is filled with just one color.</string>
-    <string name="tuto5">Just be careful to do it  before you finish your  available moves</string>
-    <string name="tuto6">HAVE FUN!!</string>
+    <string name="tuto5">Just be careful to do it before run out of moves</string>
+    <string name="tuto6">Do you think you can do it?\n\nHAVE FUN!!</string>
     <string name="tuto_exit">Press back again to exit the tutorial or touch to continue.</string>
     
         
@@ -30,7 +30,7 @@
     <string name="key_is_game_saved" translatable="false">key_is_game_saved</string>
     <string name="key_tutorial_played" translatable="false">key_tutorial_played</string>
     <string name="key_music" translatable="false">key_music</string>
-    <string name="key_sound" translatable="false">key_sound</string>
+    <string name="key_sfx" translatable="false">key_sfx</string>
     <string name="key_board_saved" translatable="false">key_board_saved</string>
     <string name="key_board_size" translatable="false">key_board_size</string>
     <string name="key_times_finished" translatable="false">key_times_finished</string>

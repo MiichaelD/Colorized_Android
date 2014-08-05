@@ -48,12 +48,12 @@ public class GameActivity extends Activity {
 		
 		//run on FullScreen with no Action and Navigation Bars
 		Const.setFullScreen(this);
-
-		//set the game screen
-		setContentView(R.layout.game_screen);
 		
 		//Init Preferences once 
 		Preferences.initPreferences(this);
+
+		//set the game screen
+		setContentView(R.layout.game_screen);
 		
 		//check if the tutorial has been completed
 		if(!Preferences.getIns().isTutorialCompleted())

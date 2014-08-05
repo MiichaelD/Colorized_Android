@@ -1,6 +1,5 @@
 package com.webs.itmexicali.colorized.drawcomps;
 
-import android.support.v4.view.ViewPager;
 import android.view.MotionEvent;
 
 /**This button container is to make easier the MotionEvent handling over DrawButtons
