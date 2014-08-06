@@ -1,26 +1,13 @@
 package com.webs.itmexicali.colorized;
 
-import java.util.Scanner;
-
-import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
-import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
-import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.gamestates.BaseState;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.PixelFormat;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.SweepGradient;
-import android.graphics.Paint.Align;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -35,25 +22,15 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	// mPortrait true to indicate that the width is smaller than the heigth
 	static public boolean mPortrait;
 	
-	private boolean 	run = false, surfaceCreated=false;
-	protected SurfaceHolder sh;
+	private boolean run = false, surfaceCreated=false;
 	
-	//Paints to be used to Draw text and shapes
-	public Paint 	mPaints[];
-	public Bitmap	mBitmaps[];
-	public Rect		mRects[];
-	public RectF		mRectFs[];
-	private Thread		tDraw;
-	DrawButtonContainer dbc;
+	Thread tDraw = null;// painting thread
 	
-	
-	protected int bgColor=Color.DKGRAY;
-	
-	public static float width, height, ratio;
+	protected SurfaceHolder sh;	
+		
+	public static float width = 1, height = 1, ratio;
 	
 	//the matrix of color
-	public ColorBoard mColorBoard = null;
-	
 	//canvas to be drawn on
 	protected Canvas canvas;
 	
@@ -88,23 +65,9 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	public final void init(){
 		instance = this;
 		
-		//If tutorial hasn't been played, do not load saved game
-		if(Preferences.getIns().isTutorialCompleted()){
-			//if there is a gamestate saved, load it again
-			if(Preferences.getIns().isGameSaved()){
-				//parse the gamestate
-				parseBoardFromString(Preferences.getIns().getSavedGame());
-			}
-		}
-		
-		if(mColorBoard == null){
-			createNewBoard(Preferences.getIns().getBoardSize());
-		}
-		
 		sh = getHolder();
 		sh.setFormat(PixelFormat.TRANSLUCENT);
 		sh.addCallback(this);
-		
 	}
 	
     
@@ -116,70 +79,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		canvas = null;
 		surfaceCreated=true;
 
-		mRectFs = new RectF[2];
-		dbc = new DrawButtonContainer(8,true);
-		
-		//register actions to the buttons created:
-		dbc.setOnActionListener(0, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
-			@Override public void onActionPerformed() {
-				new Thread(new Runnable(){public void run(){
-					mColorBoard.colorize(0);
-				}}).start();}
-		});
-		
-		dbc.setOnActionListener(1, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
-			@Override public void onActionPerformed() {
-				new Thread(new Runnable(){public void run(){
-					mColorBoard.colorize(1);
-				}}).start();}
-		});
-		
-		dbc.setOnActionListener(2, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
-			@Override public void onActionPerformed() {
-				new Thread(new Runnable(){public void run(){
-					mColorBoard.colorize(2);
-				}}).start();}
-		});
-		
-		dbc.setOnActionListener(3, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
-			@Override public void onActionPerformed() {
-				new Thread(new Runnable(){public void run(){
-					mColorBoard.colorize(3);
-				}}).start();}
-		});
-		
-		dbc.setOnActionListener(4, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
-			@Override public void onActionPerformed() {
-				new Thread(new Runnable(){public void run(){
-					mColorBoard.colorize(4);
-				}}).start();}
-		});
-		dbc.setOnActionListener(5, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
-			@Override public void onActionPerformed() {
-				new Thread(new Runnable(){public void run(){
-					mColorBoard.colorize(5);
-				}}).start();}
-		});
-		
-		dbc.setOnActionListener(6, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
-			@Override public void onActionPerformed() {
-				new Thread(new Runnable(){public void run(){
-					GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
-					//OpenSettings;
-					StateMachine.getIns().pushState(BaseState.statesIDs.TUTO);
-				}}).start();}
-		});
-		
-		dbc.setOnActionListener(7, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
-			@Override public void onActionPerformed() {
-				GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
-					GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
-					GameActivity.instance.showRestartDialog();
-				}});
-			}});
-
-		//Start painting thread
-		startThread();
+		startThread();//Start painting thread
 	}
     
 	@Override
@@ -188,15 +88,14 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		GameView.width = wi; 
 		GameView.height = he;
 		ratio = ((float) width) / height;
-		//mPortrait = ratio > 1.0f ? false : true;
-		mPortrait = true;
+		mPortrait = true;// = ratio > 1.0f ? false : true;
 		
-		initPaints();
-		reloadByResize();
+		if(StateMachine.getIns().getCurrentState() == null){
+			StateMachine.getIns().pushState(BaseState.statesIDs.GAME);
+		}
 		
-		updateNow();//refreshUI();
-		//startThread();
 		StateMachine.getIns().surfaceChanged(width, height);
+		//refreshUI();
 	}
 
 	@Override
@@ -206,100 +105,6 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		stopThread();
 	}
 	
-	/********************************* UI RESIZE METHODS *********************************/
-
-	/** Init the paints to be used on canvas */
-	public void initPaints() {
-		mPaints = new Paint[9];
-		mPaints[0] = new Paint();
-		mPaints[0].setColor(Color.RED);
-		mPaints[0].setStyle(Paint.Style.FILL);
-		mPaints[0].setAntiAlias(true);
-		
-		mPaints[1] = new Paint();
-		mPaints[1].setColor(Color.rgb(0, 162, 232));
-		mPaints[1].setStyle(Paint.Style.FILL);
-		mPaints[1].setAntiAlias(true);		
-		
-		mPaints[2] = new Paint();
-		mPaints[2].setColor(Color.YELLOW);
-		mPaints[2].setStyle(Paint.Style.FILL);
-		mPaints[2].setAntiAlias(true);
-		
-		mPaints[3] = new Paint();
-		mPaints[3].setColor(Color.rgb(163, 73, 164));
-		mPaints[3].setStyle(Paint.Style.FILL);
-		mPaints[3].setAntiAlias(true);
-		
-		mPaints[4] = new Paint();
-		mPaints[4].setColor(Color.LTGRAY);
-		mPaints[4].setStyle(Paint.Style.FILL);
-		mPaints[4].setAntiAlias(true);
-		
-		mPaints[5] = new Paint();
-		mPaints[5].setColor(Color.rgb(21, 183, 46));
-		//mPaints[5].setColor(Color.rgb(0, 159, 60));
-		mPaints[5].setStyle(Paint.Style.FILL);
-		mPaints[5].setAntiAlias(true);
-		
-		mPaints[6] = new Paint();
-		Shader sh = null;
-		sh = new SweepGradient(5, 5, new int[] {Color.BLUE,	Color.RED, Color.GREEN}, null);
-		//mPaints[6].setShader(new LinearGradient( 0, 0, 0, 2, Color.CYAN, Color.GREEN, Shader.TileMode.CLAMP));
-		//mPaints[6].setShader(new LinearGradient(0, 1, 1, 0, Color.BLUE, Color.RED, Shader.TileMode.CLAMP));
-		mPaints[6].setShader(sh);
-		mPaints[6].setStyle(Paint.Style.FILL);
-		mPaints[6].setAntiAlias(true);
-		
-		mPaints[7] = new Paint();
-		mPaints[7].setColor(Color.DKGRAY);
-		mPaints[7].setStyle(Paint.Style.FILL);
-		mPaints[7].setAntiAlias(true);
-		mPaints[7].setAlpha(120);
-		
-		mPaints[8] = new Paint();
-		mPaints[8].setColor(Color.WHITE);
-		mPaints[8].setStyle(Paint.Style.FILL);
-		mPaints[8].setTextSize(mPortrait? width/11 : height/11);
-		mPaints[8].setTextAlign(Align.CENTER);
-		mPaints[8].setAntiAlias(true);
-	}
-	
-	/** This method will be called when the surface has been resized, so all
-	 * screen width and height dependents must be reloaded - 
-	 * NOTE: DO NOT INCLUDE initPaints()*/
-	protected void reloadByResize() {		
-		if( mPortrait){
-			mRectFs[0] = new RectF(width/16, 5*height/16-5*width/16, 15*width/16, 5*height/16+9*width/16);
-			mRectFs[1] = new RectF(0, 2*height/5+23*width/48, width, 2*height/5+31*width/48);
-
-			mBitmaps = new Bitmap[3];
-			float val = mPortrait ? width/8 : height/8;
-			mBitmaps[0] = BitmapLoader.resizeImage(getContext(),R.drawable.ic_settings, val, val);
-			mBitmaps[1] = BitmapLoader.resizeImage(getContext(),R.drawable.ic_restart, val, val);
-			mBitmaps[2] = Bitmap.createBitmap(60, 60, Config.ARGB_8888);
-			
-			dbc.repositionDButton(0, 3*width/28, 2*height/5+width/2, 6*width/28, 2*height/5+5*width/8);
-			dbc.repositionDButton(1, 7*width/28, 2*height/5+width/2, 10*width/28, 2*height/5+5*width/8);
-			dbc.repositionDButton(2, 11*width/28, 2*height/5+width/2, 14*width/28, 2*height/5+5*width/8);
-			dbc.repositionDButton(3, 15*width/28, 2*height/5+width/2, 18*width/28, 2*height/5+5*width/8);
-			dbc.repositionDButton(4, 19*width/28, 2*height/5+width/2, 22*width/28, 2*height/5+5*width/8);
-			dbc.repositionDButton(5, 23*width/28, 2*height/5+width/2, 26*width/28, 2*height/5+5*width/8);
-			
-			//settings buttons
-			dbc.repositionDButton(6, width/16, height/96, width/16+val,  height/96+val);
-			dbc.repositionDButton(7, 15*width/16-mBitmaps[1].getWidth(),  height/96, 
-					15*width/16-mBitmaps[1].getWidth()+val,  height/96+val);
-			
-			
-			
-		}
-		else{
-			mRectFs[0] = new RectF(0, 0, height, height);
-		}
-		
-	}
-	
 	/******************************* DRAWING METHODS *********************************/
 	
 	/** This is what is going to be shown on the canvas
@@ -307,71 +112,13 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	public void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		try {
-			//Background
-			canvas.drawColor(bgColor);//(mPaints[(int)(Math.random()*8)].getColor());
-			
-			//TODO implement landscapemode
-			if( mPortrait ) drawPortrait(canvas);
-			else	drawPortrait(canvas);//drawLandscape(canvas);
-			
+			canvas.drawColor(Color.WHITE);
 			StateMachine.getIns().draw(canvas, mPortrait);
 			
 		} catch (Exception e) {
-			//Log.e(Const.TAG, "onDraw(canvas)"+e.getLocalizedMessage());
+			Log.e(Const.TAG, "onDraw(canvas)"+e.getLocalizedMessage());
 		}
 		
-	}
-	
-	
-	//float dg=0;
-	
-	/** Draw the UI in Portrait mode */
-	public void drawPortrait(Canvas canvas){
-		
-		//Color Div
-		canvas.drawRect(mRectFs[0].left-10, mRectFs[0].top-10, mRectFs[0].right+10, mRectFs[0].bottom+10, mPaints[6]);
-		canvas.drawRoundRect(mRectFs[1], 50.0f, 40.0f, mPaints[6]);
-		
-		//canvas.save(); dg = (dg+1)%360;
-		//canvas.rotate(dg, mRectFs[0].left+mRectFs[0].width()/2, mRectFs[0].top+mRectFs[0].height()/2);
-		mColorBoard.updateBoard(canvas, mRectFs[0], mPaints);
-		//canvas.restore();
-		
-		//TODO change hardcoded value
-		canvas.drawText("Moves: "+mColorBoard.getMoves()+"/21", width/2, height/16, mPaints[8]);
-		
-		if ( mBitmaps != null ){
-			canvas.drawBitmap(mBitmaps[0], width/16, height/96, null);
-			canvas.drawBitmap(mBitmaps[1], 15*width/16-mBitmaps[1].getWidth(), height/96, null);
-		}
-		
-		drawButtons(canvas);
-		
-	}
-	
-	
-	/** Draw the UI in Landscape mode */
-	public void drawLandscape(Canvas canvas){
-		
-	}
-	
-	/** Draw UI units capable to react to touch events*/
-	public void drawButtons(Canvas canvas){
-		for(int i =0 ; i < dbc.getButtonsCount();i++){
-			if(i < 6)//after position 5, we are painting bitmaps instead of buttons
-				canvas.drawRect(dbc.getDButton(i), mPaints[i]);
-			if( dbc.getDButton(i).isPressed() )
-				canvas.drawRect(dbc.getDButton(i), mPaints[7]);
-		}
-	}
-	
-	public final void updateNow(){
-		/*
-		if(run)
-			lastUpdate = System.currentTimeMillis();
-		else
-			startThread();
-			*/
 	}
 	
 	/** Start a new thread to keep the UI refreshing constantly
@@ -459,101 +206,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	public boolean onTouchEvent( MotionEvent event) {
 		if(StateMachine.getIns().touch(event))
 			return true;
-		//new Thread(new Runnable(){
-			//public void run(){
-				int action = event.getAction() & MotionEvent.ACTION_MASK;
-				int pointerIndex = (event.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
-				int pointerId = event.getPointerId(pointerIndex);
-				switch (action) {
-				case MotionEvent.ACTION_DOWN:
-				case MotionEvent.ACTION_POINTER_DOWN:
-					dbc.onPressUpdate(event, pointerIndex, pointerId);
-					break;
-	
-				case MotionEvent.ACTION_UP:
-				case MotionEvent.ACTION_POINTER_UP:
-				case MotionEvent.ACTION_CANCEL:	
-					dbc.onReleaseUpdate(event, pointerIndex, pointerId);
-					break;
-	
-				case MotionEvent.ACTION_MOVE:
-					dbc.onMoveUpdate(event, pointerIndex);
-					break;
-				default:
-					return false;
-				}
-				//refreshUI();
-		//	}
-		//}).start();
-		return true;
-	}
-	
-	
-	/********************************* BOARD METHODS *********************************/
-	
-	/** Create a new random board*/
-	public void createNewBoard(int blocks){
-		if(blocks < 0)//if blocks is negative, this will have the same blocks #
-			mColorBoard.startRandomColorBoard();
-		else
-			mColorBoard = new ColorBoard(blocks);
-		
-		updateNow();//refreshUI();
-	}
-	
-	/** Given a string containing a saved ColorBoard state,
-	 * parse it to create a new game state identical */
-	public void parseBoardFromString(String state){
-		if(state == null)
-			return;
-		Scanner scanner = null;
-		try{
-			scanner = new Scanner(state);
-			int bps = scanner.nextInt();
-			int moves = scanner.nextInt();
-			int[][] board = new int[bps][bps];
-			for(int i =0;i<bps;i++)
-				for(int j=0;j<bps;j++)
-					board[i][j] = scanner.nextInt();
-			mColorBoard = new ColorBoard(bps, moves, board);
-		}catch(Exception e){
-		}
-		finally{scanner.close();}
-	}
-	
-	/** The string representation of current game state*/
-	public String getBoardAsString(){
-		return mColorBoard.toString();
-		
-	}
-	
-	/** The number of moves (user interactions) in current game*/
-	public int getMoves(){
-		return mColorBoard.getMoves();
-	}
-	
-	/** Check if the board is completed in one color
-	 * @return true if game is over, false if not */
-	public boolean isGameOver(){
-		return mColorBoard.isBoardCompleted();
-	}
-	
-	/** Callback to let the game know that the user input has been processed*/
-	public void onBoardOpFinish(boolean won){
-		if (won){
-			GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
-				GameActivity.instance.playSound(GameActivity.SoundType.WIN);
-				GameActivity.instance.showGamOverDialog(true);
-			}});
-			
-		}
-		else if(getMoves() > 20){//TODO hardcoded value
-			GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
-				GameActivity.instance.playSound(GameActivity.SoundType.LOSE);
-				GameActivity.instance.showGamOverDialog(false);
-			}});
-		}
-		updateNow();//refreshUI();
+		return false;
 	}
 
 	/********************************* STATE CALLING METHODS *********************************/

@@ -28,36 +28,45 @@ public class TutoState extends BaseState{
 	
 	private innerStates mInnerState, mPreState;
 	
+	//A reference to GameState, so we can paint it before painting this UI
+	private GameState pGame;
+	
 	//paints to be used on canvas
 	protected TextPaint 	mPaints[];
 	protected Rect			mRectFs[];
 	
 	@Override
 	public void onPopped() {
-		//Log.d(TutoState.class.getSimpleName(),"onPopped");		
+		//Log.d(TutoState.class.getSimpleName(),"onPopped");	
+		pGame = null;
+	}	
+
+	@Override
+	public void onPushed() {
+		//Log.d(TutoState.class.getSimpleName(),"onPushed");
+		pGame = (GameState) StateMachine.getIns().getPrevioustState();
+		
+		mInnerState = innerStates.INIT;	
+		resize(GameView.width,GameView.height);
 	}
 	
 	
 	@Override
 	public void surfaceChanged(float width, float height) {
 		//Log.d(TutoState.class.getSimpleName(),"surfaceChanged");
+		pGame.surfaceChanged(width, height);
+		
 		resize(width, height);		
 	}
 
-	@Override
-	public void onPushed() {
-		//Log.d(TutoState.class.getSimpleName(),"onPushed");
-		mInnerState = innerStates.INIT;	
-		resize(GameView.width,GameView.height);
-	}
 	
-	private void resize(float width, float height){
+	public void resize(float width, float height){
 		//Log.v("TutoState","canvas size: "+width+"x"+height);
 		
 		mRectFs = new Rect[3];
 		mRectFs[0] = new Rect(0, (int)(2*height/5+23*width/48), (int)(width), (int)(2*height/5+31*width/48));
 		
-		float boardPixels = GameView.getIns().mRectFs[0].width()/Preferences.getIns().getBoardSize();
+		float boardPixels = pGame.mRectFs[0].width()/Preferences.getIns().getBoardSize();
 		mRectFs[1] = new Rect((int)(width/16), (int)(5*height/16-5*width/16), 
 				(int)(width/16 + boardPixels), (int)(5*height/16-5*width/16 + boardPixels));
 		
@@ -101,8 +110,10 @@ public class TutoState extends BaseState{
 	}
 
 	@Override
-	public void draw(Canvas canvas, boolean isPotrait) {
+	public void draw(Canvas canvas, boolean isPortrait) {
 		//canvas.drawRect(new Rect(0,0,(int)GameView.width,(int)GameView.height),mPaints[3]);
+		pGame.draw(canvas, isPortrait);
+		
 		canvas.drawColor(mPaints[3].getColor());
 		
 		StaticLayout mTextLayout;
@@ -117,8 +128,8 @@ public class TutoState extends BaseState{
 					GameActivity.instance.getString(R.string.tuto0), mPaints[1],
 					canvas.getWidth(), Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 
-				canvas.translate(0, GameView.height/2-mPaints[1].getTextSize());
-				mTextLayout.draw(canvas);
+			canvas.translate(0, GameView.height/2-mPaints[1].getTextSize());
+			mTextLayout.draw(canvas);
 			break;
 			
 		case FIRST://fill the board
@@ -127,8 +138,8 @@ public class TutoState extends BaseState{
 				GameActivity.instance.getString(R.string.tuto1), mPaints[1],
 				canvas.getWidth(), Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 
-			canvas.drawRoundRect(GameView.getIns().mRectFs[0],0,0,mPaints[2]);
-			GameView.getIns().mColorBoard.updateBoard(canvas, GameView.getIns().mRectFs[0], GameView.getIns().mPaints);
+			canvas.drawRoundRect(pGame.mRectFs[0],0,0,mPaints[2]);
+			pGame.drawBoard(canvas);
 			canvas.translate(0, 5*GameView.height/16+5*GameView.width/8);
 			mTextLayout.draw(canvas);
 			
@@ -139,9 +150,7 @@ public class TutoState extends BaseState{
 				canvas.getWidth(), Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 
 			canvas.drawRect(mRectFs[1],mPaints[2]);
-			canvas.drawRect(mRectFs[1],GameView.getIns().mPaints[
-			                                 GameView.getIns().mColorBoard.getMatrix()[0][0]
-			                                		 ]);
+			canvas.drawRect(mRectFs[1],pGame.mPaints[pGame.getFirstTileColor()]);
 			canvas.translate(0, GameView.height/2 - 3*mPaints[1].getTextSize());
 			mTextLayout.draw(canvas);
 			break;
@@ -151,9 +160,9 @@ public class TutoState extends BaseState{
 					GameActivity.instance.getString(R.string.tuto3), mPaints[1],
 					canvas.getWidth(), Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 
-			canvas.drawRoundRect(GameView.getIns().mRectFs[1], 50.0f, 40.0f, GameView.getIns().mPaints[6]);
+			canvas.drawRoundRect(pGame.mRectFs[1], 50.0f, 40.0f, pGame.mPaints[6]);
 			canvas.drawRect(mRectFs[0],mPaints[2]);
-			GameView.getIns().drawButtons(canvas);
+			pGame.drawButtons(canvas);
 			canvas.translate(0, GameView.height/2-3*mPaints[1].getTextSize());
 				mTextLayout.draw(canvas);
 			break;
@@ -163,11 +172,8 @@ public class TutoState extends BaseState{
 					GameActivity.instance.getString(R.string.tuto4), mPaints[1],
 					canvas.getWidth(), Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 			
-			canvas.drawRoundRect(GameView.getIns().mRectFs[0],0,0,mPaints[2]);
-			int boardSize = Preferences.getIns().getBoardSize() -1;
-			canvas.drawRect(GameView.getIns().mRectFs[0],
-					GameView.getIns().mPaints[GameView.getIns().
-					                          mColorBoard.getMatrix()[boardSize][boardSize]]);
+			canvas.drawRoundRect(pGame.mRectFs[0],0,0,mPaints[2]);
+			canvas.drawRect(pGame.mRectFs[0],pGame.mPaints[pGame.getLastTileColor()]);
 			canvas.translate(0, 5*GameView.height/16+5*GameView.width/8);
 			mTextLayout.draw(canvas);
 			break;
@@ -177,10 +183,11 @@ public class TutoState extends BaseState{
 					GameActivity.instance.getString(R.string.tuto5), mPaints[1],
 					canvas.getWidth(), Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 
-			//TODO change hardcoded value
+			
 			//draw moves counter
-			canvas.drawText("Moves: "+GameView.getIns().getMoves()+"/21",
-					GameView.width/2, GameView.height/16,GameView.getIns(). mPaints[8]);
+			//TODO change hardcoded value
+			canvas.drawText("Moves: "+pGame.getMoves()+"/21",
+					GameView.width/2, GameView.height/16,pGame.mPaints[8]);
 			
 			canvas.drawRect(mRectFs[2], mPaints[2]); // highlight moves counter
 			
@@ -217,7 +224,7 @@ public class TutoState extends BaseState{
 	}
 
 	@Override
-	public void touch(MotionEvent me) {
+	public boolean touch(MotionEvent me) {
 		int action = me.getAction() & MotionEvent.ACTION_MASK;
 		if(action == MotionEvent.ACTION_UP ||
 			action == MotionEvent.ACTION_POINTER_UP ||
@@ -235,7 +242,7 @@ public class TutoState extends BaseState{
 			}
 			//Log.d(TutoState.class.getSimpleName(),"mState: "+mInnerState);
 		}
-		
+		return true;
 	}
 	
 	public boolean onBackPressed(){

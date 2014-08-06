@@ -5,7 +5,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
-import com.webs.itmexicali.colorized.gamestates.BaseState;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
 
 import android.annotation.SuppressLint;
@@ -14,7 +13,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
@@ -35,10 +33,6 @@ public class GameActivity extends Activity {
     private SoundType previousSound = SoundType.NONE;
     public static enum SoundType{ NONE, TOUCH, WIN, LOSE};
     
-    //PowerManager components to keep screen on while playing
-    PowerManager pm = null;
-    PowerManager.WakeLock wl = null;
-
 	@SuppressLint("InlinedApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +48,6 @@ public class GameActivity extends Activity {
 
 		//set the game screen
 		setContentView(R.layout.game_screen);
-		
-		//check if the tutorial has been completed
-		if(!Preferences.getIns().isTutorialCompleted())
-			//if not, start it at game init
-			StateMachine.getIns().pushState(BaseState.statesIDs.TUTO);
-		
-		//check if there is a saved game and ask the user if he'd like to keep playing it
-		else if (Preferences.getIns().isGameSaved())
-			showSavedGameDialog();
-		
 
 	    //Keep screen on
 	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -208,23 +192,14 @@ public class GameActivity extends Activity {
 		Log.v(GameActivity.class.getSimpleName(),"onDestroy()");
 	}
 	
-	/** If there is any progress in the game, save it in case the user
-	 * wants to continue the next time he gets back to the game*/
-	private void saveProgress(){
-		if(GameView.getIns().getMoves() > 0 && !GameView.getIns().isGameOver()){
-			// the game was started, lets save it 
-			Preferences.getIns().saveGame(true,GameView.getIns().getBoardAsString());
-		}
-	}
 	
 	/** Display an exit confirmation dialog to prevent accidentally quitting the game*/
-	private void showExitDialog(){
+	public void showExitDialog(){
 		//Use the Builder class for convenient dialog construction
 		new AlertDialog.Builder(GameActivity.this)
 		.setMessage(R.string.exit_confirmation)
 		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) { // Exit the game
-        	   saveProgress();
                GameActivity.this.finish();
            }
 		})
@@ -245,99 +220,7 @@ public class GameActivity extends Activity {
 		.show();
 	}
 	
-	/** Display dialog informing that there is a gamestate saved
-	 * and ask if the user wants to play it or prefers a new match*/
-	private void showSavedGameDialog(){
-		//remove the saved game from the preferences
-	    Preferences.getIns().saveGame(false, null);
-	    
-		//Use the Builder class for convenient dialog construction
-		new AlertDialog.Builder(GameActivity.this)
-		.setMessage(R.string.saved_game_confirmation)
-		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-           public void onClick(DialogInterface dialog, int id) { 
-        	   Const.setFullScreen(GameActivity.this);
-           }
-		})
-		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-           public void onClick(DialogInterface dialog, int id) {
-        	   GameView.getIns().createNewBoard(Preferences.getIns().getBoardSize());
-        	   
-        	   Const.setFullScreen(GameActivity.this);
-           }
-		})
-		.create()
-		.show();
-	}
 	
-	/** Display dialog informing that there is a gamestate saved
-	 * and ask if the user wants to play it or prefers a new match*/
-	public void showRestartDialog(){
-		//Use the Builder class for convenient dialog construction
-		new AlertDialog.Builder(GameActivity.this)
-		.setMessage(R.string.restart_game_confirmation)
-		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-           public void onClick(DialogInterface dialog, int id) {
-        	   GameView.getIns().createNewBoard(Preferences.getIns().getBoardSize());
-        	   
-        	   Const.setFullScreen(GameActivity.this);   
-           }
-		})
-		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-           public void onClick(DialogInterface dialog, int id) {// dismiss menu
-        	   Const.setFullScreen(GameActivity.this);
-           }
-		})
-		.create()
-		.show();
-	}
-	
-	/** Display dialog informing that the game is over and restart again
-	 * @param win if true, show congratulations text, else show condolences*/
-	public void showGamOverDialog(boolean win){
-		Log.v(Const.TAG,"GameOver winning = "+win);
-		playMusic(false);
-		
-		//update games finished count
-		int[] results = Preferences.getIns().updateGameFinished( win);
-		
-		if(results[0]%2 == 0)//each 2 games, show Interstitial
-			displayInterstitial();
-		
-		String str =win? 
-				String.format(getString(R.string.game_over_win),GameView.getIns().getMoves()) :
-				getString(R.string.game_over_lose);
-		
-		//Use the Builder class for convenient dialog construction
-		new AlertDialog.Builder(GameActivity.this)
-		.setMessage(str)
-		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-           public void onClick(DialogInterface dialog, int id) {
-        	   GameView.getIns().createNewBoard(Preferences.getIns().getBoardSize());
-        	   
-        	   Const.setFullScreen(GameActivity.this);
-        	   playMusic(true);
-           }
-		})
-		.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-           public void onClick(DialogInterface dialog, int id) {
-        	   Const.setFullScreen(GameActivity.this);
-        	   GameView.getIns().createNewBoard(Preferences.getIns().getBoardSize());
-	        	//playMusic(true);
-	        	showExitDialog();
-           }
-		})
-		.setOnCancelListener(new DialogInterface.OnCancelListener() {
-			@Override
-			public void onCancel(DialogInterface arg0) {
-				GameView.getIns().createNewBoard(Preferences.getIns().getBoardSize());
-	        	Const.setFullScreen(GameActivity.this);
-	        	showExitDialog();
-			}
-		})
-		.create()
-		.show();
-	}
 	
 	@Override
 	public void onBackPressed(){
