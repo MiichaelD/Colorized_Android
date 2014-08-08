@@ -90,12 +90,11 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		ratio = ((float) width) / height;
 		mPortrait = true;// = ratio > 1.0f ? false : true;
 		
-		if(StateMachine.getIns().getCurrentState() == null){
-			StateMachine.getIns().pushState(BaseState.statesIDs.GAME);
-		}
-		
 		StateMachine.getIns().surfaceChanged(width, height);
-		//refreshUI();
+		
+		if(StateMachine.getIns().getCurrentState() == null){
+			StateMachine.getIns().pushState(BaseState.statesIDs.MAIN);
+		}
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 public abstract class BaseState {
 	
 	/** The Identifiers for each state extending this class*/
-	public static enum statesIDs{MENU, TUTO, GAME}
+	public static enum statesIDs{MAIN, TUTO, GAME}
 	
 	/** ID for this state*/
 	protected statesIDs mID;
@@ -19,13 +19,20 @@ public abstract class BaseState {
 		return mID;
 	}
 		
-	/** callback to let the state that it has been pushed on top*/
-	public void onPushed(){
+	/** callback to let the state that it has been pushed on top
+	 * of list*/
+	public void onPushed(){}
+	
+	/** callback to let the state that it has been popped out from
+	 * top of the list*/
+	public void onPopped(){}
+	
+	/** callback to let the state know that it's been brought to the
+	 * surface to start drawing. this method calls resize with canvas'
+	 * size as param*/
+	public void onSurfaceTop(){
 		resize(GameView.width,GameView.height);
 	}
-	
-	/** callback to let the state that it has been popped out from top*/
-	public abstract void onPopped();
 	
 	/** draw the UI on the main canvas
 	 * @param canvas to draw on
@@ -37,7 +44,8 @@ public abstract class BaseState {
 	 * @param me the MotionEvent to be handled*/
 	public abstract boolean touch(MotionEvent me);
 	
-	/** callback to let the state that it has been resized
+	/** callback to let the state that it has been resized.
+	 * This method calls resize method if not overriden
 	 * @param width the canvas width
 	 * @param height the canvas height*/
 	public void surfaceChanged(float width, float height){
@@ -55,8 +63,8 @@ public abstract class BaseState {
 	 * @return BaseState of type ID reference*/
 	public static BaseState createStateByID(statesIDs id){
 		switch(id){
-		case MENU:
-			break;
+		case MAIN:
+			return new MainState();
 		case TUTO:
 			return new TutoState();
 		case GAME:

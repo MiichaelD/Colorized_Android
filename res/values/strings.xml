@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Colorized</string>
+    <string name="app_name">Color Full</string>
     
     <string name="ok" translatable="false">OK</string>
     <string name="cancel">Cancel</string>

@@ -32,6 +32,11 @@ public class StateMachine {
 		return instance;
 	}
 	
+	/** Get the first {@link BaseState} pushed to this {@link StateMachine}*/
+	public BaseState getFirstState(){
+		return pStateList.isEmpty() ? null : pStateList.getFirst();
+	}
+	
 	/** Get the last {@link BaseState} pushed to this {@link StateMachine}*/
 	public BaseState getCurrentState(){
 		return pStateList.isEmpty() ? null : pStateList.getLast();
@@ -55,6 +60,7 @@ public class StateMachine {
 		//push it to the list
 		pStateList.addLast(bs);
 		bs.onPushed();
+		bs.onSurfaceTop();
 	}
 	
 	/** Push a new state object to start interacting with it*/
@@ -66,13 +72,17 @@ public class StateMachine {
 		
 		pStateList.addLast(bs);
 		bs.onPushed();
+		bs.onSurfaceTop();
 	}
 	
 	/** check if there the same state already on the lists */
 	public boolean checkStateIsInList(BaseState.statesIDs id){
 		Iterator<BaseState> it = pStateList.iterator();
+		BaseState bs = null;
 		while(it.hasNext()){
-			if(it.next().mID == id)
+			bs = it.next();
+			//Log.v(StateMachine.class.getSimpleName(),"States: "+bs.getID());
+			if(bs.mID == id)
 				return true;
 		}
 		return false;
@@ -83,11 +93,13 @@ public class StateMachine {
 		if(pStateList.isEmpty())
 			return false;
 		pStateList.removeLast().onPopped();
+		pStateList.getLast().onSurfaceTop();
 		return true;
 	}
 	
 	
-	/** Remove a state by it's ID if contained*/
+	/** Remove a state by it's ID if contained
+	 * NOTE: use carefully; Why would you want to remove this state?*/
 	public void removeState(BaseState.statesIDs id){
 		BaseState aux;
 		//check if there the same state already on the lists
@@ -96,6 +108,8 @@ public class StateMachine {
 			aux = it.next();
 			if(aux.mID == id){
 				aux.onPopped();
+				if(aux == pStateList.getLast() && (aux=pStateList.getBeforeLast()) != null)
+					aux.onSurfaceTop();
 				it.remove();
 				return;
 			}
@@ -130,9 +144,13 @@ public class StateMachine {
 	
 	/** Let the current state react on the back key*/
 	public boolean onBackPressed(){
-		if(pStateList.isEmpty())
+		if(pStateList.isEmpty()) // if there are states continue
 			return false;
-		return pStateList.getLast().onBackPressed();
+		
+		if(pStateList.getLast().onBackPressed())// let the current state react
+			return true;
+		
+		return StateMachine.getIns().popState();// if no reaction, drop from list
 	}
 	
 	@SuppressWarnings("serial")

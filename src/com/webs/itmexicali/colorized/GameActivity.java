@@ -131,11 +131,8 @@ public class GameActivity extends Activity {
 	public void onStart(){
 		super.onStart();
 		Log.v(GameActivity.class.getSimpleName(),"onStart()");
-		//start Player with a resource
-		if( musicPlayer == null){
-			musicPlayer=MediaPlayer.create(this, R.raw.music);
-			musicPlayer.setLooping(true);
-		}
+		
+		startMusicPlayer();
 	}
 	
 	@Override
@@ -175,6 +172,7 @@ public class GameActivity extends Activity {
 		//release resources of the media player and delete it
 		Log.v(GameActivity.class.getSimpleName(),"onStop()");
 		if (soundPlayer != null){
+			soundPlayer.stop();
 			soundPlayer.release();
 			soundPlayer = null;
 		}
@@ -227,11 +225,8 @@ public class GameActivity extends Activity {
 		if(StateMachine.getIns().onBackPressed())
 			return;
 		
-		if(StateMachine.getIns().popState())
-			return;
-		
 		showExitDialog();
-		//super.onBackPressed();
+		super.onBackPressed();
 	}
 	
 	/** Play sounds when user touch the controls
@@ -266,13 +261,24 @@ public class GameActivity extends Activity {
 	/** Play/Stop Background music
 	 * @param play true to play music, false to pause it*/ 
 	public void playMusic(boolean play){
+		if(musicPlayer == null)
+			startMusicPlayer();
 		
 		//if we have an instance of the player and the user wants to play sounds
-		if(musicPlayer != null)
-			if (play && Preferences.getIns().playMusic()){
-				if(!musicPlayer.isPlaying())
-					musicPlayer.start();
-			}else
+		if (play && Preferences.getIns().playMusic()){
+			if(!musicPlayer.isPlaying())
+				musicPlayer.start();
+		}else
+			if(musicPlayer.isPlaying()){
 				musicPlayer.pause();
+			}
+	}
+	
+	private void startMusicPlayer(){
+		//start Player with a resource
+		if( musicPlayer == null){
+			musicPlayer=MediaPlayer.create(this, R.raw.music);
+			musicPlayer.setLooping(true);
+		}
 	}
 }

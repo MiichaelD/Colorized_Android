@@ -2,6 +2,7 @@ package com.webs.itmexicali.colorized;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 public class Preferences {
 
@@ -56,12 +57,19 @@ public class Preferences {
 		return playMusic;
 	}
 	
+	/** Change the current value of playMusic to the opposite*/
+	public void toggleMusic(){
+		setPlayMusic(!playMusic);
+	}
+	
 	/** set play music preference
 	 * @param play whether the music will be played or not*/
 	public void setPlayMusic(boolean play){
+		Log.i(Preferences.class.getSimpleName(),"set music: "+play);
 		playMusic = play;
 		spEdit.putBoolean(mContext.getString(R.string.key_music), play);
 		spEdit.commit();
+		GameActivity.instance.playMusic(play);
 	}
 	
 	/** Check if sound effects will be played*/
@@ -69,9 +77,16 @@ public class Preferences {
 		return playSFX;
 	}
 	
+	/** Change the current value of playSFX to the opposite*/
+	public void toggleSFX(){
+		setPlaySFX(!playSFX);
+		GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+	}
+	
 	/** set play music preference
 	 * @param play whether the music will be played or not*/
 	public void setPlaySFX(boolean play){
+		Log.i(Preferences.class.getSimpleName(),"set SFX: "+play);
 		playSFX = play;
 		spEdit.putBoolean(mContext.getString(R.string.key_sfx), play);
 		spEdit.commit();

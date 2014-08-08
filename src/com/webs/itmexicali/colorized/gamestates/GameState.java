@@ -16,22 +16,17 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.SweepGradient;
 import android.graphics.Bitmap.Config;
-import android.graphics.Paint.Align;
+import android.text.TextPaint;
 import android.util.Log;
 import android.view.MotionEvent;
 
 public class GameState extends BaseState {
 	
-	//Paints to be used to Draw text and shapes
-	public Paint 		mPaints[];
+	//UI components to be used to Draw text and shapes
+	public TextPaint		mPaints[];
 	public Bitmap		mBitmaps[];
-	public Rect			mRects[];
 	public RectF		mRectFs[];
 	DrawButtonContainer dbc;
 
@@ -41,54 +36,16 @@ public class GameState extends BaseState {
 	
 	
 	GameState(){
-		
 		mID = statesIDs.GAME;
 			
 		mRectFs = new RectF[2];
-		mPaints = new Paint[9];
+		mPaints = ((MainState)StateMachine.getIns().getFirstState()).mPaints;
+		
 		
 		dbc = new DrawButtonContainer(8,true);
-		//register actions to the buttons created:
-		dbc.setOnActionListener(0, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
-			@Override public void onActionPerformed() {
-				new Thread(new Runnable(){public void run(){
-					mColorBoard.colorize(0);
-				}}).start();}
-		});
 		
-		dbc.setOnActionListener(1, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
-			@Override public void onActionPerformed() {
-				new Thread(new Runnable(){public void run(){
-					mColorBoard.colorize(1);
-				}}).start();}
-		});
-		
-		dbc.setOnActionListener(2, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
-			@Override public void onActionPerformed() {
-				new Thread(new Runnable(){public void run(){
-					mColorBoard.colorize(2);
-				}}).start();}
-		});
-		
-		dbc.setOnActionListener(3, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
-			@Override public void onActionPerformed() {
-				new Thread(new Runnable(){public void run(){
-					mColorBoard.colorize(3);
-				}}).start();}
-		});
-		
-		dbc.setOnActionListener(4, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
-			@Override public void onActionPerformed() {
-				new Thread(new Runnable(){public void run(){
-					mColorBoard.colorize(4);
-				}}).start();}
-		});
-		dbc.setOnActionListener(5, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
-			@Override public void onActionPerformed() {
-				new Thread(new Runnable(){public void run(){
-					mColorBoard.colorize(5);
-				}}).start();}
-		});
+		for(int i =0;i<8;i++)
+			registerButtonToColorize(i);
 		
 		dbc.setOnActionListener(6, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
@@ -105,12 +62,22 @@ public class GameState extends BaseState {
 					GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 					showRestartDialog();
 				}});
-			}});
+		}});
+		
+	}
+	
+	/** Register each button to colorize certain color*/
+	private void registerButtonToColorize(final int i){
+		dbc.setOnActionListener(i, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
+			@Override public void onActionPerformed() {
+				new Thread(new Runnable(){public void run(){
+					mColorBoard.colorize(i);
+				}}).start();}
+		});
 	}
 	
 	@Override
 	public void onPushed() {
-		super.onPushed();
 		//check if the tutorial has been completed
 		if(Preferences.getIns().isTutorialCompleted()){
 			//if there is a gamestate saved, load it again
@@ -133,65 +100,8 @@ public class GameState extends BaseState {
 	
 	@Override
 	public void resize(float width, float height) {
-		initPaints();
+		StateMachine.getIns().getFirstState().resize(width, height);
 		reloadByResize();		
-	}
-	
-	/** Init the paints to be used on canvas */
-	public void initPaints() {
-		
-		mPaints[0] = new Paint();
-		mPaints[0].setColor(Color.RED);
-		mPaints[0].setStyle(Paint.Style.FILL);
-		mPaints[0].setAntiAlias(true);
-		
-		mPaints[1] = new Paint();
-		mPaints[1].setColor(Color.rgb(0, 162, 232));
-		mPaints[1].setStyle(Paint.Style.FILL);
-		mPaints[1].setAntiAlias(true);		
-		
-		mPaints[2] = new Paint();
-		mPaints[2].setColor(Color.YELLOW);
-		mPaints[2].setStyle(Paint.Style.FILL);
-		mPaints[2].setAntiAlias(true);
-		
-		mPaints[3] = new Paint();
-		mPaints[3].setColor(Color.rgb(163, 73, 164));
-		mPaints[3].setStyle(Paint.Style.FILL);
-		mPaints[3].setAntiAlias(true);
-		
-		mPaints[4] = new Paint();
-		mPaints[4].setColor(Color.LTGRAY);
-		mPaints[4].setStyle(Paint.Style.FILL);
-		mPaints[4].setAntiAlias(true);
-		
-		mPaints[5] = new Paint();
-		mPaints[5].setColor(Color.rgb(21, 183, 46));
-		//mPaints[5].setColor(Color.rgb(0, 159, 60));
-		mPaints[5].setStyle(Paint.Style.FILL);
-		mPaints[5].setAntiAlias(true);
-		
-		mPaints[6] = new Paint();
-		Shader sh = null;
-		sh = new SweepGradient(5, 5, new int[] {Color.BLUE,	Color.RED, Color.GREEN}, null);
-		//mPaints[6].setShader(new LinearGradient( 0, 0, 0, 2, Color.CYAN, Color.GREEN, Shader.TileMode.CLAMP));
-		//mPaints[6].setShader(new LinearGradient(0, 1, 1, 0, Color.BLUE, Color.RED, Shader.TileMode.CLAMP));
-		mPaints[6].setShader(sh);
-		mPaints[6].setStyle(Paint.Style.FILL);
-		mPaints[6].setAntiAlias(true);
-		
-		mPaints[7] = new Paint();
-		mPaints[7].setColor(Color.DKGRAY);
-		mPaints[7].setStyle(Paint.Style.FILL);
-		mPaints[7].setAntiAlias(true);
-		mPaints[7].setAlpha(120);
-		
-		mPaints[8] = new Paint();
-		mPaints[8].setColor(Color.WHITE);
-		mPaints[8].setStyle(Paint.Style.FILL);
-		mPaints[8].setTextSize(GameView.mPortrait? GameView.width/11 : GameView.height/11);
-		mPaints[8].setTextAlign(Align.CENTER);
-		mPaints[8].setAntiAlias(true);
 	}
 
 	/** This method will be called when the surface has been resized, so all
@@ -251,6 +161,7 @@ public class GameState extends BaseState {
 		if ( mBitmaps != null ){
 			canvas.drawBitmap(mBitmaps[0], GameView.width/16, GameView.height/96, null);
 			canvas.drawBitmap(mBitmaps[1], 15*GameView.width/16-mBitmaps[1].getWidth(), GameView.height/96, null);
+			
 		}
 		
 		drawButtons(canvas);
@@ -302,9 +213,7 @@ public class GameState extends BaseState {
 
 	@Override
 	public boolean onBackPressed() {
-		//StateMachine.getIns().popState();
-		GameActivity.instance.showExitDialog();
-		return  true;
+		return false;
 	}
 	
 	/** If there is any progress in the game, save it in case the user
@@ -322,49 +231,56 @@ public class GameState extends BaseState {
 	private void showSavedGameDialog(){
 		//remove the saved game from the preferences
 	    Preferences.getIns().saveGame(false, null);
-	    
-		//Use the Builder class for convenient dialog construction
-		new AlertDialog.Builder(GameActivity.instance)
-		.setMessage(R.string.saved_game_confirmation)
-		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-           public void onClick(DialogInterface dialog, int id) { 
-        	   Const.setFullScreen(GameActivity.instance);
-           }
-		})
-		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-           public void onClick(DialogInterface dialog, int id) {
-        	   createNewBoard(Preferences.getIns().getBoardSize());
-        	   Const.setFullScreen(GameActivity.instance);
-           }
-		})
-		.create()
-		.show();
+	    GameActivity.instance.runOnUiThread(new Runnable(){
+			public void run(){
+				//Use the Builder class for convenient dialog construction
+				new AlertDialog.Builder(GameActivity.instance)
+				.setMessage(R.string.saved_game_confirmation)
+				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) { 
+		        	   Const.setFullScreen(GameActivity.instance);
+		           }
+				})
+				.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) {
+		        	   createNewBoard(Preferences.getIns().getBoardSize());
+		        	   Const.setFullScreen(GameActivity.instance);
+		           }
+				})
+				.create()
+				.show();
+			}
+		});
 	}
 	
 	/** Display dialog informing that there is a gamestate saved
 	 * and ask if the user wants to play it or prefers a new match*/
 	public void showRestartDialog(){
 		//Use the Builder class for convenient dialog construction
-		new AlertDialog.Builder(GameActivity.instance)
-		.setMessage(R.string.restart_game_confirmation)
-		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-           public void onClick(DialogInterface dialog, int id) {
-        	   createNewBoard(Preferences.getIns().getBoardSize());        	   
-        	   Const.setFullScreen(GameActivity.instance);   
-           }
-		})
-		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-           public void onClick(DialogInterface dialog, int id) {// dismiss menu
-        	   Const.setFullScreen(GameActivity.instance);
-           }
-		})
-		.create()
-		.show();
+		GameActivity.instance.runOnUiThread(new Runnable(){
+			public void run(){
+				new AlertDialog.Builder(GameActivity.instance)
+				.setMessage(R.string.restart_game_confirmation)
+				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) {
+		        	   createNewBoard(Preferences.getIns().getBoardSize());        	   
+		        	   Const.setFullScreen(GameActivity.instance);   
+		           }
+				})
+				.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) {// dismiss menu
+		        	   Const.setFullScreen(GameActivity.instance);
+		           }
+				})
+				.create()
+				.show();
+			}
+		});
 	}
 	
 	/** Display dialog informing that the game is over and restart again
 	 * @param win if true, show congratulations text, else show condolences*/
-	public void showGamOverDialog(boolean win){
+	public void showGamOverDialog(final boolean win){
 		Log.v(Const.TAG,"GameOver winning = "+win);
 		GameActivity.instance.playMusic(false);
 		
@@ -374,39 +290,44 @@ public class GameState extends BaseState {
 		if(results[0]%2 == 0)//each 2 games, show Interstitial
 			GameActivity.instance.displayInterstitial();
 		
-		String str =win? 
-				String.format(GameActivity.instance.getString(R.string.game_over_win),getMoves()) :
-					GameActivity.instance.getString(R.string.game_over_lose);
 		
-		//Use the Builder class for convenient dialog construction
-		new AlertDialog.Builder(GameActivity.instance)
-		.setMessage(str)
-		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-           public void onClick(DialogInterface dialog, int id) {
-        	   createNewBoard(Preferences.getIns().getBoardSize());
-        	   
-        	   Const.setFullScreen(GameActivity.instance);
-        	   GameActivity.instance.playMusic(true);
-           }
-		})
-		.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-           public void onClick(DialogInterface dialog, int id) {
-        	   Const.setFullScreen(GameActivity.instance);
-        	   createNewBoard(Preferences.getIns().getBoardSize());
-	        	//playMusic(true);
-        	   GameActivity.instance.showExitDialog();
-           }
-		})
-		.setOnCancelListener(new DialogInterface.OnCancelListener() {
-			@Override
-			public void onCancel(DialogInterface arg0) {
-				createNewBoard(Preferences.getIns().getBoardSize());
-	        	Const.setFullScreen(GameActivity.instance);
-	        	GameActivity.instance.showExitDialog();
+		
+		GameActivity.instance.runOnUiThread(new Runnable(){
+			public void run(){
+				String str =win? 
+						String.format(GameActivity.instance.getString(R.string.game_over_win),getMoves()) :
+							GameActivity.instance.getString(R.string.game_over_lose);
+				//Use the Builder class for convenient dialog construction
+				new AlertDialog.Builder(GameActivity.instance)
+				.setMessage(str)
+				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) {
+		        	   createNewBoard(Preferences.getIns().getBoardSize());
+		        	   Const.setFullScreen(GameActivity.instance);
+		        	   GameActivity.instance.playMusic(true);
+		           }
+				})
+				.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) {
+		        	   Const.setFullScreen(GameActivity.instance);
+		        	   createNewBoard(Preferences.getIns().getBoardSize());
+		        	   StateMachine.getIns().popState();
+		        	   GameActivity.instance.playMusic(true);
+		           }
+				})
+				.setOnCancelListener(new DialogInterface.OnCancelListener() {
+					@Override
+					public void onCancel(DialogInterface arg0) {
+						createNewBoard(Preferences.getIns().getBoardSize());
+			        	Const.setFullScreen(GameActivity.instance);
+			        	StateMachine.getIns().popState();
+			        	GameActivity.instance.playMusic(true);
+					}
+				})
+				.create()
+				.show();
 			}
-		})
-		.create()
-		.show();
+		});
 	}
 	
 	
@@ -616,7 +537,7 @@ public class GameState extends BaseState {
 		}
 		
 		/** draw the board within the rect given*/
-		public void updateBoard(Canvas canvas, RectF rectf, Paint[] paints){
+		public void updateBoard(Canvas canvas, RectF rectf, TextPaint[] paints){
 			float boardPixels = rectf.width();
 			float blockPixels = boardPixels / blocksPerSide;
 			float left = rectf.left;
