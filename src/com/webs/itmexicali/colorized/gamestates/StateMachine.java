@@ -60,7 +60,7 @@ public class StateMachine {
 		//push it to the list
 		pStateList.addLast(bs);
 		bs.onPushed();
-		bs.onSurfaceTop();
+		bs.onFocus();
 	}
 	
 	/** Push a new state object to start interacting with it*/
@@ -72,7 +72,7 @@ public class StateMachine {
 		
 		pStateList.addLast(bs);
 		bs.onPushed();
-		bs.onSurfaceTop();
+		bs.onFocus();
 	}
 	
 	/** check if there the same state already on the lists */
@@ -93,7 +93,7 @@ public class StateMachine {
 		if(pStateList.isEmpty())
 			return false;
 		pStateList.removeLast().onPopped();
-		pStateList.getLast().onSurfaceTop();
+		pStateList.getLast().onFocus();
 		return true;
 	}
 	
@@ -109,7 +109,7 @@ public class StateMachine {
 			if(aux.mID == id){
 				aux.onPopped();
 				if(aux == pStateList.getLast() && (aux=pStateList.getBeforeLast()) != null)
-					aux.onSurfaceTop();
+					aux.onFocus();
 				it.remove();
 				return;
 			}

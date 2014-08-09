@@ -14,8 +14,9 @@ import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
 public class GameActivity extends Activity {
 	
@@ -57,22 +58,33 @@ public class GameActivity extends Activity {
         adView = new AdView(this);
         adView.setAdSize(AdSize.SMART_BANNER);
         adView.setAdUnitId(Const.ADVIEW_AD_UNIT_ID);
+        adView.setVisibility(View.GONE);
         adView.setAdListener(new AdListener() {
         	@Override
-    		public void onAdOpened() {
-    		// Save app state before going to the ad overlay.
+    		public void onAdOpened() {// Save app state before going to the ad overlay.
     			Log.d(Const.TAG,"AdView - Opened");
+    			adView.setVisibility(View.GONE);
     		}
     		@Override
     		public void onAdFailedToLoad(int errorCode){
     			Log.d(Const.TAG,"AdView - FailedToLoad = "+errorCode);
+    			adView.setVisibility(View.GONE);
     		}
-    	});
-		
+    		@Override
+    		public void onAdLoaded(){
+    			adView.setVisibility(View.VISIBLE);
+    		}
+    	});		
+        
         
         // Add the AdView to the view hierarchy. The view will have no size
         // until the ad is loaded.
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.LayMain);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.LayMain);
+        /*
+          
+         When the game_Screen.xml root tag used to be RelativeLayout, the ad was just
+         OVER the GameView, now they share the screen size
+          
         if(adView != null){
         	layout.removeView(adView); // remove the existing adView
         	adView.destroy();
@@ -81,12 +93,13 @@ public class GameActivity extends Activity {
         		RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
     	params.addRule(RelativeLayout.CENTER_HORIZONTAL);
-		layout.addView(adView, params);
+    	layout.addView(adView, params);
+    	*/
+		layout.addView(adView);
 		
-
-
+        
         // Start loading the ad in the background.
-       adView.loadAd(createAdRequest());
+        adView.loadAd(createAdRequest());
         
         
         // Create the INTERSTTIAL.

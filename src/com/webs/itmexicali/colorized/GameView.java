@@ -200,18 +200,12 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 
 	/******************************* *********** *********************************/
 	
-	@Override
 	@SuppressLint("ClickableViewAccessibility")
+	@Override
 	public boolean onTouchEvent( MotionEvent event) {
 		if(StateMachine.getIns().touch(event))
 			return true;
 		return false;
 	}
 
-	/********************************* STATE CALLING METHODS *********************************/
-
-	/** call this method to show tutorial UI*/
-	public void showTutorial(boolean show){
-		StateMachine.getIns().pushState(BaseState.statesIDs.TUTO);
-	}
 }

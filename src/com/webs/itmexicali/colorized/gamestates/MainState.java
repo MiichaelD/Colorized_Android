@@ -5,6 +5,7 @@ import com.webs.itmexicali.colorized.GameView;
 import com.webs.itmexicali.colorized.Preferences;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
+import com.webs.itmexicali.colorized.R;
 
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
@@ -20,13 +21,18 @@ public class MainState extends BaseState {
 	
 	//paints to be used in the canvas
 	public TextPaint 				mPaints[];
-	private DrawButtonContainer dbc;
+	private DrawButtonContainer 	dbc;
+	
+	//button strings
+	private String[] mButStr = null;
+	private String mAppName = null;
 	
 	MainState(){
 		mID = statesIDs.MAIN;
 		
 		mPaints = new TextPaint[12];
 		dbc	= new DrawButtonContainer(7, true);
+		mButStr = new String[7];
 		
 		//play button
 		dbc.setOnActionListener(0, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
@@ -95,6 +101,8 @@ public class MainState extends BaseState {
 		
 	}
 	
+	float ts0 = 1.0f, ts1=1.0f, ts2=1.0f, ts3=1.0f, ts4=1.0f, ts5=1.0f, ts6=1.0f;
+	
 	@Override
 	public void resize(float width, float height) {
 		{
@@ -107,6 +115,7 @@ public class MainState extends BaseState {
 		mPaints[1].setColor(Color.rgb(0, 162, 232));
 		mPaints[1].setStyle(Paint.Style.FILL);
 		mPaints[1].setTextSize(GameView.mPortrait? width/14 : height/14);
+		//mPaints[1].setTextSize(GameView.mPortrait? width/9 : height/9);
 		mPaints[1].setTextAlign(Align.CENTER);
 		mPaints[1].setAntiAlias(true);		
 		
@@ -174,12 +183,21 @@ public class MainState extends BaseState {
 		
 		
 		dbc.repositionDButton(0, width/4, 14*height/48,3*width/4, 22*height/48);
-		dbc.repositionDButton(1, width/3, 23*height/48,2*width/3, 27*height/48);
-		dbc.repositionDButton(2, width/3, 28*height/48,2*width/3, 32*height/48);
+		dbc.repositionDButton(1, width/4, 23*height/48,3*width/4, 27*height/48);
+		dbc.repositionDButton(2, width/4, 28*height/48,3*width/4, 32*height/48);
 		//dbc.repositionDButton(3, 5*width/8, 400,7*width/8, 490);
 		dbc.repositionDButton(4, width/8, 35*height/48,3*width/8, 38*height/48);
 		dbc.repositionDButton(5, width/8, 39*height/48,3*width/8, 42*height/48);
 		dbc.repositionDButton(6, 5*width/8, 39*height/48,7*width/8, 42*height/48);
+		
+		
+		mAppName = GameActivity.instance.getString(R.string.app_name);
+		mButStr[0]=GameActivity.instance.getString(R.string.play_button);
+		mButStr[1]=GameActivity.instance.getString(R.string.tutorial_button);
+		mButStr[2]=GameActivity.instance.getString(R.string.leader_button);
+		mButStr[4]=GameActivity.instance.getString(R.string.music_button);
+		mButStr[5]=GameActivity.instance.getString(R.string.sfx_button);
+		mButStr[6]=GameActivity.instance.getString(R.string.about_button);
 	}
 
 	@Override
@@ -201,14 +219,66 @@ public class MainState extends BaseState {
 	
 	private void drawText(Canvas canvas){
 		int paCo = 1;
-		float x = GameView.width/2,	y = 19*GameView.height/48;
-		canvas.drawText("Play", x, y, mPaints[paCo]);
-		canvas.drawText("Tutorial", x, 26*GameView.height/48, mPaints[paCo]);
-		canvas.drawText("LeaderBoard", x, 31*GameView.height/48, mPaints[paCo]);
+		float x = GameView.width,	y = GameView.height;
+		
+		mPaints[8].setTextSize(GameView.mPortrait? x/7 : y/7);
+		mPaints[8].setFakeBoldText(true);
+		mPaints[8].setTextScaleX(ts0);
+		while((mPaints[8].measureText(mAppName))+10 >= GameView.width){
+			ts0-=0.03f;
+			mPaints[8].setTextScaleX(ts0);
+		}
+		canvas.drawText(mAppName,x/2, 8*y/48, mPaints[8]);
+		mPaints[8].setTextScaleX(1.0f);
+		mPaints[8].setFakeBoldText(false);
+		mPaints[8].setTextSize(GameView.mPortrait? x/11 : y/11);
+		
+		x = GameView.width/2;	y = 19*GameView.height/48;
+		mPaints[paCo].setTextScaleX(ts1);
+		mPaints[paCo].setTextSize(GameView.mPortrait? GameView.width/9 : GameView.height/9);
+		while((mPaints[paCo].measureText(mButStr[0]))+10 >= dbc.getDButton(0).width()){
+			ts1-=0.03f;
+			mPaints[paCo].setTextScaleX(ts1);
+		}
+		canvas.drawText(mButStr[0], x, y, mPaints[paCo]);
+		mPaints[paCo].setTextSize(GameView.mPortrait? GameView.width/14 : GameView.height/14);
+		
+		mPaints[paCo].setTextScaleX(ts2);
+		while((mPaints[paCo].measureText(mButStr[1]))+10 >= dbc.getDButton(1).width()){
+			ts2-=0.03f;
+			mPaints[paCo].setTextScaleX(ts2);
+		}
+		canvas.drawText(mButStr[1], x, 26*GameView.height/48, mPaints[paCo]);
+		
+		mPaints[paCo].setTextScaleX(ts3);
+		while((mPaints[paCo].measureText(mButStr[2]))+10 >= dbc.getDButton(2).width()){
+			ts3-=0.03f;
+			mPaints[paCo].setTextScaleX(ts3);
+		}
+		canvas.drawText(mButStr[2], x, 31*GameView.height/48, mPaints[paCo]);
+		
 		x = GameView.width/4;	y = 41*GameView.height/48;
-		canvas.drawText("Music", x, 37*GameView.height/48, mPaints[paCo]);
-		canvas.drawText("SFX", x, y, mPaints[paCo]);
-		canvas.drawText("About", 3*x, y, mPaints[paCo]);
+		mPaints[paCo].setTextScaleX(ts4);
+		while((mPaints[paCo].measureText(mButStr[4]))+10 >= dbc.getDButton(4).width()){
+			ts4-=0.03f;
+			mPaints[paCo].setTextScaleX(ts4);
+		}
+		canvas.drawText(mButStr[4], x, 37*GameView.height/48, mPaints[paCo]);
+		
+		mPaints[paCo].setTextScaleX(ts5);
+		while((mPaints[paCo].measureText(mButStr[5]))+10 >= dbc.getDButton(5).width()){
+			ts5-=0.03f;
+			mPaints[paCo].setTextScaleX(ts5);
+		}
+		canvas.drawText(mButStr[5], x, y, mPaints[paCo]);
+		mPaints[paCo].setTextScaleX(ts6);
+		while((mPaints[paCo].measureText(mButStr[6]))+10 >= dbc.getDButton(6).width()){
+			ts6-=0.03f;
+			mPaints[paCo].setTextScaleX(ts6);
+		}
+		canvas.drawText(mButStr[6], 3*x, y, mPaints[paCo]);
+		
+		//canvas.drawText("DOWN",GameView.width/2,GameView.height,mPaints[8]);
 	}
 
 	@Override

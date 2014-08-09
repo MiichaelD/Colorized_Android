@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">Invación de Color</string>
+    
+    <string name="cancel">Cancelar</string>
+    
+    <!-- Dialogs messages !-->
+    <string name="exit_confirmation">Estas seguro de querer salir?</string>
+    <string name="restart_game_confirmation">Estas seguro de reiniciar la partida actual?</string>
+    <string name="saved_game_confirmation">Hay un juego sin terminar, quieres continuarlo?</string>
+    <string name="game_over_lose">Te quedaste sin movimientos, quieres intentar de nuevo?</string>
+    <string name="game_over_win">Felicidades! terminaste la partida con  
+        <xliff:g id="integer_formating">%1$d</xliff:g> movimientos. Quieres jugar de nuevo?</string>
+    
+    <!-- Main State Buttons !-->
+    <string name="play_button">Jugar</string>
+    <string name="tutorial_button">Tutorial</string>
+    <string name="leader_button">Estadísticas</string>
+    <string name="music_button">Música</string>
+    <string name="about_button">Acerca</string>
+    
+    
+    <!-- Tutorial Instruction Messages !-->
+    <string name="tuto0">Toca para avanzar.</string>
+    <string name="tuto1">La meta de este juego es llenar el tablero de un solo color.</string>
+    <string name="tuto2">Empiezas con el cuadro de la esquina superior izquierda y debes de cambiar de colores para controlar cuadros adyacentes.</string>
+    <string name="tuto3">Usa el seleccionador de colores para cambiar a un nuevo color y controlar mas cuadros.</string>
+    <string name="tuto4">Sigue cambiando de colores hasta que el tablero se llene de uno solo.</string>
+    <string name="tuto5">Solo ten cuidado de hacerlo antes de quedarte sin movimientos.</string>
+    <string name="tuto6">Crees poder lograrlo?\n\nINTENTALO!!</string>
+    <string name="tuto_exit">Presiona ATRAS de nuevo para salir del tutorial o toca la pantalla para continuar.</string>
+    
+
+</resources>

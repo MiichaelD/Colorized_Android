@@ -247,6 +247,12 @@ public class GameState extends BaseState {
 		        	   Const.setFullScreen(GameActivity.instance);
 		           }
 				})
+				.setOnCancelListener(new DialogInterface.OnCancelListener() {
+					@Override
+					public void onCancel(DialogInterface arg0) {
+			        	Const.setFullScreen(GameActivity.instance);
+					}
+				})
 				.create()
 				.show();
 			}
@@ -271,6 +277,12 @@ public class GameState extends BaseState {
 		           public void onClick(DialogInterface dialog, int id) {// dismiss menu
 		        	   Const.setFullScreen(GameActivity.instance);
 		           }
+				})
+				.setOnCancelListener(new DialogInterface.OnCancelListener() {
+					@Override
+					public void onCancel(DialogInterface arg0) {
+			        	Const.setFullScreen(GameActivity.instance);
+					}
 				})
 				.create()
 				.show();

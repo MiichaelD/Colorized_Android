@@ -30,7 +30,7 @@ public abstract class BaseState {
 	/** callback to let the state know that it's been brought to the
 	 * surface to start drawing. this method calls resize with canvas'
 	 * size as param*/
-	public void onSurfaceTop(){
+	public void onFocus(){
 		resize(GameView.width,GameView.height);
 	}
 	

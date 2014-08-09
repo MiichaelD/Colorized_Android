@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="app_name">Color Full</string>
+    <string name="app_name">Color Flooded</string>
     
     <string name="ok" translatable="false">OK</string>
     <string name="cancel">Cancel</string>
@@ -13,17 +13,28 @@
     <string name="restart_game_confirmation">Are you sure you want to restart current game?</string>
     <string name="saved_game_confirmation">There is an unfinished game saved, do you want to continue?</string>
     <string name="game_over_lose">You ran out of moves, do you want to try again?</string>
-    <string name="game_over_win">Congratulations! you finished the game with %d moves. Do you want to play again?</string>
+    <string name="game_over_win">Congratulations! you finished the game with 
+        <xliff:g id="integer_formating">%1$d</xliff:g> moves. Do you want to play again?</string>
+    
+    <!-- Main State Buttons !-->
+    <string name="play_button">Play</string>
+    <string name="tutorial_button">Tutorial</string>
+    <string name="leader_button">Leaderboard</string>
+    <string name="music_button">Music</string>
+    <string name="sfx_button" translatable="false">SFX</string>
+    <string name="about_button">About</string>
+    
+    
     
     <!-- Tutorial Instruction Messages !-->
     <string name="tuto0">Touch to advance.</string>
     <string name="tuto1">The goal of this game is to fill the board with just one color.</string>
-    <string name="tuto2">You start with the top-left corner tile and should change color to control adjacent tiles of the same color.</string>
+    <string name="tuto2">You start with the top-left corner tile and should change its color to control adjacent tiles of the same color.</string>
     <string name="tuto3">Use the color picker to change to a new color to control more tiles.</string>
     <string name="tuto4">Keep changing colors until the board is filled with just one color.</string>
-    <string name="tuto5">Just be careful to do it before run out of moves</string>
-    <string name="tuto6">Do you think you can do it?\n\nHAVE FUN!!</string>
-    <string name="tuto_exit">Press back again to exit the tutorial or touch to continue.</string>
+    <string name="tuto5">Just be careful to do it before run out of moves.</string>
+    <string name="tuto6">Do you think you can do it?\n\nTRY YOURSELF!!</string>
+    <string name="tuto_exit">Press BACK again to exit the tutorial or touch to continue.</string>
     
         
     <!-- Settings Keys !-->
@@ -35,6 +46,8 @@
     <string name="key_board_size" translatable="false">key_board_size</string>
     <string name="key_times_finished" translatable="false">key_times_finished</string>
     <string name="key_times_won" translatable="false">key_times_won</string>
+    
+    
     
 
 </resources>
