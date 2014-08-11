@@ -25,11 +25,18 @@ import android.view.MotionEvent;
 public class GameState extends BaseState {
 	
 	//UI components to be used to Draw text and shapes
-	public TextPaint		mPaints[];
+	public TextPaint	mPaints[];
 	public Bitmap		mBitmaps[];
 	public RectF		mRectFs[];
 	DrawButtonContainer dbc;
+	
+	public float boardWidth, remainHeight, roundness;
+	
+	private String formated_moves_str = null, moves_txt;
+	private int mov_lim = 0;
 
+	//font text size modifiers, this helps to change the Xfactor to texts
+	float ts0 = 1.0f;
 
 	//the matrix of color
 	public ColorBoard mColorBoard = null;
@@ -38,8 +45,9 @@ public class GameState extends BaseState {
 	GameState(){
 		mID = statesIDs.GAME;
 			
-		mRectFs = new RectF[2];
+		mRectFs = new RectF[3];
 		mPaints = ((MainState)StateMachine.getIns().getFirstState()).mPaints;
+		mBitmaps = new Bitmap[3];
 		
 		
 		dbc = new DrawButtonContainer(8,true);
@@ -63,6 +71,9 @@ public class GameState extends BaseState {
 					showRestartDialog();
 				}});
 		}});
+		
+		formated_moves_str = GameActivity.instance.getString(R.string.moves_txt);
+		mov_lim = Const.mov_limit[Preferences.getIns().getDifficulty()];
 		
 	}
 	
@@ -102,6 +113,7 @@ public class GameState extends BaseState {
 	public void resize(float width, float height) {
 		StateMachine.getIns().getFirstState().resize(width, height);
 		reloadByResize();		
+		roundness = height/48;
 	}
 
 	/** This method will be called when the surface has been resized, so all
@@ -109,31 +121,44 @@ public class GameState extends BaseState {
 	 * NOTE: DO NOT INCLUDE initPaints()*/
 	protected void reloadByResize() {
 		float width = GameView.width/16,  height= GameView.height/16;
-		mRectFs[0] = new RectF(width, 5*height-5*width, 15*width, 5*height+9*width);
+		boardWidth = 14*width;
+		remainHeight = (GameView.height-boardWidth)/8;
 		
-		width = GameView.width/48;  height= GameView.height/5;
-		mRectFs[1] = new RectF(0, 2*height+23*width, GameView.width, 2*height+31*width);
-
-		mBitmaps = new Bitmap[3];
-		float val = GameView.mPortrait ? GameView.width/9 : GameView.height/9;
+		mRectFs[0] = new RectF(8*width-boardWidth/2, 8*height-boardWidth/2,
+				8*width+boardWidth/2, 8*height+boardWidth/2);
+		
+		
+		
+		mRectFs[1] = new RectF(0, 8*height+boardWidth/2+   remainHeight,
+				  GameView.width, 8*height+boardWidth/2+ 3*remainHeight);
+		
+		//color controls
+		width = boardWidth/29.5f;  height= GameView.height/5;
+		float y = mRectFs[1].top+(2*remainHeight - 4.5f*width)/2;
+		float finY = y +4.5f*width;
+		float val =GameView.width/16;
+		//5		1			4
+		dbc.repositionDButton(0, val, y, val+4.5f*width, finY);
+		dbc.repositionDButton(1, val+5*width, y, val+9.5f*width, finY);
+		dbc.repositionDButton(2, val+10*width, y, val+14.5f*width, finY);
+		dbc.repositionDButton(3, val+15*width, y, val+19.5f*width, finY);
+		dbc.repositionDButton(4, val+20*width, y, val+24.5f*width, finY);
+		dbc.repositionDButton(5, val+25*width, y, val+29.5f*width, finY);
+		
+		//settings buttons
+		val = GameView.mPortrait ? GameView.width/9 : GameView.height/9;
 		mBitmaps[0] = BitmapLoader.resizeImage(GameActivity.instance,R.drawable.ic_settings, val, val);
 		mBitmaps[1] = BitmapLoader.resizeImage(GameActivity.instance,R.drawable.ic_restart, val, val);
 		mBitmaps[2] = Bitmap.createBitmap(60, 60, Config.ARGB_8888);
+
 		
-		//color controls
-		width = GameView.width/2;  height= GameView.height/5;
-		dbc.repositionDButton(0, 3*width/14, 2*height+width, 6*width/14, 2*height+5*width/4);
-		dbc.repositionDButton(1, 7*width/14, 2*height+width, 10*width/14, 2*height+5*width/4);
-		dbc.repositionDButton(2, 11*width/14, 2*height+width, 14*width/14, 2*height+5*width/4);
-		dbc.repositionDButton(3, 15*width/14, 2*height+width, 18*width/14, 2*height+5*width/4);
-		dbc.repositionDButton(4, 19*width/14, 2*height+width, 22*width/14, 2*height+5*width/4);
-		dbc.repositionDButton(5, 23*width/14, 2*height+width, 26*width/14, 2*height+5*width/4);
-		
-		//settings buttons
 		width = GameView.width/16;  height= GameView.height/96;
-		dbc.repositionDButton(6, width, height, width+val,  height+val);
-		dbc.repositionDButton(7, 15*width-mBitmaps[1].getWidth(),  height, 
-				15*width-mBitmaps[1].getWidth()+val,  height+val);
+		dbc.repositionDButton(6, width, remainHeight, width+val,  remainHeight+val);
+		dbc.repositionDButton(7, 15*width-mBitmaps[1].getWidth(),  remainHeight, 
+				15*width-mBitmaps[1].getWidth()+val,  remainHeight+val);
+		
+		mRectFs[2] = new RectF(width+val+5, remainHeight,	15*width-val-5, 3*remainHeight);
+		
 	}
 	
 	@Override
@@ -147,25 +172,38 @@ public class GameState extends BaseState {
 		canvas.drawColor(Color.DKGRAY);//(mPaints[(int)(Math.random()*8)].getColor());
 		
 		//Color Div
+		float roundness = GameView.height/48;
 		canvas.drawRect(mRectFs[0].left-10, mRectFs[0].top-10, mRectFs[0].right+10, mRectFs[0].bottom+10, mPaints[6]);
-		canvas.drawRoundRect(mRectFs[1], 50.0f, 40.0f, mPaints[6]);
+		canvas.drawRoundRect(mRectFs[1], roundness, roundness, mPaints[6]);
 		
 		//canvas.save(); dg = (dg+1)%360;
 		//canvas.rotate(dg, mRectFs[0].left+mRectFs[0].width()/2, mRectFs[0].top+mRectFs[0].height()/2);
 		drawBoard(canvas);
 		//canvas.restore();
 		
-		//TODO change hardcoded value
-		canvas.drawText("Moves: "+mColorBoard.getMoves()+"/21", GameView.width/2, GameView.height/16, mPaints[8]);
+		drawText(canvas);
 		
 		if ( mBitmaps != null ){
-			canvas.drawBitmap(mBitmaps[0], GameView.width/16, GameView.height/96, null);
-			canvas.drawBitmap(mBitmaps[1], 15*GameView.width/16-mBitmaps[1].getWidth(), GameView.height/96, null);
+			canvas.drawBitmap(mBitmaps[0], GameView.width/16, remainHeight, null);
+			canvas.drawBitmap(mBitmaps[1], 15*GameView.width/16-mBitmaps[1].getWidth(), remainHeight, null);
 			
 		}
 		
 		drawButtons(canvas);
 
+	}
+	
+	/** Draw the text on the canvas*/
+	public void drawText(Canvas canvas){
+		moves_txt = String.format(formated_moves_str, mColorBoard.getMoves(), mov_lim);
+		mPaints[8].setTextScaleX(ts0);
+		while((mPaints[8].measureText(moves_txt)+10) >= mRectFs[2].width()){
+			ts0-=0.05f;
+			mPaints[8].setTextScaleX(ts0);
+		}
+		canvas.drawText(String.format(formated_moves_str, mColorBoard.getMoves(), mov_lim),
+				GameView.width/2, 2.15f*remainHeight, mPaints[8]);
+		mPaints[8].setTextScaleX(1.0f);
 	}
 	
 	/** Draw UI units capable to react to touch events*/

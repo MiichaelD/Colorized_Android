@@ -16,6 +16,10 @@ public class Const {
 	//Tag for debugging
 	public final static String TAG = "Colorized";
 	
+	//Board constants
+	public final static int mov_limit[]={21,34,44};
+	public final static int board_sizes[]={12,18,24};
+	
 	
 	//AdMob Advertising
     /** Your ad unit id. Replace with your actual ad unit id. */

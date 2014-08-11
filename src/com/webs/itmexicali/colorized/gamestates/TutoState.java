@@ -6,7 +6,7 @@ import com.webs.itmexicali.colorized.Preferences;
 import com.webs.itmexicali.colorized.R;
 
 import android.graphics.Canvas;
-import android.graphics.Rect;
+import android.graphics.RectF;
 import android.text.Layout.Alignment;
 import android.text.StaticLayout;
 import android.view.MotionEvent;
@@ -25,7 +25,7 @@ public class TutoState extends BaseState{
 	private GameState pGame;
 	
 	//rects to be used on canvas
-	protected Rect			mRectFs[];
+	protected RectF			mRectFs[];
 	
 	@Override
 	public void onPopped() {
@@ -45,17 +45,10 @@ public class TutoState extends BaseState{
 		//Log.v("TutoState","canvas size: "+width+"x"+height);
 		pGame.resize(width, height);
 		
-		mRectFs = new Rect[3];
-		mRectFs[0] = new Rect(0, (int)(2*height/5+23*width/48), (int)(width), (int)(2*height/5+31*width/48));
-		
+		mRectFs = new RectF[3];
 		float boardPixels = pGame.mRectFs[0].width()/Preferences.getIns().getBoardSize();
-		mRectFs[1] = new Rect((int)(width/16), (int)(5*height/16-5*width/16), 
-				(int)(width/16 + boardPixels), (int)(5*height/16-5*width/16 + boardPixels));
-		
-		mRectFs[2] = new Rect((int)(3*GameView.width/16), 0,
-				(int)(13*GameView.width/16),(int)(GameView.height/96+GameView.width/8));
-		
-		
+		mRectFs[0] = new RectF(pGame.mRectFs[0].left, pGame.mRectFs[0].top, 
+				pGame.mRectFs[0].left + boardPixels, pGame.mRectFs[0].top + boardPixels);
 	}
 
 	@Override
@@ -83,16 +76,16 @@ public class TutoState extends BaseState{
 
 			canvas.drawRoundRect(pGame.mRectFs[0],0,0,pGame.mPaints[10]);
 			pGame.drawBoard(canvas);
-			canvas.translate(0, 5*GameView.height/16+5*GameView.width/8);
+			canvas.translate(0, GameView.height/2 + pGame.boardWidth/2 + 5);
 			mTextLayout.draw(canvas);
 			
 			break;
 		case SEC: // start with first tile
 			mTextLayout = getTutoLayout(GameActivity.instance.getString(R.string.tuto2));
 
-			canvas.drawRect(mRectFs[1],pGame.mPaints[10]);
-			canvas.drawRect(mRectFs[1],pGame.mPaints[pGame.getFirstTileColor()]);
-			canvas.translate(0, GameView.height/2 - 3*pGame.mPaints[10].getTextSize());
+			canvas.drawRect(mRectFs[0],pGame.mPaints[10]);
+			canvas.drawRect(mRectFs[0],pGame.mPaints[pGame.getFirstTileColor()]);
+			canvas.translate(0, GameView.height/2 - 4*pGame.mPaints[10].getTextSize());
 			mTextLayout.draw(canvas);
 			break;
 			
@@ -100,9 +93,9 @@ public class TutoState extends BaseState{
 			mTextLayout = getTutoLayout(GameActivity.instance.getString(R.string.tuto3));
 
 			canvas.drawRoundRect(pGame.mRectFs[1], 50.0f, 40.0f, pGame.mPaints[6]);
-			canvas.drawRect(mRectFs[0],pGame.mPaints[10]);
+			canvas.drawRect(pGame.mRectFs[1],pGame.mPaints[10]);
 			pGame.drawButtons(canvas);
-			canvas.translate(0, GameView.height/2-3*pGame.mPaints[10].getTextSize());
+			canvas.translate(0, GameView.height/2 - 3*pGame.mPaints[10].getTextSize());
 				mTextLayout.draw(canvas);
 			break;
 			
@@ -111,7 +104,7 @@ public class TutoState extends BaseState{
 			
 			canvas.drawRoundRect(pGame.mRectFs[0],0,0,pGame.mPaints[10]);
 			canvas.drawRect(pGame.mRectFs[0],pGame.mPaints[pGame.getLastTileColor()]);
-			canvas.translate(0, 5*GameView.height/16+5*GameView.width/8);
+			canvas.translate(0, GameView.height/2 + pGame.boardWidth/2 + 5);
 			mTextLayout.draw(canvas);
 			break;
 			
@@ -119,11 +112,8 @@ public class TutoState extends BaseState{
 			mTextLayout = getTutoLayout(GameActivity.instance.getString(R.string.tuto5));
 
 			//draw moves counter
-			//TODO change hardcoded value
-			canvas.drawText("Moves: "+pGame.getMoves()+"/21",
-					GameView.width/2, GameView.height/16,pGame.mPaints[8]);
-			
-			canvas.drawRect(mRectFs[2], pGame.mPaints[10]); // highlight moves counter
+			pGame.drawText(canvas);			
+			canvas.drawRect(pGame.mRectFs[2], pGame.mPaints[10]); // highlight moves counter
 			
 			canvas.translate(0, GameView.height/2 - 5*pGame.mPaints[10].getTextSize());
 			mTextLayout.draw(canvas);

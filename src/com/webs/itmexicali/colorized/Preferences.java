@@ -28,6 +28,7 @@ public class Preferences {
 	}
 	
 	boolean isTuto, playSFX, playMusic;
+	int difficulty, gFinished, gWon;
 	
 	private Preferences(Context context){
 		mContext = 	context;
@@ -37,6 +38,21 @@ public class Preferences {
 		isTuto = 	sp.getBoolean(mContext.getString(R.string.key_tutorial_played), false);
 		playMusic = sp.getBoolean(mContext.getString(R.string.key_music),true);
 		playSFX =	sp.getBoolean(mContext.getString(R.string.key_sfx),true);
+		difficulty=	sp.getInt(mContext.getString(R.string.key_difficulty),0);
+		
+		gFinished = sp.getInt(mContext.getString(R.string.key_times_finished), 0);
+		gWon =		sp.getInt(mContext.getString(R.string.key_times_won), 0);
+		
+	}
+	
+	public int getDifficulty(){
+		return difficulty;
+	}
+	
+	public void setDifficulty(int diff){
+		difficulty = diff;
+		spEdit.putInt(mContext.getString(R.string.key_difficulty), diff);
+		spEdit.commit();
 	}
 	
 	/** Check if the tutorial has been completed or cancelled by the user*/
@@ -45,7 +61,7 @@ public class Preferences {
 	}
 	
 	/** Save/remove the tutorial screen as completed
-	 * @param completed whether the tutorial has ben completed*/
+	 * @param completed whether the tutorial has been completed*/
 	public void setTutorialCompleted(boolean completed){
 		isTuto = completed;
 		spEdit.putBoolean(mContext.getString(R.string.key_tutorial_played), completed);
@@ -139,15 +155,23 @@ public class Preferences {
 		String str = mContext.getString(R.string.key_times_finished); // store the key string
 		toReturn[0] = sp.getInt(str, 0)+1;
 		spEdit.putInt(str, toReturn[0]);
+		gFinished = toReturn[0];
 		
 		if(win){//if won, update wins count
 			str = mContext.getString(R.string.key_times_won);// store the key string
 			toReturn[1] = sp.getInt(str, 0)+1;
 			spEdit.putInt(str, toReturn[1]);
+			gWon = toReturn[1];
 		}
 		spEdit.commit();
 		return toReturn;
 	}
 	
+	public int getGamesFinished(){
+		return gFinished;
+	}
 	
+	public int getGamesWon(){
+		return gWon;
+	}
 }

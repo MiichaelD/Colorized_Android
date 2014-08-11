@@ -20,6 +20,14 @@
     <string name="music_button">Música</string>
     <string name="about_button">Acerca</string>
     
+    <!-- Game State Texts -->
+    <string name="moves_txt">Movimientos: <xliff:g id="mov_form">%1$d</xliff:g>/<xliff:g id="mov_lim">%2$d</xliff:g></string>
+    
+    <!-- Leaderboard texts !-->
+    <string name="totalGamesPlayed">Juegos completados: %1$d.</string>
+    <string name="totalGamesWon">Juegos Ganados: %1$d.</string>
+    <string name="percentGamesWon">Porcentaje de Juegos Ganados: <xliff:g id="games_won">%1$.2f%%</xliff:g>.</string>
+    
     
     <!-- Tutorial Instruction Messages !-->
     <string name="tuto0">Toca para avanzar.</string>

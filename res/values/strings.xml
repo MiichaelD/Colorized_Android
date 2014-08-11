@@ -22,9 +22,10 @@
     <string name="leader_button">Leaderboard</string>
     <string name="music_button">Music</string>
     <string name="sfx_button" translatable="false">SFX</string>
-    <string name="about_button">About</string>
+    <string name="about_button">About</string>    
     
-    
+    <!-- Game State Texts -->
+    <string name="moves_txt">Moves: <xliff:g id="mov_form">%1$d</xliff:g>/<xliff:g id="mov_lim">%2$d</xliff:g></string>
     
     <!-- Tutorial Instruction Messages !-->
     <string name="tuto0">Touch to advance.</string>
@@ -36,6 +37,10 @@
     <string name="tuto6">Do you think you can do it?\n\nTRY YOURSELF!!</string>
     <string name="tuto_exit">Press BACK again to exit the tutorial or touch to continue.</string>
     
+    <!-- Leaderboard texts !-->
+    <string name="totalGamesPlayed">Games played: <xliff:g id="games_fin">%1$d</xliff:g>.</string>
+    <string name="totalGamesWon">Games won: <xliff:g id="games_won">%1$d</xliff:g>.</string>
+    <string name="percentGamesWon">Percentage of games won: <xliff:g id="games_won">%1$.2f%%</xliff:g>.</string>
         
     <!-- Settings Keys !-->
     <string name="key_is_game_saved" translatable="false">key_is_game_saved</string>
@@ -46,6 +51,7 @@
     <string name="key_board_size" translatable="false">key_board_size</string>
     <string name="key_times_finished" translatable="false">key_times_finished</string>
     <string name="key_times_won" translatable="false">key_times_won</string>
+    <string name="key_difficulty" translatable="false">"key_difficulty"</string>
     
     
     

@@ -22,6 +22,7 @@ public class MainState extends BaseState {
 	//paints to be used in the canvas
 	public TextPaint 				mPaints[];
 	private DrawButtonContainer 	dbc;
+	private float 					roundness;
 	
 	//button strings
 	private String[] mButStr = null;
@@ -54,7 +55,7 @@ public class MainState extends BaseState {
 		dbc.setOnActionListener(2, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
 				new Thread(new Runnable(){public void run(){
-					//TODO
+					StateMachine.getIns().pushState(BaseState.statesIDs.LEADER);
 				}}).start();}
 		});
 		
@@ -101,11 +102,14 @@ public class MainState extends BaseState {
 		
 	}
 	
+	//font text size modifiers, this helps to change the Xfactor to texts
 	float ts0 = 1.0f, ts1=1.0f, ts2=1.0f, ts3=1.0f, ts4=1.0f, ts5=1.0f, ts6=1.0f;
 	
 	@Override
 	public void resize(float width, float height) {
-		{
+		
+		roundness = GameView.height/48;
+			
 		mPaints[0] = new TextPaint();//RED 
 		mPaints[0].setColor(Color.RED);
 		mPaints[0].setStyle(Paint.Style.FILL);
@@ -158,7 +162,7 @@ public class MainState extends BaseState {
 		mPaints[8] = new TextPaint(); // WHITE for TEXT
 		mPaints[8].setColor(Color.WHITE);
 		mPaints[8].setStyle(Paint.Style.FILL);
-		mPaints[8].setTextSize(GameView.mPortrait? width/11 : height/11);
+		mPaints[8].setTextSize(GameView.mPortrait? width/13 : height/13);
 		mPaints[8].setTextAlign(Align.CENTER);
 		mPaints[8].setAntiAlias(true);
 		
@@ -179,7 +183,6 @@ public class MainState extends BaseState {
 		mPaints[11].setAlpha(170);
 		mPaints[11].setStyle(Paint.Style.FILL);
 		mPaints[11].setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.NORMAL));
-		}
 		
 		
 		dbc.repositionDButton(0, width/4, 14*height/48,3*width/4, 22*height/48);
@@ -209,7 +212,6 @@ public class MainState extends BaseState {
 	
 	/** Draw UI units capable to react to touch events*/
 	public void drawButtons(Canvas canvas){
-		float roundness = GameView.height/48;
 		for(int i =0 ; i < dbc.getButtonsCount();i++){
 			canvas.drawRoundRect(dbc.getDButton(i), roundness, roundness,  mPaints[8]);
 			if( dbc.getDButton(i).isPressed() )
@@ -231,7 +233,7 @@ public class MainState extends BaseState {
 		canvas.drawText(mAppName,x/2, 8*y/48, mPaints[8]);
 		mPaints[8].setTextScaleX(1.0f);
 		mPaints[8].setFakeBoldText(false);
-		mPaints[8].setTextSize(GameView.mPortrait? x/11 : y/11);
+		mPaints[8].setTextSize(GameView.mPortrait? x/13 : y/13);
 		
 		x = GameView.width/2;	y = 19*GameView.height/48;
 		mPaints[paCo].setTextScaleX(ts1);
