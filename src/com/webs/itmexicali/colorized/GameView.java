@@ -6,7 +6,6 @@ import com.webs.itmexicali.colorized.gamestates.StateMachine;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.util.AttributeSet;
 import android.util.Log;

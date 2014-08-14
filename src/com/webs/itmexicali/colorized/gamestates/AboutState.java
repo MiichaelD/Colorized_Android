@@ -45,12 +45,15 @@ public class AboutState extends BaseState {
 		try{
 			pi =GameActivity.instance.getPackageManager().getPackageInfo(GameActivity.instance.getPackageName(), 0);
 		}catch(NameNotFoundException e){
-			vVersion = "0.0.0";
+			vVersion = "0.0.0-0";
 		}
 		
 		if(vVersion == null && pi != null){
-			vVersion = pi.versionName;
+			vVersion = pi.versionName+"-"+pi.versionCode;
 		}
+		
+		smallText = new TextPaint();
+		smallText.setColor(Color.WHITE);
 	}
 
 	@Override
@@ -65,6 +68,7 @@ public class AboutState extends BaseState {
 		mLayout.draw(canvas);
 		
 		canvas.translate(0,dy);
+		ms.mPaints[8].setTextAlign(Align.LEFT);
 		mLayout = getLayout(vDeveloper, ms.mPaints[8]);
 		mLayout.draw(canvas);
 		canvas.translate(0, dy);
@@ -88,6 +92,7 @@ public class AboutState extends BaseState {
 		mLayout = getLayout(vVersion, ms.mPaints[8]);
 		mLayout.draw(canvas);
 		canvas.restore();
+		ms.mPaints[8].setTextAlign(Align.CENTER);
 		
 	}
 
@@ -111,7 +116,7 @@ public class AboutState extends BaseState {
 		dx = base.left;
 		dy = ms.mPaints[8].getTextSize() ;
 		ms.mPaints[11].setAlpha(235);
-		ms.mPaints[8].setTextAlign(Align.LEFT);
+		smallText.setTextSize(GameView.mPortrait? GameView.width/22 : GameView.height/22);
 	}
 	
 	public void onFocus(){
@@ -119,14 +124,10 @@ public class AboutState extends BaseState {
 		if(savedAlpha == 0 ){
 			savedAlpha =  ms.mPaints[11].getAlpha();
 		}
-		smallText = new TextPaint();
-		smallText.setTextSize(GameView.mPortrait? GameView.width/22 : GameView.height/22);
-		smallText.setColor(Color.WHITE);
 	}
 
 	public void onPopped(){
 		ms.mPaints[11].setAlpha(savedAlpha);
-		ms.mPaints[8].setTextAlign(Align.CENTER);
 		ms = null;
 	}
 	

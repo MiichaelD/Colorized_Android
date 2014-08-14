@@ -37,6 +37,10 @@ public class StateMachine {
 		pStateList = new StateList();
 	}
 	
+	public static boolean isSetUp(){
+		return instance != null;
+	}
+	
 	/**Get the instance of {@link StateMachine}
 	 * @return Singleton */
 	public static StateMachine getIns(){

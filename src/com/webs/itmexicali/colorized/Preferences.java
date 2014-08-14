@@ -53,6 +53,7 @@ public class Preferences {
 		difficulty = diff;
 		spEdit.putInt(mContext.getString(R.string.key_difficulty), diff);
 		spEdit.commit();
+		setBoardSize(Const.board_sizes[diff]);
 	}
 	
 	/** Check if the tutorial has been completed or cancelled by the user*/
@@ -114,7 +115,7 @@ public class Preferences {
 	}
 	
 	/** set board size*/
-	public void setBoardSize(int size){
+	private void setBoardSize(int size){
 		spEdit.putInt(mContext.getString(R.string.key_board_size), size);
 		spEdit.commit();
 	}

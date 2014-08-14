@@ -19,9 +19,15 @@
     <string name="leader_button">Estadísticas</string>
     <string name="music_button">Música</string>
     <string name="about_button">Acerca</string>
+    <string name="options_button">Opciones</string>
     
     <!-- Game State Texts -->
     <string name="moves_txt">Movimientos: <xliff:g id="mov_form">%1$d</xliff:g>/<xliff:g id="mov_lim">%2$d</xliff:g></string>
+    
+    <!-- Option State Texts -->
+    <string name="options_easy">Fácil: <xliff:g id="easy_size">12x12</xliff:g></string>
+    <string name="options_med">Medio: <xliff:g id="med_size">18x18</xliff:g></string>
+    <string name="options_hard">Difícil: <xliff:g id="hard_size">24x24</xliff:g></string>
     
     <!-- Leaderboard texts !-->
     <string name="totalGamesPlayed">Juegos completados: %1$d.</string>

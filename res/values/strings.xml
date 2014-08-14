@@ -23,9 +23,17 @@
     <string name="music_button">Music</string>
     <string name="sfx_button" translatable="false">SFX</string>
     <string name="about_button">About</string>    
+    <string name="options_button">Options</string>
     
     <!-- Game State Texts -->
     <string name="moves_txt">Moves: <xliff:g id="mov_form">%1$d</xliff:g>/<xliff:g id="mov_lim">%2$d</xliff:g></string>
+    
+    <!-- Option State Texts -->
+    <string name="options_dificulty">Difficulty: </string>
+    <string name="options_easy">Easy - <xliff:g id="easy_size">12x12</xliff:g></string>
+    <string name="options_med">Medium - <xliff:g id="med_size">18x18</xliff:g></string>
+    <string name="options_hard">Hard - <xliff:g id="hard_size">24x24</xliff:g></string>
+    
     
     <!-- Tutorial Instruction Messages !-->
     <string name="tuto0">Touch to advance.</string>

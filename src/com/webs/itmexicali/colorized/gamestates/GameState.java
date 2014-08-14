@@ -1,5 +1,6 @@
 package com.webs.itmexicali.colorized.gamestates;
 
+import java.util.LinkedList;
 import java.util.Scanner;
 
 import com.webs.itmexicali.colorized.Const;
@@ -32,7 +33,7 @@ public class GameState extends BaseState {
 	
 	public float boardWidth, remainHeight, roundness;
 	
-	private String formated_moves_str = null, moves_txt;
+	private String formated_moves_str = null, formated_moves_str_casual = null, moves_txt;
 	private int mov_lim = 0;
 
 	//font text size modifiers, this helps to change the Xfactor to texts
@@ -73,7 +74,7 @@ public class GameState extends BaseState {
 		}});
 		
 		formated_moves_str = GameActivity.instance.getString(R.string.moves_txt);
-		mov_lim = Const.mov_limit[Preferences.getIns().getDifficulty()];
+		formated_moves_str_casual = formated_moves_str.substring(0,formated_moves_str.length()-5);
 		
 	}
 	
@@ -94,8 +95,8 @@ public class GameState extends BaseState {
 			//if there is a gamestate saved, load it again
 			if(Preferences.getIns().isGameSaved()){
 				//parse the gamestate
-				parseBoardFromString(Preferences.getIns().getSavedGame());
-				showSavedGameDialog();
+				if(parseBoardFromString(Preferences.getIns().getSavedGame()))
+					showSavedGameDialog();
 			}
 		}
 		else{
@@ -105,6 +106,7 @@ public class GameState extends BaseState {
 		
 		if(mColorBoard == null){
 			createNewBoard(Preferences.getIns().getBoardSize());
+			mov_lim = Const.mov_limit[Preferences.getIns().getDifficulty()];
 		}
 
 	}
@@ -195,13 +197,18 @@ public class GameState extends BaseState {
 	
 	/** Draw the text on the canvas*/
 	public void drawText(Canvas canvas){
-		moves_txt = String.format(formated_moves_str, mColorBoard.getMoves(), mov_lim);
+		if(mov_lim < 0){
+			moves_txt = String.format(formated_moves_str_casual,mColorBoard.getMoves());
+		}
+		else{
+			moves_txt = String.format(formated_moves_str, mColorBoard.getMoves(), mov_lim);
+		}
 		mPaints[8].setTextScaleX(ts0);
 		while((mPaints[8].measureText(moves_txt)+10) >= mRectFs[2].width()){
 			ts0-=0.05f;
 			mPaints[8].setTextScaleX(ts0);
 		}
-		canvas.drawText(String.format(formated_moves_str, mColorBoard.getMoves(), mov_lim),
+		canvas.drawText(moves_txt,
 				GameView.width/2, 2.15f*remainHeight, mPaints[8]);
 		mPaints[8].setTextScaleX(1.0f);
 	}
@@ -386,6 +393,7 @@ public class GameState extends BaseState {
 	
 	/** Create a new random board*/
 	public void createNewBoard(int blocks){
+		mov_lim = Const.mov_limit[Preferences.getIns().getDifficulty()];
 		if(blocks < 0)//if blocks is negative, this will have the same blocks #
 			mColorBoard.startRandomColorBoard();
 		else
@@ -396,12 +404,13 @@ public class GameState extends BaseState {
 	
 	/** Given a string containing a saved ColorBoard state,
 	 * parse it to create a new game state identical */
-	public void parseBoardFromString(String state){
+	public boolean  parseBoardFromString(String state){
 		if(state == null)
-			return;
+			return false;
 		Scanner scanner = null;
 		try{
 			scanner = new Scanner(state);
+			mov_lim = scanner.nextInt();
 			int bps = scanner.nextInt();
 			int moves = scanner.nextInt();
 			int[][] board = new int[bps][bps];
@@ -410,8 +419,15 @@ public class GameState extends BaseState {
 					board[i][j] = scanner.nextInt();
 			mColorBoard = new ColorBoard(bps, moves, board);
 		}catch(Exception e){
+			if(scanner != null)
+				scanner.close();
+			return false;
 		}
-		finally{scanner.close();}
+		finally{
+			if(scanner != null)
+				scanner.close();
+		}
+		return true;
 	}
 	
 	/** Get the color of the tile in the top-left corner
@@ -429,7 +445,7 @@ public class GameState extends BaseState {
 	/** The string representation of current game state
 	 * @return board representation*/
 	public String getBoardAsString(){
-		return mColorBoard.toString();
+		return mov_lim+" "+mColorBoard.toString();
 		
 	}
 	
@@ -454,7 +470,7 @@ public class GameState extends BaseState {
 			}});
 			
 		}
-		else if(getMoves() > 20){//TODO hardcoded value
+		else if(getMoves() >= mov_lim && mov_lim >= 0){
 			GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
 				GameActivity.instance.playSound(GameActivity.SoundType.LOSE);
 				showGamOverDialog(false);
@@ -480,7 +496,8 @@ public class GameState extends BaseState {
 		/** handle concurrent access to colorize method, not using blocking synchronized modifier*/
 		private boolean isColorizing = false;
 		
-		
+		/** Structure to hold blocks to be checked*/
+		private LinkedList<Integer[]> toCheck;
 		
 		/** Initialize a new random {@link ColorBoard} matrix*/
 		ColorBoard(int blocks){
@@ -540,8 +557,11 @@ public class GameState extends BaseState {
 			moves++;//count this move
 			
 			//check the Neighbor block
-			checkNeighborBlocks(1, 0, newColor);
-			checkNeighborBlocks(0, 1, newColor);
+			//checkNeighborBlocks(1, 0, newColor);
+			//checkNeighborBlocks(0, 1, newColor);
+			toCheck = new LinkedList<Integer[]>();
+			toCheck.add(new Integer[]{0,0});
+			checkNeighborBlocks(newColor);
 			
 			mColorBoard[0][0] = newColor; //update the main block's color
 			onBoardOpFinish(isBoardCompleted());
@@ -562,6 +582,7 @@ public class GameState extends BaseState {
 		
 		/** compare neighbors colors with main block's color to update
 		 * color recursively*/
+		@SuppressWarnings("unused")
 		private void checkNeighborBlocks(int x, int y, int newColor){
 			//check if we are within the matrix boundaries and also that
 			// the boarding neighbor is from the same color as the main block
@@ -574,6 +595,38 @@ public class GameState extends BaseState {
 			checkNeighborBlocks(x+1, y, newColor);//check right neighbor
 			checkNeighborBlocks(x, y-1, newColor);//check upper neighbor
 			checkNeighborBlocks(x, y+1, newColor);//check below neighbor
+		}	
+		
+		/** compare neighbors colors with main block's color to update
+		 * color iteratively*/
+		private void checkNeighborBlocks(int newColor){
+			Integer in[];
+			int oldColor = mColorBoard[0][0];
+			while(!toCheck.isEmpty()){
+				in = toCheck.removeLast();
+				mColorBoard[in[0]][in[1]] = newColor;
+				if(in[0]>0 && mColorBoard[in[0]-1][in[1]] == oldColor	&& !(in[0]-1==0 && in[1]==0)){
+					mColorBoard[in[0]-1][in[1]] = newColor;
+					toCheck.add(new Integer[]{in[0]-1,in[1]});
+				}
+				
+				if(in[1]>0 && mColorBoard[in[0]][in[1]-1] == oldColor	&& !(in[0]==0 && in[1]-1==0)){
+					mColorBoard[in[0]][in[1]-1] = newColor;
+					toCheck.add(new Integer[]{in[0],in[1]-1});
+				}
+				
+				if(in[0]<blocksPerSide-1 &&  mColorBoard[in[0]+1][in[1]] == oldColor){
+					mColorBoard[in[0]+1][in[1]] = newColor;
+					toCheck.add(new Integer[]{in[0]+1,in[1]});
+				}
+				
+				if(in[1]<blocksPerSide-1 &&  mColorBoard[in[0]][in[1]+1] == oldColor){
+					mColorBoard[in[0]][in[1]+1] = newColor;
+					toCheck.add(new Integer[]{in[0],in[1]+1});
+				}
+				
+			}
+			
 		}	
 		
 		/** return the matrix of colors*/
