@@ -42,8 +42,8 @@ public class GameState extends BaseState {
 	public ColorBoard mColorBoard = null;
 	
 	
-	GameState(){
-		mID = statesIDs.GAME;
+	GameState(statesIDs id){
+		super(id);
 			
 		mRectFs = new RectF[3];
 		mPaints = ((MainState)StateMachine.getIns().getFirstState()).mPaints;

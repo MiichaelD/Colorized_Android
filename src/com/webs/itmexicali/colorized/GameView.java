@@ -111,11 +111,11 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	public void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		try {
-			canvas.drawColor(Color.WHITE);
+			//canvas.drawColor(Color.WHITE);
 			StateMachine.getIns().draw(canvas, mPortrait);
 			
 		} catch (Exception e) {
-			Log.e(Const.TAG, "onDraw(canvas)"+e.getLocalizedMessage());
+			Log.e(Const.TAG, "onDraw(canvas)"+e.getMessage());
 		}
 		
 	}

@@ -22,14 +22,14 @@ public class MainState extends BaseState {
 	//paints to be used in the canvas
 	public TextPaint 				mPaints[];
 	private DrawButtonContainer 	dbc;
-	private float 					roundness;
+	public float 					roundness;
 	
 	//button strings
 	private String[] mButStr = null;
 	private String mAppName = null;
 	
-	MainState(){
-		mID = statesIDs.MAIN;
+	MainState(statesIDs id){
+		super(id);
 		
 		mPaints = new TextPaint[12];
 		dbc	= new DrawButtonContainer(7, true);
@@ -87,7 +87,7 @@ public class MainState extends BaseState {
 		dbc.setOnActionListener(6, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
 				new Thread(new Runnable(){public void run(){
-					//About
+					StateMachine.getIns().pushState(BaseState.statesIDs.ABOUT);
 				}}).start();}
 		});
 		
@@ -107,7 +107,6 @@ public class MainState extends BaseState {
 	
 	@Override
 	public void resize(float width, float height) {
-		
 		roundness = GameView.height/48;
 			
 		mPaints[0] = new TextPaint();//RED 
@@ -166,7 +165,7 @@ public class MainState extends BaseState {
 		mPaints[8].setTextAlign(Align.CENTER);
 		mPaints[8].setAntiAlias(true);
 		
-		mPaints[9] = new TextPaint(); //TEXTS
+		mPaints[9] = new TextPaint(); //TEXTS on Tuto and About
 		mPaints[9].setColor(Color.CYAN);
 		mPaints[9].setStyle(Paint.Style.FILL);
 		mPaints[9].setTextSize(GameView.mPortrait? width/14 : height/14);
@@ -216,6 +215,18 @@ public class MainState extends BaseState {
 			canvas.drawRoundRect(dbc.getDButton(i), roundness, roundness,  mPaints[8]);
 			if( dbc.getDButton(i).isPressed() )
 				canvas.drawRoundRect(dbc.getDButton(i), roundness, roundness,  mPaints[7]);
+			switch(i){
+			case 4:
+				if(!Preferences.getIns().playMusic())
+					canvas.drawRoundRect(dbc.getDButton(i), roundness, roundness,  mPaints[7]);
+				break;
+			case 5:
+				if(!Preferences.getIns().playSFX())
+					canvas.drawRoundRect(dbc.getDButton(i), roundness, roundness,  mPaints[7]);
+				break;
+			default:
+				break;
+			}
 		}
 	}
 	
@@ -308,8 +319,6 @@ public class MainState extends BaseState {
 		}
 		return true;
 	}
-
-	
 
 	@Override
 	public boolean onBackPressed() {

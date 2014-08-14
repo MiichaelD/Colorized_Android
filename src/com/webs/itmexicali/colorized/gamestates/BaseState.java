@@ -8,7 +8,10 @@ import android.view.MotionEvent;
 public abstract class BaseState {
 	
 	/** The Identifiers for each state extending this class*/
-	public static enum statesIDs{MAIN, TUTO, GAME, LEADER}
+	public static enum statesIDs{MAIN, TUTO, GAME, LEADER, ABOUT, OPTION}
+	
+	
+	public BaseState(statesIDs id){mID = id; }
 	
 	/** ID for this state*/
 	protected statesIDs mID;
@@ -34,6 +37,10 @@ public abstract class BaseState {
 		resize(GameView.width,GameView.height);
 	}
 	
+	/** callback to let the state know that a new state is above current state,
+	 * so it has lost it's focus*/
+	public void onFocusLost(){}
+	
 	/** draw the UI on the main canvas
 	 * @param canvas to draw on
 	 * @isPortrait true if the device is in portrait orientation
@@ -42,7 +49,9 @@ public abstract class BaseState {
 	
 	/** handle the user's touch inputs
 	 * @param me the MotionEvent to be handled*/
-	public abstract boolean touch(MotionEvent me);
+	public boolean touch(MotionEvent me){
+		return false;
+	}
 	
 	/** callback to let the state that it has been resized.
 	 * This method calls resize method if not overriden
@@ -52,25 +61,31 @@ public abstract class BaseState {
 		resize(width,height);
 	}
 	
-	/** In this method all the size dependant variables should be resized*/
-	public abstract void resize(float width, float height);
+	/** In this method all the size dependent variables (if any) should be resized*/
+	public void resize(float width, float height){}
 	
 	/** callback to let the state handle the back key*/
-	public abstract boolean onBackPressed();
+	public boolean onBackPressed(){
+		return false;
+	}
 	
 	/** Create a new State by it's ID and return it
 	 * @param id the type of BaseState to create
 	 * @return BaseState of type ID reference*/
 	public static BaseState createStateByID(statesIDs id){
 		switch(id){
-		case MAIN:
-			return new MainState();
-		case TUTO:
-			return new TutoState();
+		case ABOUT:
+			return new AboutState(statesIDs.ABOUT);
 		case GAME:
-			return new GameState();
+			return new GameState(statesIDs.GAME);
 		case LEADER:
-			return new StatisticState();
+			return new StatisticState(statesIDs.LEADER);
+		case MAIN:
+			return new MainState(statesIDs.MAIN);
+		case OPTION:
+			return new OptionState(statesIDs.OPTION);
+		case TUTO:
+			return new TutoState(statesIDs.TUTO);
 		}
 		return null;
 	}

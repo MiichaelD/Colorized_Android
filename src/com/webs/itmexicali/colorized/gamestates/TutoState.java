@@ -13,8 +13,8 @@ import android.view.MotionEvent;
 
 public class TutoState extends BaseState{
 	
-	public TutoState(){
-		mID = statesIDs.TUTO;
+	public TutoState(statesIDs id){
+		super(id);
 	}
 
 	enum innerStates{INIT, FIRST, SEC, THIRD, FOURTH, FIFTH, BACK, FINAL}
@@ -24,7 +24,7 @@ public class TutoState extends BaseState{
 	//A reference to GameState, so we can paint it before painting this UI
 	private GameState pGame;
 	
-	//rects to be used on canvas
+	//Rects to be used on canvas
 	protected RectF			mRectFs[];
 	
 	@Override

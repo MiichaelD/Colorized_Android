@@ -46,6 +46,9 @@ public class GameActivity extends Activity {
 		
 		//Init Preferences once 
 		Preferences.initPreferences(this);
+		
+		//Init StateMachine
+		StateMachine.setup(this);
 
 		//set the game screen
 		setContentView(R.layout.game_screen);

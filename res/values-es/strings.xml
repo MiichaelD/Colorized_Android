@@ -39,5 +39,12 @@
     <string name="tuto6">Crees poder lograrlo?\n\nINTENTALO!!</string>
     <string name="tuto_exit">Presiona ATRAS de nuevo para salir del tutorial o toca la pantalla para continuar.</string>
     
-
+	<!-- About Texts !-->
+    <string name="about_developer">Desarrollador Android.</string>
+    <string name="about_version">Versión.</string>
+    <string name="about_sound">Sonidos.</string>
+    <string name="about_sound_values">"Sonidos de www.freesound.org:\n'Nodens (Field Song)' por axtoncrolley\n'saddertrombones.mp3' por-nc NotR\n'cheer 4.wav' por-nc timtube.\n\nMas detalles en\nwww.itmexicali.webs.com/colorized"</string>
+    <string name="about_sound_values_min">Sonidos de www.freesound.org:\nMas detalles en www.itmexicali.webs.com/colorized</string>
+    
+    
 </resources>

@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -13,22 +14,34 @@ import android.view.MotionEvent;
  * states to get to the previous state*/
 public class StateMachine {
 
+	public static Context mContext;
+	
 	//List of states
 	private StateList pStateList = null;
 	
 	//Singleton instance
 	private static StateMachine instance;
 	
+	public static void setup(Context ctx){
+		if(instance == null){
+			instance = new StateMachine(ctx);
+		}
+		else{
+			throw new IllegalStateException("You can only setup StateMachine ONCE!");
+		}
+	}
+	
 	//prevent multiple instances of StateMachine
-	private StateMachine(){
+	private StateMachine(Context ctx){
+		mContext = ctx;
 		pStateList = new StateList();
 	}
 	
-	/**Get the instance of {@Link StateMachine}
+	/**Get the instance of {@link StateMachine}
 	 * @return Singleton */
 	public static StateMachine getIns(){
 		if(instance == null)
-			instance = new StateMachine();
+			throw new IllegalStateException("You should setup StateMachine before using it");
 		return instance;
 	}
 	
@@ -54,13 +67,8 @@ public class StateMachine {
 		if(checkStateIsInList(id))
 			return;
 		
-		//create a new BaseState
-		BaseState bs = BaseState.createStateByID(id);
-		
-		//push it to the list
-		pStateList.addLast(bs);
-		bs.onPushed();
-		bs.onFocus();
+		//create a new BaseState and push it to the list
+		pushAtEnd(BaseState.createStateByID(id));
 	}
 	
 	/** Push a new state object to start interacting with it*/
@@ -69,6 +77,14 @@ public class StateMachine {
 		
 		if(checkStateIsInList(bs.getID()))
 			return;
+		
+		pushAtEnd(bs);
+	}
+	
+	/** After validating that there is no state with same ID in the list, push it in the list*/
+	private void pushAtEnd(BaseState bs){
+		if(pStateList.size()>1)
+			pStateList.getLast().onFocusLost();
 		
 		pStateList.addLast(bs);
 		bs.onPushed();
@@ -150,7 +166,7 @@ public class StateMachine {
 		if(pStateList.getLast().onBackPressed())// let the current state react
 			return true;
 		
-		return StateMachine.getIns().popState();// if no reaction, drop from list
+		return popState();// if no reaction, drop from list
 	}
 	
 	@SuppressWarnings("serial")

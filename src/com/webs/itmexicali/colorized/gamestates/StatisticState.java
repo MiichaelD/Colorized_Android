@@ -7,16 +7,14 @@ import com.webs.itmexicali.colorized.R;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.view.MotionEvent;
-
 public class StatisticState extends BaseState {
 
 	MainState ms = ((MainState)StateMachine.getIns().getFirstState());
 	private String played, won, percentage;
 	float x = GameView.width/2, y = GameView.height, percent;
 	
-	StatisticState(){
-		mID = statesIDs.LEADER;
+	StatisticState(statesIDs id){
+		super(id);
 		
 		int games = Preferences.getIns().getGamesWon();
 		won  = GameActivity.instance.getString(R.string.totalGamesWon);
@@ -28,6 +26,8 @@ public class StatisticState extends BaseState {
 		played = GameActivity.instance.getString(R.string.totalGamesPlayed);
 		played = String.format(played,games);
 		
+		if(games == 0)
+			games = 1;
 		percent/=games;
 		
 		percentage = GameActivity.instance.getString(R.string.percentGamesWon);
@@ -44,22 +44,9 @@ public class StatisticState extends BaseState {
 		ms.mPaints[8].setTextScaleX(1.0f);
 	}
 
-	@Override
-	public boolean touch(MotionEvent me) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void resize(float width, float height) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public boolean onBackPressed() {
-		// TODO Auto-generated method stub
-		return false;
+	
+	public void onPopped(){
+		ms = null;
 	}
 
 }
