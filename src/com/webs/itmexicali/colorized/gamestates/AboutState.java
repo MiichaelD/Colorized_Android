@@ -45,12 +45,12 @@ public class AboutState extends BaseState {
 		try{
 			pi =GameActivity.instance.getPackageManager().getPackageInfo(GameActivity.instance.getPackageName(), 0);
 		}catch(NameNotFoundException e){
-			vVersion = "0.0.0-0";
+			vVersion = "0.0.0";
 		}
 		
 		if(vVersion == null && pi != null){
-			vVersion = pi.versionName+"-"+pi.versionCode;
-		}
+			vVersion = pi.versionName;
+		}	
 		
 		smallText = new TextPaint();
 		smallText.setColor(Color.WHITE);
@@ -119,15 +119,7 @@ public class AboutState extends BaseState {
 		smallText.setTextSize(GameView.mPortrait? GameView.width/22 : GameView.height/22);
 	}
 	
-	public void onFocus(){
-		super.onFocus();
-		if(savedAlpha == 0 ){
-			savedAlpha =  ms.mPaints[11].getAlpha();
-		}
-	}
-
 	public void onPopped(){
-		ms.mPaints[11].setAlpha(savedAlpha);
 		ms = null;
 	}
 	

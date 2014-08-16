@@ -25,6 +25,8 @@ public class OptionState extends BaseState {
 	
 	TextPaint smallText;
 	
+	
+	
 	protected OptionState(statesIDs id){
 		super(id);
 		ms = ((MainState)StateMachine.getIns().getFirstState());
@@ -77,7 +79,7 @@ public class OptionState extends BaseState {
 	private void drawButtons(Canvas canvas){
 		for(int i =0 ; i < options.getButtonsCount();i++){
 			canvas.drawRoundRect(options.getDButton(i), ms.roundness, ms.roundness, 
-					 Preferences.getIns().getDifficulty() == i? ms.mPaints[1]: ms.mPaints[5]);
+					 Preferences.getIns().getDifficulty() == i? ms.mPaints[1]: ms.mPaints[8]);
 			
 			if( options.getDButton(i).isPressed() )
 				canvas.drawRoundRect(options.getDButton(i), ms.roundness, ms.roundness,  ms.mPaints[7]);
@@ -99,22 +101,45 @@ public class OptionState extends BaseState {
 	
 	private void drawTexts(Canvas canvas){
 		DrawButton t;
+		int dif = Preferences.getIns().getDifficulty();
+		ms.mPaints[1].setTextSize(GameView.mPortrait?GameView.width/18:GameView.height/18);
 		// Difficulty
 		canvas.drawText(GameActivity.instance.getString(R.string.options_dificulty),
 				GameView.width/2, base.top + 2*ms.mPaints[9].getTextSize(),ms.mPaints[9]);
 		
+				
 		t = options.getDButton(0);
 		canvas.drawText(GameActivity.instance.getString(R.string.options_easy),
-				t.centerX(), t.centerY()+dy, smallText);
+				t.centerX(), t.centerY()+dy, dif==0?smallText:ms.mPaints[1]);
 		
 		t = options.getDButton(1);
 		canvas.drawText(GameActivity.instance.getString(R.string.options_med),
-				t.centerX(), t.centerY()+dy, smallText);
+				t.centerX(), t.centerY()+dy, dif==1?smallText:ms.mPaints[1]);
 		
 		t = options.getDButton(2);
 		canvas.drawText(GameActivity.instance.getString(R.string.options_hard),
-				t.centerX(), t.centerY()+dy, smallText);
-				
+				t.centerX(), t.centerY()+dy, dif==2?smallText:ms.mPaints[1]);
+		
+		
+		
+		/*
+		//MUSIC
+		x = GameView.width/4;	y = 44.2f*GameView.height/48;
+		mPaints[paCo].setTextScaleX(ts4);
+		while((mPaints[paCo].measureText(mButStr[4]))+10 >= dbc.getDButton(4).width()){
+			ts4-=0.05f;
+			mPaints[paCo].setTextScaleX(ts4);
+		}
+		canvas.drawText(mButStr[4], x, 40.2f*GameView.height/48, mPaints[paCo]);
+		
+		//SFX
+		mPaints[paCo].setTextScaleX(ts5);
+		while((mPaints[paCo].measureText(mButStr[5]))+10 >= dbc.getDButton(5).width()){
+			ts5-=0.05f;
+			mPaints[paCo].setTextScaleX(ts5);
+		}
+		canvas.drawText(mButStr[5], x, y, mPaints[paCo]);
+		*/
 	}
 	
 	
@@ -122,23 +147,22 @@ public class OptionState extends BaseState {
 	public void resize(float width, float height) {
 		ms.resize(width, height);		
 		ms.mPaints[11].setAlpha(235);
-		ms.mPaints[9].setTextAlign(Align.CENTER);
 		
 		base = new RectF(width/16,height/8,15*width/16,7*height/8);
 		
-		smallText.setTextSize(GameView.mPortrait? GameView.width/18 : GameView.height/18);
+
+		ms.mPaints[9].setTextAlign(Align.CENTER);
+		smallText.setTextSize(GameView.mPortrait? width/18 : height/18);
+		ms.mPaints[1].setTextSize(GameView.mPortrait?width/18:height/18);
 		smallText.setTextAlign(Align.CENTER);
 		dy = smallText.getTextSize()/3;
 		
-		options.repositionDButton(0, width/4, 14*height/48,3*width/4, 18*height/48); // play
-		options.repositionDButton(1, width/4, 19*height/48,3*width/4, 23*height/48);// tuto
-		options.repositionDButton(2, width/4, 24*height/48,3*width/4, 28*height/48); // leaderboard
+		options.repositionDButton(0, width/4, 12.5f*height/48,3*width/4, 15.5f*height/48); // play
+		options.repositionDButton(1, width/4, 16.5f*height/48,3*width/4, 19.5f*height/48);// tuto
+		options.repositionDButton(2, width/4, 20.5f*height/48,3*width/4, 23.5f*height/48); // leaderboard
 		//options.repositionDButton(3, 5*width/8, 400,7*width/8, 490);				// achievements
 	}
 	
-	public void onFocus(){
-		super.onFocus();
-	}
 
 	public void onPopped(){
 		ms = null;

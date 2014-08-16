@@ -45,6 +45,7 @@ public class GameState extends BaseState {
 	
 	GameState(statesIDs id){
 		super(id);
+		Log.v("GameState","Constructor");
 			
 		mRectFs = new RectF[3];
 		mPaints = ((MainState)StateMachine.getIns().getFirstState()).mPaints;
@@ -76,6 +77,14 @@ public class GameState extends BaseState {
 		formated_moves_str = GameActivity.instance.getString(R.string.moves_txt);
 		formated_moves_str_casual = formated_moves_str.substring(0,formated_moves_str.length()-5);
 		
+		//create board to prevent nullpointerexception
+		//if(mColorBoard == null)
+		{
+			Log.v("GameState","created New Board");
+			createNewBoard(Preferences.getIns().getBoardSize());
+			mov_lim = Const.mov_limit[Preferences.getIns().getDifficulty()];
+		}
+		
 	}
 	
 	/** Register each button to colorize certain color*/
@@ -88,31 +97,51 @@ public class GameState extends BaseState {
 		});
 	}
 	
+	
 	@Override
-	public void onPushed() {
-		//check if the tutorial has been completed
-		if(Preferences.getIns().isTutorialCompleted()){
-			//if there is a gamestate saved, load it again
-			if(Preferences.getIns().isGameSaved()){
-				//parse the gamestate
-				if(parseBoardFromString(Preferences.getIns().getSavedGame()))
-					showSavedGameDialog();
-			}
-		}
-		else{
-			createNewBoard(Preferences.getIns().getBoardSize());
-			StateMachine.getIns().pushState(BaseState.statesIDs.TUTO);			
-		}
+	public void onFocus() {	
+		super.onFocus();
 		
-		if(mColorBoard == null){
-			createNewBoard(Preferences.getIns().getBoardSize());
-			mov_lim = Const.mov_limit[Preferences.getIns().getDifficulty()];
-		}
-
+		/* BUG FIX: this used to be in onPush() but in some devices (SCH-I535 - Android 4.3)
+		 * it took several seconds (about 10s) just painting background, because the resize(f,f)
+		 * method was not being called, sometimes causing the user to press back and cause a
+		 * null pointer exception due to no instance of mColorBoard to get the moves count*/
+		checkTutoAndSavedGame();
 	}
+	
+	/** Check that the tutorial has been completed, if not start it
+	 * if the tutorial was completed, check if there is a game saved.*/
+	private void checkTutoAndSavedGame(){
+		//new Thread(new Runnable(){public void run(){
+			//check if the tutorial has been completed
+			if(Preferences.getIns().isTutorialCompleted()){
+				//if there is a gamestate saved, load it again
+				if(Preferences.getIns().isGameSaved()){
+					//parse the gamestate
+					if(parseBoardFromString(Preferences.getIns().getSavedGame())){
+						Log.v("GameState","Finished parsing");
+						showSavedGameDialog();
+					}
+				}
+			}
+			else{
+				createNewBoard(Preferences.getIns().getBoardSize());
+				StateMachine.getIns().pushState(BaseState.statesIDs.TUTO);			
+			}
+			
+			if(mColorBoard == null){
+				createNewBoard(Preferences.getIns().getBoardSize());
+				mov_lim = Const.mov_limit[Preferences.getIns().getDifficulty()];
+			}
+
+		
+		//}}).start();
+	}
+	
 	
 	@Override
 	public void resize(float width, float height) {
+		Log.v("GameState","resize(f,f)");
 		StateMachine.getIns().getFirstState().resize(width, height);
 		reloadByResize();		
 		roundness = height/48;
@@ -274,6 +303,10 @@ public class GameState extends BaseState {
 	/** Display dialog informing that there is a gamestate saved
 	 * and ask if the user wants to play it or prefers a new match*/
 	private void showSavedGameDialog(){
+		//if we are still on the list
+		if(!StateMachine.getIns().checkStateIsInList(statesIDs.GAME))
+			return;
+		
 		//remove the saved game from the preferences
 	    Preferences.getIns().saveGame(false, null);
 	    GameActivity.instance.runOnUiThread(new Runnable(){
@@ -405,6 +438,7 @@ public class GameState extends BaseState {
 	/** Given a string containing a saved ColorBoard state,
 	 * parse it to create a new game state identical */
 	public boolean  parseBoardFromString(String state){
+		Log.v("GameState","startingParsing");
 		if(state == null)
 			return false;
 		Scanner scanner = null;
@@ -421,6 +455,9 @@ public class GameState extends BaseState {
 		}catch(Exception e){
 			if(scanner != null)
 				scanner.close();
+			
+			mov_lim = Const.mov_limit[Preferences.getIns().getDifficulty()];
+			
 			return false;
 		}
 		finally{

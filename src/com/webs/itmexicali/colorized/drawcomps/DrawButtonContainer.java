@@ -1,5 +1,8 @@
 package com.webs.itmexicali.colorized.drawcomps;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.TextPaint;
 import android.view.MotionEvent;
 
 /**This button container is to make easier the MotionEvent handling over DrawButtons
@@ -33,6 +36,19 @@ public class DrawButtonContainer {
 				buttons[i] = new DrawButton();
 	}
 	
+	/** Initialize the {@link DrawButton} specified by it's index
+	 * the last 4 parameters are the specific coordinates for specific button.
+	 * @param text String given to the button
+	 * @param index the button's index, if its a greater than this containers capacity
+	 * or less than zero, nothing will be initialized */
+	public void initDrawButton(String text, int index, float left, float top, float right, float bottom){
+		if(index < num_buttons && index >= 0)
+			buttons[index] = new DrawButton(text, left, top, right, bottom);
+		else 
+			throw new NullPointerException("There is no draw button with index:"+index+" to init");
+	}
+	
+	
 	
 	/** Initialize the {@link DrawButton} specified by it's index
 	 * the last 4 parameters are the specific coordinates for specific button.
@@ -41,6 +57,8 @@ public class DrawButtonContainer {
 	public void initDrawButton(int index, float left, float top, float right, float bottom){
 		if(index < num_buttons && index >= 0)
 			buttons[index] = new DrawButton(left, top, right, bottom);
+		else 
+			throw new NullPointerException("There is no draw button with index:"+index+" to init");
 	}
 	
 	/** Change the given {@link DrawButton}'s position
@@ -54,6 +72,8 @@ public class DrawButtonContainer {
 	public void repositionDButton(int index, float l, float t, float r, float b){
 		if(index < num_buttons && index >= 0)
 			buttons[index].set(l, t, r, b);
+		else 
+			throw new NullPointerException("There is no draw button with index:"+index+" to reposition");
 	}
 	
 	/**Get the DrawButton Specified by this index
@@ -63,8 +83,20 @@ public class DrawButtonContainer {
 	public DrawButton getDButton(int index){
 		if(index < num_buttons && index >= 0)
 			return buttons[index];
-		return null;
-	}	
+		else 
+			throw new NullPointerException("There is no draw button with index:"+index+" to return");
+	}
+	
+	/**Set a text to DrawButton Specified by this index
+	 * @param index the button's index, if its a greater than this containers capacity
+	 * or less than zero, null will be returned
+	 * @return a reference to the specified index */
+	public DrawButton setText(int index, String text){
+		if(index < num_buttons && index >= 0)
+			return buttons[index];
+		else 
+			throw new NullPointerException("There is no draw button with index:"+index+" to return");
+	}
 	
 	/** Bound an {@link DrawButton.ActionListener} to a {@link DrawButton}
 	 * @param index button index
@@ -128,4 +160,58 @@ public class DrawButtonContainer {
 				j++;
 		return j;
 	}
+	
+	/** Paint all {@link DrawButton} on given canvas
+	 * @param c Canvas to draw on
+	 * @param r the roundness of the button
+	 * @param relCol Paint containing the color of the button on release mode
+	 * @param presCol Paint containing the color of the button on pressed mode*/
+	public void drawButtons(Canvas c, float r, Paint relCol, Paint presCol){
+		drawButtons(0, num_buttons, c, r, relCol, presCol);
+	}
+	
+	/** Paint selected {@link DrawButton} on given canvas
+	 * @param st starting index
+	 * @param end ending index, not inclusive
+	 * @param c Canvas to draw on
+	 * @param r the roundness of the button
+	 * @param relCol Paint containing the color of the button on release mode
+	 * @param presCol Paint containing the color of the button on pressed mode*/
+	public void drawButtons(int st, int end, Canvas c, float r, Paint relCol, Paint presCol){
+		for(int i =0 ; i< num_buttons; i++){
+			buttons[i].draw(c, r, relCol, presCol);
+		}
+	}
+	
+	/** Paint all {@link DrawButton} with their texts on given canvas also with the text centered in the button
+	 * If the text is too wide, this method will scale it (only the X length) 
+	 * @param c Canvas to draw on
+	 * @param r the roundness of the button
+	 * @param rc Paint containing the color of the button on release mode
+	 * @param pc Paint containing the color of the button on pressed mode
+	 * @param trc Paint containing the size and color to draw on the text on release mode
+	 * @param tpc Paint containing the size and color to draw on the text on pressed mode*/
+	public void drawButtonsAndText(Canvas c, float r, Paint rc, Paint pc, TextPaint trc, TextPaint tpc ){
+		this.drawButtonsAndText(0, num_buttons, c, r, rc, pc, trc, tpc);
+	}
+	
+	/** Paint selected {@link DrawButton}s with their texts on given canvas also with the text centered in the button
+	 * If the text is too wide, this method will scale it (only the X length) 
+	 * @param st starting index
+	 * @param end ending index, not inclusive
+	 * @param c Canvas to draw on
+	 * @param r the roundness of the button
+	 * @param rc Paint containing the color of the button on release mode
+	 * @param pc Paint containing the color of the button on pressed mode
+	 * @param trc Paint containing the size and color to draw on the text on release mode
+	 * @param tpc Paint containing the size and color to draw on the text on pressed mode*/
+	public void drawButtonsAndText(int st, int end, Canvas c, float r, Paint rc, Paint pc, TextPaint trc, TextPaint tpc ){
+		for(int i =st ; i< end; i++){
+			buttons[i].draw(c, r, rc, pc, trc, tpc);
+		}
+	}
+	
+	
+	
+	
 }

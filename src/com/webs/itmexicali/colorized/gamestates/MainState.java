@@ -40,7 +40,7 @@ public class MainState extends BaseState {
 			@Override public void onActionPerformed() {
 				new Thread(new Runnable(){public void run(){
 					pushGame(false);
-			}}).start();
+				}}).start();
 		}});
 		
 		//Tutorial button
