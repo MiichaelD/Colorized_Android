@@ -19,7 +19,8 @@
     <!-- Main State Buttons !-->
     <string name="play_button">Play</string>
     <string name="tutorial_button">Tutorial</string>
-    <string name="leader_button">Leaderboard</string>
+    <string name="leader_button">Leaderboards</string>
+    <string name="achiev_button">Achievements</string>
     <string name="music_button">Music</string>
     <string name="sfx_button" translatable="false">SFX</string>
     <string name="about_button">About</string>    
@@ -29,10 +30,13 @@
     <string name="moves_txt">Moves: <xliff:g id="mov_form">%1$d</xliff:g>/<xliff:g id="mov_lim">%2$d</xliff:g></string>
     
     <!-- Option State Texts -->
-    <string name="options_dificulty">Difficulty: </string>
-    <string name="options_easy">Easy - <xliff:g id="easy_size">12x12</xliff:g></string>
+    <string name="options_difficulty">Board Size: </string>
+    <string name="options_easy">Small - <xliff:g id="easy_size">12x12</xliff:g></string>
     <string name="options_med">Medium - <xliff:g id="med_size">18x18</xliff:g></string>
-    <string name="options_hard">Hard - <xliff:g id="hard_size">24x24</xliff:g></string>
+    <string name="options_hard">Large - <xliff:g id="hard_size">24x24</xliff:g></string>
+    <string name="options_game_mode">Game Mode: </string>
+    <string name="options_step_mode">Step Mode</string>
+    <string name="options_casual_mode">Casual Mode</string>
     
     
     <!-- Tutorial Instruction Messages !-->
@@ -60,6 +64,7 @@
     <string name="key_times_finished" translatable="false">key_times_finished</string>
     <string name="key_times_won" translatable="false">key_times_won</string>
     <string name="key_difficulty" translatable="false">"key_difficulty"</string>
+    <string name="key_game_mode" translatable="false">"key_game_mode"</string>
     
     
 	<!-- About Texts !-->

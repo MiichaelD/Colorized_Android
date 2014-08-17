@@ -16,7 +16,8 @@
     <!-- Main State Buttons !-->
     <string name="play_button">Jugar</string>
     <string name="tutorial_button">Tutorial</string>
-    <string name="leader_button">Estadísticas</string>
+    <string name="leader_button">Leaderboards</string>
+    <string name="achiev_button">Logros</string>
     <string name="music_button">Música</string>
     <string name="about_button">Acerca</string>
     <string name="options_button">Opciones</string>
@@ -25,9 +26,13 @@
     <string name="moves_txt">Movimientos: <xliff:g id="mov_form">%1$d</xliff:g>/<xliff:g id="mov_lim">%2$d</xliff:g></string>
     
     <!-- Option State Texts -->
-    <string name="options_easy">Fácil: <xliff:g id="easy_size">12x12</xliff:g></string>
-    <string name="options_med">Medio: <xliff:g id="med_size">18x18</xliff:g></string>
-    <string name="options_hard">Difícil: <xliff:g id="hard_size">24x24</xliff:g></string>
+    <string name="options_difficulty">Tamaño de tablero: </string>
+    <string name="options_easy">Chico: <xliff:g id="easy_size">12x12</xliff:g></string>
+    <string name="options_med">Mediano: <xliff:g id="med_size">18x18</xliff:g></string>
+    <string name="options_hard">Grande: <xliff:g id="hard_size">24x24</xliff:g></string>
+    <string name="options_game_mode">Modo de Juego: </string>
+    <string name="options_step_mode">Modo Reto</string>
+    <string name="options_casual_mode">Modo Casual</string>
     
     <!-- Leaderboard texts !-->
     <string name="totalGamesPlayed">Juegos completados: %1$d.</string>

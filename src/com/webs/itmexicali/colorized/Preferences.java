@@ -28,7 +28,7 @@ public class Preferences {
 	}
 	
 	boolean isTuto, playSFX, playMusic;
-	int difficulty, gFinished, gWon;
+	int difficulty, gFinished, gWon, gMode;
 	
 	private Preferences(Context context){
 		mContext = 	context;
@@ -42,7 +42,20 @@ public class Preferences {
 		
 		gFinished = sp.getInt(mContext.getString(R.string.key_times_finished), 0);
 		gWon =		sp.getInt(mContext.getString(R.string.key_times_won), 0);
-		
+		gMode =		sp.getInt(mContext.getString(R.string.key_game_mode), Const.STEP);
+	}
+	
+	public int getGameMode(){
+		return gMode;
+	}
+	
+	
+	public void setGameMode(int gm){
+		if(gMode != gm){
+			gMode = gm;
+			spEdit.putInt(mContext.getString(R.string.key_game_mode), gm);
+			spEdit.commit();
+		}
 	}
 	
 	public int getDifficulty(){

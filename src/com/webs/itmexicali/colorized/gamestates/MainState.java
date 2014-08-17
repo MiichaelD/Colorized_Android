@@ -24,16 +24,13 @@ public class MainState extends BaseState {
 	private DrawButtonContainer 	dbc;
 	public float 					roundness;
 	
-	//button strings
-	private String[] mButStr = null;
 	private String mAppName = null;
 	
 	MainState(statesIDs id){
 		super(id);
 		
 		mPaints = new TextPaint[12];
-		dbc	= new DrawButtonContainer(8, true);
-		mButStr = new String[8];
+		dbc	= new DrawButtonContainer(6, true);
 		
 		//play button
 		dbc.setOnActionListener(0, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
@@ -57,8 +54,30 @@ public class MainState extends BaseState {
 				}}).start();
 		}});
 		
-		//LEADERboards
+		//Options button
 		dbc.setOnActionListener(2, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
+			@Override public void onActionPerformed() {
+				//play sound
+				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+				
+				new Thread(new Runnable(){public void run(){
+					StateMachine.getIns().pushState(BaseState.statesIDs.OPTION);
+				}}).start();}
+		});
+		
+		//About	
+		dbc.setOnActionListener(3, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
+			@Override public void onActionPerformed() {
+				//play sound
+				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+				
+				new Thread(new Runnable(){public void run(){
+					StateMachine.getIns().pushState(BaseState.statesIDs.ABOUT);
+				}}).start();}
+		});
+		
+		//LEADERboards
+		dbc.setOnActionListener(4, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
@@ -68,8 +87,8 @@ public class MainState extends BaseState {
 				}}).start();}
 		});
 		
-		//Leaderboards
-		dbc.setOnActionListener(3, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
+		//Achievements
+		dbc.setOnActionListener(5, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
@@ -80,41 +99,19 @@ public class MainState extends BaseState {
 				}}).start();}
 		});
 		
+		/*
 		//MUSIC button
-		dbc.setOnActionListener(4, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
+		dbc.setOnActionListener(6, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
 				Preferences.getIns().toggleMusic();
 		}});
 		
 		//SFX button
-		dbc.setOnActionListener(5, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
+		dbc.setOnActionListener(7, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
 				Preferences.getIns().toggleSFX();
 		}});
-		
-		//About	
-		dbc.setOnActionListener(6, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
-			@Override public void onActionPerformed() {
-				//play sound
-				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
-				
-				new Thread(new Runnable(){public void run(){
-					StateMachine.getIns().pushState(BaseState.statesIDs.ABOUT);
-				}}).start();}
-		});
-		
-		//Options button
-		dbc.setOnActionListener(7, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
-			@Override public void onActionPerformed() {
-				//play sound
-				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
-				
-				new Thread(new Runnable(){public void run(){
-					StateMachine.getIns().pushState(BaseState.statesIDs.OPTION);
-				}}).start();}
-		});
-		
-		
+		*/
 	}
 	
 	//font text size modifiers, this helps to change the Xfactor to texts
@@ -198,59 +195,41 @@ public class MainState extends BaseState {
 		mPaints[11].setStyle(Paint.Style.FILL);
 		mPaints[11].setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.NORMAL));
 		
-		
 		dbc.repositionDButton(0, width/4, 14*height/48,3*width/4, 22*height/48); // play
 		dbc.repositionDButton(1, width/4, 23*height/48,3*width/4, 27*height/48);// tuto
-		dbc.repositionDButton(2, width/4, 33*height/48,3*width/4, 37*height/48); // leaderboard
-		//dbc.repositionDButton(3, 5*width/8, 400,7*width/8, 490);				// achievements
-		dbc.repositionDButton(4, width/8, 38*height/48,3*width/8, 41*height/48); //music
-		dbc.repositionDButton(5, width/8, 42*height/48,3*width/8, 45*height/48); // sounds
-		dbc.repositionDButton(6, 5*width/8, 42*height/48,7*width/8, 45*height/48); //about
-		dbc.repositionDButton(7, width/4, 28*height/48,3*width/4, 32*height/48);//options
-		
+		dbc.repositionDButton(2, width/4, 28*height/48,3*width/4, 32*height/48);//options
+		dbc.repositionDButton(3, width/4, 33*height/48,3*width/4, 37*height/48); // about
+		dbc.repositionDButton(4, 1.5f*width/16, 42*height/48, 7.5f*width/16, 45*height/48); // Leaderboard
+		dbc.repositionDButton(5, 8.5f*width/16, 42*height/48, 14.5f*width/16, 45*height/48); //Achievements
+		//dbc.repositionDButton(6, width/8, 38*height/48,3*width/8, 41*height/48); //music
+		//dbc.repositionDButton(7, width/8, 42*height/48, 7*width/16, 45*height/48); // sounds
 		
 		mAppName = GameActivity.instance.getString(R.string.app_name);
-		mButStr[0]=GameActivity.instance.getString(R.string.play_button);
-		mButStr[1]=GameActivity.instance.getString(R.string.tutorial_button);
-		mButStr[2]=GameActivity.instance.getString(R.string.leader_button);
-		mButStr[4]=GameActivity.instance.getString(R.string.music_button);
-		mButStr[5]=GameActivity.instance.getString(R.string.sfx_button);
-		mButStr[6]=GameActivity.instance.getString(R.string.about_button);
-		mButStr[7]=GameActivity.instance.getString(R.string.options_button);
+		dbc.setText(0, GameActivity.instance.getString(R.string.play_button));
+		dbc.setText(1, GameActivity.instance.getString(R.string.tutorial_button));
+		dbc.setText(2, GameActivity.instance.getString(R.string.options_button));
+		dbc.setText(3, GameActivity.instance.getString(R.string.about_button));
+		dbc.setText(4, GameActivity.instance.getString(R.string.leader_button));
+		dbc.setText(5, GameActivity.instance.getString(R.string.achiev_button));		
 	}
 
 	@Override
 	public void draw(Canvas canvas, boolean isPortrait) {
 		canvas.drawColor(Color.rgb(0, 162, 232));
-		drawButtons(canvas);
-		drawText(canvas);
-	}
-	
-	/** Draw UI units capable to react to touch events*/
-	public void drawButtons(Canvas canvas){
-		for(int i =0 ; i < dbc.getButtonsCount();i++){
-			canvas.drawRoundRect(dbc.getDButton(i), roundness, roundness,  mPaints[8]);
-			
-			if( dbc.getDButton(i).isPressed() )
-				canvas.drawRoundRect(dbc.getDButton(i), roundness, roundness,  mPaints[7]);
-			
-			switch(i){
-			case 4:
-				if(!Preferences.getIns().playMusic())
-					canvas.drawRoundRect(dbc.getDButton(i), roundness, roundness,  mPaints[7]);
-				break;
-			case 5:
-				if(!Preferences.getIns().playSFX())
-					canvas.drawRoundRect(dbc.getDButton(i), roundness, roundness,  mPaints[7]);
-				break;
-			default:
-				break;
-			}
-		}
+		
+		drawText(canvas);//draw Title
+		
+		//draw play button BIGGER
+		mPaints[1].setTextSize(GameView.mPortrait? GameView.width/9 : GameView.height/9);
+		dbc.drawButtonsAndText(0, canvas, roundness, mPaints[8], mPaints[7], mPaints[1], mPaints[1]);
+		mPaints[1].setTextSize(GameView.mPortrait? GameView.width/14 : GameView.height/14);
+		
+		//draw the rest of the buttons
+		dbc.drawButtonsAndText(1,dbc.getButtonsCount(), canvas, roundness, mPaints[8], mPaints[7], mPaints[1], mPaints[1]);
+		
 	}
 	
 	private void drawText(Canvas canvas){
-		int paCo = 1;
 		float x = GameView.width,	y = GameView.height;
 		
 		mPaints[8].setTextSize(GameView.mPortrait? x/7 : y/7);
@@ -264,67 +243,6 @@ public class MainState extends BaseState {
 		mPaints[8].setTextScaleX(1.0f);
 		mPaints[8].setFakeBoldText(false);
 		mPaints[8].setTextSize(GameView.mPortrait? x/13 : y/13);
-		
-		//PLAY
-		x = GameView.width/2;	y = 19*GameView.height/48;
-		mPaints[paCo].setTextScaleX(ts1); 
-		mPaints[paCo].setTextSize(GameView.mPortrait? GameView.width/9 : GameView.height/9);
-		while((mPaints[paCo].measureText(mButStr[0]))+10 >= dbc.getDButton(0).width()){
-			ts1-=0.05f;
-			mPaints[paCo].setTextScaleX(ts1);
-		}
-		canvas.drawText(mButStr[0], x, y, mPaints[paCo]);
-		mPaints[paCo].setTextSize(GameView.mPortrait? GameView.width/14 : GameView.height/14);
-		
-		//TUTO
-		mPaints[paCo].setTextScaleX(ts2);
-		while((mPaints[paCo].measureText(mButStr[1]))+10 >= dbc.getDButton(1).width()){
-			ts2-=0.05f;
-			mPaints[paCo].setTextScaleX(ts2);
-		}
-		canvas.drawText(mButStr[1], x, 26*GameView.height/48, mPaints[paCo]);
-		
-		//OPTIONS
-		mPaints[paCo].setTextScaleX(ts7);
-		while((mPaints[paCo].measureText(mButStr[7]))+10 >= dbc.getDButton(7).width()){
-			ts7-=0.05f;
-			mPaints[paCo].setTextScaleX(ts7);
-		}
-		canvas.drawText(mButStr[7], x, 31*GameView.height/48, mPaints[paCo]);
-		
-		//LEADERBOARD
-		mPaints[paCo].setTextScaleX(ts3);
-		while((mPaints[paCo].measureText(mButStr[2]))+10 >= dbc.getDButton(2).width()){
-			ts3-=0.05f;
-			mPaints[paCo].setTextScaleX(ts3);
-		}
-		canvas.drawText(mButStr[2], x, 35.65f*GameView.height/48, mPaints[paCo]);
-		
-		
-		//MUSIC
-		x = GameView.width/4;	y = 44.2f*GameView.height/48;
-		mPaints[paCo].setTextScaleX(ts4);
-		while((mPaints[paCo].measureText(mButStr[4]))+10 >= dbc.getDButton(4).width()){
-			ts4-=0.05f;
-			mPaints[paCo].setTextScaleX(ts4);
-		}
-		canvas.drawText(mButStr[4], x, 40.2f*GameView.height/48, mPaints[paCo]);
-		
-		//SFX
-		mPaints[paCo].setTextScaleX(ts5);
-		while((mPaints[paCo].measureText(mButStr[5]))+10 >= dbc.getDButton(5).width()){
-			ts5-=0.05f;
-			mPaints[paCo].setTextScaleX(ts5);
-		}
-		canvas.drawText(mButStr[5], x, y, mPaints[paCo]);
-		
-		//ABOUT
-		mPaints[paCo].setTextScaleX(ts6);
-		while((mPaints[paCo].measureText(mButStr[6]))+10 >= dbc.getDButton(6).width()){
-			ts6-=0.05f;
-			mPaints[paCo].setTextScaleX(ts6);
-		}
-		canvas.drawText(mButStr[6], 3*x, y, mPaints[paCo]);
 		
 		//canvas.drawText("DOWN",GameView.width/2,GameView.height,mPaints[8]);
 	}
