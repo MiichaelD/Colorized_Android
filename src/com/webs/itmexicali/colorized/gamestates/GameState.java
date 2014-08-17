@@ -91,9 +91,15 @@ public class GameState extends BaseState {
 	private void registerButtonToColorize(final int i){
 		dbc.setOnActionListener(i, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
+				
+			if(mColorBoard.getCurrentColor() != i ){//only if it's a different color
+				//play sound
+				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+				
 				new Thread(new Runnable(){public void run(){
 					mColorBoard.colorize(i);
 				}}).start();}
+			}
 		});
 	}
 	
@@ -576,6 +582,11 @@ public class GameState extends BaseState {
 					mColorBoard[i][j] = (int)(Math.random()*6);
 		}
 		
+		/** Get the color of the main tile (upper-left corner)*/
+		public int getCurrentColor(){
+			return mColorBoard[0][0];
+		}
+		
 		
 		
 		/** change the color of the blocks neighbor the main block
@@ -588,8 +599,6 @@ public class GameState extends BaseState {
 			
 			isColorizing = true;
 			Log.v("ColorBoard","colorise: "+newColor);
-			
-			GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 			
 			moves++;//count this move
 			

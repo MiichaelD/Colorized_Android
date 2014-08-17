@@ -39,17 +39,13 @@ public class OptionState extends BaseState {
 		
 		options.setOnActionListener(3, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				new Thread(new Runnable(){public void run(){
-					Preferences.getIns().toggleMusic();
-				}}).start();}
-		});
+				Preferences.getIns().toggleMusic();
+		}});
 		
 		options.setOnActionListener(4, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				new Thread(new Runnable(){public void run(){
-					Preferences.getIns().toggleSFX();
-				}}).start();}
-		});
+				Preferences.getIns().toggleSFX();
+		}});
 
 		smallText = new TextPaint();
 		smallText.setColor(Color.WHITE);
@@ -60,6 +56,9 @@ public class OptionState extends BaseState {
 	private void registerButtons2Dificulties(final int i){
 		options.setOnActionListener(i, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
+				//play sound
+				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+				
 				new Thread(new Runnable(){public void run(){
 					Preferences.getIns().setDifficulty(i);
 				}}).start();}
@@ -69,10 +68,35 @@ public class OptionState extends BaseState {
 	@Override
 	public void draw(Canvas canvas, boolean isPortrait) {
 		ms.draw(canvas, isPortrait);
+		
+		int dif = Preferences.getIns().getDifficulty();
+		ms.mPaints[1].setTextSize(GameView.mPortrait?GameView.width/18:GameView.height/18);
+		
 		canvas.drawRoundRect(base, ms.roundness, ms.roundness, ms.mPaints[11]);
 		
-		drawButtons(canvas);
-		drawTexts(canvas);
+		
+		// Difficulty
+		canvas.drawText(GameActivity.instance.getString(R.string.options_dificulty),
+				GameView.width/2, base.top + 2*ms.mPaints[9].getTextSize(),ms.mPaints[9]);
+		//Draw Board Size Buttons
+		options.drawButtonsAndText(0, 5, canvas, ms.roundness, ms.mPaints[8],
+				ms.mPaints[7], ms.mPaints[1], smallText);
+		
+		//paint different button on difficulty selected
+		options.drawButtonsAndText(dif, canvas, ms.roundness, ms.mPaints[1],
+				ms.mPaints[7], smallText, smallText);
+		
+		//if music is on
+		if(Preferences.getIns().playMusic())
+			options.drawButtonsAndText(3, canvas, ms.roundness, ms.mPaints[1],
+					ms.mPaints[7], smallText, smallText);
+				
+		//if SFX is on
+		if(Preferences.getIns().playSFX())
+			options.drawButtonsAndText(4, canvas, ms.roundness, ms.mPaints[1],
+					ms.mPaints[7], smallText, smallText);
+		
+		
 	}
 	
 	/** Draw UI units capable to react to touch events*/
@@ -97,51 +121,7 @@ public class OptionState extends BaseState {
 				break;
 			}
 		}
-	}
-	
-	private void drawTexts(Canvas canvas){
-		DrawButton t;
-		int dif = Preferences.getIns().getDifficulty();
-		ms.mPaints[1].setTextSize(GameView.mPortrait?GameView.width/18:GameView.height/18);
-		// Difficulty
-		canvas.drawText(GameActivity.instance.getString(R.string.options_dificulty),
-				GameView.width/2, base.top + 2*ms.mPaints[9].getTextSize(),ms.mPaints[9]);
-		
-				
-		t = options.getDButton(0);
-		canvas.drawText(GameActivity.instance.getString(R.string.options_easy),
-				t.centerX(), t.centerY()+dy, dif==0?smallText:ms.mPaints[1]);
-		
-		t = options.getDButton(1);
-		canvas.drawText(GameActivity.instance.getString(R.string.options_med),
-				t.centerX(), t.centerY()+dy, dif==1?smallText:ms.mPaints[1]);
-		
-		t = options.getDButton(2);
-		canvas.drawText(GameActivity.instance.getString(R.string.options_hard),
-				t.centerX(), t.centerY()+dy, dif==2?smallText:ms.mPaints[1]);
-		
-		
-		
-		/*
-		//MUSIC
-		x = GameView.width/4;	y = 44.2f*GameView.height/48;
-		mPaints[paCo].setTextScaleX(ts4);
-		while((mPaints[paCo].measureText(mButStr[4]))+10 >= dbc.getDButton(4).width()){
-			ts4-=0.05f;
-			mPaints[paCo].setTextScaleX(ts4);
-		}
-		canvas.drawText(mButStr[4], x, 40.2f*GameView.height/48, mPaints[paCo]);
-		
-		//SFX
-		mPaints[paCo].setTextScaleX(ts5);
-		while((mPaints[paCo].measureText(mButStr[5]))+10 >= dbc.getDButton(5).width()){
-			ts5-=0.05f;
-			mPaints[paCo].setTextScaleX(ts5);
-		}
-		canvas.drawText(mButStr[5], x, y, mPaints[paCo]);
-		*/
-	}
-	
+	}	
 	
 	@Override
 	public void resize(float width, float height) {
@@ -150,20 +130,34 @@ public class OptionState extends BaseState {
 		
 		base = new RectF(width/16,height/8,15*width/16,7*height/8);
 		
-
+		dy = height/48;
+		options.repositionDButton(0, width/4, 12.5f*height/48,3*width/4, 15.5f*height/48); // play
+		options.repositionDButton(1, width/4, 16.5f*height/48,3*width/4, 19.5f*height/48);// tuto
+		options.repositionDButton(2, width/4, 20.5f*height/48,3*width/4, 23.5f*height/48); // leaderboard
+		options.repositionDButton(3, 3*width/16, base.bottom-5*dy,7.5f*width/16, base.bottom-2*dy); // music
+		options.repositionDButton(4, 8.5f*width/16, base.bottom-5*dy,13*width/16, base.bottom-2*dy); //sounds
+		
 		ms.mPaints[9].setTextAlign(Align.CENTER);
 		smallText.setTextSize(GameView.mPortrait? width/18 : height/18);
 		ms.mPaints[1].setTextSize(GameView.mPortrait?width/18:height/18);
 		smallText.setTextAlign(Align.CENTER);
 		dy = smallText.getTextSize()/3;
 		
-		options.repositionDButton(0, width/4, 12.5f*height/48,3*width/4, 15.5f*height/48); // play
-		options.repositionDButton(1, width/4, 16.5f*height/48,3*width/4, 19.5f*height/48);// tuto
-		options.repositionDButton(2, width/4, 20.5f*height/48,3*width/4, 23.5f*height/48); // leaderboard
-		//options.repositionDButton(3, 5*width/8, 400,7*width/8, 490);				// achievements
 	}
 	
+	
+	@Override
+	public void onPushed(){
+		
+		options.setText(0, GameActivity.instance.getString(R.string.options_easy));
+		options.setText(1, GameActivity.instance.getString(R.string.options_med));
+		options.setText(2, GameActivity.instance.getString(R.string.options_hard));
 
+		options.setText(3, GameActivity.instance.getString(R.string.music_button));
+		options.setText(4, GameActivity.instance.getString(R.string.sfx_button));
+	}
+
+	@Override
 	public void onPopped(){
 		ms = null;
 	}

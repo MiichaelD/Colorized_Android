@@ -38,6 +38,9 @@ public class MainState extends BaseState {
 		//play button
 		dbc.setOnActionListener(0, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
+				//play sound
+				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+				
 				new Thread(new Runnable(){public void run(){
 					pushGame(false);
 				}}).start();
@@ -46,6 +49,9 @@ public class MainState extends BaseState {
 		//Tutorial button
 		dbc.setOnActionListener(1, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
+				//play sound
+				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+				
 				new Thread(new Runnable(){public void run(){
 					pushGame(true);
 				}}).start();
@@ -54,14 +60,20 @@ public class MainState extends BaseState {
 		//LEADERboards
 		dbc.setOnActionListener(2, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
+				//play sound
+				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+				
 				new Thread(new Runnable(){public void run(){
 					StateMachine.getIns().pushState(BaseState.statesIDs.LEADER);
 				}}).start();}
 		});
 		
-		//ACHIEVEMENTS
+		//Leaderboards
 		dbc.setOnActionListener(3, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
+				//play sound
+				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+				
 				new Thread(new Runnable(){public void run(){
 					//TODO Achievements
 					StateMachine.getIns().pushState(BaseState.statesIDs.LEADER);
@@ -71,22 +83,21 @@ public class MainState extends BaseState {
 		//MUSIC button
 		dbc.setOnActionListener(4, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				new Thread(new Runnable(){public void run(){
-					Preferences.getIns().toggleMusic();
-				}}).start();}
-		});
+				Preferences.getIns().toggleMusic();
+		}});
 		
 		//SFX button
 		dbc.setOnActionListener(5, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				new Thread(new Runnable(){public void run(){
-					Preferences.getIns().toggleSFX();
-				}}).start();}
-		});
+				Preferences.getIns().toggleSFX();
+		}});
 		
 		//About	
 		dbc.setOnActionListener(6, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
+				//play sound
+				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+				
 				new Thread(new Runnable(){public void run(){
 					StateMachine.getIns().pushState(BaseState.statesIDs.ABOUT);
 				}}).start();}
@@ -95,6 +106,9 @@ public class MainState extends BaseState {
 		//Options button
 		dbc.setOnActionListener(7, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
+				//play sound
+				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+				
 				new Thread(new Runnable(){public void run(){
 					StateMachine.getIns().pushState(BaseState.statesIDs.OPTION);
 				}}).start();}

@@ -89,11 +89,11 @@ public class DrawButtonContainer {
 	
 	/**Set a text to DrawButton Specified by this index
 	 * @param index the button's index, if its a greater than this containers capacity
-	 * or less than zero, null will be returned
-	 * @return a reference to the specified index */
-	public DrawButton setText(int index, String text){
+	 * or less than zero, NullPointerException will be thrown.
+	 * @param text text to be assign to button with given index */
+	public void setText(int index, String text){
 		if(index < num_buttons && index >= 0)
-			return buttons[index];
+			buttons[index].setText(text);
 		else 
 			throw new NullPointerException("There is no draw button with index:"+index+" to return");
 	}
@@ -209,6 +209,19 @@ public class DrawButtonContainer {
 		for(int i =st ; i< end; i++){
 			buttons[i].draw(c, r, rc, pc, trc, tpc);
 		}
+	}
+	
+	/** Paint selected {@link DrawButton} with their texts on given canvas also with the text centered in the button
+	 * If the text is too wide, this method will scale it (only the X length) 
+	 * @param st selected button's index
+	 * @param c Canvas to draw on
+	 * @param r the roundness of the button
+	 * @param rc Paint containing the color of the button on release mode
+	 * @param pc Paint containing the color of the button on pressed mode
+	 * @param trc Paint containing the size and color to draw on the text on release mode
+	 * @param tpc Paint containing the size and color to draw on the text on pressed mode*/
+	public void drawButtonsAndText(int st, Canvas c, float r, Paint rc, Paint pc, TextPaint trc, TextPaint tpc ){
+		buttons[st].draw(c, r, rc, pc, trc, tpc);
 	}
 	
 	

@@ -153,6 +153,9 @@ public class TutoState extends BaseState{
 		if(action == MotionEvent.ACTION_UP ||
 			action == MotionEvent.ACTION_POINTER_UP ||
 			action == MotionEvent.ACTION_CANCEL){
+			//play sound
+			GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+			
 			switch(mInnerState){
 			case INIT: mInnerState = innerStates.FIRST; break;
 			case FIRST: mInnerState = innerStates.SEC; break;

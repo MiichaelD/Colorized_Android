@@ -65,7 +65,11 @@ public class DrawButton  extends RectF{
 	 * @param relCol Paint containing the color of the button on release mode
 	 * @param presCol Paint containing the color of the button on pressed mode*/
 	public void draw(Canvas c, float round, Paint relCol, Paint presCol ){
-		c.drawRoundRect(this, round, round, isPressed?presCol:relCol);
+		draw(c,round,relCol);
+		
+		//draw on TOP of release button (in case it has some transparency)
+		if(isPressed)
+			draw(c,round,presCol);
 	}
 	
 	/** Draw {@link DrawButton} on given canvas also with the text centered in the button
@@ -76,18 +80,20 @@ public class DrawButton  extends RectF{
 	 * @param presCol Paint containing the color of the button on pressed mode
 	 * @param textCol Paint containing the size and color to draw on the text*/
 	public void draw(Canvas c, float round, Paint relCol, Paint presCol, TextPaint textCol){
-		c.drawRoundRect(this, round, round, isPressed?presCol:relCol);
+		draw(c,round,relCol,presCol);
 		
 		Paint.Align ta = textCol.getTextAlign();
-		textCol.setTextAlign(Align.CENTER);
-		textCol.setTextScaleX(mTextXfact);
-		while((textCol.measureText(mText))+10 >= width()){
-			mTextXfact-=0.05f;
+		if(mText!= null){
+			textCol.setTextAlign(Align.CENTER);
 			textCol.setTextScaleX(mTextXfact);
+			while((textCol.measureText(mText))+10 >= width()){
+				mTextXfact-=0.05f;
+				textCol.setTextScaleX(mTextXfact);
+			}
+			c.drawText(mText, centerX(), centerY()+textCol.getTextSize()/3, textCol);
+			textCol.setTextScaleX(1.0f);
+			textCol.setTextAlign(ta);
 		}
-		c.drawText(mText, centerX(), centerY()+textCol.getTextSize()/3, textCol);
-		textCol.setTextScaleX(1.0f);
-		textCol.setTextAlign(ta);
 	}
 	
 	/** Draw {@link DrawButton} on given canvas also with the text centered in the button
