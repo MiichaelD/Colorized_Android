@@ -166,7 +166,7 @@ public class Preferences {
 	 * @return toReturn int array containing number of games finished
 	 * at index 0 and IF AND ONLY IF parameter win is true
 	 * at index 1 the number of games won will be returned */
-	public int[] updateGameFinished(Boolean win){
+	public int[] updateGameFinished(int boardSize, int game_mode, Boolean win){
 		int[] toReturn = new int[2]; 
 		String str = mContext.getString(R.string.key_times_finished); // store the key string
 		toReturn[0] = sp.getInt(str, 0)+1;

@@ -5,10 +5,10 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.example.games.basegameutils.BaseGameActivity;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.media.MediaPlayer;
@@ -18,7 +18,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-public class GameActivity extends Activity {
+public class GameActivity extends BaseGameActivity {
 	
 	//AdMob Advertising
     /** The view to show the ad. */
@@ -297,5 +297,17 @@ public class GameActivity extends Activity {
 			musicPlayer=MediaPlayer.create(this, R.raw.music);
 			musicPlayer.setLooping(true);
 		}
+	}
+
+	@Override
+	public void onSignInFailed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSignInSucceeded() {
+		// TODO Auto-generated method stub
+		
 	}
 }

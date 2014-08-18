@@ -82,7 +82,7 @@ public class GameState extends BaseState {
 		{
 			Log.v("GameState","created New Board");
 			createNewBoard(Preferences.getIns().getBoardSize());
-			mov_lim = Const.mov_limit[Preferences.getIns().getDifficulty()];
+			setMoveLimit();			
 		}
 		
 	}
@@ -137,7 +137,7 @@ public class GameState extends BaseState {
 			
 			if(mColorBoard == null){
 				createNewBoard(Preferences.getIns().getBoardSize());
-				mov_lim = Const.mov_limit[Preferences.getIns().getDifficulty()];
+				setMoveLimit();
 			}
 
 		
@@ -381,12 +381,12 @@ public class GameState extends BaseState {
 		GameActivity.instance.playMusic(false);
 		
 		//update games finished count
-		int[] results = Preferences.getIns().updateGameFinished( win);
+		int[] results = Preferences.getIns().updateGameFinished(mColorBoard.blocksPerSide,
+				mov_lim < 0? Const.CASUAL:Const.STEP, win);
 		
 		if(results[0]%2 == 0)//each 2 games, show Interstitial
 			GameActivity.instance.displayInterstitial();
-		
-		
+				
 		
 		GameActivity.instance.runOnUiThread(new Runnable(){
 			public void run(){
@@ -426,13 +426,22 @@ public class GameState extends BaseState {
 		});
 	}
 	
+	/** Set the move limit corresponding to the board size or set it to negative if the game
+	 * mode is CASUAL_MODE */
+	private void setMoveLimit(){
+		if(Preferences.getIns().getGameMode() == Const.CASUAL)
+			mov_lim = -1;
+		else 
+			mov_lim = Const.mov_limit[Preferences.getIns().getDifficulty()];
+	}
+	
 	
 	
 /********************************* BOARD METHODS *********************************/
 	
 	/** Create a new random board*/
 	public void createNewBoard(int blocks){
-		mov_lim = Const.mov_limit[Preferences.getIns().getDifficulty()];
+		setMoveLimit();
 		if(blocks < 0)//if blocks is negative, this will have the same blocks #
 			mColorBoard.startRandomColorBoard();
 		else
@@ -462,7 +471,7 @@ public class GameState extends BaseState {
 			if(scanner != null)
 				scanner.close();
 			
-			mov_lim = Const.mov_limit[Preferences.getIns().getDifficulty()];
+			setMoveLimit();
 			
 			return false;
 		}
