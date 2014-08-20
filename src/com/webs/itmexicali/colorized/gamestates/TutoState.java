@@ -2,8 +2,9 @@ package com.webs.itmexicali.colorized.gamestates;
 
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
-import com.webs.itmexicali.colorized.Preferences;
+import com.webs.itmexicali.colorized.Prefs;
 import com.webs.itmexicali.colorized.R;
+import com.webs.itmexicali.colorized.util.Const;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
@@ -46,7 +47,7 @@ public class TutoState extends BaseState{
 		pGame.resize(width, height);
 		
 		mRectFs = new RectF[3];
-		float boardPixels = pGame.mRectFs[0].width()/Preferences.getIns().getBoardSize();
+		float boardPixels = pGame.mRectFs[0].width()/Const.board_sizes[Prefs.getIns().getDifficulty()];
 		mRectFs[0] = new RectF(pGame.mRectFs[0].left, pGame.mRectFs[0].top, 
 				pGame.mRectFs[0].left + boardPixels, pGame.mRectFs[0].top + boardPixels);
 	}
@@ -144,7 +145,7 @@ public class TutoState extends BaseState{
 
 	private void saveTutorialFinish(){
 		//Log.i(TutoState.class.getSimpleName(),"tutorial FInished");
-		Preferences.getIns().setTutorialCompleted(true);
+		Prefs.getIns().setTutorialCompleted(true);
 	}
 
 	@Override

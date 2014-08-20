@@ -5,10 +5,13 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.example.games.basegameutils.BaseGameActivity;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
+import com.webs.itmexicali.colorized.util.Const;
+
+import ProtectedInt.ProtectedInt;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.media.MediaPlayer;
@@ -18,7 +21,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-public class GameActivity extends BaseGameActivity {
+public class GameActivity extends Activity {
 	
 	//AdMob Advertising
     /** The view to show the ad. */
@@ -44,8 +47,12 @@ public class GameActivity extends BaseGameActivity {
 		//run on FullScreen with no Action and Navigation Bars
 		Const.setFullScreen(this);
 		
+		//Setup ProtectedInt once
+		if(!ProtectedInt.isSetup())
+			ProtectedInt.setup();
+		
 		//Init Preferences once 
-		Preferences.initPreferences(this);
+		Prefs.initPreferences(this);
 		
 		//Init StateMachine
 		if(!StateMachine.isSetUp())
@@ -250,7 +257,7 @@ public class GameActivity extends BaseGameActivity {
 	 * @param SoundType to select type of sound to play*/ 
 	public void playSound(SoundType s){
 		//if we have an instance of the player and the user wants to play sounds
-		if(Preferences.getIns().playSFX()){
+		if(Prefs.getIns().playSFX()){
 			if(previousSound != s || soundPlayer == null){
 				previousSound = s;
 				if(soundPlayer != null){
@@ -282,7 +289,7 @@ public class GameActivity extends BaseGameActivity {
 			startMusicPlayer();
 		
 		//if we have an instance of the player and the user wants to play sounds
-		if (play && Preferences.getIns().playMusic()){
+		if (play && Prefs.getIns().playMusic()){
 			if(!musicPlayer.isPlaying())
 				musicPlayer.start();
 		}else
@@ -299,15 +306,4 @@ public class GameActivity extends BaseGameActivity {
 		}
 	}
 
-	@Override
-	public void onSignInFailed() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onSignInSucceeded() {
-		// TODO Auto-generated method stub
-		
-	}
 }

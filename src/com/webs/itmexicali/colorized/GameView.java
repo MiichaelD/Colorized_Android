@@ -2,6 +2,7 @@ package com.webs.itmexicali.colorized;
 
 import com.webs.itmexicali.colorized.gamestates.BaseState;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
+import com.webs.itmexicali.colorized.util.Const;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

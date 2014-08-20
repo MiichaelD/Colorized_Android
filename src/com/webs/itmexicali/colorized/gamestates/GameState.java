@@ -3,14 +3,16 @@ package com.webs.itmexicali.colorized.gamestates;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import com.webs.itmexicali.colorized.Const;
+import ProtectedInt.ProtectedInt;
+
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
-import com.webs.itmexicali.colorized.Preferences;
+import com.webs.itmexicali.colorized.Prefs;
 import com.webs.itmexicali.colorized.R;
 import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
+import com.webs.itmexicali.colorized.util.Const;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -81,7 +83,7 @@ public class GameState extends BaseState {
 		//if(mColorBoard == null)
 		{
 			Log.v("GameState","created New Board");
-			createNewBoard(Preferences.getIns().getBoardSize());
+			createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
 			setMoveLimit();			
 		}
 		
@@ -120,23 +122,23 @@ public class GameState extends BaseState {
 	private void checkTutoAndSavedGame(){
 		//new Thread(new Runnable(){public void run(){
 			//check if the tutorial has been completed
-			if(Preferences.getIns().isTutorialCompleted()){
+			if(Prefs.getIns().isTutorialCompleted()){
 				//if there is a gamestate saved, load it again
-				if(Preferences.getIns().isGameSaved()){
+				if(Prefs.getIns().isGameSaved()){
 					//parse the gamestate
-					if(parseBoardFromString(Preferences.getIns().getSavedGame())){
+					if(parseBoardFromString(Prefs.getIns().getSavedGame())){
 						Log.v("GameState","Finished parsing");
 						showSavedGameDialog();
 					}
 				}
 			}
 			else{
-				createNewBoard(Preferences.getIns().getBoardSize());
+				createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
 				StateMachine.getIns().pushState(BaseState.statesIDs.TUTO);			
 			}
 			
 			if(mColorBoard == null){
-				createNewBoard(Preferences.getIns().getBoardSize());
+				createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
 				setMoveLimit();
 			}
 
@@ -301,7 +303,7 @@ public class GameState extends BaseState {
 	private void saveProgress(){
 		if(getMoves() > 0 && !isGameOver()){
 			// the game was started, lets save it 
-			Preferences.getIns().saveGame(true,getBoardAsString());
+			Prefs.getIns().saveGame(true,getBoardAsString());
 		}
 	}
 	
@@ -314,7 +316,7 @@ public class GameState extends BaseState {
 			return;
 		
 		//remove the saved game from the preferences
-	    Preferences.getIns().saveGame(false, null);
+	    Prefs.getIns().saveGame(false, null);
 	    GameActivity.instance.runOnUiThread(new Runnable(){
 			public void run(){
 				//Use the Builder class for convenient dialog construction
@@ -327,7 +329,7 @@ public class GameState extends BaseState {
 				})
 				.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
-		        	   createNewBoard(Preferences.getIns().getBoardSize());
+		        	   createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
 		        	   Const.setFullScreen(GameActivity.instance);
 		           }
 				})
@@ -353,7 +355,7 @@ public class GameState extends BaseState {
 				.setMessage(R.string.restart_game_confirmation)
 				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
-		        	   createNewBoard(Preferences.getIns().getBoardSize());        	   
+		        	   createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);        	   
 		        	   Const.setFullScreen(GameActivity.instance);   
 		           }
 				})
@@ -381,7 +383,7 @@ public class GameState extends BaseState {
 		GameActivity.instance.playMusic(false);
 		
 		//update games finished count
-		int[] results = Preferences.getIns().updateGameFinished(mColorBoard.blocksPerSide,
+		int[] results = Prefs.getIns().updateGameFinished(mColorBoard.blocksPerSide,
 				mov_lim < 0? Const.CASUAL:Const.STEP, win);
 		
 		if(results[0]%2 == 0)//each 2 games, show Interstitial
@@ -398,7 +400,7 @@ public class GameState extends BaseState {
 				.setMessage(str)
 				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
-		        	   createNewBoard(Preferences.getIns().getBoardSize());
+		        	   createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
 		        	   Const.setFullScreen(GameActivity.instance);
 		        	   GameActivity.instance.playMusic(true);
 		           }
@@ -406,7 +408,7 @@ public class GameState extends BaseState {
 				.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
 		        	   Const.setFullScreen(GameActivity.instance);
-		        	   createNewBoard(Preferences.getIns().getBoardSize());
+		        	   createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
 		        	   StateMachine.getIns().popState();
 		        	   GameActivity.instance.playMusic(true);
 		           }
@@ -414,7 +416,7 @@ public class GameState extends BaseState {
 				.setOnCancelListener(new DialogInterface.OnCancelListener() {
 					@Override
 					public void onCancel(DialogInterface arg0) {
-						createNewBoard(Preferences.getIns().getBoardSize());
+						createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
 			        	Const.setFullScreen(GameActivity.instance);
 			        	StateMachine.getIns().popState();
 			        	GameActivity.instance.playMusic(true);
@@ -429,10 +431,10 @@ public class GameState extends BaseState {
 	/** Set the move limit corresponding to the board size or set it to negative if the game
 	 * mode is CASUAL_MODE */
 	private void setMoveLimit(){
-		if(Preferences.getIns().getGameMode() == Const.CASUAL)
+		if(Prefs.getIns().getGameMode() == Const.CASUAL)
 			mov_lim = -1;
 		else 
-			mov_lim = Const.mov_limit[Preferences.getIns().getDifficulty()];
+			mov_lim = Const.mov_limit[Prefs.getIns().getDifficulty()];
 	}
 	
 	
@@ -543,7 +545,7 @@ public class GameState extends BaseState {
 		private int blocksPerSide;
 		
 		/** Actual movements counter*/
-		private int moves;
+		private ProtectedInt moves = new ProtectedInt(0);
 		
 		/** handle concurrent access to colorize method, not using blocking synchronized modifier*/
 		private boolean isColorizing = false;
@@ -566,7 +568,7 @@ public class GameState extends BaseState {
 				startRandomColorBoard(blocks);
 				return;
 			}
-			this.moves = moves;
+			this.moves.set(moves);
 			blocksPerSide = blocks;
 			mColorBoard = mat;
 		}
@@ -576,7 +578,7 @@ public class GameState extends BaseState {
 		 * @param blocks the new number of blocks per side of the matrix*/
 		public void startRandomColorBoard(int blocks){
 			blocksPerSide = blocks;
-			moves = 0;
+			this.moves.set(0);
 			mColorBoard = new int[blocks][blocks];
 			for(int i=0; i<blocks; i++)
 				for(int j=0; j<blocks; j++)
@@ -585,7 +587,7 @@ public class GameState extends BaseState {
 		
 		/** Start a new random matrix and reset moves counter*/
 		public void startRandomColorBoard(){
-			moves = 0;
+			this.moves.set(0);
 			for(int i=0; i<blocksPerSide; i++)
 				for(int j=0; j<blocksPerSide; j++)
 					mColorBoard[i][j] = (int)(Math.random()*6);
@@ -594,8 +596,7 @@ public class GameState extends BaseState {
 		/** Get the color of the main tile (upper-left corner)*/
 		public int getCurrentColor(){
 			return mColorBoard[0][0];
-		}
-		
+		}	
 		
 		
 		/** change the color of the blocks neighbor the main block
@@ -609,7 +610,7 @@ public class GameState extends BaseState {
 			isColorizing = true;
 			Log.v("ColorBoard","colorise: "+newColor);
 			
-			moves++;//count this move
+			this.moves.increment();//count this move
 			
 			//check the Neighbor block
 			//checkNeighborBlocks(1, 0, newColor);
@@ -691,7 +692,7 @@ public class GameState extends BaseState {
 		
 		/** The amount of moves this game has processed*/
 		public int getMoves(){
-			return moves;
+			return this.moves.get();
 		}
 		
 		/** draw the board within the rect given*/
@@ -721,7 +722,7 @@ public class GameState extends BaseState {
 			StringBuilder sb = new StringBuilder();
 			sb.append(blocksPerSide);
 			sb.append(" ");
-			sb.append(moves);
+			sb.append(moves.get());
 			for(int i=0;i<blocksPerSide;i++)
 				for(int k=0;k<blocksPerSide;k++)
 					sb.append(" ").append(mColorBoard[i][k]);

@@ -2,7 +2,7 @@ package com.webs.itmexicali.colorized.gamestates;
 
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
-import com.webs.itmexicali.colorized.Preferences;
+import com.webs.itmexicali.colorized.Prefs;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.R;
@@ -285,7 +285,7 @@ public class MainState extends BaseState {
 	 * already completed once*/
 	private void pushGame(boolean tuto){
 		if(tuto)
-			Preferences.getIns().setTutorialCompleted(false);
+			Prefs.getIns().setTutorialCompleted(false);
 		StateMachine.getIns().pushState(BaseState.statesIDs.GAME);
 	}
 }
