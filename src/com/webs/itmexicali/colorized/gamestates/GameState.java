@@ -397,6 +397,7 @@ public class GameState extends BaseState {
 							GameActivity.instance.getString(R.string.game_over_lose);
 				//Use the Builder class for convenient dialog construction
 				new AlertDialog.Builder(GameActivity.instance)
+				.setCancelable(false)
 				.setMessage(str)
 				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
@@ -413,6 +414,7 @@ public class GameState extends BaseState {
 		        	   GameActivity.instance.playMusic(true);
 		           }
 				})
+				/*
 				.setOnCancelListener(new DialogInterface.OnCancelListener() {
 					@Override
 					public void onCancel(DialogInterface arg0) {
@@ -422,6 +424,7 @@ public class GameState extends BaseState {
 			        	GameActivity.instance.playMusic(true);
 					}
 				})
+				*/
 				.create()
 				.show();
 			}

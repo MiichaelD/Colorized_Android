@@ -68,7 +68,7 @@ public class Prefs {
 	 * @param id resource id containing the key string
 	 * @param Default default value in case there is nothing stored with given key*/
 	private ProtectedInt getEncryptedInt(int id, int Default){
-		return new ProtectedInt(getEncryptedStringAsInt(mContext.getString(id),Default));
+		return new ProtectedInt(getEncryptedStringAsInt(id,mContext.getString(id),Default));
 	}
 	
 	public int getGameMode(){
@@ -163,7 +163,7 @@ public class Prefs {
 		if(!gameState.contains(" ")){
 			gameState = new String(MCrypt.getIns().decrypt(Const.HexStringToByte(gameState)));
 			System.out.println("gameState decrypted: "+gameState);
-			if(gameState.startsWith(Const.AES_ALG)){
+			if(gameState.startsWith(MCrypt.AES_PREF)){
 				gameState = gameState.substring(4);
 				System.out.println("gameState: "+gameState);
 			}
@@ -179,7 +179,7 @@ public class Prefs {
 	public void saveGame(boolean save, String gameState){
 		if(save){
 			//Encrypt the gameState
-			gameState = Const.byteArrayToHexString(MCrypt.getIns().encrypt(Const.AES_ALG+gameState));
+			gameState = Const.byteArrayToHexString(MCrypt.getIns().encrypt(MCrypt.AES_PREF+gameState));
 			spEdit.putBoolean(mContext.getString(R.string.key_is_game_saved),true);
 		    spEdit.putString(mContext.getString(R.string.key_board_saved),gameState);
 		}
@@ -192,28 +192,56 @@ public class Prefs {
 	
 	/** Get the encrypted String as Int, if the value is stored as int, return it,
 	 * if it is saved as String, retrieve it, decrypt it and return it
-	 * @param aux a string containing the key name to fetch from the SharedPreferences
+	 * @param id is the Resource id to access the key
+	 * @param aux a string containing the key name to fetch from the SharedPreferences,
+	 * if it's null, this method will get the string from the context
 	 * @param Default default value if there is no value paired to given key*/
-	private int getEncryptedStringAsInt(String aux, int Default){
+	private int getEncryptedStringAsInt(int id, String aux, int Default){
+		if(aux == null){
+			aux = mContext.getString(id);
+		}
 		int toReturn = Default;
 		try{
 			//try to get it as a encrypted string
 			aux = sp.getString(aux, null);
 			if(aux != null){			
-				//decrypt the string and build a new one from the gotten bytes
-				aux = new String (MCrypt.getIns().decrypt(aux));
 				
-				if(aux.startsWith(Const.AES_ALG)){
+				/*using different secret keys for different strings elevates the difficulty hacking the
+				 * game, if every string were using the same key, copying one string having the value from 
+				 * games_finished for example, and copying it to games_won string, could have changed the value
+				 * and put both with the same value. Now doing that, will just corrupt the replaced value and
+				 * reset it to 0 */
+				switch(id){
+				case R.string.key_times_won:
+					MCrypt.getIns().setSecretKeyIndex(MCrypt.WON_GAM_IND);
+					break;
+				case R.string.key_times_finished:
+					MCrypt.getIns().setSecretKeyIndex(MCrypt.FIN_GAM_IND);
+					break;
+				
+				}
+				//decrypt the string and build a new one from the gotten bytes
+				aux = new String (MCrypt.getIns().decrypt(Const.HexStringToByte(aux)));
+				
+				//restore to default secret key
+				MCrypt.getIns().resetSecretKeyIndex();
+				
+				if(aux.startsWith(MCrypt.AES_PREF)){
 					aux = aux.substring(4);
 					toReturn = Integer.parseInt(aux);
 				}
+				//TODO if it doesn't start with Algorithm prefix, it is not
+				//a VALID VALUE and should be treated as corrupted
 			}
 			
 		}catch(ClassCastException cce){
 			//if it is storead as int, get it as int
 			toReturn = sp.getInt(aux, Default);
 		}catch(NullPointerException npe){
-			
+			//given if used different SecretKey for saving and for reading
+		}catch(NumberFormatException nfe){
+			//thrown if we used the correct secretkey, but the value stored is not int
+			nfe.printStackTrace();
 		}
 		return toReturn;
 	}
@@ -226,25 +254,30 @@ public class Prefs {
 	public int[] updateGameFinished(int boardSize, int game_mode, Boolean win){
 		int[] toReturn = new int[2]; 
 		
-		String key = mContext.getString(R.string.key_times_finished); // store the key string
-		toReturn[0] = getEncryptedStringAsInt(key,0);
+		String key = mContext.getString(R.string.key_times_finished); // get the key string
+		toReturn[0] = getEncryptedStringAsInt(R.string.key_times_finished,key,0);
 		
 		toReturn[0]++;//increment the finished games counter
 		spEdit.remove(key);//TODO remove this on next version (7+) or when everyone is updated over 6
-		spEdit.putString(key, Const.byteArrayToHexString(MCrypt.getIns().encrypt(Integer.toString(toReturn[0]))));
+		MCrypt.getIns().setSecretKeyIndex(MCrypt.FIN_GAM_IND);
+		String encrypted = Const.byteArrayToHexString(MCrypt.getIns().encrypt(MCrypt.AES_PREF+toReturn[0]));
+		spEdit.putString(key, encrypted);
 		gFinished.set(toReturn[0]);
 		
 		if(win){//if won, update wins count
 			
 			key = mContext.getString(R.string.key_times_won);// store the key string
-			toReturn[1] =  getEncryptedStringAsInt(key,0);
+			toReturn[1] =  getEncryptedStringAsInt(R.string.key_times_won,key,0);
 			
 			toReturn[1]++;//increment the won games counter
 			spEdit.remove(key);//TODO remove this on next version (7+) or when everyone is updated over 6s
-			spEdit.putString(key, Const.byteArrayToHexString(MCrypt.getIns().encrypt(Integer.toString(toReturn[1]))));
+			MCrypt.getIns().setSecretKeyIndex(MCrypt.WON_GAM_IND);
+			encrypted = Const.byteArrayToHexString(MCrypt.getIns().encrypt(MCrypt.AES_PREF+toReturn[1]));
+			spEdit.putString(key, encrypted);
 			gWon.set(toReturn[1]);
 		}
 		spEdit.commit();
+		MCrypt.getIns().resetSecretKeyIndex();
 		return toReturn;
 	}
 	
