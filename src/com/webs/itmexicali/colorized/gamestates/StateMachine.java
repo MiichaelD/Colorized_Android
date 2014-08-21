@@ -87,6 +87,7 @@ public class StateMachine {
 	
 	/** After validating that there is no state with same ID in the list, push it in the list*/
 	private void pushAtEnd(BaseState bs){
+		//let the previous state that it has lost focus
 		if(pStateList.size()>1)
 			pStateList.getLast().onFocusLost();
 		
@@ -95,7 +96,9 @@ public class StateMachine {
 		bs.onFocus();
 	}
 	
-	/** check if there the same state already on the lists */
+	/** check if there the same state already on the lists
+	 * @param id state id to be checked
+	 * @return true if the state is in the list */
 	public boolean checkStateIsInList(BaseState.statesIDs id){
 		Iterator<BaseState> it = pStateList.iterator();
 		BaseState bs = null;
@@ -112,11 +115,29 @@ public class StateMachine {
 	public boolean popState(){
 		if(pStateList.isEmpty())
 			return false;
-		pStateList.removeLast().onPopped();
-		pStateList.getLast().onFocus();
+		BaseState bs = pStateList.removeLast();
+		bs.onFocusLost();
+		bs.onPopped();
+				
+		if(pStateList.size()>0)
+			pStateList.getLast().onFocus();
 		return true;
 	}
 	
+	/** Get back in the stack to given state if it exists*/
+	public void getBackToState(BaseState.statesIDs id){
+		if(!checkStateIsInList(id))
+			throw new NoSuchElementException("Given id is not in the list");
+		
+		while(!pStateList.isEmpty()){
+			if(pStateList.getLast().mID == id)
+				return;
+			
+			//remove last state, calling the callback methods
+			popState();
+		}
+		
+	}
 	
 	/** Remove a state by it's ID if contained
 	 * NOTE: use carefully; Why would you want to remove this state?*/
@@ -127,10 +148,15 @@ public class StateMachine {
 		while(it.hasNext()){
 			aux = it.next();
 			if(aux.mID == id){
-				aux.onPopped();
-				if(aux == pStateList.getLast() && (aux=pStateList.getBeforeLast()) != null)
-					aux.onFocus();
-				it.remove();
+				//if it is the last state let it know it lost focus
+				if(aux == pStateList.getLast()){
+					//remove last state, calling the callback methods
+					popState();
+				}else{
+					//let it know we are taking it off from list
+					aux.onPopped();
+					it.remove();
+				}
 				return;
 			}
 		}

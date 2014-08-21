@@ -25,7 +25,7 @@ import android.text.TextPaint;
 import android.util.Log;
 import android.view.MotionEvent;
 
-public class GameState extends BaseState {
+public class GameState extends BaseState implements GameBoardListener{
 	
 	//UI components to be used to Draw text and shapes
 	public TextPaint	mPaints[];
@@ -47,13 +47,11 @@ public class GameState extends BaseState {
 	
 	GameState(statesIDs id){
 		super(id);
-		Log.v("GameState","Constructor");
+		//Log.v("GameState","Constructor");
 			
 		mRectFs = new RectF[3];
 		mPaints = ((MainState)StateMachine.getIns().getFirstState()).mPaints;
 		mBitmaps = new Bitmap[3];
-		
-		
 		dbc = new DrawButtonContainer(8,true);
 		
 		for(int i =0;i<8;i++)
@@ -64,7 +62,7 @@ public class GameState extends BaseState {
 				new Thread(new Runnable(){public void run(){
 					GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 					//OpenSettings;
-					StateMachine.getIns().pushState(BaseState.statesIDs.TUTO);
+					StateMachine.getIns().pushState(BaseState.statesIDs.OPTION);
 				}}).start();}
 		});
 		
@@ -79,12 +77,11 @@ public class GameState extends BaseState {
 		formated_moves_str = GameActivity.instance.getString(R.string.moves_txt);
 		formated_moves_str_casual = formated_moves_str.substring(0,formated_moves_str.length()-5);
 		
-		//create board to prevent nullpointerexception
+		//create board to prevent NullPointerException
 		//if(mColorBoard == null)
 		{
-			Log.v("GameState","created New Board");
-			createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
-			setMoveLimit();			
+			//Log.v("GameState","created New Board");
+			restartBoard(true);			
 		}
 		
 	}
@@ -93,8 +90,8 @@ public class GameState extends BaseState {
 	private void registerButtonToColorize(final int i){
 		dbc.setOnActionListener(i, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				
-			if(mColorBoard.getCurrentColor() != i ){//only if it's a different color
+			if(mColorBoard.getCurrentColor() != i  &&//only if it's a different color
+					(getMoves() < mov_lim || mov_lim < 0) ){// and game has not finished
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
@@ -127,7 +124,7 @@ public class GameState extends BaseState {
 				if(Prefs.getIns().isGameSaved()){
 					//parse the gamestate
 					if(parseBoardFromString(Prefs.getIns().getSavedGame())){
-						Log.v("GameState","Finished parsing");
+						Log.d("GameState","Finished parsing");
 						showSavedGameDialog();
 					}
 				}
@@ -146,10 +143,8 @@ public class GameState extends BaseState {
 		//}}).start();
 	}
 	
-	
-	@Override
 	public void resize(float width, float height) {
-		Log.v("GameState","resize(f,f)");
+		//Log.i("GameState","resize(f,f)");
 		StateMachine.getIns().getFirstState().resize(width, height);
 		reloadByResize();		
 		roundness = height/48;
@@ -165,8 +160,6 @@ public class GameState extends BaseState {
 		
 		mRectFs[0] = new RectF(8*width-boardWidth/2, 8*height-boardWidth/2,
 				8*width+boardWidth/2, 8*height+boardWidth/2);
-		
-		
 		
 		mRectFs[1] = new RectF(0, 8*height+boardWidth/2+   remainHeight,
 				  GameView.width, 8*height+boardWidth/2+ 3*remainHeight);
@@ -212,8 +205,8 @@ public class GameState extends BaseState {
 		
 		//Color Div
 		float roundness = GameView.height/48;
-		canvas.drawRect(mRectFs[0].left-10, mRectFs[0].top-10, mRectFs[0].right+10, mRectFs[0].bottom+10, mPaints[6]);
-		canvas.drawRoundRect(mRectFs[1], roundness, roundness, mPaints[6]);
+		canvas.drawRect(mRectFs[0].left-20, mRectFs[0].top-20, mRectFs[0].right+20, mRectFs[0].bottom+20, mPaints[11]);
+		canvas.drawRoundRect(mRectFs[1], roundness, roundness, mPaints[11]);
 		
 		//canvas.save(); dg = (dg+1)%360;
 		//canvas.rotate(dg, mRectFs[0].left+mRectFs[0].width()/2, mRectFs[0].top+mRectFs[0].height()/2);
@@ -223,9 +216,10 @@ public class GameState extends BaseState {
 		drawText(canvas);
 		
 		if ( mBitmaps != null ){
+			canvas.drawRect(dbc.getDButton(6), mPaints[11]);
+			canvas.drawRect(dbc.getDButton(7), mPaints[11]);
 			canvas.drawBitmap(mBitmaps[0], GameView.width/16, remainHeight, null);
 			canvas.drawBitmap(mBitmaps[1], 15*GameView.width/16-mBitmaps[1].getWidth(), remainHeight, null);
-			
 		}
 		
 		drawButtons(canvas);
@@ -291,8 +285,6 @@ public class GameState extends BaseState {
 		return true;
 	}
 
-	
-
 	@Override
 	public boolean onBackPressed() {
 		return false;
@@ -301,8 +293,13 @@ public class GameState extends BaseState {
 	/** If there is any progress in the game, save it in case the user
 	 * wants to continue the next time he gets back to the game*/
 	private void saveProgress(){
-		if(getMoves() > 0 && !isGameOver()){
-			// the game was started, lets save it 
+		/* Save the board if:
+		 * - we make more than 1 move &
+		 * - the board is not completed & 
+		 * - our moves is less than limit | the limit is negative (we have no limit)
+		*/
+		int moves = getMoves();
+		if(moves > 0 && !isGameOver() && (mov_lim < 0 || moves < mov_lim)){
 			Prefs.getIns().saveGame(true,getBoardAsString());
 		}
 	}
@@ -317,6 +314,7 @@ public class GameState extends BaseState {
 		
 		//remove the saved game from the preferences
 	    Prefs.getIns().saveGame(false, null);
+	    
 	    GameActivity.instance.runOnUiThread(new Runnable(){
 			public void run(){
 				//Use the Builder class for convenient dialog construction
@@ -329,7 +327,7 @@ public class GameState extends BaseState {
 				})
 				.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
-		        	   createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
+		        	   restartBoard(true);
 		        	   Const.setFullScreen(GameActivity.instance);
 		           }
 				})
@@ -347,7 +345,7 @@ public class GameState extends BaseState {
 	
 	/** Display dialog informing that there is a gamestate saved
 	 * and ask if the user wants to play it or prefers a new match*/
-	public void showRestartDialog(){
+	public void showRestartDialog(){		
 		//Use the Builder class for convenient dialog construction
 		GameActivity.instance.runOnUiThread(new Runnable(){
 			public void run(){
@@ -355,7 +353,7 @@ public class GameState extends BaseState {
 				.setMessage(R.string.restart_game_confirmation)
 				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
-		        	   createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);        	   
+		        	   restartBoard(true);        	   
 		        	   Const.setFullScreen(GameActivity.instance);   
 		           }
 				})
@@ -378,8 +376,19 @@ public class GameState extends BaseState {
 	
 	/** Display dialog informing that the game is over and restart again
 	 * @param win if true, show congratulations text, else show condolences*/
-	public void showGamOverDialog(final boolean win){
-		Log.v(Const.TAG,"GameOver winning = "+win);
+	public void showGamOver(final boolean win){
+		Log.d(Const.TAG,"GameOver winning = "+win);
+		
+		BaseState gameOver = BaseState.createStateByID(statesIDs.OVER);
+		((gameFinishedListener)gameOver).setGameOver(win, getMoves(),mov_lim,mColorBoard.blocksPerSide );
+		StateMachine.getIns().pushState(gameOver);
+		
+		/* I used to use a pop-up ... WELL just to remember It will remain here :')
+		 
+		 //if we are still on the list
+		if(!StateMachine.getIns().checkStateIsInList(statesIDs.GAME))
+			return;
+		
 		GameActivity.instance.playMusic(false);
 		
 		//update games finished count
@@ -401,7 +410,7 @@ public class GameState extends BaseState {
 				.setMessage(str)
 				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
-		        	   createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
+		        	   restartBoard(true);
 		        	   Const.setFullScreen(GameActivity.instance);
 		        	   GameActivity.instance.playMusic(true);
 		           }
@@ -409,7 +418,7 @@ public class GameState extends BaseState {
 				.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
 		        	   Const.setFullScreen(GameActivity.instance);
-		        	   createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
+		        	   restartBoard(true);
 		        	   StateMachine.getIns().popState();
 		        	   GameActivity.instance.playMusic(true);
 		           }
@@ -418,17 +427,21 @@ public class GameState extends BaseState {
 				.setOnCancelListener(new DialogInterface.OnCancelListener() {
 					@Override
 					public void onCancel(DialogInterface arg0) {
-						createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
+						restartBoard(true);
 			        	Const.setFullScreen(GameActivity.instance);
 			        	StateMachine.getIns().popState();
 			        	GameActivity.instance.playMusic(true);
 					}
 				})
-				*/
+				*/ /*
 				.create()
 				.show();
 			}
 		});
+		  
+		 */
+		
+		
 	}
 	
 	/** Set the move limit corresponding to the board size or set it to negative if the game
@@ -444,14 +457,27 @@ public class GameState extends BaseState {
 	
 /********************************* BOARD METHODS *********************************/
 	
+	@Override
+	public void restartBoard(boolean forced) {
+		if(forced){
+			createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
+		}else{
+			int moves = getMoves();
+			if(moves > 0 && !isGameOver() && (mov_lim < 0 || moves < mov_lim))
+				showRestartDialog();
+			else
+				restartBoard(true);
+		}
+		
+	}
+	
 	/** Create a new random board*/
 	public void createNewBoard(int blocks){
-		setMoveLimit();
 		if(blocks < 0)//if blocks is negative, this will have the same blocks #
 			mColorBoard.startRandomColorBoard();
 		else
 			mColorBoard = new ColorBoard(blocks);
-		
+		setMoveLimit();
 		//refreshUI();
 	}
 	
@@ -523,14 +549,14 @@ public class GameState extends BaseState {
 		if (won){
 			GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
 				GameActivity.instance.playSound(GameActivity.SoundType.WIN);
-				showGamOverDialog(true);
+				showGamOver(true);
 			}});
 			
 		}
 		else if(getMoves() >= mov_lim && mov_lim >= 0){
 			GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
 				GameActivity.instance.playSound(GameActivity.SoundType.LOSE);
-				showGamOverDialog(false);
+				showGamOver(false);
 			}});
 		}
 	}
@@ -735,3 +761,12 @@ public class GameState extends BaseState {
 	}
 
 }
+
+
+	/** Interface to request for a change in the GameBoard*/
+	interface GameBoardListener{
+		/** Ask for a new board
+		 * @param forced if true, it will not matter if the player has a current game state
+		 * if false, it will ask if want to restart*/
+		public void restartBoard(boolean forced);
+	}
