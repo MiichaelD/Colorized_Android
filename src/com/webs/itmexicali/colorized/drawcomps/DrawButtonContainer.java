@@ -153,7 +153,7 @@ public class DrawButtonContainer {
 	}
 	
 	/** Return the number of buttons being pressed*/
-	public int getPressedButtons(){
+	public int getPressedButtonsCounter(){
 		int i,j;
 		for(i = 0, j = 0; i < num_buttons; i++)
 			if(buttons[i].isPressed())

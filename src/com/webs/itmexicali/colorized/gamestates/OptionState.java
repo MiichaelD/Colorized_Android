@@ -19,7 +19,8 @@ import android.view.MotionEvent;
 public class OptionState extends BaseState {
 
 	RectF base;
-	MainState ms;
+	MainState pMain;
+	BaseState pPrevState;
 	float dy;
 	StaticLayout mLayout;
 	DrawButtonContainer options;
@@ -28,9 +29,9 @@ public class OptionState extends BaseState {
 	
 	
 	
+	
 	protected OptionState(statesIDs id){
 		super(id);
-		ms = ((MainState)StateMachine.getIns().getFirstState());
 		
 		options = new DrawButtonContainer(7,true);
 		
@@ -40,13 +41,20 @@ public class OptionState extends BaseState {
 		
 		options.setOnActionListener(3, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
+				//play sound
+				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+				
 				Prefs.getIns().setGameMode(Const.STEP);
+				tryUpdateChangesNow(false);
 		}});
 		
 		options.setOnActionListener(4, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				//TODO Casual Mode
+				//play sound
+				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+				
 				Prefs.getIns().setGameMode(Const.CASUAL);
+				tryUpdateChangesNow(false);
 		}});
 
 		
@@ -72,58 +80,69 @@ public class OptionState extends BaseState {
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
-				new Thread(new Runnable(){public void run(){
-					Prefs.getIns().setDifficulty(i);
-				}}).start();}
-		});
+				Prefs.getIns().setDifficulty(i);
+				
+				tryUpdateChangesNow(false);
+			}});
+	}
+	
+	/** Check if we are over GameState, if so, try to make changes visible right away and
+	 * closes the OptionState to be focused on GameState
+	 * @param force if true it will not care if player is currently on a started board,
+	 * if it is false, it will ask for user confirmation. */
+	private void tryUpdateChangesNow(boolean force){
+		if(pPrevState instanceof GameState){
+			((GameBoardListener)pPrevState).restartBoard(force);
+			StateMachine.getIns().popState();
+		}
 	}
 
 	@Override
 	public void draw(Canvas canvas, boolean isPortrait) {
-		ms.draw(canvas, isPortrait);
-		canvas.drawRoundRect(base, ms.roundness, ms.roundness, ms.mPaints[11]);
+		pPrevState.draw(canvas, isPortrait);
+		canvas.drawRoundRect(base, pMain.roundness, pMain.roundness, pMain.mPaints[11]);
 		
 		int dif = Prefs.getIns().getDifficulty();
 		int mod = Prefs.getIns().getGameMode();
-		ms.mPaints[1].setTextSize(GameView.mPortrait?GameView.width/18:GameView.height/18);
+		pMain.mPaints[1].setTextSize(GameView.mPortrait?GameView.width/18:GameView.height/18);
 		
 		// Difficulty subtitle
 		canvas.drawText(GameActivity.instance.getString(R.string.options_difficulty),
-				GameView.width/2, base.top + 1.5f*ms.mPaints[9].getTextSize(),ms.mPaints[9]);
+				GameView.width/2, base.top + 1.5f*pMain.mPaints[9].getTextSize(),pMain.mPaints[9]);
 		
 		// Mode subtitle
 		canvas.drawText(GameActivity.instance.getString(R.string.options_game_mode),
-				GameView.width/2, base.centerY() + 1*ms.mPaints[9].getTextSize(),ms.mPaints[9]);
+				GameView.width/2, base.centerY() + 1*pMain.mPaints[9].getTextSize(),pMain.mPaints[9]);
 		
 		
 		//Draw Board Size Buttons
-		options.drawButtonsAndText(0, options.getButtonsCount(), canvas, ms.roundness, ms.mPaints[8],
-				ms.mPaints[7], ms.mPaints[1], smallText);
+		options.drawButtonsAndText(0, options.getButtonsCount(), canvas, pMain.roundness, pMain.mPaints[8],
+				pMain.mPaints[7], pMain.mPaints[1], smallText);
 		
 		//paint different button on difficulty selected
-		options.drawButtonsAndText(dif, canvas, ms.roundness, ms.mPaints[1],
-				ms.mPaints[7], smallText, smallText);
+		options.drawButtonsAndText(dif, canvas, pMain.roundness, pMain.mPaints[1],
+				pMain.mPaints[7], smallText, smallText);
 		
 		//paint different button on game mode selected
-		options.drawButtonsAndText(mod+3, canvas, ms.roundness, ms.mPaints[1],
-				ms.mPaints[7], smallText, smallText);
+		options.drawButtonsAndText(mod+3, canvas, pMain.roundness, pMain.mPaints[1],
+				pMain.mPaints[7], smallText, smallText);
 		
 		
 		
 		if(Prefs.getIns().playMusic()) //paint music button different when on
-			options.drawButtonsAndText(5, canvas, ms.roundness, ms.mPaints[1],
-					ms.mPaints[7], smallText, smallText);
+			options.drawButtonsAndText(5, canvas, pMain.roundness, pMain.mPaints[1],
+					pMain.mPaints[7], smallText, smallText);
 
 		if(Prefs.getIns().playSFX())//paint sounds button different when on
-			options.drawButtonsAndText(6, canvas, ms.roundness, ms.mPaints[1],
-					ms.mPaints[7], smallText, smallText);
+			options.drawButtonsAndText(6, canvas, pMain.roundness, pMain.mPaints[1],
+					pMain.mPaints[7], smallText, smallText);
 	}
 	
 	
 	@Override
 	public void resize(float width, float height) {
-		ms.resize(width, height);		
-		ms.mPaints[11].setAlpha(235);
+		pPrevState.resize(width, height);		
+		pMain.mPaints[11].setAlpha(235);
 		
 		base = new RectF(width/16,height/8,15*width/16,7*height/8);
 		
@@ -138,9 +157,9 @@ public class OptionState extends BaseState {
 		options.repositionDButton(5, 3*width/16, base.bottom-5*dy,7.5f*width/16, base.bottom-2*dy); // music
 		options.repositionDButton(6, 8.5f*width/16, base.bottom-5*dy,13*width/16, base.bottom-2*dy); //sounds
 		
-		ms.mPaints[9].setTextAlign(Align.CENTER);
+		pMain.mPaints[9].setTextAlign(Align.CENTER);
 		smallText.setTextSize(GameView.mPortrait? width/18 : height/18);
-		ms.mPaints[1].setTextSize(GameView.mPortrait?width/18:height/18);
+		pMain.mPaints[1].setTextSize(GameView.mPortrait?width/18:height/18);
 		smallText.setTextAlign(Align.CENTER);
 		dy = smallText.getTextSize()/3;
 		
@@ -149,6 +168,9 @@ public class OptionState extends BaseState {
 	
 	@Override
 	public void onPushed(){
+
+		pMain = ((MainState)StateMachine.getIns().getFirstState());
+		pPrevState = StateMachine.getIns().getPrevioustState();
 		
 		options.setText(0, GameActivity.instance.getString(R.string.options_easy));
 		options.setText(1, GameActivity.instance.getString(R.string.options_med));
@@ -163,7 +185,8 @@ public class OptionState extends BaseState {
 
 	@Override
 	public void onPopped(){
-		ms = null;
+		pPrevState = null;
+		pMain = null;
 	}
 	
 	@Override
