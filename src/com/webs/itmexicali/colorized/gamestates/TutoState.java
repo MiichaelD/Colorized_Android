@@ -37,19 +37,16 @@ public class TutoState extends BaseState{
 	@Override
 	public void onPushed() {
 		//Log.d(TutoState.class.getSimpleName(),"onPushed");
-		BaseState bs = StateMachine.getIns().getPrevioustState();
-		if(! (bs instanceof GameState))
-			StateMachine.getIns().popState();
-		pGame = (GameState)bs;
+		pGame = (GameState) StateMachine.getIns().getPrevioustState();
 		
 		mInnerState = innerStates.INIT;
-		mRectFs = new RectF[1];
 	}
 	
 	public void resize(float width, float height){
 		//Log.v("TutoState","canvas size: "+width+"x"+height);
 		pGame.resize(width, height);
-
+		
+		mRectFs = new RectF[3];
 		float boardPixels = pGame.mRectFs[0].width()/Const.board_sizes[Prefs.getIns().getDifficulty()];
 		mRectFs[0] = new RectF(pGame.mRectFs[0].left, pGame.mRectFs[0].top, 
 				pGame.mRectFs[0].left + boardPixels, pGame.mRectFs[0].top + boardPixels);

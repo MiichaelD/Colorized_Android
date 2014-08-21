@@ -12,12 +12,8 @@
     <string name="exit_confirmation">Are you sure you want to quit?</string>
     <string name="restart_game_confirmation">Are you sure you want to restart current game?</string>
     <string name="saved_game_confirmation">There is an unfinished game saved, do you want to continue?</string>
-    
-    <!-- GameOver State Texts -->
-    <string name="game_over_lose_title">Game Over</string>
-    <string name="game_over_lose_desc">You ran out of moves, do you want to try again?</string>
-    <string name="game_over_win_title">Congratulations!</string>
-    <string name="game_over_win_desc">You finished the game with 
+    <string name="game_over_lose">You ran out of moves, do you want to try again?</string>
+    <string name="game_over_win">Congratulations! you finished the game with 
         <xliff:g id="integer_formating">%1$d</xliff:g> moves. Do you want to play again?</string>
     
     <!-- Main State Buttons !-->

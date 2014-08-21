@@ -9,12 +9,8 @@
     <string name="exit_confirmation">Estas seguro de querer salir?</string>
     <string name="restart_game_confirmation">Estas seguro de reiniciar la partida actual?</string>
     <string name="saved_game_confirmation">Hay un juego sin terminar, quieres continuarlo?</string>
-    
-    <!-- GameOver State Texts -->
-    <string name="game_over_lose_title">Juego Terminado</string>
-    <string name="game_over_lose_desc">Te quedaste sin movimientos, quieres intentar de nuevo?</string>
-    <string name="game_over_win_title">Felicidades!</string>
-    <string name="game_over_win_desc">Terminaste la partida con  
+    <string name="game_over_lose">Te quedaste sin movimientos, quieres intentar de nuevo?</string>
+    <string name="game_over_win">Felicidades! terminaste la partida con  
         <xliff:g id="integer_formating">%1$d</xliff:g> movimientos. Quieres jugar de nuevo?</string>
     
     <!-- Main State Buttons !-->

@@ -217,7 +217,7 @@ public class MainState extends BaseState {
 	public void draw(Canvas canvas, boolean isPortrait) {
 		canvas.drawColor(Color.rgb(0, 162, 232));
 		
-		drawTitle(canvas, mAppName);//draw Title
+		drawText(canvas);//draw Title
 		
 		//draw play button BIGGER
 		mPaints[1].setTextSize(GameView.mPortrait? GameView.width/9 : GameView.height/9);
@@ -229,17 +229,17 @@ public class MainState extends BaseState {
 		
 	}
 	
-	public void drawTitle(Canvas canvas, String text){
+	private void drawText(Canvas canvas){
 		float x = GameView.width,	y = GameView.height;
 		
 		mPaints[8].setTextSize(GameView.mPortrait? x/7 : y/7);
 		mPaints[8].setFakeBoldText(true);
 		mPaints[8].setTextScaleX(ts0);
-		while((mPaints[8].measureText(text))+10 >= GameView.width){
+		while((mPaints[8].measureText(mAppName))+10 >= GameView.width){
 			ts0-=0.05f;
 			mPaints[8].setTextScaleX(ts0);
 		}
-		canvas.drawText(text,x/2, 8*y/48, mPaints[8]);
+		canvas.drawText(mAppName,x/2, 8*y/48, mPaints[8]);
 		mPaints[8].setTextScaleX(1.0f);
 		mPaints[8].setFakeBoldText(false);
 		mPaints[8].setTextSize(GameView.mPortrait? x/13 : y/13);
