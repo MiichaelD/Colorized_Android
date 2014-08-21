@@ -34,7 +34,7 @@ public class GameActivity extends Activity {
     
     // Media player to play sounds of user interactions & background music.
     private MediaPlayer soundPlayer = null, musicPlayer = null;
-    private SoundType previousSound = SoundType.NONE;
+    //private SoundType previousSound = SoundType.NONE;
     public static enum SoundType{ NONE, TOUCH, WIN, LOSE};
     
 	@SuppressLint("InlinedApi")
@@ -258,25 +258,24 @@ public class GameActivity extends Activity {
 	public void playSound(SoundType s){
 		//if we have an instance of the player and the user wants to play sounds
 		if(Prefs.getIns().playSFX()){
-			if(previousSound != s || soundPlayer == null){
-				previousSound = s;
+			//if(s != previousSound){
+				//previousSound = s;
+	
+				//if it was playing, stop it to restart it
 				if(soundPlayer != null){
-					//if it was playing, stop it to restart it
-					if(soundPlayer.isPlaying())
-						soundPlayer.stop();
+					soundPlayer.stop();
 					soundPlayer.release();
 				}
+				
+				//get the new sound
 				switch(s){
-				case TOUCH:	soundPlayer = MediaPlayer.create(this, R.raw.confirm); break;
-				case WIN:	soundPlayer = MediaPlayer.create(this, R.raw.win); break;
-				case LOSE:	soundPlayer = MediaPlayer.create(this, R.raw.lose); break;
-				default:	break;
+					case TOUCH:	soundPlayer = MediaPlayer.create(this, R.raw.confirm); break;
+					case WIN:	soundPlayer = MediaPlayer.create(this, R.raw.win); break;
+					case LOSE:	soundPlayer = MediaPlayer.create(this, R.raw.lose); break;
+					default:	break;
 				}				
-			}
-			else
-				//if it was playing, stop it to restart it
-				if(soundPlayer.isPlaying())
-					soundPlayer.stop();
+			//}
+		
 			soundPlayer.start();
 		}
 			
