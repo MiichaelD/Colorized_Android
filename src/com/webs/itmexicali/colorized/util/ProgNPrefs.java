@@ -311,13 +311,13 @@ public class ProgNPrefs {
 				// so I wont parse and the value will be 0, and corrected in the next
 				//google games service synchronization
 			}
-			//TODO if it doesn't start with Algorithm prefix, it is not
-			//a VALID VALUE and should be treated as corrupted
+			//if it doesn't start with Algorithm prefix, it is not
+			//a VALID VALUE and should be treated as corrupted and I return 0
 		
 			
 		}catch(ClassCastException cce){
-			//if it is storead as int, get it as int
-			toReturn = sp.getInt(aux, Default);//TODO REMOVE
+			//if it is storead as int, <u>get it as int</u> NOT ANYMORE
+			// toReturn = sp.getInt(aux, Default);
 		}catch(NullPointerException npe){
 			//given if used different SecretKey for saving and for reading
 			npe.printStackTrace();
@@ -331,53 +331,82 @@ public class ProgNPrefs {
 	/** Increments by one the number of games finished and won
 	 * @param win true if this game was won or false if it was lost*/
 	public void updateGameFinished(int boardSize, int game_mode, Boolean win){
-		
-		//increment the finished games value for all board sizes
+		//increment the finished games value for given board size & Save
 		gFinished[Const.TOTAL_SIZES].increment();
-		
-		// Set key for Finished Games
-		MCrypt.getIns().setSecretKeyIndex(MCrypt.FIN_GAM_IND);
-		
-		//store the value
-		String key = mContext.getString(R.string.key_times_finished);
-		String encrypted = Const.byteArrayToHexString(MCrypt.getIns().encrypt(MCrypt.AES_PREF+gFinished[Const.TOTAL_SIZES].get()));
-		spEdit.putString(key, encrypted);
+		saveFinishedGame(Const.TOTAL_SIZES);
 		
 		//Only if the game played was of mode Step Challenge, save data to its board size
 		if(game_mode == Const.STEP){
-			
 			//increment the finished games value for given board size index
 			gFinished[boardSize].increment();
-			
-			
-			//encrypt as AES_PREF+[boardSize]+<space>+value
-			key = mContext.getString(finished_ids[boardSize]);
-			encrypted = Const.byteArrayToHexString(MCrypt.getIns().encrypt(MCrypt.AES_PREF+boardSize+" "+gFinished[boardSize].get()));
-			spEdit.putString(key, encrypted);
-			
+			saveFinishedGame(boardSize);			
 			
 			
 			if(win){//if won, update wins count
-				// Set key for Finished Games
-				MCrypt.getIns().setSecretKeyIndex(MCrypt.WON_GAM_IND);
-				
 				//increment the finished games value for all board sizes
-				gFinished[Const.TOTAL_SIZES].increment();
-				
-				//store the value
-				key = mContext.getString(R.string.key_times_won);
-				encrypted = Const.byteArrayToHexString(MCrypt.getIns().encrypt(MCrypt.AES_PREF+gWon[Const.TOTAL_SIZES].get()));
-				spEdit.putString(key, encrypted);
+				gWon[Const.TOTAL_SIZES].increment();
+				saveWonGame(Const.TOTAL_SIZES);
 				
 				//increment the won games value for given board size index
 				gWon[boardSize].increment();
-
-				//encrypt as AES_PREF+[boardSize]+<space>+value
-				key = mContext.getString(won_ids[boardSize]);
-				encrypted = Const.byteArrayToHexString(MCrypt.getIns().encrypt(MCrypt.AES_PREF+boardSize+" "+gWon[boardSize].get()));
-				spEdit.putString(key, encrypted);
+				saveWonGame(boardSize);
 			}
 		}
+	}
+	
+	
+	/** Save the updated counter of FINISHED GAMES of the given boardsize
+	 * as a encrypted value in file
+	 * @param boardSize the size of the board to update {SMALL,MEDIUM,LARGE}*/
+	public void saveFinishedGame(int boardSize){
+		// Set key for Finished Games
+		MCrypt.getIns().setSecretKeyIndex(MCrypt.FIN_GAM_IND);
+		String key = mContext.getString(finished_ids[boardSize]);
+		String encrypted = null;
+		
+		switch(boardSize){
+		case Const.TOTAL_SIZES:
+			//encrypt as AES_PREF+value
+			encrypted = Const.byteArrayToHexString(MCrypt.getIns().encrypt(
+					MCrypt.AES_PREF+gFinished[Const.TOTAL_SIZES].get()));
+			break;
+		default:
+			//encrypt as AES_PREF+[boardSize]+<space>+value
+			encrypted = Const.byteArrayToHexString(MCrypt.getIns().encrypt(
+					MCrypt.AES_PREF+boardSize+" "+gFinished[boardSize].get()));
+			break;
+		}
+		
+		//store the value
+		spEdit.putString(key, encrypted);
+		spEdit.commit();
+		MCrypt.getIns().resetSecretKeyIndex();
+	}
+	
+	/** Save the updated counter of WON GAMES of the given boardsize
+	 * as a encrypted value in file
+	 * @param boardSize the size of the board to update {SMALL,MEDIUM,LARGE}*/
+	public void saveWonGame(int boardSize){
+		// Set key for Won Games
+		MCrypt.getIns().setSecretKeyIndex(MCrypt.WON_GAM_IND);
+		String key = mContext.getString(won_ids[boardSize]);
+		String encrypted = null;
+		
+		switch(boardSize){
+		case Const.TOTAL_SIZES:
+			//encrypt as AES_PREF+value
+			encrypted = Const.byteArrayToHexString(MCrypt.getIns().encrypt(
+					MCrypt.AES_PREF+gWon[Const.TOTAL_SIZES].get()));
+			break;
+		default:
+			//encrypt as AES_PREF+[boardSize]+<space>+value
+			encrypted = Const.byteArrayToHexString(MCrypt.getIns().encrypt(
+					MCrypt.AES_PREF+boardSize+" "+gWon[boardSize].get()));
+			break;
+		}
+		
+		//store the value
+		spEdit.putString(key, encrypted);
 		spEdit.commit();
 		MCrypt.getIns().resetSecretKeyIndex();
 	}
@@ -388,5 +417,25 @@ public class ProgNPrefs {
 	
 	public int getGamesWon(int boardSize){
 		return gWon[boardSize].get();
+	}
+	
+	/** Set a new value to the given board size finished games counter.
+	 * @param boardSize the boardSize index of the finished game counter
+	 * @param nVal the new value to set to the counter
+	 * @param saveOnFile true to save the updated value on File, false doesn't update */
+	public void setGamesFinishedValue(int boardSize, int nVal, boolean saveOnFile){
+		gFinished[boardSize].set(nVal);
+		if(saveOnFile)
+			saveFinishedGame(boardSize);
+	}
+	
+	/** Set a new value to the given board size won games counter.
+	 * @param boardSize the boardSize index of the won game counter
+	 * @param nVal the new value to set to the counter
+	 * @param saveOnFile true to save the updated value on File, false doesn't update */
+	public void setGamesWonValue(int boardSize, int nVal, boolean saveOnFile){
+		gWon[boardSize].set(nVal);
+		if(saveOnFile)
+			saveWonGame(boardSize);
 	}
 }

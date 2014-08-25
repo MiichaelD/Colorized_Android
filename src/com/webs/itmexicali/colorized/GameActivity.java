@@ -7,6 +7,8 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.Player;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.example.games.basegameutils.BaseGameActivity;
 import com.webs.itmexicali.colorized.gamestates.BaseState;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
@@ -357,9 +359,14 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
                     Const.RC_UNUSED);
             return true;
         } else {
-            showAlert(getString(R.string.achievements_not_available));
-
-			StateMachine.getIns().pushState(BaseState.statesIDs.LEADER);
+        	/* TODO uncomment this code block
+        	if(GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext())
+        			== ConnectionResult.SUCCESS)
+                showAlert(getString(R.string.achievements_not_available));        		
+        	else
+        	*/
+        		StateMachine.getIns().pushState(BaseState.statesIDs.LEADER);
+        	
         }
         return false;
     }
@@ -372,9 +379,13 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
                     Const.RC_UNUSED);
             return true;
         } else {
-            showAlert(getString(R.string.leaderboards_not_available));
-
-			StateMachine.getIns().pushState(BaseState.statesIDs.LEADER);
+            /* TODO - Activate this code
+        	if(GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext())
+        			== ConnectionResult.SUCCESS)
+            	showAlert(getString(R.string.leaderboards_not_available));        		
+        	else
+        	*/
+        		StateMachine.getIns().pushState(BaseState.statesIDs.LEADER);
         }
         return false;
     }

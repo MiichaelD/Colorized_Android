@@ -40,6 +40,7 @@
     <string name="options_easy">Chico: <xliff:g id="easy_size">12x12</xliff:g></string>
     <string name="options_med">Mediano: <xliff:g id="med_size">18x18</xliff:g></string>
     <string name="options_hard">Grande: <xliff:g id="hard_size">24x24</xliff:g></string>
+    <string name="options_size_all">Todos los tamaños</string>
     <string name="options_game_mode">Modo de Juego: </string>
     <string name="options_step_mode">Modo Reto</string>
     <string name="options_casual_mode">Modo Casual</string>
@@ -47,7 +48,7 @@
     <!-- Leaderboard texts !-->
     <string name="totalGamesPlayed">Juegos completados: %1$d.</string>
     <string name="totalGamesWon">Juegos Ganados: %1$d.</string>
-    <string name="percentGamesWon">Porcentaje de Juegos Ganados: <xliff:g id="games_won">%1$.2f%%</xliff:g>.</string>
+    <string name="percentGamesWon">Juegos Ganados: <xliff:g id="games_won">%1$.2f%%</xliff:g>.</string>
     
     
     <!-- Tutorial Instruction Messages !-->

@@ -194,8 +194,8 @@ public class MainState extends BaseState {
 		dbc.repositionDButton(1, width/4, 23*height/48,3*width/4, 27*height/48);// tuto
 		dbc.repositionDButton(2, width/4, 28*height/48,3*width/4, 32*height/48);//options
 		dbc.repositionDButton(3, width/4, 33*height/48,3*width/4, 37*height/48); // about
-		dbc.repositionDButton(4, 1.5f*width/16, 42*height/48, 7.5f*width/16, 45*height/48); // Leaderboard
-		dbc.repositionDButton(5, 8.5f*width/16, 42*height/48, 14.5f*width/16, 45*height/48); //Achievements
+		dbc.repositionDButton(4, 1.5f*width/16, 41*height/48, 7.5f*width/16, 45*height/48); // Leaderboard
+		dbc.repositionDButton(5, 8.5f*width/16, 41*height/48, 14.5f*width/16, 45*height/48); //Achievements
 		//dbc.repositionDButton(6, width/8, 38*height/48,3*width/8, 41*height/48); //music
 		//dbc.repositionDButton(7, width/8, 42*height/48, 7*width/16, 45*height/48); // sounds
 		

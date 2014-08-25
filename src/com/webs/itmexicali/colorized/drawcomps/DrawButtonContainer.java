@@ -41,7 +41,7 @@ public class DrawButtonContainer {
 	 * @param text String given to the button
 	 * @param index the button's index, if its a greater than this containers capacity
 	 * or less than zero, nothing will be initialized */
-	public void initDrawButton(String text, int index, float left, float top, float right, float bottom){
+	public void initDrawButton(int index, String text, float left, float top, float right, float bottom){
 		if(index < num_buttons && index >= 0)
 			buttons[index] = new DrawButton(text, left, top, right, bottom);
 		else 

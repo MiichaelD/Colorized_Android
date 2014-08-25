@@ -44,6 +44,7 @@
     <string name="options_easy">Small - <xliff:g id="easy_size">12x12</xliff:g></string>
     <string name="options_med">Medium - <xliff:g id="med_size">18x18</xliff:g></string>
     <string name="options_hard">Large - <xliff:g id="hard_size">24x24</xliff:g></string>
+    <string name="options_size_all">All board sizes</string>
     <string name="options_game_mode">Game Mode: </string>
     <string name="options_step_mode">Step Mode</string>
     <string name="options_casual_mode">Casual Mode</string>
@@ -62,7 +63,7 @@
     <!-- Leaderboard texts !-->
     <string name="totalGamesPlayed">Games played: <xliff:g id="games_fin">%1$d</xliff:g>.</string>
     <string name="totalGamesWon">Games won: <xliff:g id="games_won">%1$d</xliff:g>.</string>
-    <string name="percentGamesWon">Percentage of games won: <xliff:g id="games_won">%1$.2f%%</xliff:g>.</string>
+    <string name="percentGamesWon">Games won: <xliff:g id="games_won">%1$.2f%%</xliff:g>.</string>
         
     <!-- Settings Keys !-->
     <string name="key_is_game_saved" translatable="false">key_is_game_saved</string>
