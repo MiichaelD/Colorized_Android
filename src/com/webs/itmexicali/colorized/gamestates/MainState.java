@@ -2,9 +2,9 @@ package com.webs.itmexicali.colorized.gamestates;
 
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
-import com.webs.itmexicali.colorized.Prefs;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
+import com.webs.itmexicali.colorized.util.ProgNPrefs;
 import com.webs.itmexicali.colorized.R;
 
 import android.graphics.BlurMaskFilter;
@@ -82,10 +82,8 @@ public class MainState extends BaseState {
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
-				new Thread(new Runnable(){public void run(){
-					StateMachine.getIns().pushState(BaseState.statesIDs.LEADER);
-				}}).start();}
-		});
+				GameActivity.instance.onShowLeaderboardsRequested();
+			}});
 		
 		//Achievements
 		dbc.setOnActionListener(5, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
@@ -93,11 +91,8 @@ public class MainState extends BaseState {
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
-				new Thread(new Runnable(){public void run(){
-					//TODO Achievements
-					StateMachine.getIns().pushState(BaseState.statesIDs.LEADER);
-				}}).start();}
-		});
+				GameActivity.instance.onShowAchievementsRequested();
+		}});
 		
 		/*
 		//MUSIC button
@@ -285,7 +280,7 @@ public class MainState extends BaseState {
 	 * already completed once*/
 	private void pushGame(boolean tuto){
 		if(tuto)
-			Prefs.getIns().setTutorialCompleted(false);
+			ProgNPrefs.getIns().setTutorialCompleted(false);
 		StateMachine.getIns().pushState(BaseState.statesIDs.GAME);
 	}
 }

@@ -7,12 +7,12 @@ import ProtectedInt.ProtectedInt;
 
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
-import com.webs.itmexicali.colorized.Prefs;
 import com.webs.itmexicali.colorized.R;
 import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -26,6 +26,16 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 public class GameState extends BaseState implements GameBoardListener{
+	
+	/** Interface to communicate game results to the listeners*/
+	public interface GameFinishedListener{
+		/** Pass all the game match parameters to be processed
+		 * @param win if the player win this match
+		 * @param moves the number of moves needed
+		 * @param GameMode gamemode used in the game
+		 * @param boardSize the boardsize of game played {small,medium,large}*/
+		public void onGameOver(boolean win, int moves, int gameMode, int boardSize);
+	}
 	
 	//UI components to be used to Draw text and shapes
 	public TextPaint	mPaints[];
@@ -119,23 +129,23 @@ public class GameState extends BaseState implements GameBoardListener{
 	private void checkTutoAndSavedGame(){
 		//new Thread(new Runnable(){public void run(){
 			//check if the tutorial has been completed
-			if(Prefs.getIns().isTutorialCompleted()){
+			if(ProgNPrefs.getIns().isTutorialCompleted()){
 				//if there is a gamestate saved, load it again
-				if(Prefs.getIns().isGameSaved()){
+				if(ProgNPrefs.getIns().isGameSaved()){
 					//parse the gamestate
-					if(parseBoardFromString(Prefs.getIns().getSavedGame())){
+					if(parseBoardFromString(ProgNPrefs.getIns().getSavedGame())){
 						Log.d("GameState","Finished parsing");
 						showSavedGameDialog();
 					}
 				}
 			}
 			else{
-				createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
+				createNewBoard(Const.board_sizes[ProgNPrefs.getIns().getDifficulty()]);
 				StateMachine.getIns().pushState(BaseState.statesIDs.TUTO);			
 			}
 			
 			if(mColorBoard == null){
-				createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
+				createNewBoard(Const.board_sizes[ProgNPrefs.getIns().getDifficulty()]);
 				setMoveLimit();
 			}
 
@@ -300,7 +310,7 @@ public class GameState extends BaseState implements GameBoardListener{
 		*/
 		int moves = getMoves();
 		if(moves > 0 && !isGameOver() && (mov_lim < 0 || moves < mov_lim)){
-			Prefs.getIns().saveGame(true,getBoardAsString());
+			ProgNPrefs.getIns().saveGame(true,getBoardAsString());
 		}
 	}
 	
@@ -313,7 +323,7 @@ public class GameState extends BaseState implements GameBoardListener{
 			return;
 		
 		//remove the saved game from the preferences
-	    Prefs.getIns().saveGame(false, null);
+	    ProgNPrefs.getIns().saveGame(false, null);
 	    
 	    GameActivity.instance.runOnUiThread(new Runnable(){
 			public void run(){
@@ -379,8 +389,15 @@ public class GameState extends BaseState implements GameBoardListener{
 	public void showGamOver(final boolean win){
 		Log.d(Const.TAG,"GameOver winning = "+win);
 		
+		int boardSize = mColorBoard.blocksPerSide;
+		
+		//transform it from blocks/side to boardsize constant
+		boardSize = boardSize == Const.board_sizes[Const.SMALL]? Const.SMALL:
+			boardSize == Const.board_sizes[Const.MEDIUM]? Const.MEDIUM:Const.LARGE;
+		
 		BaseState gameOver = BaseState.createStateByID(statesIDs.OVER);
-		((gameFinishedListener)gameOver).setGameOver(win, getMoves(),mov_lim,mColorBoard.blocksPerSide );
+		((GameFinishedListener)gameOver).onGameOver(win, getMoves(),
+				mov_lim<0?Const.CASUAL:Const.STEP, boardSize );
 		StateMachine.getIns().pushState(gameOver);
 		
 		/* I used to use a pop-up ... WELL just to remember It will remain here :')
@@ -447,10 +464,10 @@ public class GameState extends BaseState implements GameBoardListener{
 	/** Set the move limit corresponding to the board size or set it to negative if the game
 	 * mode is CASUAL_MODE */
 	private void setMoveLimit(){
-		if(Prefs.getIns().getGameMode() == Const.CASUAL)
+		if(ProgNPrefs.getIns().getGameMode() == Const.CASUAL)
 			mov_lim = -1;
 		else 
-			mov_lim = Const.mov_limit[Prefs.getIns().getDifficulty()];
+			mov_lim = Const.mov_limit[ProgNPrefs.getIns().getDifficulty()];
 	}
 	
 	
@@ -460,7 +477,7 @@ public class GameState extends BaseState implements GameBoardListener{
 	@Override
 	public void restartBoard(boolean forced) {
 		if(forced){
-			createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
+			createNewBoard(Const.board_sizes[ProgNPrefs.getIns().getDifficulty()]);
 		}else{
 			int moves = getMoves();
 			if(moves > 0 && !isGameOver() && (mov_lim < 0 || moves < mov_lim))

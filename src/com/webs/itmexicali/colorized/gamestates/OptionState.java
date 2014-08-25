@@ -2,11 +2,11 @@ package com.webs.itmexicali.colorized.gamestates;
 
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
-import com.webs.itmexicali.colorized.Prefs;
 import com.webs.itmexicali.colorized.R;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -44,7 +44,7 @@ public class OptionState extends BaseState {
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
-				Prefs.getIns().setGameMode(Const.STEP);
+				ProgNPrefs.getIns().setGameMode(Const.STEP);
 				tryUpdateChangesNow(false);
 		}});
 		
@@ -53,19 +53,19 @@ public class OptionState extends BaseState {
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
-				Prefs.getIns().setGameMode(Const.CASUAL);
+				ProgNPrefs.getIns().setGameMode(Const.CASUAL);
 				tryUpdateChangesNow(false);
 		}});
 
 		
 		options.setOnActionListener(5, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				Prefs.getIns().toggleMusic();
+				ProgNPrefs.getIns().toggleMusic();
 		}});
 		
 		options.setOnActionListener(6, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				Prefs.getIns().toggleSFX();
+				ProgNPrefs.getIns().toggleSFX();
 		}});
 
 		smallText = new TextPaint();
@@ -80,7 +80,7 @@ public class OptionState extends BaseState {
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
-				Prefs.getIns().setDifficulty(i);
+				ProgNPrefs.getIns().setDifficulty(i);
 				
 				tryUpdateChangesNow(false);
 			}});
@@ -102,8 +102,8 @@ public class OptionState extends BaseState {
 		pPrevState.draw(canvas, isPortrait);
 		canvas.drawRoundRect(base, pMain.roundness, pMain.roundness, pMain.mPaints[11]);
 		
-		int dif = Prefs.getIns().getDifficulty();
-		int mod = Prefs.getIns().getGameMode();
+		int dif = ProgNPrefs.getIns().getDifficulty();
+		int mod = ProgNPrefs.getIns().getGameMode();
 		pMain.mPaints[1].setTextSize(GameView.mPortrait?GameView.width/18:GameView.height/18);
 		
 		// Difficulty subtitle
@@ -129,11 +129,11 @@ public class OptionState extends BaseState {
 		
 		
 		
-		if(Prefs.getIns().playMusic()) //paint music button different when on
+		if(ProgNPrefs.getIns().playMusic()) //paint music button different when on
 			options.drawButtonsAndText(5, canvas, pMain.roundness, pMain.mPaints[1],
 					pMain.mPaints[7], smallText, smallText);
 
-		if(Prefs.getIns().playSFX())//paint sounds button different when on
+		if(ProgNPrefs.getIns().playSFX())//paint sounds button different when on
 			options.drawButtonsAndText(6, canvas, pMain.roundness, pMain.mPaints[1],
 					pMain.mPaints[7], smallText, smallText);
 	}

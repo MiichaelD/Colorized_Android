@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="app_name">Color Flooded</string>
+    <string name="app_name" translatable="false">Color Flooded</string>
     
     <string name="ok" translatable="false">OK</string>
     <string name="cancel">Cancel</string>
@@ -12,6 +12,12 @@
     <string name="exit_confirmation">Are you sure you want to quit?</string>
     <string name="restart_game_confirmation">Are you sure you want to restart current game?</string>
     <string name="saved_game_confirmation">There is an unfinished game saved, do you want to continue?</string>
+    
+    <string name="achievement_unlocked">Achievement unlocked:</string>
+    <string name="your_progress_will_be_uploaded">Your existing progress will be uploaded shortly.</string>
+    
+    <string name="achievements_not_available">Please sign in to view achievements.</string>
+    <string name="leaderboards_not_available">Please sign in to view leaderboards.</string>
     
     <!-- GameOver State Texts -->
     <string name="game_over_lose_title">Game Over</string>
@@ -63,12 +69,21 @@
     <string name="key_tutorial_played" translatable="false">key_tutorial_played</string>
     <string name="key_music" translatable="false">key_music</string>
     <string name="key_sfx" translatable="false">key_sfx</string>
-    <string name="key_board_saved" translatable="false">key_board_saved</string>
     <string name="key_board_size" translatable="false">key_board_size</string>
-    <string name="key_times_finished" translatable="false">key_times_finished</string>
-    <string name="key_times_won" translatable="false">key_times_won</string>
     <string name="key_difficulty" translatable="false">"key_difficulty"</string>
     <string name="key_game_mode" translatable="false">"key_game_mode"</string>
+    <string name="key_board_saved" translatable="false">AABE3C791BFA94FD6DDEBDB880ED3D97</string>
+    
+    <string name="key_times_finished" translatable="false">DA67CBBAE23B723933CAEB4B28C147B821C55BB37D1D5D0EB01FC657D7FF1914</string>
+    <string name="key_times_finished_0" translatable="false">DA67CBBAE23B723933CAEB4B28C147B83488235A12D098D429FCEBE9C36E7B86</string>
+    <string name="key_times_finished_1" translatable="false">DA67CBBAE23B723933CAEB4B28C147B8F29051181DC78881F23862140B3D032D</string>
+    <string name="key_times_finished_2" translatable="false">DA67CBBAE23B723933CAEB4B28C147B86560EB63B23679A48937B33A8C55387A</string>
+    
+    <string name="key_times_won" translatable="false">A3A6757F375B4A4D45FF4839674D690E</string>
+    <string name="key_times_won_0" translatable="false">E6C9B020A3FA8A9DEDEF23FBBDC9B7C9</string>
+    <string name="key_times_won_1" translatable="false">C979BB86A07945C4153215FCF1784DAB</string>
+    <string name="key_times_won_2" translatable="false">14B4E62298743CB419099F2383D023C7</string>
+    
     
     
 	<!-- About Texts !-->

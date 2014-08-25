@@ -10,6 +10,12 @@
     <string name="restart_game_confirmation">Estas seguro de reiniciar la partida actual?</string>
     <string name="saved_game_confirmation">Hay un juego sin terminar, quieres continuarlo?</string>
     
+    <string name="achievement_unlock">Logro desbloqueado: </string>
+    <string name="your_progress_will_be_uploaded">Tu progreso existente será Your existing progress will be uploaded shortly.</string>
+    
+    <string name="achievements_not_available">Por favor inicie sesión para ver sus logros.</string>
+    <string name="leaderboards_not_available">Por favor inicie sesión para ver los leaderboards.</string>
+    
     <!-- GameOver State Texts -->
     <string name="game_over_lose_title">Juego Terminado</string>
     <string name="game_over_lose_desc">Te quedaste sin movimientos, quieres intentar de nuevo?</string>

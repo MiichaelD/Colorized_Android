@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.webs.itmexicali.colorized"
-    android:versionCode="8"
-    android:versionName="1.2.1" >
+    android:versionCode="9"
+    android:versionName="0.2.1" >
 
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="20" />
     <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct"  android:required="true" />
@@ -27,6 +27,16 @@
             android:theme="@android:style/Theme.Translucent"            
         	android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
 <!-- AdMob Implementation END -->
+        
+<!-- Google Games Services -->
+        <meta-data android:name="com.google.android.gms.games.APP_ID"
+            android:value="@string/app_id" />
+        <!--THIS IS COMMENTED BECAUSE IS ALREADY USED FOR AdMob ADS IMPLEMENTATION
+        < meta-data android:name="com.google.android.gms.version"
+                   android:value="@integer/google_play_services_version"/>
+           		-->
+<!-- Google Games Services -->
+        
         
         <activity
             android:name="com.webs.itmexicali.colorized.GameActivity"

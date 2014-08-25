@@ -21,12 +21,17 @@ public class Const {
 	//Tag for debugging
 	public final static String TAG = "Colorized";
 	
-	//Board constants
-	public final static int mov_limit[]={21,34,44};
-	public final static int board_sizes[]={12,18,24};
 	
-	//Game modes
-	public final static int STEP = 0, CASUAL = 1;
+	// Game board constants
+	/** Game modes*/
+	public final static int STEP = 0, CASUAL = 1, TOTAL_MODES =2;
+	
+	/** Board Sizes*/
+	public final static int SMALL = 0, MEDIUM =1, LARGE = 2, TOTAL_SIZES = 3;
+	
+	/** Board constants*/
+	public final static int mov_limit[]={21,34,44}, board_sizes[]={12,18,24};
+	
 	
 	//AdMob Advertising
     /** Your ad unit id. Replace with your actual ad unit id. */
@@ -35,7 +40,11 @@ public class Const {
     	INTERSTITIAL_AD_UNIT_ID = "ca-app-pub-4741238402050454/7995034204" ;
 
 
+    /** For HEXStrings <-> ByteArrays conversions*/
     private static char[] hexChars={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+    
+    /** Request codes we use when invoking an external activity*/
+    public static final int RC_RESOLVE = 5000, RC_UNUSED = 5001;
     
     /** Hide Action Bar in devices that support it */
 	@SuppressLint("InlinedApi")

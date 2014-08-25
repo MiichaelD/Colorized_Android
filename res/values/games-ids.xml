@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Google Play game services IDs.
+Save this file as res/values/games-ids.xml in your project.
+-->
+<resources>
+  <string name="app_id" translatable="false">920688942654</string>
+  
+  <string name="achievement_feeling_lucky"  translatable="false">CgkIvrzZ6uUaEAIQAQ</string>
+  <string name="achievement_where_is_the_challenge"  translatable="false">CgkIvrzZ6uUaEAIQAg</string>
+  <string name="achievement_it_is_not_that_hard"  translatable="false">CgkIvrzZ6uUaEAIQAw</string>
+  <string name="achievement_bored" translatable="false">CgkIvrzZ6uUaEAIQBA</string>
+  <string name="achievement_really_bored" translatable="false">CgkIvrzZ6uUaEAIQBQ</string>
+  <string name="achievement_a_lot_of_free_time" translatable="false">CgkIvrzZ6uUaEAIQBg</string>
+  
+  <string name="leaderboard_all_board_sizes" translatable="false">CgkIvrzZ6uUaEAIQCg</string>
+  <string name="leaderboard_small_board" translatable="false">CgkIvrzZ6uUaEAIQBw</string>
+  <string name="leaderboard_medium_board" translatable="false">CgkIvrzZ6uUaEAIQCA</string>
+  <string name="leaderboard_large_board" translatable="false">CgkIvrzZ6uUaEAIQCQ</string>
+</resources>

@@ -1,12 +1,14 @@
 package com.webs.itmexicali.colorized.gamestates;
 
+import com.webs.itmexicali.colorized.gamestates.GameState.GameFinishedListener;
+
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
-import com.webs.itmexicali.colorized.Prefs;
 import com.webs.itmexicali.colorized.R;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -17,7 +19,7 @@ import android.text.TextPaint;
 import android.text.Layout.Alignment;
 import android.view.MotionEvent;
 
-public class GameOverState extends BaseState implements gameFinishedListener {
+public class GameOverState extends BaseState implements GameFinishedListener {
 
 	//A reference to MainState, so we can paint it before painting this UI
 	private MainState pState;
@@ -29,7 +31,7 @@ public class GameOverState extends BaseState implements gameFinishedListener {
 	
 	//variables containing previous game results
 	private boolean pWin;
-	private int		pMovesCount, pBoardSize, pMovLim;
+	private int		pMovesCount;
 	
 	private String pTitle, pDescription;
 	
@@ -45,7 +47,7 @@ public class GameOverState extends BaseState implements gameFinishedListener {
 		//RESTART
 		pButtons.setOnActionListener(0, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				pGame.createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
+				pGame.createNewBoard(Const.board_sizes[ProgNPrefs.getIns().getDifficulty()]);
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
@@ -115,6 +117,8 @@ public class GameOverState extends BaseState implements gameFinishedListener {
 	@Override
 	public void onPushed() {
 		//Log.d(TutoState.class.getSimpleName(),"onPushed");
+		GameActivity.instance.playMusic(false);
+		
 		BaseState bs = StateMachine.getIns().getPrevioustState();
 		if(! (bs instanceof GameState))
 			StateMachine.getIns().popState();
@@ -129,12 +133,15 @@ public class GameOverState extends BaseState implements gameFinishedListener {
 				String.format(StateMachine.mContext.getString(R.string.game_over_win_desc),pMovesCount) :
 				StateMachine.mContext.getString(R.string.game_over_lose_desc);
 				
+		/* This now will be handled by GameActivity because it will sync this info with
+		 * Google Game Services too.
 		//update games finished count
 		int[] results = Prefs.getIns().updateGameFinished(pBoardSize,
 				pMovLim < 0? Const.CASUAL:Const.STEP, pWin);
 		
 		if(results[0]%2 == 0)//each 2 games, show Interstitial
 			GameActivity.instance.displayInterstitial();
+		*/
 	}
 	
 	public void resize(float width, float height){
@@ -179,26 +186,18 @@ public class GameOverState extends BaseState implements gameFinishedListener {
 	}
 	
 	public boolean onBackPressed(){
-		pGame.createNewBoard(Const.board_sizes[Prefs.getIns().getDifficulty()]);
+		pGame.createNewBoard(Const.board_sizes[ProgNPrefs.getIns().getDifficulty()]);
 		GameActivity.instance.playMusic(true);
 		return false;
 	}
 
 	@Override
-	public void setGameOver(boolean win, int moves, int mov_lim, int boardSize) {
+	public void onGameOver(boolean win, int moves, int gameMode, int boardSize) {
 		pWin = win;
 		pMovesCount = moves;
-		pMovLim = mov_lim;
-		pBoardSize = boardSize;
 		bgColor = win? Color.rgb(21, 183, 46):Color.RED;
 		bgColorText.setColor(bgColor);
+		
+		((GameFinishedListener)GameActivity.instance).onGameOver(win,moves,gameMode,boardSize);
 	}
-	
-	
 }
-
-/** Interface to communicate GameState and GameOverState*/
-interface gameFinishedListener{
-	public void setGameOver(boolean win, int moves, int mov_lim, int boardSize);
-}
-

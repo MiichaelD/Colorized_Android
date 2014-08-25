@@ -2,8 +2,9 @@ package com.webs.itmexicali.colorized.gamestates;
 
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
-import com.webs.itmexicali.colorized.Prefs;
 import com.webs.itmexicali.colorized.R;
+import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -16,13 +17,13 @@ public class StatisticState extends BaseState {
 	StatisticState(statesIDs id){
 		super(id);
 		
-		int games = Prefs.getIns().getGamesWon();
+		int games = ProgNPrefs.getIns().getGamesWon(Const.TOTAL_SIZES);
 		won  = GameActivity.instance.getString(R.string.totalGamesWon);
 		won = String.format(won,games);
 		
 		float percent = games;
 		
-		games = Prefs.getIns().getGamesFinished();
+		games = ProgNPrefs.getIns().getGamesFinished(Const.TOTAL_SIZES);
 		played = GameActivity.instance.getString(R.string.totalGamesPlayed);
 		played = String.format(played,games);
 		
