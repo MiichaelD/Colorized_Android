@@ -9,11 +9,15 @@ import com.google.android.gms.games.Games;
 import com.google.android.gms.games.Player;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.ConnectionResult;
+
 import com.google.example.games.basegameutils.BaseGameActivity;
+
+import com.webs.itmexicali.colorized.GameView.surfaceListener;
 import com.webs.itmexicali.colorized.gamestates.BaseState;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
 import com.webs.itmexicali.colorized.gamestates.GameState.GameFinishedListener;
 import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.GameStatsSync;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
 import ProtectedInt.ProtectedInt;
@@ -27,9 +31,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-public class GameActivity extends BaseGameActivity implements GameFinishedListener{
+public class GameActivity extends BaseGameActivity implements GameFinishedListener, surfaceListener{
 	
 	//AdMob Advertising
     /** The view to show the ad. */
@@ -45,8 +48,10 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     //private SoundType previousSound = SoundType.NONE;
     public static enum SoundType{ NONE, TOUCH, WIN, LOSE};
     
+    //SignInButton buttonSI = null;
     
-	@SuppressLint("InlinedApi")
+    
+	@SuppressLint({ "InlinedApi", "NewApi" })
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,12 +62,20 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		//run on FullScreen with no Action and Navigation Bars
 		Const.setFullScreen(this);
 		
+		//Keep screen on
+	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		
 		//Setup ProtectedInt once
 		if(!ProtectedInt.isSetup())
 			ProtectedInt.setup();
 		
-		//Init Preferences once 
+		//Init Preferences once
 		ProgNPrefs.initPreferences(this);
+		
+		// INCREMENT THE APP OPENED COUNTER if onCreate has no savedState
+		if(savedInstanceState == null){
+			ProgNPrefs.getIns().incrementAppOpened();// LOCALLY
+		}
 		
 		//Init StateMachine
 		if(!StateMachine.isSetUp())
@@ -71,8 +84,22 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		//set the game screen
 		setContentView(R.layout.game_screen);
 
-	    //Keep screen on
-	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		//set surface listener, to reposition Sign-In Button
+		((GameView)findViewById(R.id.gameView)).setSurfaceListener(this);
+		
+		/*************************************	SIGN IN BUTTON ****************************************/
+        /*
+		buttonSI = new SignInButton(StateMachine.mContext);
+        buttonSI.setOnClickListener(new OnClickListener(){
+			public void onClick(View clickedView) {
+				onSignInButtonClicked();	
+			}        	
+        });
+        
+        ((RelativeLayout) findViewById(R.id.RelLay)).addView(buttonSI);
+		*/
+		/*************************************	SIGN IN BUTTON ****************************************/
+	    
 		
 		/*************************************	ADS ADMOB	*********************************************/
 		// Create an ad.
@@ -136,8 +163,14 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
         });
         
         /*************************************	ADS ADMOB	*********************************************/
+        
          
 	}
+	
+	public void onSurfaceChanged(float width, float height){
+        //buttonSI.setPadding((int)(8*width/16), (int)(38*height/48), 0, 0);
+	}
+	
 	
 	/*************************************	ADS ADMOB	*********************************************/
 	/** Create an ad request. Check logcat output for the hashed device ID to
@@ -322,6 +355,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	public void onSignInFailed() {
 		// Show sign-in button on main menu
 		
+		//UPDATE CURRENT STATE
+        StateMachine.getIns().getCurrentState().onFocus();
 	}
 
 	@Override
@@ -331,26 +366,33 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
         // Show "you are signed in" message on win screen, with no sign in button.
 
         // Set the greeting appropriately on main menu
-        Player p = Games.Players.getCurrentPlayer(getApiClient());
-        String displayName;
-        if (p == null) {
-            displayName = "unknown_user";
-        } else {
-            displayName = p.getDisplayName();
-        }
-        Log.d(GameActivity.class.getSimpleName(),"User: "+displayName);
-        //mMainMenuFragment.setGreeting("Hello, " + displayName);
-
-
-        // if we have accomplishments to push, push them
-        // Check progress!! - if (!mOutbox.isEmpty())
-        {
-            pushAccomplishments();
-            Toast.makeText(this, getString(R.string.your_progress_will_be_uploaded),
-                    Toast.LENGTH_LONG).show();
-        }
+        
+		// Sync data between local  and google games services saves
+		GameStatsSync.syncLeaderboardsScores(getApiClient(), true);
+		GameStatsSync.syncAchievements(getApiClient());
+        
+        
+        //UPDATE CURRENT STATE
+        StateMachine.getIns().getCurrentState().onFocus();
     }
 
+	/** If signed in, return the player name, else return null*/
+	public String getPlayerName(){
+		String displayName = null;
+		if(isSignedIn()){		
+			Player p = Games.Players.getCurrentPlayer(getApiClient());
+	        
+	        if (p == null) {
+	            displayName = "unknown_user";
+	        } else {
+	            displayName = p.getDisplayName();
+	        }
+	        Log.d(GameActivity.class.getSimpleName(),"User: "+displayName);
+		}
+        return displayName;
+	}
+	
+	
 	/** Try to show Achievements activity, if not signed in, show message
 	 * @return true if Achievements were shown*/
 	public boolean onShowAchievementsRequested() {
@@ -359,13 +401,11 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
                     Const.RC_UNUSED);
             return true;
         } else {
-        	/* TODO uncomment this code block
         	if(GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext())
         			== ConnectionResult.SUCCESS)
                 showAlert(getString(R.string.achievements_not_available));        		
         	else
-        	*/
-        		StateMachine.getIns().pushState(BaseState.statesIDs.LEADER);
+        		StateMachine.getIns().pushState(BaseState.statesIDs.STATS);
         	
         }
         return false;
@@ -379,13 +419,12 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
                     Const.RC_UNUSED);
             return true;
         } else {
-            /* TODO - Activate this code
+            
         	if(GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext())
         			== ConnectionResult.SUCCESS)
             	showAlert(getString(R.string.leaderboards_not_available));        		
         	else
-        	*/
-        		StateMachine.getIns().pushState(BaseState.statesIDs.LEADER);
+        		StateMachine.getIns().pushState(BaseState.statesIDs.STATS);
         }
         return false;
     }
@@ -394,128 +433,21 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
      * to push it to Google Games Services*/
     public void onGameOver(boolean win, int moves, int gameMode, int boardSize) {
     	ProgNPrefs.getIns().updateGameFinished(boardSize, gameMode, win);
+    	
 		
     	//Each 2 games, show Interstitial.
 		if(ProgNPrefs.getIns().getGamesFinished(Const.TOTAL_SIZES)%2 == 0)
 			GameActivity.instance.displayInterstitial();
     	
-		
-		// check for achievements
-		// checkForAchievements(requestedScore, finalScore);
-
-        // update leaderboards
-        //updateLeaderboards(finalScore);
-
-        // push those accomplishments to the cloud, if signed in
-        //pushAccomplishments();
+		//update achievs and leads.
+		GameStatsSync.updateAchievementsAndLeaderboards(getApiClient(),win,moves,gameMode,boardSize);
     }
-    
-    /* Check for achievements and unlock the appropriate ones.
-    *
-    * @param requestedScore the score the user requested.
-    * @param finalScore the score the user got.
-    */
-   void checkForAchievements(int requestedScore, int finalScore) {
-	   /*
-       // Check if each condition is met; if so, unlock the corresponding
-       // achievement.
-       if (isPrime(finalScore)) {
-           mOutbox.mPrimeAchievement = true;
-           achievementToast(getString(R.string.achievement_prime_toast_text));
-       }
-       if (requestedScore == 9999) {
-           mOutbox.mArrogantAchievement = true;
-           achievementToast(getString(R.string.achievement_arrogant_toast_text));
-       }
-       if (requestedScore == 0) {
-           mOutbox.mHumbleAchievement = true;
-           achievementToast(getString(R.string.achievement_humble_toast_text));
-       }
-       if (finalScore == 1337) {
-           mOutbox.mLeetAchievement = true;
-           achievementToast(getString(R.string.achievement_leet_toast_text));
-       }
-       mOutbox.mBoredSteps++;
-       */
-   }
-
-   void unlockAchievement(int achievementId, String fallbackString) {
-       if (isSignedIn()) {
-           Games.Achievements.unlock(getApiClient(), getString(achievementId));
-       } else {
-    	   achievementToast(fallbackString);
-       }
-   }
-
-   /** Display an achievement toast, only if not signed in. If signed in,
-    * the standard google games toast will appear, so we don't show our own.*/
-   void achievementToast(String achievement) {
-       if (!isSignedIn()) {
-           Toast.makeText(this, getString(R.string.achievement_unlocked)+
-        		   achievement,Toast.LENGTH_LONG).show();
-       }
-   }
-
-   void pushAccomplishments() {
-       /*
-	   if (!isSignedIn()) {
-           // can't push to the cloud, so save locally
-           mOutbox.saveLocal(this);
-           return;
-       }
-       if (mOutbox.mPrimeAchievement) {
-           Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_prime));
-           mOutbox.mPrimeAchievement = false;
-       }
-       if (mOutbox.mArrogantAchievement) {
-           Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_dont_get_cocky_kid));
-           mOutbox.mArrogantAchievement = false;
-       }
-       if (mOutbox.mHumbleAchievement) {
-           Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_humble));
-           mOutbox.mHumbleAchievement = false;
-       }
-       if (mOutbox.mLeetAchievement) {
-           Games.Achievements.unlock(getApiClient(), getString(R.string.achievement_omg_u_r_teh_uber_leet));
-           mOutbox.mLeetAchievement = false;
-       }
-       if (mOutbox.mBoredSteps > 0) {
-           Games.Achievements.increment(getApiClient(), getString(R.string.achievement_really_really_bored),
-                   mOutbox.mBoredSteps);
-           Games.Achievements.increment(getApiClient(), getString(R.string.achievement_bored),
-                   mOutbox.mBoredSteps);
-
-       }
-       if (mOutbox.mEasyModeScore >= 0) {
-           Games.Leaderboards.submitScore(getApiClient(), getString(R.string.leaderboard_easy),
-                   mOutbox.mEasyModeScore);
-           mOutbox.mEasyModeScore = -1;
-       }
-       if (mOutbox.mHardModeScore >= 0) {
-           Games.Leaderboards.submitScore(getApiClient(), getString(R.string.leaderboard_hard),
-                   mOutbox.mHardModeScore);
-           mOutbox.mHardModeScore = -1;
-       }
-       mOutbox.saveLocal(this);*/
-   }
-
-   /**
-    * Update leaderboards with the user's score.
-    *
-    * @param finalScore The score the user got.
-    */
-   void updateLeaderboards(int boardSize) {
-       /*
-	   if (mHardMode && mOutbox.mHardModeScore < finalScore) {
-           mOutbox.mHardModeScore = finalScore;
-       } else if (!mHardMode && mOutbox.mEasyModeScore < finalScore) {
-           mOutbox.mEasyModeScore = finalScore;
-       }*/
-   }
-   
    
    /** Start sign-in flow by user interaction*/
    public void onSignInButtonClicked() {
+	   if(isSignedIn()||getApiClient().isConnecting()||getApiClient().isConnected())
+		   return;
+	   Log.d(GameActivity.class.getSimpleName(),"onSignInButtonClicked()");
        beginUserInitiatedSignIn();
    }
 

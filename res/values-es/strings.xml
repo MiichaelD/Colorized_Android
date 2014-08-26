@@ -2,26 +2,26 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">Invación de Color</string>
-    
+    <string name="greeting_player">Hola  <xliff:g id="name">%1$s</xliff:g></string>
     <string name="cancel">Cancelar</string>
     
     <!-- Dialogs messages !-->
     <string name="exit_confirmation">Estas seguro de querer salir?</string>
     <string name="restart_game_confirmation">Estas seguro de reiniciar la partida actual?</string>
-    <string name="saved_game_confirmation">Hay un juego sin terminar, quieres continuarlo?</string>
+    <string name="saved_game_confirmation">Hay un juego sin terminar.\n\nQuieres continuar jugándolo?</string>
     
     <string name="achievement_unlock">Logro desbloqueado: </string>
-    <string name="your_progress_will_be_uploaded">Tu progreso existente será Your existing progress will be uploaded shortly.</string>
+    <string name="your_progress_will_be_uploaded">Tu progreso existente será sincronizado.</string>
     
     <string name="achievements_not_available">Por favor inicie sesión para ver sus logros.</string>
     <string name="leaderboards_not_available">Por favor inicie sesión para ver los leaderboards.</string>
     
     <!-- GameOver State Texts -->
     <string name="game_over_lose_title">Juego Terminado</string>
-    <string name="game_over_lose_desc">Te quedaste sin movimientos, quieres intentar de nuevo?</string>
+    <string name="game_over_lose_desc">Te quedaste sin movimientos.\n\nQuieres jugar de nuevo?</string>
     <string name="game_over_win_title">Felicidades!</string>
     <string name="game_over_win_desc">Terminaste la partida con  
-        <xliff:g id="integer_formating">%1$d</xliff:g> movimientos. Quieres jugar de nuevo?</string>
+        <xliff:g id="integer_formating">%1$d</xliff:g> movimientos.\n\nQuieres jugar de nuevo?</string>
     
     <!-- Main State Buttons !-->
     <string name="play_button">Jugar</string>
@@ -31,6 +31,7 @@
     <string name="music_button">Música</string>
     <string name="about_button">Acerca</string>
     <string name="options_button">Opciones</string>
+    <string name="stats_button">Estadísticas</string>
     
     <!-- Game State Texts -->
     <string name="moves_txt">Movimientos: <xliff:g id="mov_form">%1$d</xliff:g>/<xliff:g id="mov_lim">%2$d</xliff:g></string>

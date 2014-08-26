@@ -19,6 +19,10 @@ import android.view.SurfaceView;
 @SuppressLint("WrongCall")
 public class GameView extends SurfaceView implements Callback, Runnable{
 	
+	public interface surfaceListener{
+		void onSurfaceChanged(float width, float height);
+	}
+	
 	// mPortrait true to indicate that the width is smaller than the heigth
 	static public boolean mPortrait;
 	
@@ -39,6 +43,12 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	
 	//this clas instance
 	private static GameView instance = null;
+	
+	private surfaceListener pListener = null;
+	
+	public void setSurfaceListener(surfaceListener l){
+		pListener = l;
+	}
 	
 	/********************************************CONSTRUCTORS*****************************/
 	public GameView(Context context) {
@@ -95,6 +105,9 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		if(StateMachine.getIns().getCurrentState() == null){
 			StateMachine.getIns().pushState(BaseState.statesIDs.MAIN);
 		}
+		
+		if(pListener != null)
+			pListener.onSurfaceChanged(wi, he);
 	}
 
 	@Override

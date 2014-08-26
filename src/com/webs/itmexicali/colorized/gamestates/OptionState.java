@@ -120,21 +120,21 @@ public class OptionState extends BaseState {
 				pMain.mPaints[7], pMain.mPaints[1], smallText);
 		
 		//paint different button on difficulty selected
-		options.drawButtonsAndText(dif, canvas, pMain.roundness, pMain.mPaints[1],
+		options.drawButtonAndText(dif, canvas, pMain.roundness, pMain.mPaints[1],
 				pMain.mPaints[7], smallText, smallText);
 		
 		//paint different button on game mode selected
-		options.drawButtonsAndText(mod+3, canvas, pMain.roundness, pMain.mPaints[1],
+		options.drawButtonAndText(mod+3, canvas, pMain.roundness, pMain.mPaints[1],
 				pMain.mPaints[7], smallText, smallText);
 		
 		
 		
 		if(ProgNPrefs.getIns().playMusic()) //paint music button different when on
-			options.drawButtonsAndText(5, canvas, pMain.roundness, pMain.mPaints[1],
+			options.drawButtonAndText(5, canvas, pMain.roundness, pMain.mPaints[1],
 					pMain.mPaints[7], smallText, smallText);
 
 		if(ProgNPrefs.getIns().playSFX())//paint sounds button different when on
-			options.drawButtonsAndText(6, canvas, pMain.roundness, pMain.mPaints[1],
+			options.drawButtonAndText(6, canvas, pMain.roundness, pMain.mPaints[1],
 					pMain.mPaints[7], smallText, smallText);
 	}
 	

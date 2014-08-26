@@ -12,13 +12,25 @@ public class BitmapLoader {
 
 	
 	/** load the origial Bitmap from resource ID	 */
-	public static Bitmap resizeImage(Context ctx, int resId, float w, float h) {
+	public static Bitmap getImage(Context ctx, int resId) {
 		String key = Integer.toString(resId);
 		if (bitmaps.containsKey(key))
 			return bitmaps.get(key);
 		
-        Bitmap BitmapOrg;
-        BitmapOrg = BitmapFactory.decodeResource(ctx.getResources(),resId);
+        Bitmap BitmapOrg = BitmapFactory.decodeResource(ctx.getResources(),resId);
+        
+        bitmaps.put(key, BitmapOrg);
+        return BitmapOrg;
+
+    }
+	
+	/** load the origial Bitmap from resource ID and resize it */
+	public static Bitmap resizeImage(Context ctx, int resId, float w, float h) {
+		String key = Integer.toString(resId)+"_"+w+"_"+h;
+		if (bitmaps.containsKey(key))
+			return bitmaps.get(key);
+		
+        Bitmap BitmapOrg = BitmapFactory.decodeResource(ctx.getResources(),resId);
         
         bitmaps.put(key, resizeImage(BitmapOrg, w, h));
         return bitmaps.get(key);

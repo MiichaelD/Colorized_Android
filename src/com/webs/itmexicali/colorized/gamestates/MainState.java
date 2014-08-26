@@ -1,12 +1,16 @@
 package com.webs.itmexicali.colorized.gamestates;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
+import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 import com.webs.itmexicali.colorized.R;
 
+import android.graphics.Bitmap;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -24,13 +28,16 @@ public class MainState extends BaseState {
 	private DrawButtonContainer 	dbc;
 	public float 					roundness;
 	
-	private String mAppName = null;
+	private Bitmap pBitmap[] = null;
+	
+	private String mAppName = null, playerName = null;
 	
 	MainState(statesIDs id){
 		super(id);
 		
 		mPaints = new TextPaint[12];
-		dbc	= new DrawButtonContainer(6, true);
+		dbc	= new DrawButtonContainer(7, true);
+		pBitmap = new Bitmap[2];
 		
 		//play button
 		dbc.setOnActionListener(0, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
@@ -94,19 +101,15 @@ public class MainState extends BaseState {
 				GameActivity.instance.onShowAchievementsRequested();
 		}});
 		
-		/*
-		//MUSIC button
+		//Sign in
 		dbc.setOnActionListener(6, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				Preferences.getIns().toggleMusic();
+				dbc.setEnabled(6,false);
+				//play sound
+				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+				
+				GameActivity.instance.onSignInButtonClicked();
 		}});
-		
-		//SFX button
-		dbc.setOnActionListener(7, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
-			@Override public void onActionPerformed() {
-				Preferences.getIns().toggleSFX();
-		}});
-		*/
 	}
 	
 	//font text size modifiers, this helps to change the Xfactor to texts
@@ -190,37 +193,75 @@ public class MainState extends BaseState {
 		mPaints[11].setStyle(Paint.Style.FILL);
 		mPaints[11].setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.NORMAL));
 		
+		
 		dbc.repositionDButton(0, width/4, 14*height/48,3*width/4, 22*height/48); // play
 		dbc.repositionDButton(1, width/4, 23*height/48,3*width/4, 27*height/48);// tuto
 		dbc.repositionDButton(2, width/4, 28*height/48,3*width/4, 32*height/48);//options
 		dbc.repositionDButton(3, width/4, 33*height/48,3*width/4, 37*height/48); // about
-		dbc.repositionDButton(4, 1.5f*width/16, 41*height/48, 7.5f*width/16, 45*height/48); // Leaderboard
-		dbc.repositionDButton(5, 8.5f*width/16, 41*height/48, 14.5f*width/16, 45*height/48); //Achievements
-		//dbc.repositionDButton(6, width/8, 38*height/48,3*width/8, 41*height/48); //music
-		//dbc.repositionDButton(7, width/8, 42*height/48, 7*width/16, 45*height/48); // sounds
+		
+		//If we have google play services 
+		if(GooglePlayServicesUtil.isGooglePlayServicesAvailable(GameActivity.instance.getApplicationContext())
+    			== ConnectionResult.SUCCESS
+    			){
+			dbc.repositionDButton(4, 1.5f*width/16, 40*height/48, 7.5f*width/16, 44*height/48); // Leaderboard
+			dbc.repositionDButton(5, 8.5f*width/16, 40*height/48, 14.5f*width/16, 44*height/48); //Achievements
+
+			dbc.setText(4, GameActivity.instance.getString(R.string.leader_button));
+			dbc.setText(5, GameActivity.instance.getString(R.string.achiev_button));
+			
+			
+			playerName = GameActivity.instance.getPlayerName();
+			if(playerName == null){
+				pBitmap[0] = BitmapLoader.resizeImage(StateMachine.mContext, R.drawable.white_signin_medium_base_44dp,
+						2*width/5, height/12);
+				pBitmap[1] = BitmapLoader.resizeImage(StateMachine.mContext, R.drawable.white_signin_medium_press_44dp,
+						2*width/5, height/12);
+				dbc.setEnabled(6,true); 
+			}
+			else{
+				playerName = String.format(GameActivity.instance.getString(R.string.greeting_player),playerName);
+				dbc.setEnabled(6,false);
+			}
+			
+			
+			dbc.repositionDButton(6, GameView.width/2 - pBitmap[0].getWidth()/2, 9.25f*GameView.height/48, //sign in
+					GameView.width/2 + pBitmap[0].getWidth()/2, 13.25f*height/48);
+		}else{
+			dbc.repositionDButton(4, width/4, 39*height/48, 3*width/4, 43*height/48); // statistics
+			
+			dbc.setText(4, GameActivity.instance.getString(R.string.stats_button)); //statistics
+		}
 		
 		mAppName = GameActivity.instance.getString(R.string.app_name);
 		dbc.setText(0, GameActivity.instance.getString(R.string.play_button));
 		dbc.setText(1, GameActivity.instance.getString(R.string.tutorial_button));
 		dbc.setText(2, GameActivity.instance.getString(R.string.options_button));
 		dbc.setText(3, GameActivity.instance.getString(R.string.about_button));
-		dbc.setText(4, GameActivity.instance.getString(R.string.leader_button));
-		dbc.setText(5, GameActivity.instance.getString(R.string.achiev_button));		
+		
 	}
 
 	@Override
 	public void draw(Canvas canvas, boolean isPortrait) {
 		canvas.drawColor(Color.rgb(0, 162, 232));
+		//canvas.drawColor(Color.DKGRAY);
 		
 		drawTitle(canvas, mAppName);//draw Title
 		
+		if(playerName != null)
+			canvas.drawText(playerName, GameView.width/2, 12*GameView.height/48, mPaints[8]);
+		else if (pBitmap != null){
+			canvas.drawBitmap(dbc.getDButton(6).isPressed()?pBitmap[1]:pBitmap[0],
+					GameView.width/2 - pBitmap[0].getWidth()/2, 9.25f*GameView.height/48, null);
+		}
+		
 		//draw play button BIGGER
 		mPaints[1].setTextSize(GameView.mPortrait? GameView.width/9 : GameView.height/9);
-		dbc.drawButtonsAndText(0, canvas, roundness, mPaints[8], mPaints[7], mPaints[1], mPaints[1]);
+		dbc.drawButtonAndText(0, canvas, roundness, mPaints[8], mPaints[7], mPaints[1], mPaints[1]);
 		mPaints[1].setTextSize(GameView.mPortrait? GameView.width/14 : GameView.height/14);
 		
 		//draw the rest of the buttons
-		dbc.drawButtonsAndText(1,dbc.getButtonsCount(), canvas, roundness, mPaints[8], mPaints[7], mPaints[1], mPaints[1]);
+		dbc.drawButtonsAndText(1,dbc.getButtonsCount()-1, canvas, roundness, mPaints[8], mPaints[7], mPaints[1], mPaints[1]);
+		
 		
 	}
 	
@@ -228,8 +269,8 @@ public class MainState extends BaseState {
 		float x = GameView.width,	y = GameView.height;
 		
 		mPaints[8].setTextSize(GameView.mPortrait? x/7 : y/7);
-		mPaints[8].setFakeBoldText(true);
 		mPaints[8].setTextScaleX(ts0);
+		mPaints[8].setFakeBoldText(true);
 		while((mPaints[8].measureText(text))+10 >= GameView.width){
 			ts0-=0.05f;
 			mPaints[8].setTextScaleX(ts0);

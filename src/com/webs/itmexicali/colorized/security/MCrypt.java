@@ -20,7 +20,7 @@ public class MCrypt {
 
     //prefix indicating the algorithm used
     public static String AES_PREF = "AES ";
-    public static int MAIN_IND = 0, FIN_GAM_IND = 1, WON_GAM_IND = 2;
+    public static int MAIN_IND = 0, FIN_GAM_IND = 1, WON_GAM_IND = 2, APP_OPEN_IND = 3, BEST_STREAK_IND = 4;
     
     private String SecretKeys[] = {"COLORIZEDAES0814","COLORIZEDAES0148","COLORIZEDAES1408","COLORIZEDAES1084","COLORIZEDAES0184"};
     //private String iv = "AES0814DEZIROLOC";

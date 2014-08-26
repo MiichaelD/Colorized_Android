@@ -33,7 +33,7 @@ public class ProgNPrefs {
 	}
 	
 	boolean isTuto, playSFX, playMusic;
-	ProtectedInt difficulty, gMode, gFinished[], gWon[];
+	ProtectedInt difficulty, gMode, gFinished[], gWon[], pOpenedTimes, pCurrentStreak, pBestStreak;
 	
 	/** IDS used for save number of times player finish a game in different board sizes*/
 	private int[] finished_ids = {R.string.key_times_finished_0,R.string.key_times_finished_1,
@@ -54,6 +54,11 @@ public class ProgNPrefs {
 		
 		gMode =		getInt(R.string.key_game_mode, Const.STEP);
 		difficulty= getInt(R.string.key_difficulty,0);
+		
+		
+		pOpenedTimes	= getEncryptedInt(R.string.key_times_app_opened, -1, 0);
+		pCurrentStreak	= getEncryptedInt(R.string.key_current_win_streak, -1, 0);
+		pBestStreak		= getEncryptedInt(R.string.key_best_win_streak, -1, 0);
 		
 		
 		gFinished = new ProtectedInt[Const.TOTAL_SIZES+1];
@@ -271,17 +276,30 @@ public class ProgNPrefs {
 			 * and put both with the same value. Now doing that, will just corrupt the replaced value and
 			 * reset it to 0 */
 			switch(id){
+			case R.string.key_current_win_streak:
+				MCrypt.getIns().resetSecretKeyIndex();
+				break;
+
+			case R.string.key_times_finished:
+			case R.string.key_times_finished_0:
+			case R.string.key_times_finished_1:
+			case R.string.key_times_finished_2:
+				MCrypt.getIns().setSecretKeyIndex(MCrypt.FIN_GAM_IND);
+				break;
+								
 			case R.string.key_times_won:
 			case R.string.key_times_won_0:
 			case R.string.key_times_won_1:
 			case R.string.key_times_won_2:
 				MCrypt.getIns().setSecretKeyIndex(MCrypt.WON_GAM_IND);
 				break;
-			case R.string.key_times_finished:
-			case R.string.key_times_finished_0:
-			case R.string.key_times_finished_1:
-			case R.string.key_times_finished_2:
-				MCrypt.getIns().setSecretKeyIndex(MCrypt.FIN_GAM_IND);
+				
+			case R.string.key_times_app_opened:
+				MCrypt.getIns().setSecretKeyIndex(MCrypt.APP_OPEN_IND);
+				break;
+
+			case R.string.key_best_win_streak:
+				MCrypt.getIns().setSecretKeyIndex(MCrypt.BEST_STREAK_IND);
 				break;
 			default:
 				return -1; //No valid encryption for given ID
@@ -289,9 +307,6 @@ public class ProgNPrefs {
 			
 			//decrypt the string and build a new one from the gotten bytes
 			aux = new String (MCrypt.getIns().decrypt(Const.HexStringToByte(aux)));
-			
-			//restore to default secret key
-			MCrypt.getIns().resetSecretKeyIndex();
 			
 			if(aux.startsWith(MCrypt.AES_PREF)){
 				aux = aux.substring(MCrypt.AES_PREF.length());
@@ -324,19 +339,25 @@ public class ProgNPrefs {
 		}catch(NumberFormatException nfe){
 			//thrown if we used the correct secretkey, but the value stored is not int
 			nfe.printStackTrace();
+		}finally{
+			//restore to default secret key
+			MCrypt.getIns().resetSecretKeyIndex();
 		}
+
 		return toReturn;
 	}
 	
 	/** Increments by one the number of games finished and won
 	 * @param win true if this game was won or false if it was lost*/
-	public void updateGameFinished(int boardSize, int game_mode, Boolean win){
+	public void updateGameFinished(int boardSize, int game_mode, Boolean win){		 
 		//increment the finished games value for given board size & Save
 		gFinished[Const.TOTAL_SIZES].increment();
 		saveFinishedGame(Const.TOTAL_SIZES);
 		
 		//Only if the game played was of mode Step Challenge, save data to its board size
 		if(game_mode == Const.STEP){
+			updateWinStreak(win);
+			
 			//increment the finished games value for given board size index
 			gFinished[boardSize].increment();
 			saveFinishedGame(boardSize);			
@@ -354,6 +375,81 @@ public class ProgNPrefs {
 		}
 	}
 	
+	public int getAppOpenedCount(){
+		return pOpenedTimes.get();
+	}
+	
+	public int getBestStreak(){
+		return pBestStreak.get();
+	}
+	
+	public int getGamesFinished(int boardSize){
+		return gFinished[boardSize].get();
+	}
+	
+	public int getGamesWon(int boardSize){
+		return gWon[boardSize].get();
+	}
+	
+	/** Set a new value to the given board size finished games counter.
+	 * @param boardSize the boardSize index of the finished game counter
+	 * @param nVal the new value to set to the counter
+	 * @param saveOnFile true to save the updated value on File, false doesn't update */
+	public void setGamesFinishedValue(int boardSize, int nVal, boolean saveOnFile){
+		gFinished[boardSize].set(nVal);
+		if(saveOnFile)
+			saveFinishedGame(boardSize);
+	}
+	
+	/** Set a new value to the given board size won games counter.
+	 * @param boardSize the boardSize index of the won game counter
+	 * @param nVal the new value to set to the counter
+	 * @param saveOnFile true to save the updated value on File, false doesn't update */
+	public void setGamesWonValue(int boardSize, int nVal, boolean saveOnFile){
+		gWon[boardSize].set(nVal);
+		if(saveOnFile)
+			saveWonGame(boardSize);
+	}
+	
+	/** Update the app opened counter*/
+	public void incrementAppOpened(){
+		pOpenedTimes.increment();
+		genericEncryptedSave(MCrypt.APP_OPEN_IND,
+				R.string.key_times_app_opened,
+				MCrypt.AES_PREF+pOpenedTimes.get());
+	}
+	
+	/** Update the app opened counter
+	 * @param nVal new value
+	 * @param saveToFile if you want to save to file*/
+	public void setAppOpened(int nVal, boolean saveToFile){
+		pOpenedTimes.set(nVal);
+		if(saveToFile)
+			genericEncryptedSave(MCrypt.APP_OPEN_IND,
+				R.string.key_times_app_opened,
+				MCrypt.AES_PREF+pOpenedTimes.get());
+	}
+	
+	/** Update the win streak counter
+	 * @param continueGood if true, increment the streak, else reset it*/
+	public void updateWinStreak(boolean continueGood){
+		if(continueGood){
+			pCurrentStreak.increment();
+			if(pCurrentStreak.get()>pBestStreak.get()){
+				pBestStreak.set(pCurrentStreak);
+				genericEncryptedSave(MCrypt.BEST_STREAK_IND,
+						R.string.key_best_win_streak,
+						MCrypt.AES_PREF+pBestStreak.get());
+			}
+		}
+		else{
+			// if lost reset streak
+			pCurrentStreak.set(0);
+		}
+		genericEncryptedSave(MCrypt.MAIN_IND,
+				R.string.key_current_win_streak,
+				MCrypt.AES_PREF+pCurrentStreak.get());
+	}
 	
 	/** Save the updated counter of FINISHED GAMES of the given boardsize
 	 * as a encrypted value in file
@@ -411,31 +507,20 @@ public class ProgNPrefs {
 		MCrypt.getIns().resetSecretKeyIndex();
 	}
 	
-	public int getGamesFinished(int boardSize){
-		return gFinished[boardSize].get();
-	}
-	
-	public int getGamesWon(int boardSize){
-		return gWon[boardSize].get();
-	}
-	
-	/** Set a new value to the given board size finished games counter.
-	 * @param boardSize the boardSize index of the finished game counter
-	 * @param nVal the new value to set to the counter
-	 * @param saveOnFile true to save the updated value on File, false doesn't update */
-	public void setGamesFinishedValue(int boardSize, int nVal, boolean saveOnFile){
-		gFinished[boardSize].set(nVal);
-		if(saveOnFile)
-			saveFinishedGame(boardSize);
-	}
-	
-	/** Set a new value to the given board size won games counter.
-	 * @param boardSize the boardSize index of the won game counter
-	 * @param nVal the new value to set to the counter
-	 * @param saveOnFile true to save the updated value on File, false doesn't update */
-	public void setGamesWonValue(int boardSize, int nVal, boolean saveOnFile){
-		gWon[boardSize].set(nVal);
-		if(saveOnFile)
-			saveWonGame(boardSize);
+	/** Generic encrypt and store a string value 
+	 * @param enc_key_index the index of the encryption to use
+	 * @param val_key_id the ID of the string in resources containing the key
+	 * for the shared preferences to write put the encrypted value
+	 * @param toEncrypt the string to encrypt*/
+	public void genericEncryptedSave(int enc_key_index, int val_key_id, String toEncrypt){
+		// Set key for Won Games
+		MCrypt.getIns().setSecretKeyIndex(enc_key_index);
+		String key = mContext.getString(val_key_id);
+		String encrypted = Const.byteArrayToHexString(MCrypt.getIns().encrypt(toEncrypt));
+		
+		//store the value
+		spEdit.putString(key, encrypted);
+		spEdit.commit();
+		MCrypt.getIns().resetSecretKeyIndex();
 	}
 }

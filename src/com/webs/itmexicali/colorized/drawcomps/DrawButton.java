@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 
 public class DrawButton  extends RectF{
 
-	private boolean isPressed;
+	private boolean isPressed = false, isEnabled = true;
 	private int		touchID;
 	private float	mTextXfact = 1.0f; 
 	private String	mText = null;
@@ -118,7 +118,7 @@ public class DrawButton  extends RectF{
 	}
 	
 	public boolean contains(float x, float y){
-		isPressed = super.contains(x,y);
+		isPressed = super.contains(x,y) && isEnabled;
 		return isPressed;
 	}
 	
@@ -130,7 +130,7 @@ public class DrawButton  extends RectF{
 	public boolean updatePress(MotionEvent event, int pointerIndex, int touch){
 		if (!isPressed && contains(event.getX(pointerIndex), event.getY(pointerIndex))){
 			touchID = touch;//event.getPointerId(pointerIndex);
-			if(onPress != null)
+			if(onPress != null && isEnabled)
 				onPress.onActionPerformed();
 		}
 		return isPressed;
@@ -145,7 +145,7 @@ public class DrawButton  extends RectF{
 			isPressed = false;
 			if( touchID != -1 ){//was pressed and linked to a touch ID since updatePress (no exiting the button)
 				touchID = -1;
-				if(onRelease != null)
+				if(onRelease != null && isEnabled)
 					onRelease.onActionPerformed();
 			}
 		}
@@ -177,6 +177,18 @@ public class DrawButton  extends RectF{
 	
 	public void setText(String txt){
 		mText = txt;
+	}
+	
+	public String getText(){
+		return mText;
+	}
+	
+	public boolean isEnabled(){
+		return isEnabled;
+	}
+	
+	public void setEnabled(boolean enabled){
+		isEnabled = enabled;
 	}
 	
 	/** This interface was designed to be bounded to {@link DrawButton}

@@ -98,6 +98,20 @@ public class DrawButtonContainer {
 			throw new NullPointerException("There is no draw button with index:"+index+" to return");
 	}
 	
+	public void setEnabled(int index, boolean enabled){
+		if(index < num_buttons && index >= 0)
+			buttons[index].setEnabled(enabled);
+		else 
+			throw new NullPointerException("There is no draw button with index:"+index+" to return");
+	}
+	
+	public boolean isEnabled(int index){
+		if(index < num_buttons && index >= 0)
+			return buttons[index].isEnabled();
+		else 
+			throw new NullPointerException("There is no draw button with index:"+index+" to return");
+	}
+	
 	/** Bound an {@link DrawButton.ActionListener} to a {@link DrawButton}
 	 * @param index button index
 	 * @param event_type is the type of events registered in this class as constants 
@@ -220,7 +234,7 @@ public class DrawButtonContainer {
 	 * @param pc Paint containing the color of the button on pressed mode
 	 * @param trc Paint containing the size and color to draw on the text on release mode
 	 * @param tpc Paint containing the size and color to draw on the text on pressed mode*/
-	public void drawButtonsAndText(int st, Canvas c, float r, Paint rc, Paint pc, TextPaint trc, TextPaint tpc ){
+	public void drawButtonAndText(int st, Canvas c, float r, Paint rc, Paint pc, TextPaint trc, TextPaint tpc ){
 		buttons[st].draw(c, r, rc, pc, trc, tpc);
 	}
 	

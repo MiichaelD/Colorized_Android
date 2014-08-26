@@ -16,7 +16,7 @@ import android.view.WindowManager;
 public class Const {
 
 	//Debug variable
-	public final static boolean D = true;
+	public final static boolean D = false;
 	
 	//Tag for debugging
 	public final static String TAG = "Colorized";

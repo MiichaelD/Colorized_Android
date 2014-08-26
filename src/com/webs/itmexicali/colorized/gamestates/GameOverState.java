@@ -156,6 +156,7 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 		
 		bgColorText.setTextSize(GameView.mPortrait? width/14 : height/14);
 		whiteText.setTextSize(GameView.mPortrait? width/12 : height/12);
+		layout = null;
 	}
 
 	
