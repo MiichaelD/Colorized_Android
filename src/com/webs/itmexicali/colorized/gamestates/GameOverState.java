@@ -82,7 +82,8 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 	private StaticLayout layout;
 	
 	private StaticLayout getLayout(){
-		if(layout == null){
+		//if(layout == null) // FIX - sometimes it doesn't update correctly
+		{
 			layout = new StaticLayout(pDescription, whiteText,
 					(int)GameView.width, Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 		}
