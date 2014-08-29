@@ -249,7 +249,7 @@ public class MainState extends BaseState {
 		
 		if(playerName != null)
 			canvas.drawText(playerName, GameView.width/2, 12*GameView.height/48, mPaints[8]);
-		else if (pBitmap != null){
+		else if (pBitmap != null && pBitmap[0] != null && pBitmap[1] != null){
 			canvas.drawBitmap(dbc.getDButton(6).isPressed()?pBitmap[1]:pBitmap[0],
 					GameView.width/2 - pBitmap[0].getWidth()/2, 9.25f*GameView.height/48, null);
 		}

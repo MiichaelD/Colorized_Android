@@ -12,6 +12,7 @@ Save this file as res/values/games-ids.xml in your project.
   <string name="achievement_really_bored">CgkIvrzZ6uUaEAIQBQ</string>
   <string name="achievement_a_lot_of_free_time">CgkIvrzZ6uUaEAIQBg</string>
   <string name="achievement_not_just_anybody">CgkIvrzZ6uUaEAIQDA</string>
+  <string name="achievement_this_is_my_game">CgkIvrzZ6uUaEAIQHA</string>
   <string name="achievement_loyal_to_colors">CgkIvrzZ6uUaEAIQDQ</string>
   <string name="achievement_getting_used_to_it">CgkIvrzZ6uUaEAIQDg</string>
   
@@ -26,6 +27,11 @@ Save this file as res/values/games-ids.xml in your project.
   <string name="achievement_big_amateur">CgkIvrzZ6uUaEAIQEQ</string>
   <string name="achievement_big_pro">CgkIvrzZ6uUaEAIQFA</string>
   <string name="achievement_big_champion">CgkIvrzZ6uUaEAIQFw</string>
+  
+  <string name="achievement_now_i_get_it">CgkIvrzZ6uUaEAIQGA</string>
+  <string name="achievement_premature">CgkIvrzZ6uUaEAIQGQ</string>
+  <string name="achievement_that_was_easy">CgkIvrzZ6uUaEAIQGg</string>
+  <string name="achievement_big_flood">CgkIvrzZ6uUaEAIQGw</string>
   
   <string name="leaderboard_all_board_sizes">CgkIvrzZ6uUaEAIQCg</string>
   <string name="leaderboard_small_board">CgkIvrzZ6uUaEAIQBw</string>

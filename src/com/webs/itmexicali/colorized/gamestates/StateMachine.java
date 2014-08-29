@@ -4,9 +4,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
+import com.webs.itmexicali.colorized.util.Const;
+
 import android.content.Context;
 import android.graphics.Canvas;
-import android.util.Log;
 import android.view.MotionEvent;
 
 /** StateMachine handles the transition between states,
@@ -66,7 +67,7 @@ public class StateMachine {
 	
 	/** Push a new state to start interacting with it*/
 	public void pushState(BaseState.statesIDs id){
-		Log.i(StateMachine.class.getSimpleName(),"pushState by ID");
+		Const.i(StateMachine.class.getSimpleName(),"pushState by ID");
 		
 		if(checkStateIsInList(id))
 			return;
@@ -77,7 +78,7 @@ public class StateMachine {
 	
 	/** Push a new state object to start interacting with it*/
 	public void pushState(BaseState bs){
-		Log.i(StateMachine.class.getSimpleName(),"pushState by Object Reference");
+		Const.i(StateMachine.class.getSimpleName(),"pushState by Object Reference");
 		
 		if(checkStateIsInList(bs.getID()))
 			return;
@@ -104,7 +105,7 @@ public class StateMachine {
 		BaseState bs = null;
 		while(it.hasNext()){
 			bs = it.next();
-			//Log.v(StateMachine.class.getSimpleName(),"States: "+bs.getID());
+			//Const.v(StateMachine.class.getSimpleName(),"States: "+bs.getID());
 			if(bs.mID == id)
 				return true;
 		}

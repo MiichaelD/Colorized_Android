@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="app_name">Invación de Color</string>
-    <string name="greeting_player">Hola  <xliff:g id="name">%1$s</xliff:g></string>
+    <string name="app_name">Invasión de Color</string>
+    <string name="greeting_player">Hola, <xliff:g id="name">%1$s</xliff:g></string>
     <string name="cancel">Cancelar</string>
     
     <!-- Dialogs messages !-->
@@ -10,7 +10,7 @@
     <string name="restart_game_confirmation">Estas seguro de reiniciar la partida actual?</string>
     <string name="saved_game_confirmation">Hay un juego sin terminar.\n\nQuieres continuar jugándolo?</string>
     
-    <string name="achievement_unlock">Logro desbloqueado: </string>
+    <string name="achievement_unlock">Logro desbloqueado!\nInicia sesión para obtener mas información.</string>
     <string name="your_progress_will_be_uploaded">Tu progreso existente será sincronizado.</string>
     
     <string name="achievements_not_available">Por favor inicie sesión para ver sus logros.</string>

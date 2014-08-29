@@ -30,13 +30,13 @@ public class TutoState extends BaseState{
 	
 	@Override
 	public void onPopped() {
-		//Log.d(TutoState.class.getSimpleName(),"onPopped");	
+		//Const.d(TutoState.class.getSimpleName(),"onPopped");	
 		pGame = null;
 	}	
 
 	@Override
 	public void onPushed() {
-		//Log.d(TutoState.class.getSimpleName(),"onPushed");
+		//Const.d(TutoState.class.getSimpleName(),"onPushed");
 		BaseState bs = StateMachine.getIns().getPrevioustState();
 		if(! (bs instanceof GameState))
 			StateMachine.getIns().popState();
@@ -47,7 +47,7 @@ public class TutoState extends BaseState{
 	}
 	
 	public void resize(float width, float height){
-		//Log.v("TutoState","canvas size: "+width+"x"+height);
+		//Const.v("TutoState","canvas size: "+width+"x"+height);
 		pGame.resize(width, height);
 
 		float boardPixels = pGame.mRectFs[0].width()/Const.board_sizes[ProgNPrefs.getIns().getDifficulty()];
@@ -147,7 +147,7 @@ public class TutoState extends BaseState{
 	
 
 	private void saveTutorialFinish(){
-		//Log.i(TutoState.class.getSimpleName(),"tutorial FInished");
+		//Const.i(TutoState.class.getSimpleName(),"tutorial FInished");
 		ProgNPrefs.getIns().setTutorialCompleted(true);
 	}
 
@@ -168,10 +168,11 @@ public class TutoState extends BaseState{
 			case FOURTH: mInnerState = innerStates.FIFTH; break;
 			case FIFTH: mInnerState = innerStates.FINAL; break;
 			case BACK: mInnerState = mPreState; break;
-			case FINAL: saveTutorialFinish(); 
+			case FINAL: saveTutorialFinish();
+					GameActivity.instance.onTutorialFinished();
 					StateMachine.getIns().popState(); break;
 			}
-			//Log.d(TutoState.class.getSimpleName(),"mState: "+mInnerState);
+			//Const.d(TutoState.class.getSimpleName(),"mState: "+mInnerState);
 		}
 		return true;
 	}

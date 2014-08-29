@@ -9,7 +9,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
@@ -85,7 +84,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
     
     @Override
 	public void surfaceCreated(SurfaceHolder holder) {
-		Log.v(Const.TAG,"SurfaceCreated ");
+		Const.v(Const.TAG,"SurfaceCreated ");
 		canvas = null;
 		surfaceCreated=true;
 
@@ -94,7 +93,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
     
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int wi,	int he) {
-		Log.v(Const.TAG, "SurfaceChanged: "+wi+"x"+he+" Ratio = "+((double) wi) / he);
+		Const.v(Const.TAG, "SurfaceChanged: "+wi+"x"+he+" Ratio = "+((double) wi) / he);
 		GameView.width = wi; 
 		GameView.height = he;
 		ratio = ((float) width) / height;
@@ -112,7 +111,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
-		Log.v(Const.TAG, "surfaceDestroyed ");
+		Const.v(Const.TAG, "surfaceDestroyed ");
 		surfaceCreated = false;
 		stopThread();
 	}
@@ -128,7 +127,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			StateMachine.getIns().draw(canvas, mPortrait);
 			
 		} catch (Exception e) {
-			Log.e(Const.TAG, "onDraw(canvas)"+e.getMessage());
+			Const.e(Const.TAG, "onDraw(canvas)"+e.getMessage());
 		}
 		
 	}
@@ -138,7 +137,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	 * There is no other thread running  and
 	 * The SurfaceView has been created */
 	public final void startThread(){
-		Log.v(GameView.class.getName(), "Starting Thread" );
+		Const.v(GameView.class.getName(), "Starting Thread" );
 		if(run == false){
 			tDraw = new Thread(this);
 			run = true;
@@ -148,7 +147,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	
 	/** Stop any thread in charge of refreshing the UI*/
 	public final void stopThread(){
-		Log.v(GameView.class.getName(), "Stoping Thread" );
+		Const.v(GameView.class.getName(), "Stoping Thread" );
 		if(run){
 			run = false;
 			boolean retry = true;
@@ -158,7 +157,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 						tDraw.join();
 					retry = false;
 				} catch (InterruptedException e) {
-					//Log.e(Const.TAG, "stopThread: " + e.getMessage());
+					//Const.e(Const.TAG, "stopThread: " + e.getMessage());
 				}
 			}
 		}
@@ -180,7 +179,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 
 	/** Refresh the User Interface to show the updates*/
 	public final void refreshUI() {
-		//Log.v(Const.TAG,"Refreshing UI GameView");
+		//Const.v(Const.TAG,"Refreshing UI GameView");
 		canvas = null;
 		if (surfaceCreated && sh != null){
 			try {
@@ -195,7 +194,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			}	
 		}
 		else{
-			Log.e(Const.TAG,"Refreshing UI GameView CANCELLED because surface is not created");
+			Const.e(Const.TAG,"Refreshing UI GameView CANCELLED because surface is not created");
 		}
 		canvas = null;
 	}

@@ -57,7 +57,7 @@ public class GameState extends BaseState implements GameBoardListener{
 	
 	GameState(statesIDs id){
 		super(id);
-		//Log.v("GameState","Constructor");
+		//Const.v("GameState","Constructor");
 			
 		mRectFs = new RectF[3];
 		mPaints = ((MainState)StateMachine.getIns().getFirstState()).mPaints;
@@ -90,7 +90,7 @@ public class GameState extends BaseState implements GameBoardListener{
 		//create board to prevent NullPointerException
 		//if(mColorBoard == null)
 		{
-			//Log.v("GameState","created New Board");
+			//Const.v("GameState","created New Board");
 			restartBoard(true);			
 		}
 		
@@ -134,7 +134,7 @@ public class GameState extends BaseState implements GameBoardListener{
 				if(ProgNPrefs.getIns().isGameSaved()){
 					//parse the gamestate
 					if(parseBoardFromString(ProgNPrefs.getIns().getSavedGame())){
-						Log.d("GameState","Finished parsing");
+						Const.d("GameState","Finished parsing");
 						showSavedGameDialog();
 					}
 				}

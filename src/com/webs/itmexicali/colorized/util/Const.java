@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -45,6 +46,27 @@ public class Const {
     
     /** Request codes we use when invoking an external activity*/
     public static final int RC_RESOLVE = 5000, RC_UNUSED = 5001;
+    
+    
+    //Log\.([a-z]) -> Const.$1
+    /** Android logging, only prints out if debug variable is set to true*/
+    public static void v(String tag, String msg){
+    	if(D)Log.v(tag, msg);
+    }
+    
+    public static void d(String tag, String msg){
+    	if(D)Log.d(tag, msg);
+    }
+    
+    public static void i(String tag, String msg){
+    	if(D)Log.i(tag, msg);
+    }
+    
+    public static void e(String tag, String msg){
+    	if(D)Log.e(tag, msg);
+    }
+    
+    
     
     /** Hide Action Bar in devices that support it */
 	@SuppressLint("InlinedApi")
@@ -149,15 +171,9 @@ public class Const {
     /** Return half byte (4bits) value from a HEXADECIMAL char*/
     private static byte charToByte(char c){
     	switch(c){
-    	case '0':
-    	case '1':
-    	case '2':
-    	case '3':
-    	case '4':
-    	case '5':
-    	case '6':
-    	case '7':
-    	case '8':
+    	case '0':    	case '1':    	case '2':
+    	case '3':    	case '4':    	case '5':
+    	case '6':    	case '7':    	case '8':
     	case '9':
     		return (byte)(c-'0');
     	case 'A':
@@ -176,5 +192,4 @@ public class Const {
 			return 0;
     	}
     }
-	
 }

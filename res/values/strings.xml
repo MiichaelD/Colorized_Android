@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name" translatable="false">Color Flooded</string>
-    <string name="greeting_player">Hello  <xliff:g id="name">%1$s</xliff:g></string>
+    <string name="greeting_player">Hello, <xliff:g id="name">%1$s</xliff:g></string>
     <string name="ok" translatable="false">OK</string>
     <string name="cancel">Cancel</string>
     <string name="no" translatable="false">NO</string>
@@ -13,7 +13,7 @@
     <string name="restart_game_confirmation">Are you sure you want to restart current game?</string>
     <string name="saved_game_confirmation">There is an unfinished game saved.\n\nDo you want to keep playing it?</string>
     
-    <string name="achievement_unlocked">Achievement unlocked:</string>
+    <string name="achievement_unlocked">Achievement unlocked!\nSign in to get more info.</string>
     <string name="your_progress_will_be_uploaded">Your existing progress will be uploaded shortly.</string>
     
     <string name="achievements_not_available">Please sign in to view achievements.</string>

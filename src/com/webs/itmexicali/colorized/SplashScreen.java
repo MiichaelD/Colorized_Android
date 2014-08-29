@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 
 /**
  * Splash Screen to display the LOGO
@@ -20,7 +19,6 @@ public class SplashScreen extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Log.v(this.getLocalClassName(),"onCreate()");
 
 		//run on FullScreen with no Action and Navigation Bars
 		Const.setFullScreen(this);
@@ -48,6 +46,5 @@ public class SplashScreen extends Activity {
 	@Override
 	protected void onDestroy(){
 		super.onDestroy();
-		Log.v(this.getLocalClassName(),"onDestroy()");
 	}
 }

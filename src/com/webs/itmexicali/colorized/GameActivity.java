@@ -27,7 +27,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -55,7 +54,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Log.v(GameActivity.class.getSimpleName(),"onCreate()");
+		Const.v(GameActivity.class.getSimpleName(),"onCreate()");
 		enableDebugLog(Const.D);
 		instance = this;
 		
@@ -110,12 +109,12 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
         adView.setAdListener(new AdListener() {
         	@Override
     		public void onAdOpened() {// Save app state before going to the ad overlay.
-    			Log.d(Const.TAG,"AdView - Opened");
+    			Const.d(Const.TAG,"AdView - Opened");
     			adView.setVisibility(View.GONE);
     		}
     		@Override
     		public void onAdFailedToLoad(int errorCode){
-    			Log.d(Const.TAG,"AdView - FailedToLoad = "+errorCode);
+    			Const.d(Const.TAG,"AdView - FailedToLoad = "+errorCode);
     			adView.setVisibility(View.GONE);
     		}
     		@Override
@@ -178,14 +177,14 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	private AdRequest createAdRequest(){
 		return new AdRequest.Builder()
 	            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-	            .addTestDevice("584586A082596B5844C4E301E1285E95") //My Nexus 4
+	            //.addTestDevice("584586A082596B5844C4E301E1285E95") //My Nexus 4
 	            .build();
 	}
 	
 
 	// Invoke displayInterstitial() when you are ready to display an interstitial.
 	public void displayInterstitial() {
-		Log.v(this.getLocalClassName(),"ShowingInterstitials ");
+		Const.v(this.getLocalClassName(),"ShowingInterstitials ");
 		if (interstitial.isLoaded()) {
 			interstitial.show();
 		}
@@ -197,7 +196,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	@Override
 	public void onStart(){
 		super.onStart();
-		Log.v(GameActivity.class.getSimpleName(),"onStart()");
+		Const.v(GameActivity.class.getSimpleName(),"onStart()");
 		
 		startMusicPlayer();
 	}
@@ -205,7 +204,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	@Override
 	public void onResume(){
 		super.onResume();
-		Log.v(GameActivity.class.getSimpleName(),"onResume()");
+		Const.v(GameActivity.class.getSimpleName(),"onResume()");
 		
 		//keep sticky full immersive screen in case we lost it
 		Const.setFullScreen(this);
@@ -223,7 +222,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	@Override
 	public void onPause(){
 		super.onPause();
-		Log.v(GameActivity.class.getSimpleName(),"onPause()");
+		Const.v(GameActivity.class.getSimpleName(),"onPause()");
 		
 		//ADMOB Advertising
 		if (adView != null) {
@@ -237,7 +236,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	public void onStop(){
 		super.onStop();
 		//release resources of the media player and delete it
-		Log.v(GameActivity.class.getSimpleName(),"onStop()");
+		Const.v(GameActivity.class.getSimpleName(),"onStop()");
 		if (soundPlayer != null){
 			soundPlayer.stop();
 			soundPlayer.release();
@@ -254,7 +253,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	public void onDestroy(){
 		super.onDestroy();
 		//release resources of the media player and delete it
-		Log.v(GameActivity.class.getSimpleName(),"onDestroy()");
+		Const.v(GameActivity.class.getSimpleName(),"onDestroy()");
 	}
 	
 	
@@ -356,7 +355,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		// Show sign-in button on main menu
 		
 		//UPDATE CURRENT STATE
-        StateMachine.getIns().getCurrentState().onFocus();
+		if(StateMachine.getIns().getCurrentState() != null)
+			StateMachine.getIns().getCurrentState().onFocus();
 	}
 
 	@Override
@@ -372,8 +372,9 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		GameStatsSync.syncAchievements(getApiClient());
         
         
-        //UPDATE CURRENT STATE
-        StateMachine.getIns().getCurrentState().onFocus();
+        //UPDATE CURRENT STATE//UPDATE CURRENT STATE
+		if(StateMachine.getIns().getCurrentState() != null)
+			StateMachine.getIns().getCurrentState().onFocus();
     }
 
 	/** If signed in, return the player name, else return null*/
@@ -387,7 +388,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	        } else {
 	            displayName = p.getDisplayName();
 	        }
-	        Log.d(GameActivity.class.getSimpleName(),"User: "+displayName);
+	        Const.d(GameActivity.class.getSimpleName(),"User: "+displayName);
 		}
         return displayName;
 	}
@@ -429,6 +430,13 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
         return false;
     }
     
+    /** Once the tutorial is fully completed, push a new achievement to
+     * Google Games Services*/
+    public void onTutorialFinished(){
+    	//Achievement Finish the tutorial
+    	GameStatsSync.unlockAchievement(getApiClient(),R.string.achievement_now_i_get_it);
+    }
+    
     /** Once the game is over saved all the info locally and try
      * to push it to Google Games Services*/
     public void onGameOver(boolean win, int moves, int gameMode, int boardSize) {
@@ -447,7 +455,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
    public void onSignInButtonClicked() {
 	   if(isSignedIn()||getApiClient().isConnecting()||getApiClient().isConnected())
 		   return;
-	   Log.d(GameActivity.class.getSimpleName(),"onSignInButtonClicked()");
+	   Const.d(GameActivity.class.getSimpleName(),"onSignInButtonClicked()");
        beginUserInitiatedSignIn();
    }
 

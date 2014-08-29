@@ -7,7 +7,6 @@ import com.webs.itmexicali.colorized.security.MCrypt;
 import ProtectedInt.ProtectedInt;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 public class ProgNPrefs {
 
@@ -178,7 +177,7 @@ public class ProgNPrefs {
 	/** set play music preference
 	 * @param play whether the music will be played or not*/
 	public void setPlayMusic(boolean play){
-		Log.i(ProgNPrefs.class.getSimpleName(),"set music: "+play);
+		Const.i(ProgNPrefs.class.getSimpleName(),"set music: "+play);
 		playMusic = play;
 		spEdit.putBoolean(mContext.getString(R.string.key_music), play);
 		spEdit.commit();
@@ -199,7 +198,7 @@ public class ProgNPrefs {
 	/** set play music preference
 	 * @param play whether the music will be played or not*/
 	public void setPlaySFX(boolean play){
-		Log.i(ProgNPrefs.class.getSimpleName(),"set SFX: "+play);
+		Const.i(ProgNPrefs.class.getSimpleName(),"set SFX: "+play);
 		playSFX = play;
 		spEdit.putBoolean(mContext.getString(R.string.key_sfx), play);
 		spEdit.commit();

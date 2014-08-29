@@ -25,10 +25,7 @@ public class OptionState extends BaseState {
 	StaticLayout mLayout;
 	DrawButtonContainer options;
 	
-	TextPaint smallText;
-	
-	
-	
+	TextPaint smallText;	
 	
 	protected OptionState(statesIDs id){
 		super(id);
