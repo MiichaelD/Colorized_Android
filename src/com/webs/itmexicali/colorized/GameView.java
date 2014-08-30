@@ -168,8 +168,8 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	public final void run() {		
 		while (run && surfaceCreated) {
 			try {
-				//sleep 20 millis to get around 50 FPS
-				Thread.sleep(20);
+				//sleep 10 millis to get around 100 FPS
+				Thread.sleep(10);
 				//if(System.currentTimeMillis() - lastUpdate < 2000)
 				refreshUI();
 			} catch (InterruptedException e) { }

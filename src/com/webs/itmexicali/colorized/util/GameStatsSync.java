@@ -21,7 +21,7 @@ import com.webs.itmexicali.colorized.R;
 
 public class GameStatsSync {
 	
-	static int sChanges;
+	static int sChanges = 0;
 	
 	/** Push local data to google achievements counter, to increment or unlock depending
 	 * on locally saved progress. each time we sign in correctly*/

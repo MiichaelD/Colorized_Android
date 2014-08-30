@@ -85,7 +85,7 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 		//if(layout == null) // FIX - sometimes it doesn't update correctly
 		{
 			layout = new StaticLayout(pDescription, whiteText,
-					(int)GameView.width, Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+					(int)(GameView.width*7/8), Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 		}
 		return layout;
 	}
@@ -95,12 +95,12 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 		canvas.drawColor(bgColor);
 
 		canvas.save();
-		canvas.translate(0, GameView.height/10);
+		canvas.translate(0, 3*GameView.height/48);
 		pState.drawTitle(canvas, pTitle);
 		canvas.restore();
 		
 		canvas.save();		
-		canvas.translate(0, 2*GameView.height/5);
+		canvas.translate(GameView.width/16, 16f*GameView.height/48);
 		getLayout().draw(canvas);
 		canvas.restore();
 		
@@ -128,29 +128,20 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 		pState = (MainState) StateMachine.getIns().getFirstState();
 		
 		
-		pTitle = pWin?"Congratulations":"Game Over";
+		pTitle = StateMachine.mContext.getString(
+				pWin?R.string.game_over_win_title:R.string.game_over_lose_title);
 		
 		pDescription = pWin? 
 				String.format(StateMachine.mContext.getString(R.string.game_over_win_desc),pMovesCount) :
 				StateMachine.mContext.getString(R.string.game_over_lose_desc);
-				
-		/* This now will be handled by GameActivity because it will sync this info with
-		 * Google Game Services too.
-		//update games finished count
-		int[] results = Prefs.getIns().updateGameFinished(pBoardSize,
-				pMovLim < 0? Const.CASUAL:Const.STEP, pWin);
-		
-		if(results[0]%2 == 0)//each 2 games, show Interstitial
-			GameActivity.instance.displayInterstitial();
-		*/
 	}
 	
 	public void resize(float width, float height){
 		//Const.v("GameOverState","canvas size: "+width+"x"+height);
 		pState.resize(width, height);
 
-		pButtons.repositionDButton(0, 8.5f*width/16, 33*height/48, 14.5f*width/16, 39*height/48); //Achievements
-		pButtons.repositionDButton(1, 1.5f*width/16, 33*height/48, 7.5f*width/16, 39*height/48); // Leaderboard
+		pButtons.repositionDButton(0, 8.5f*width/16, 35*height/48, 14.5f*width/16, 41*height/48); //Achievements
+		pButtons.repositionDButton(1, 1.5f*width/16, 35*height/48, 7.5f*width/16, 41*height/48); // Leaderboard
 
 		pButtons.setText(0, GameActivity.instance.getString(R.string.ok));
 		pButtons.setText(1, GameActivity.instance.getString(R.string.no));

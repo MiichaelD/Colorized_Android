@@ -101,10 +101,17 @@
     
 	<!-- About Texts !-->
     <string name="about_developer">Android Developer.</string>
+    <string name="about_designers">Designers.</string>
     <string name="about_version">Version.</string>
     <string name="about_sound">Sounds.</string>
     <string name="about_sound_values">"Sounds from www.freesound.org:\n'Nodens (Field Song)' by axtoncrolley,\n'saddertrombones.mp3' by-nc NotR,\n'cheer 4.wav' by-nc timtube.\n\nMore details in\nwww.itmexicali.webs.com/colorized"</string>
     <string name="about_sound_values_min">Sounds from www.freesound.org.\nMore details in www.itmexicali.webs.com/colorized</string>
+    <string name="about_sound_values_1">"Sounds from www.freesound.org:"</string>
+    <string name="about_sound_values_2">"'Nodens (Field Song)' by axtoncrolley,"</string>
+    <string name="about_sound_values_3">"'saddertrombones.mp3' by-nc NotR,"</string>
+    <string name="about_sound_values_4">"'cheer 4.wav' by-nc timtube."</string>
+    <string name="about_sound_values_5">More details in</string>
+    <string name="about_sound_values_6">"www.itmexicali.webs.com/colorized"</string>
      
     
 
