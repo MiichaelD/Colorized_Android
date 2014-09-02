@@ -7,6 +7,8 @@ Save this file as res/values/games-ids.xml in your project.
   <string name="app_id">920688942654</string>
   <string name="achievement_feeling_lucky">CgkIvrzZ6uUaEAIQAQ</string>
   <string name="achievement_where_is_the_challenge">CgkIvrzZ6uUaEAIQAg</string>
+  <string name="achievement_777">CgkIvrzZ6uUaEAIQHg</string>
+  <string name="achievement_9_win_streak">CgkIvrzZ6uUaEAIQHw</string>
   <string name="achievement_it_is_not_that_hard">CgkIvrzZ6uUaEAIQAw</string>
   <string name="achievement_bored">CgkIvrzZ6uUaEAIQBA</string>
   <string name="achievement_really_bored">CgkIvrzZ6uUaEAIQBQ</string>
@@ -17,14 +19,20 @@ Save this file as res/values/games-ids.xml in your project.
   <string name="achievement_getting_used_to_it">CgkIvrzZ6uUaEAIQDg</string>
   
   <string name="achievement_small_amateur">CgkIvrzZ6uUaEAIQDw</string>
+  <string name="achievement_small_apprentice">CgkIvrzZ6uUaEAIQIA</string>
+  <string name="achievement_small_teacher">CgkIvrzZ6uUaEAIQIw</string>
   <string name="achievement_small_pro">CgkIvrzZ6uUaEAIQEg</string>
   <string name="achievement_small_champion">CgkIvrzZ6uUaEAIQFQ</string>
   
   <string name="achievement_amateur">CgkIvrzZ6uUaEAIQEA</string>
+  <string name="achievement_apprentice">CgkIvrzZ6uUaEAIQIQ</string>
+  <string name="achievement_teacher">CgkIvrzZ6uUaEAIQJA</string>
   <string name="achievement_pro">CgkIvrzZ6uUaEAIQEw</string>
   <string name="achievement_champion">CgkIvrzZ6uUaEAIQFg</string>
   
   <string name="achievement_big_amateur">CgkIvrzZ6uUaEAIQEQ</string>
+  <string name="achievement_big_apprentice">CgkIvrzZ6uUaEAIQIg</string>
+  <string name="achievement_big_teacher">CgkIvrzZ6uUaEAIQJQ</string>
   <string name="achievement_big_pro">CgkIvrzZ6uUaEAIQFA</string>
   <string name="achievement_big_champion">CgkIvrzZ6uUaEAIQFw</string>
   
