@@ -25,8 +25,11 @@ public class OptionState extends BaseState {
 	StaticLayout mLayout;
 	DrawButtonContainer options;
 	
-	TextPaint smallText;	
+	TextPaint smallText;
 	
+	int 	prevAlpha;
+	//float 	animY; //ANIMATION
+		
 	protected OptionState(statesIDs id){
 		super(id);
 		
@@ -96,7 +99,13 @@ public class OptionState extends BaseState {
 
 	@Override
 	public void draw(Canvas canvas, boolean isPortrait) {
-		pPrevState.draw(canvas, isPortrait);
+		pPrevState.draw(canvas, isPortrait); 
+		pMain.mPaints[11].setAlpha(235);
+		
+		/* //ANIMATION
+		canvas.save();
+		canvas.translate(0, animY);
+		*/
 		canvas.drawRoundRect(base, pMain.roundness, pMain.roundness, pMain.mPaints[11]);
 		
 		int dif = ProgNPrefs.getIns().getDifficulty();
@@ -133,14 +142,16 @@ public class OptionState extends BaseState {
 		if(ProgNPrefs.getIns().playSFX())//paint sounds button different when on
 			options.drawButtonAndText(6, canvas, pMain.roundness, pMain.mPaints[1],
 					pMain.mPaints[7], smallText, smallText);
+		
+		//canvas.restore(); //ANIMATION
+		pMain.mPaints[11].setAlpha(prevAlpha);
 	}
 	
 	
 	@Override
 	public void resize(float width, float height) {
-		pPrevState.resize(width, height);		
-		pMain.mPaints[11].setAlpha(235);
-		
+		pPrevState.resize(width, height);
+		prevAlpha = pMain.mPaints[11].getAlpha();
 		base = new RectF(width/16,height/8,15*width/16,7*height/8);
 		
 		dy = height/48;
@@ -178,6 +189,27 @@ public class OptionState extends BaseState {
 		
 		options.setText(5, GameActivity.instance.getString(R.string.music_button));
 		options.setText(6, GameActivity.instance.getString(R.string.sfx_button));
+		
+		/* //ANIMATION
+		animY = -GameView.height;
+		
+		Thread t1 = new Thread(new Runnable(){public void run(){
+			options.setEnabled(false);
+			while(animY < 0 ){
+				animY+= 0.5f;
+				try {
+					Thread.sleep(0, 250);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			animY = 0;
+			options.setEnabled(true);
+		}});
+		t1.setPriority(Thread.MAX_PRIORITY);
+		t1.start();
+		*/
 	}
 
 	@Override

@@ -23,6 +23,9 @@ public class DrawButtonContainer {
 	//This array will keep the relation between pointerID and a buttonID
 	private byte point_button_rel[];
 	
+	//Enable/Disable reaction to touch inputs
+	private boolean enabled = true;
+	
 	/**Create a new DrawButtonContainer
 	 * @param num_buttons amount of buttons to be handled
 	 * @param initButtons whether let the constructor to initialize the
@@ -129,6 +132,8 @@ public class DrawButtonContainer {
 	 * @param event MotionEvent that triggered this update
 	 * @param pointerIndex pointer Index from this MotionEvent */
 	public void onPressUpdate(MotionEvent event, int pointerIndex, int touch){
+		if(!enabled)
+			return;
 		for(int i = 0 ; i < num_buttons; i++)
 			if( !buttons[i].isPressed() )
 				if(buttons[i].updatePress(event, pointerIndex, touch)){
@@ -141,6 +146,8 @@ public class DrawButtonContainer {
 	 * @param event MotionEvent that triggered this update
 	 * @param pointerIndex pointer Index from this MotionEvent */
 	public void onMoveUpdate(MotionEvent event, int pointerIndex){
+		if(!enabled)
+			return;
 		for(int i = 0 ; i < num_buttons; i++){
 			buttons[i].updateMove(event, pointerIndex);
 		}
@@ -150,6 +157,8 @@ public class DrawButtonContainer {
 	 * @param event MotionEvent that triggered this update
 	 * @param pointerIndex pointer Index from this MotionEvent */
 	public void onReleaseUpdate(MotionEvent event, int pointerIndex, int touch){
+		if(!enabled)
+			return;
 		int i = point_button_rel[touch];
 		if ( i != -1 && buttons[i].isPressed())
 			buttons[i].updateRelease(event, pointerIndex);
@@ -239,6 +248,9 @@ public class DrawButtonContainer {
 	}
 	
 	
-	
+	/** Set whether this button container should react to input events or not*/
+	public void setEnabled(boolean enbld){
+		enabled = enbld;
+	}
 	
 }

@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
-    tools:context="com.webs.itmexicali.colorized.MainMenu" >
+    android:background="#FFFFFF"
+    tools:context="com.webs.itmexicali.colorized.GameActivity" >
 
     <!--
          The primary full-screen view. This can be replaced with whatever view
@@ -11,15 +11,13 @@
          TextureView, etc.
     -->
 
-    <TextView
-        android:id="@+id/fullscreen_content"
+    <ImageView
+        android:id="@+id/logoView"
+        android:keepScreenOn="true"
+        android:contentDescription="@string/company_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:keepScreenOn="true"
-        android:text="MD Games"
-        android:textColor="#33b5e5"
-        android:textSize="80sp"
-        android:textStyle="bold" />
+        android:src="@drawable/md_games_logo_vertical" />
 
 </FrameLayout>

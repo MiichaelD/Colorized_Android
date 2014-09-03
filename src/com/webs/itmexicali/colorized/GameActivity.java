@@ -237,17 +237,9 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		super.onStop();
 		//release resources of the media player and delete it
 		Const.v(GameActivity.class.getSimpleName(),"onStop()");
-		if (soundPlayer != null){
-			soundPlayer.stop();
-			soundPlayer.release();
-			soundPlayer = null;
-		}
 		
-		if (musicPlayer != null){
-			musicPlayer.stop();
-			musicPlayer.release();
-			musicPlayer = null;
-		}
+		stopSound();
+		stopMusicPlayer();
 	}
 	
 	public void onDestroy(){
@@ -303,11 +295,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 			//if(s != previousSound){
 				//previousSound = s;
 	
-				//if it was playing, stop it to restart it
-				if(soundPlayer != null){
-					soundPlayer.stop();
-					soundPlayer.release();
-				}
+				stopSound();
 				
 				//get the new sound
 				switch(s){
@@ -321,6 +309,17 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 			soundPlayer.start();
 		}
 			
+	}
+	
+	/** If there is a sound playing, stop and release it so we can restart it later*/
+	public void stopSound(){
+		try{
+			if(soundPlayer != null){
+				soundPlayer.stop();
+				soundPlayer.release();
+				soundPlayer = null;
+			}	
+		}catch(IllegalStateException ise){}
 	}
 	
 	/** Play/Stop Background music
@@ -345,6 +344,16 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 			musicPlayer=MediaPlayer.create(this, R.raw.music);
 			musicPlayer.setLooping(true);
 		}
+	}
+	
+	private void stopMusicPlayer(){
+		try{
+			if( musicPlayer != null){
+				musicPlayer.stop();
+				musicPlayer.release();
+				musicPlayer = null;
+			}
+		}catch(IllegalStateException ise){}
 	}
 	
 	/*------------------------ LEADERBOARDS and ACHIEVEMENTS METHODS ----------------------------------*/

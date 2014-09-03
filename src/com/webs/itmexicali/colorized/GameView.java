@@ -33,6 +33,8 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		
 	public static float width = 1, height = 1, ratio;
 	
+	public static long drawSleep = 5;
+	
 	//the matrix of color
 	//canvas to be drawn on
 	protected Canvas canvas;
@@ -140,6 +142,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		Const.v(GameView.class.getName(), "Starting Thread" );
 		if(run == false){
 			tDraw = new Thread(this);
+			tDraw.setPriority(Thread.MAX_PRIORITY);
 			run = true;
 			tDraw.start();
 		}
@@ -168,10 +171,11 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	public final void run() {		
 		while (run && surfaceCreated) {
 			try {
-				//sleep 10 millis to get around 100 FPS
-				Thread.sleep(10);
-				//if(System.currentTimeMillis() - lastUpdate < 2000)
+				//sleep {drawSleep} millis
+				Thread.sleep(drawSleep);
+				//Long t = System.currentTimeMillis();
 				refreshUI();
+				//Const.d("Draw","Time painting: "+(System.currentTimeMillis()-t));
 			} catch (InterruptedException e) { }
 		}
 	}

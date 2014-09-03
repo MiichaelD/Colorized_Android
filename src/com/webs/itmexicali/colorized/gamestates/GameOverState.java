@@ -47,12 +47,10 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 		//RESTART
 		pButtons.setOnActionListener(0, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				pGame.createNewBoard(Const.board_sizes[ProgNPrefs.getIns().getDifficulty()]);
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+				restartGamePlay();
 				
-				GameActivity.instance.playMusic(true);
-				StateMachine.getIns().popState();
 			}
 		});
 		
@@ -62,8 +60,7 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
-				GameActivity.instance.playMusic(true);
-				StateMachine.getIns().getBackToState(statesIDs.MAIN);
+				quit();
 			}
 		});
 		
@@ -80,6 +77,17 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 	}
 	
 	private StaticLayout layout;
+	
+	private void quit(){
+		GameActivity.instance.playMusic(true);
+		StateMachine.getIns().getBackToState(statesIDs.MAIN);
+	}
+	
+	private void restartGamePlay(){
+		GameActivity.instance.playMusic(true);
+		pGame.createNewBoard(Const.board_sizes[ProgNPrefs.getIns().getDifficulty()]);
+		StateMachine.getIns().popState();		
+	}
 	
 	private StaticLayout getLayout(){
 		//if(layout == null) // FIX - sometimes it doesn't update correctly
@@ -179,9 +187,9 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 	}
 	
 	public boolean onBackPressed(){
-		pGame.createNewBoard(Const.board_sizes[ProgNPrefs.getIns().getDifficulty()]);
-		GameActivity.instance.playMusic(true);
-		return false;
+		GameActivity.instance.stopSound();
+		restartGamePlay();
+		return true;
 	}
 
 	@Override

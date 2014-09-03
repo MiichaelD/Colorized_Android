@@ -2,6 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name" translatable="false">Color Flooded</string>
+    <string name="company_name" translatable="false">MD Games</string>
     <string name="greeting_player">Hello, <xliff:g id="name">%1$s</xliff:g></string>
     <string name="ok" translatable="false">OK</string>
     <string name="cancel">Cancel</string>
