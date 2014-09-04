@@ -17,7 +17,7 @@ import android.view.WindowManager;
 public class Const {
 
 	//Debug variable
-	public final static boolean D = true;
+	public final static boolean D = false;
 	
 	//ADS Constants	
 	public final static boolean SHOW_ADS = true;
@@ -31,9 +31,9 @@ public class Const {
     	APPID 	=	"236182",
     	APIKEY	=	"1409523218201390512";
 
-    public final static int ADS_ADMOB = 0, ADS_AIRPUSH = 1;
+    public final static int ADS_ADMOB = 0, ADS_AIRPUSH_BUNDLE = 1, ADS_AIRPUSH_STANDARD = 2;
 	
-	public final static int AD_SERVICE = ADS_AIRPUSH;
+	public final static int AD_SERVICE = ADS_AIRPUSH_STANDARD;
 	
 	//Tag for debugging
 	public final static String TAG = "Colorized";

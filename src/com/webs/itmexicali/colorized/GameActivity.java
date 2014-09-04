@@ -30,7 +30,8 @@ import com.webs.itmexicali.colorized.util.GameStatsSync;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
 import com.xsqhbao.bipppts201390.AdListener.AdType;
-import com.xsqhbao.bipppts201390.MA;
+//import com.xsqhbao.bipppts201390.MA; //AirPush_BNDL
+import com.xsqhbao.bipppts201390.Prm;//AirPush_STD
 
 public class GameActivity extends BaseGameActivity implements GameFinishedListener, surfaceListener{
 	
@@ -40,8 +41,12 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     private InterstitialAd interstitial =  null;
     
     //AirPush Ads
+    //Bundle
+    //private MA air = null;
     private com.xsqhbao.bipppts201390.AdView AirPushView = null;
-    private MA air = null;
+    
+    private Prm air_std = null;
+    
 	
 	/** This activity instance, to access its members from other classes*/
     public static GameActivity instance;
@@ -163,7 +168,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	        /*************************************	ADS ADMOB	*********************************************/
 			
 			break;
-		case Const.ADS_AIRPUSH:
+		case Const.ADS_AIRPUSH_BUNDLE:
 			/*************************************	ADS AIRPUSH	*********************************************/
 			if(AirPushView != null){// remove the existing adView
 	        	layout.removeView(AirPushView);
@@ -179,7 +184,9 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 			
 			/**Initializing Bundle SDK 
 			 * @param Activity * @param AdListener * @param caching*/
-			air = new MA(this,
+			/*
+			air = new MA(this, 
+			
 					new com.xsqhbao.bipppts201390.AdListener(){
 				@Override
 				public void noAdAvailableListener() {
@@ -211,8 +218,55 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 			true);
 			
 			//Caching Smartwall Ad. 
-			air.callSmartWallAd();
+			//AirPush Bundle//air.callSmartWallAd();
 			
+			 */
+			
+			break;
+		case Const.ADS_AIRPUSH_STANDARD:
+			if(AirPushView != null){// remove the existing adView
+	        	layout.removeView(AirPushView);
+	        	AirPushView = null;
+	        }
+			
+			AirPushView = new com.xsqhbao.bipppts201390.AdView(
+					this, com.xsqhbao.bipppts201390.AdView.BANNER_TYPE_IN_APP_AD,
+					com.xsqhbao.bipppts201390.AdView.PLACEMENT_TYPE_INLINE, false, false, 
+					com.xsqhbao.bipppts201390.AdView.ANIMATION_TYPE_FADE);
+			
+			layout.addView(AirPushView);
+			
+			air_std = new Prm(this,
+					new com.xsqhbao.bipppts201390.AdListener(){
+				@Override
+				public void noAdAvailableListener() {
+					Const.e(instance.getLocalClassName(), "noAdAvailableListener");	
+				}
+				@Override
+				public void onAdCached(AdType arg0) {
+					Const.d(instance.getLocalClassName(), "onAdCached type: "+arg0.name());
+				}
+				@Override
+				public void onAdError(String arg0) {
+					Const.e(instance.getLocalClassName(), "onAdError: "+arg0);	
+				}
+				@Override
+				public void onSDKIntegrationError(String arg0) {
+					Const.e(instance.getLocalClassName(), "onSDKIntegrationError: "+arg0);	
+				}
+				@Override
+				public void onSmartWallAdClosed() {
+					Const.d(instance.getLocalClassName(), "onSmartWallAdClosed");
+					//Caching Smartwall Ad for future use
+					air_std.runSmartWallAd();
+				}
+				@Override
+				public void onSmartWallAdShowing() {
+					Const.d(instance.getLocalClassName(), "onSmartWallAdShowing");				
+				}
+			},
+			true);
+			air_std.runSmartWallAd();
 			break;
 		/*************************************	ADS AIRPUSH	*********************************************/
 		}
@@ -235,6 +289,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	/** Load Interstitial ads, some ads-services like airPush
 	 * needs to call SmartWallAds before showing them*/
 	public void loadInterstitial(){
+		Const.d(this.getLocalClassName(),"Loading interstitial");
 		try{
 			if(Const.SHOW_ADS){
 				switch(Const.AD_SERVICE){
@@ -242,8 +297,11 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 					if(!interstitial.isLoaded())
 						interstitial.loadAd(createAdRequest());
 					break;
-				case Const.ADS_AIRPUSH:
-					air.callSmartWallAd();
+				case Const.ADS_AIRPUSH_BUNDLE:
+					//AirPush Bundle//air.callSmartWallAd();
+					break;
+				case Const.ADS_AIRPUSH_STANDARD:
+					air_std.runSmartWallAd();
 					break;
 				}
 			}
@@ -266,13 +324,22 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 			else
 				Const.w(this.getLocalClassName(),"Interstitial not loaded");
 			break;
-		case Const.ADS_AIRPUSH:
+		case Const.ADS_AIRPUSH_BUNDLE:
 			try {
 				//if(air.isSDKEnabled(this))
-				air.showCachedAd(this, AdType.smartwall);
+				//AirPush Bundle//air.showCachedAd(this, AdType.smartwall);
 			} catch (Exception e) {
 				Const.w(this.getLocalClassName(),"Interstitial not showing Cached");
-				air.callSmartWallAd();
+				//AirPush Bundle//air.callSmartWallAd();
+				e.printStackTrace();
+			}
+			break;
+		case Const.ADS_AIRPUSH_STANDARD:
+			try {
+				air_std.runCachedAd(this, AdType.smartwall);
+			} catch (Exception e) {
+				Const.w(this.getLocalClassName(),"Interstitial not showing Cached");
+				air_std.runSmartWallAd();
 				e.printStackTrace();
 			}
 			break;
