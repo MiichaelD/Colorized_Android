@@ -1,25 +1,5 @@
 package com.webs.itmexicali.colorized;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.games.Games;
-import com.google.android.gms.games.Player;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.ConnectionResult;
-
-import com.google.example.games.basegameutils.BaseGameActivity;
-
-import com.webs.itmexicali.colorized.GameView.surfaceListener;
-import com.webs.itmexicali.colorized.gamestates.BaseState;
-import com.webs.itmexicali.colorized.gamestates.StateMachine;
-import com.webs.itmexicali.colorized.gamestates.GameState.GameFinishedListener;
-import com.webs.itmexicali.colorized.util.Const;
-import com.webs.itmexicali.colorized.util.GameStatsSync;
-import com.webs.itmexicali.colorized.util.ProgNPrefs;
-
 import ProtectedInt.ProtectedInt;
 
 import android.annotation.SuppressLint;
@@ -31,13 +11,37 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.games.Games;
+import com.google.android.gms.games.Player;
+import com.google.example.games.basegameutils.BaseGameActivity;
+import com.webs.itmexicali.colorized.GameView.surfaceListener;
+import com.webs.itmexicali.colorized.gamestates.BaseState;
+import com.webs.itmexicali.colorized.gamestates.GameState.GameFinishedListener;
+import com.webs.itmexicali.colorized.gamestates.StateMachine;
+import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.GameStatsSync;
+import com.webs.itmexicali.colorized.util.ProgNPrefs;
+
+import com.xsqhbao.bipppts201390.AdListener.AdType;
+import com.xsqhbao.bipppts201390.MA;
+
 public class GameActivity extends BaseGameActivity implements GameFinishedListener, surfaceListener{
 	
 	//AdMob Advertising
     /** The view to show the ad. */
-    private AdView adView = null;
-     
+    private AdView AdMobView = null;
     private InterstitialAd interstitial =  null;
+    
+    //AirPush Ads
+    private com.xsqhbao.bipppts201390.AdView AirPushView = null;
+    private MA air = null;
 	
 	/** This activity instance, to access its members from other classes*/
     public static GameActivity instance;
@@ -86,90 +90,134 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		//set surface listener, to reposition Sign-In Button
 		((GameView)findViewById(R.id.gameView)).setSurfaceListener(this);
 		
-		/*************************************	SIGN IN BUTTON ****************************************/
-        /*
-		buttonSI = new SignInButton(StateMachine.mContext);
-        buttonSI.setOnClickListener(new OnClickListener(){
-			public void onClick(View clickedView) {
-				onSignInButtonClicked();	
-			}        	
-        });
-        
-        ((RelativeLayout) findViewById(R.id.RelLay)).addView(buttonSI);
-		*/
-		/*************************************	SIGN IN BUTTON ****************************************/
-	    
-		
-		/*************************************	ADS ADMOB	*********************************************/
-		// Create an ad.
-        adView = new AdView(this);
-        adView.setAdSize(AdSize.SMART_BANNER);
-        adView.setAdUnitId(Const.ADVIEW_AD_UNIT_ID);
-        adView.setVisibility(View.GONE);
-        adView.setAdListener(new AdListener() {
-        	@Override
-    		public void onAdOpened() {// Save app state before going to the ad overlay.
-    			Const.d(Const.TAG,"AdView - Opened");
-    			adView.setVisibility(View.GONE);
-    		}
-    		@Override
-    		public void onAdFailedToLoad(int errorCode){
-    			Const.d(Const.TAG,"AdView - FailedToLoad = "+errorCode);
-    			adView.setVisibility(View.GONE);
-    		}
-    		@Override
-    		public void onAdLoaded(){
-    			adView.setVisibility(View.VISIBLE);
-    		}
-    	});		
-        
-        
-        // Add the AdView to the view hierarchy. The view will have no size
-        // until the ad is loaded.
-        LinearLayout layout = (LinearLayout) findViewById(R.id.LayMain);
-        /*
-          
-         When the game_Screen.xml root tag used to be RelativeLayout, the ad was just
-         OVER the GameView, now they share the screen size
-          
-        if(adView != null){
-        	layout.removeView(adView); // remove the existing adView
-        	adView.destroy();
-        }
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-        		RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-    	params.addRule(RelativeLayout.CENTER_HORIZONTAL);
-    	layout.addView(adView, params);
-    	*/
-		layout.addView(adView);
-		
-        
-        // Start loading the ad in the background.
-        adView.loadAd(createAdRequest());
-        
-        
-        // Create the INTERSTTIAL.
-        interstitial = new InterstitialAd(this);
-        interstitial.setAdUnitId(Const.INTERSTITIAL_AD_UNIT_ID);
-        // Begin loading your interstitial.
-        interstitial.loadAd(createAdRequest());
-        interstitial.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-              interstitial.loadAd(createAdRequest());
-            }
-        });
-        
-        /*************************************	ADS ADMOB	*********************************************/
-        
-         
+		initAds();  
 	}
 	
 	public void onSurfaceChanged(float width, float height){
         //buttonSI.setPadding((int)(8*width/16), (int)(38*height/48), 0, 0);
 	}
 	
+	
+	/** Load ads if they are enabled, depending on the ads service using load
+	 * the corresponding one AirPush or AdMob*/
+	private void initAds(){
+		if(!Const.SHOW_ADS)
+			return;
+		// Add the AdView to the view hierarchy. The view will have no size
+        // until the ad is loaded.
+		LinearLayout layout = (LinearLayout) findViewById(R.id.LayMain);
+		switch(Const.AD_SERVICE){
+		case Const.ADS_ADMOB:
+			/*************************************	ADS ADMOB	*********************************************/
+			if(AdMobView != null){// remove the existing adView
+	        	layout.removeView(AdMobView); 
+	        	AdMobView.destroy();
+	        	AdMobView = null;
+	        }
+			// Create an ad.
+	        AdMobView = new AdView(this);
+	        AdMobView.setAdSize(AdSize.SMART_BANNER);
+	        AdMobView.setAdUnitId(Const.ADVIEW_AD_UNIT_ID);
+	        AdMobView.setVisibility(View.GONE);
+	        AdMobView.setAdListener(new AdListener() {
+	        	@Override
+	    		public void onAdOpened() {// Save app state before going to the ad overlay.
+	    			Const.d(Const.TAG,"AdView - Opened");
+	    			AdMobView.setVisibility(View.GONE);
+	    		}
+	    		@Override
+	    		public void onAdFailedToLoad(int errorCode){
+	    			Const.d(Const.TAG,"AdView - FailedToLoad = "+errorCode);
+	    			AdMobView.setVisibility(View.GONE);
+	    		}
+	    		@Override
+	    		public void onAdLoaded(){
+	    			AdMobView.setVisibility(View.VISIBLE);
+	    		}
+	    	});
+	        
+	        
+	        /* When the game_Screen.xml root tag used to be RelativeLayout, the ad was just
+	         OVER the GameView, now they share the screen size
+	        //layout = (LinearLayout) findViewById(R.id.LayMain);
+	        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+	        		RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+	        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+	    	params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+	    	layout.addView(adView, params);	    	*/
+			layout.addView(AdMobView);
+			// Start loading the ad in the background.
+	        AdMobView.loadAd(createAdRequest());
+	        
+	        // Create the INTERSTTIAL.
+	        interstitial = new InterstitialAd(this);
+	        interstitial.setAdUnitId(Const.INTERSTITIAL_AD_UNIT_ID);
+	        interstitial.setAdListener(new AdListener() {
+	            @Override
+	            public void onAdClosed() {
+	              interstitial.loadAd(createAdRequest());
+	            }
+	        });
+	        // Begin loading your interstitial.
+	        interstitial.loadAd(createAdRequest());
+	        /*************************************	ADS ADMOB	*********************************************/
+			
+			break;
+		case Const.ADS_AIRPUSH:
+			/*************************************	ADS AIRPUSH	*********************************************/
+			if(AirPushView != null){// remove the existing adView
+	        	layout.removeView(AirPushView);
+	        	AirPushView = null;
+	        }
+			
+			AirPushView = new com.xsqhbao.bipppts201390.AdView(
+					this, com.xsqhbao.bipppts201390.AdView.BANNER_TYPE_IN_APP_AD,
+					com.xsqhbao.bipppts201390.AdView.PLACEMENT_TYPE_INLINE, false, false, 
+					com.xsqhbao.bipppts201390.AdView.ANIMATION_TYPE_FADE);
+			
+			layout.addView(AirPushView);
+			
+			/**Initializing Bundle SDK 
+			 * @param Activity * @param AdListener * @param caching*/
+			air = new MA(this,
+					new com.xsqhbao.bipppts201390.AdListener(){
+				@Override
+				public void noAdAvailableListener() {
+					Const.e(instance.getLocalClassName(), "noAdAvailableListener");	
+				}
+				@Override
+				public void onAdCached(AdType arg0) {
+					Const.d(instance.getLocalClassName(), "onAdCached type: "+arg0.name());
+				}
+				@Override
+				public void onAdError(String arg0) {
+					Const.e(instance.getLocalClassName(), "onAdError: "+arg0);	
+				}
+				@Override
+				public void onSDKIntegrationError(String arg0) {
+					Const.e(instance.getLocalClassName(), "onSDKIntegrationError: "+arg0);	
+				}
+				@Override
+				public void onSmartWallAdClosed() {
+					Const.d(instance.getLocalClassName(), "onSmartWallAdClosed");
+					//Caching Smartwall Ad for future use
+					air.callSmartWallAd();
+				}
+				@Override
+				public void onSmartWallAdShowing() {
+					Const.d(instance.getLocalClassName(), "onSmartWallAdShowing");				
+				}
+			},
+			true);
+			
+			//Caching Smartwall Ad. 
+			air.callSmartWallAd();
+			
+			break;
+		/*************************************	ADS AIRPUSH	*********************************************/
+		}
+		
+	}
 	
 	/*************************************	ADS ADMOB	*********************************************/
 	/** Create an ad request. Check logcat output for the hashed device ID to
@@ -181,16 +229,57 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	            .build();
 	}
 	
+	/*************************************	ADS ADMOB / AIRPUSH	*********************************************/
+	
+
+	/** Load Interstitial ads, some ads-services like airPush
+	 * needs to call SmartWallAds before showing them*/
+	public void loadInterstitial(){
+		try{
+			if(Const.SHOW_ADS){
+				switch(Const.AD_SERVICE){
+				case Const.ADS_ADMOB:
+					if(!interstitial.isLoaded())
+						interstitial.loadAd(createAdRequest());
+					break;
+				case Const.ADS_AIRPUSH:
+					air.callSmartWallAd();
+					break;
+				}
+			}
+		}catch(Exception e){}
+	}
+	
+	
 
 	// Invoke displayInterstitial() when you are ready to display an interstitial.
 	public void displayInterstitial() {
-		Const.v(this.getLocalClassName(),"ShowingInterstitials ");
-		if (interstitial.isLoaded()) {
-			interstitial.show();
+		if(!Const.SHOW_ADS)
+			return;
+		Const.i(this.getLocalClassName(),"ShowingInterstitials ");
+		
+		switch(Const.AD_SERVICE){
+		case Const.ADS_ADMOB:
+			if (interstitial.isLoaded()) {
+				interstitial.show();
+			}
+			else
+				Const.w(this.getLocalClassName(),"Interstitial not loaded");
+			break;
+		case Const.ADS_AIRPUSH:
+			try {
+				//if(air.isSDKEnabled(this))
+				air.showCachedAd(this, AdType.smartwall);
+			} catch (Exception e) {
+				Const.w(this.getLocalClassName(),"Interstitial not showing Cached");
+				air.callSmartWallAd();
+				e.printStackTrace();
+			}
+			break;
 		}
 	}
 	  
-	/*************************************	ADS ADMOB	*********************************************/
+	/*******************************	ADS ADMOB / AIRPUSH END **************************************/
 	
 	
 	@Override
@@ -210,8 +299,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		Const.setFullScreen(this);
 		
 		//ADMOB Advertising
-		if (adView != null) {
-  	      adView.resume();
+		if (AdMobView != null) {
+  	      AdMobView.resume();
   		}
 		//start Music playing
 		playMusic(true);
@@ -225,8 +314,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		Const.v(GameActivity.class.getSimpleName(),"onPause()");
 		
 		//ADMOB Advertising
-		if (adView != null) {
-			adView.pause();
+		if (AdMobView != null) {
+			AdMobView.pause();
   		}
 		
 		playMusic(false);		
@@ -451,10 +540,11 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     public void onGameOver(boolean win, int moves, int gameMode, int boardSize) {
     	ProgNPrefs.getIns().updateGameFinished(boardSize, gameMode, win);
     	
-		
     	//Each 2 games, show Interstitial.
 		if(ProgNPrefs.getIns().getGamesFinished(Const.TOTAL_SIZES)%2 == 0)
 			GameActivity.instance.displayInterstitial();
+		else
+			GameActivity.instance.loadInterstitial();
     	
 		//update achievs and leads.
 		GameStatsSync.updateAchievementsAndLeaderboards(getApiClient(),win,moves,gameMode,boardSize);

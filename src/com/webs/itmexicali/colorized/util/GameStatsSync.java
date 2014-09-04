@@ -552,7 +552,7 @@ public class GameStatsSync {
     /** Method to keep track of how many changes there have been in the last sync,
      * it also notifies the player that the progress is being uploaded*/
     private static void incrementChangesAndNotifyOnce(){
-    	if(sChanges == 0){
+    	if(sChanges == -1){ // TODO
 	    	GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
 	    		Toast.makeText(GameActivity.instance,
 	    				GameActivity.instance.getString(R.string.your_progress_will_be_uploaded),

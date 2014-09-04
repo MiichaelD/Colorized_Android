@@ -17,7 +17,23 @@ import android.view.WindowManager;
 public class Const {
 
 	//Debug variable
-	public final static boolean D = false;
+	public final static boolean D = true;
+	
+	//ADS Constants	
+	public final static boolean SHOW_ADS = true;
+	
+    /** AdMob Advertising. Your ad unit id. Replace with your actual ad unit id. */
+    public static final String
+    	ADVIEW_AD_UNIT_ID 		= "ca-app-pub-4741238402050454/6518301004",
+    	INTERSTITIAL_AD_UNIT_ID = "ca-app-pub-4741238402050454/7995034204" ;
+    
+    public static final String
+    	APPID 	=	"236182",
+    	APIKEY	=	"1409523218201390512";
+
+    public final static int ADS_ADMOB = 0, ADS_AIRPUSH = 1;
+	
+	public final static int AD_SERVICE = ADS_AIRPUSH;
 	
 	//Tag for debugging
 	public final static String TAG = "Colorized";
@@ -34,13 +50,7 @@ public class Const {
 	public final static int mov_limit[]={21,34,44}, board_sizes[]={12,18,24};
 	
 	
-	//AdMob Advertising
-    /** Your ad unit id. Replace with your actual ad unit id. */
-    public static final String
-    	ADVIEW_AD_UNIT_ID 		= "ca-app-pub-4741238402050454/6518301004",
-    	INTERSTITIAL_AD_UNIT_ID = "ca-app-pub-4741238402050454/7995034204" ;
-
-
+	
     /** For HEXStrings <-> ByteArrays conversions*/
     private static char[] hexChars={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
     
@@ -60,6 +70,10 @@ public class Const {
     
     public static void i(String tag, String msg){
     	if(D)Log.i(tag, msg);
+    }
+    
+    public static void w(String tag, String msg){
+    	if(D)Log.w(tag, msg);
     }
     
     public static void e(String tag, String msg){
