@@ -123,7 +123,7 @@ public class MainState extends BaseState {
 	}
 	
 	//font text size modifiers, this helps to change the Xfactor to texts
-	float ts0 = 1.0f, ts1=1.0f, ts2=1.0f, ts3=1.0f, ts4=1.0f, ts5=1.0f, ts6=1.0f, ts7=1.0f;
+	float ts0 = 1.0f, ts1=1.0f;
 	
 	@Override
 	public void resize(float width, float height) {
@@ -263,9 +263,15 @@ public class MainState extends BaseState {
 		
 		drawTitle(canvas, mAppName);//draw Title
 		
-		if(playerName != null)
+		if(playerName != null){
+			mPaints[8].setTextScaleX(ts1);
+			while((mPaints[8].measureText(playerName))+10 >= GameView.width){
+				ts1-=0.05f;
+				mPaints[8].setTextScaleX(ts1);
+			}
 			canvas.drawText(playerName, GameView.width/2, 12*GameView.height/48, mPaints[8]);
-		else if (pBitmap[0] != null && pBitmap[1] != null){
+			mPaints[8].setTextScaleX(1.0f);
+		}else if (pBitmap[0] != null && pBitmap[1] != null){
 			canvas.drawBitmap(dbc.getDButton(6).isPressed()?pBitmap[1]:pBitmap[0],
 					GameView.width/2 - pBitmap[0].getWidth()/2, 9.25f*GameView.height/48, null);
 		}
@@ -273,8 +279,6 @@ public class MainState extends BaseState {
 		if(pBitmap[2]!=null){
 			canvas.drawBitmap(dbc.getDButton(7).isPressed()?pBitmap[3]:pBitmap[2],1.5f*GameView.width/16, 40*GameView.height/48, null);
 		}
-		
-			
 		
 		//draw play button BIGGER
 		mPaints[1].setTextSize(GameView.mPortrait? GameView.width/9 : GameView.height/9);

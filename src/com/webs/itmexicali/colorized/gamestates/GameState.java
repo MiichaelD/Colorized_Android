@@ -172,13 +172,18 @@ public class GameState extends BaseState implements GameBoardListener{
 				8*width+boardWidth/2, 8*height+boardWidth/2);
 		
 		mRectFs[1] = new RectF(0, 8*height+boardWidth/2+   remainHeight,
-				  GameView.width, 8*height+boardWidth/2+ 3*remainHeight);
+			GameView.width, 8*height+boardWidth/2+ 3*remainHeight);
 		
 		//color controls
-		width = boardWidth/29.5f;  height= GameView.height/5;
+		height= GameView.height/5;
+		width = boardWidth/29.5f; // Color Control width 
 		float y = mRectFs[1].top+(2*remainHeight - 4.5f*width)/2;
 		float finY = y +4.5f*width;
 		float val =GameView.width/16;
+		
+		if(mRectFs[1].height()<4.5f*width)
+			mRectFs[1] = new RectF(0, y,GameView.width, finY);
+		
 		//5		1			4
 		dbc.repositionDButton(0, val, y, val+4.5f*width, finY);
 		dbc.repositionDButton(1, val+5*width, y, val+9.5f*width, finY);

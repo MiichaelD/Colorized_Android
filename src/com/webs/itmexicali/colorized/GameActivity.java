@@ -544,18 +544,30 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 
 	/** If signed in, return the player name, else return null*/
 	public String getPlayerName(){
+		final int maxNumOfNames = 3;
 		String displayName = null;
+		String returnStr = null;
 		if(isSignedIn()){		
 			Player p = Games.Players.getCurrentPlayer(getApiClient());
 	        
 	        if (p == null) {
-	            displayName = "unknown_user";
+	        	returnStr = displayName = "Unknown User";
 	        } else {
 	            displayName = p.getDisplayName();
+	            returnStr = displayName;
+	            try{
+		            int counter = 0, firstSpace = -1;
+		            do{
+		            	firstSpace = displayName.indexOf(' ', firstSpace+1);
+		            }while(firstSpace != -1 && ++counter < maxNumOfNames);
+	            	if(firstSpace != -1)
+	            		returnStr = displayName.substring(0,firstSpace);
+	            }catch(Exception e){Const.w(GameActivity.class.getSimpleName(),
+	            		e.getMessage());}
 	        }
 	        Const.d(GameActivity.class.getSimpleName(),"User: "+displayName);
 		}
-        return displayName;
+        return returnStr;
 	}
 	
 	
