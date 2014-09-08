@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 # Developer folders
 Java/
+builds/
 
 # Built application files
 *.apk

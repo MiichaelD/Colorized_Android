@@ -47,6 +47,9 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     
     private Prm air_std = null;
     
+    
+    // true if the game finished is the first one since the app being launched
+    private boolean firstGameFinished = true;    
 	
 	/** This activity instance, to access its members from other classes*/
     public static GameActivity instance;
@@ -80,9 +83,11 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		//Init Preferences once
 		ProgNPrefs.initPreferences(this);
 		
-		// INCREMENT THE APP OPENED COUNTER if onCreate has no savedState
+		
+		// INCREMENT THE APP OPENED COUNTER if onCreate has no savedState ONLY
+		// AFTER FINISHING THE FIRST GAME since app launch
 		if(savedInstanceState == null){
-			ProgNPrefs.getIns().incrementAppOpened();// LOCALLY
+			firstGameFinished = true;
 		}
 		
 		//Init StateMachine
@@ -617,6 +622,12 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     /** Once the game is over saved all the info locally and try
      * to push it to Google Games Services*/
     public void onGameOver(boolean win, int moves, int gameMode, int boardSize) {
+    	
+    	if(firstGameFinished){
+    		firstGameFinished = false;
+			ProgNPrefs.getIns().incrementAppOpened();// LOCALLY
+    	}
+    	
     	ProgNPrefs.getIns().updateGameFinished(boardSize, gameMode, win);
     	
     	//Each 2 games, show Interstitial.

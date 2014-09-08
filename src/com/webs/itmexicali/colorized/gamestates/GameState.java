@@ -483,6 +483,8 @@ public class GameState extends BaseState implements GameBoardListener{
 	public void restartBoard(boolean forced) {
 		if(forced){
 			createNewBoard(Const.board_sizes[ProgNPrefs.getIns().getDifficulty()]);
+			//Restart win streak counter to prevent cheating by restarting game before losing
+			ProgNPrefs.getIns().updateWinStreak(false);
 		}else{
 			int moves = getMoves();
 			if(moves > 0 && !isGameOver() && (mov_lim < 0 || moves < mov_lim))
