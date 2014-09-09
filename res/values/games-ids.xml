@@ -40,6 +40,7 @@ Save this file as res/values/games-ids.xml in your project.
   <string name="achievement_premature">CgkIvrzZ6uUaEAIQGQ</string>
   <string name="achievement_that_was_easy">CgkIvrzZ6uUaEAIQGg</string>
   <string name="achievement_big_flood">CgkIvrzZ6uUaEAIQGw</string>
+  <string name="achievement_sharing_is_good">CgkIvrzZ6uUaEAIQJg</string>
   
   <string name="leaderboard_all_board_sizes">CgkIvrzZ6uUaEAIQCg</string>
   <string name="leaderboard_small_board">CgkIvrzZ6uUaEAIQBw</string>

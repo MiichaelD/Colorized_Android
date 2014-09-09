@@ -19,8 +19,11 @@
     
     <string name="achievements_not_available">Please sign in to view achievements.</string>
     <string name="leaderboards_not_available">Please sign in to view leaderboards.</string>
+    <string name="share_not_available">Please sign in to share with your friends.</string>
     
     <!-- GameOver State Texts -->
+    <string name="game_over_share_btn">Share on G+</string>
+    <string name="game_over_share_txt">"I Color Flooded a <xliff:g id="brd_size">%1$s</xliff:g> board in <xliff:g id="brd_movs">%2$d</xliff:g> moves!\n\nIf you think you can do it too, play #ColorFlooded on your android device."</string>
     <string name="game_over_lose_title">Game Over</string>
     <string name="game_over_lose_desc">You ran out of moves.\n\nDo you want to play again?</string>
     <string name="game_over_win_title">Congratulations!</string>
@@ -43,9 +46,9 @@
     
     <!-- Option State Texts -->
     <string name="options_difficulty">Board Size: </string>
-    <string name="options_easy">Small - <xliff:g id="easy_size">12x12</xliff:g></string>
-    <string name="options_med">Medium - <xliff:g id="med_size">18x18</xliff:g></string>
-    <string name="options_hard">Large - <xliff:g id="hard_size">24x24</xliff:g></string>
+    <string name="options_easy">Small (<xliff:g id="easy_size">12x12</xliff:g>)</string>
+    <string name="options_med">Medium (<xliff:g id="med_size">18x18</xliff:g>)</string>
+    <string name="options_hard">Large (<xliff:g id="hard_size">24x24</xliff:g>)</string>
     <string name="options_size_all">All board sizes</string>
     <string name="options_game_mode">Game Mode: </string>
     <string name="options_step_mode">Step Mode</string>

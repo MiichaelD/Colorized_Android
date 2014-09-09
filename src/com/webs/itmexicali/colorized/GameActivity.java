@@ -5,7 +5,9 @@ import ProtectedInt.ProtectedInt;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -517,6 +519,18 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		}catch(IllegalStateException ise){}
 	}
 	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		super.onActivityResult(requestCode, resultCode, intent);
+	
+		if(requestCode == Const.RC_SHARE) {
+			if(resultCode == RESULT_OK) {
+				GameStatsSync.unlockAchievement(getApiClient(), R.string.achievement_sharing_is_good);
+				Const.d(GameActivity.class.getSimpleName(),"onShare Successful");
+			}
+		}
+	}
+	
 	/*------------------------ LEADERBOARDS and ACHIEVEMENTS METHODS ----------------------------------*/
 	
 
@@ -654,4 +668,22 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
        signOut();
    }
 	
+   
+   /** Launch the Google+ share dialog*/
+   public boolean shareOnGoogleP(String text){
+	   Const.d(GameActivity.class.getSimpleName(),"Launch the Google+ share.");
+	   if (isSignedIn()) {        	
+		   Intent shareIntent = new com.google.android.gms.plus.PlusShare.Builder(this)
+	          .setType("text/plain")
+	          .setText(text)
+	          .setContentUrl(Uri.parse("https://play.google.com/store/apps/details?id=com.webs.itmexicali.colorized"))
+	          .getIntent();
+
+	      startActivityForResult(shareIntent, Const.RC_SHARE);
+           return true;
+       } else {
+	       showAlert(getString(R.string.share_not_available));
+       }
+	   return false;
+   }
 }

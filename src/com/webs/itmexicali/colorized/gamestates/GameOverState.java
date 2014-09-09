@@ -33,14 +33,14 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 	private boolean pWin;
 	private int		pMovesCount;
 	
-	private String pTitle, pDescription;
+	private String pTitle, pDescription, pShareText = null;
 	
 	private TextPaint bgColorText, whiteText;
 	
 	public GameOverState(statesIDs id) {
 		super(id);
 		
-		pButtons = new DrawButtonContainer(2, true);
+		pButtons = new DrawButtonContainer(3, true);
 		bgColorText = new TextPaint();
 		whiteText	= new TextPaint();
 		
@@ -64,6 +64,15 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 			}
 		});
 		
+		//SHARE
+		pButtons.setOnActionListener(2, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
+			@Override public void onActionPerformed() {
+				//play sound
+				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+				
+				GameActivity.instance.shareOnGoogleP(pShareText);
+			}
+		});
 		
 		whiteText.setColor(Color.WHITE);
 		whiteText.setStyle(Paint.Style.FILL);
@@ -85,7 +94,7 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 	
 	private void restartGamePlay(){
 		GameActivity.instance.playMusic(true);
-		pGame.createNewBoard(Const.board_sizes[ProgNPrefs.getIns().getDifficulty()]);
+		pGame.createNewBoard(Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]);
 		StateMachine.getIns().popState();		
 	}
 	
@@ -113,8 +122,8 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 		canvas.restore();
 		
 		
-		pButtons.drawButtonsAndText(canvas, pState.roundness, pState.mPaints[8],
-				pState.mPaints[7], bgColorText, whiteText);
+		pButtons.drawButtonsAndText(0, pShareText == null?2:3, canvas, pState.roundness,
+				pState.mPaints[8], pState.mPaints[7], bgColorText, whiteText);
 	}
 	
 	@Override
@@ -148,11 +157,17 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 		//Const.v("GameOverState","canvas size: "+width+"x"+height);
 		pState.resize(width, height);
 
-		pButtons.repositionDButton(0, 8.5f*width/16, 35*height/48, 14.5f*width/16, 41*height/48); //Achievements
-		pButtons.repositionDButton(1, 1.5f*width/16, 35*height/48, 7.5f*width/16, 41*height/48); // Leaderboard
+		pButtons.repositionDButton(0, 8.5f*width/16, 34*height/48, 14.5f*width/16, 39*height/48); //ok
+		pButtons.repositionDButton(1, 1.5f*width/16, 34*height/48, 7.5f*width/16, 39*height/48); // no
+		
 
 		pButtons.setText(0, GameActivity.instance.getString(R.string.ok));
 		pButtons.setText(1, GameActivity.instance.getString(R.string.no));
+		
+		if(pShareText != null){
+			pButtons.repositionDButton(2, 1.5f*width/16, 40*height/48, 14.5f*width/16, 45*height/48); // share
+			pButtons.setText(2, GameActivity.instance.getString(R.string.game_over_share_btn));
+		}
 		
 		bgColorText.setTextSize(GameView.mPortrait? width/14 : height/14);
 		whiteText.setTextSize(GameView.mPortrait? width/12 : height/12);
@@ -188,7 +203,7 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 	
 	public boolean onBackPressed(){
 		GameActivity.instance.stopSound();
-		restartGamePlay();
+		quit();
 		return true;
 	}
 
@@ -198,6 +213,10 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 		pMovesCount = moves;
 		bgColor = win? Color.rgb(21, 183, 46):Color.RED;
 		bgColorText.setColor(bgColor);
+		
+		if(gameMode == Const.STEP && GameActivity.instance.isGAPPSavailable())
+			pShareText = String.format(StateMachine.mContext.getString(R.string.game_over_share_txt),
+					StateMachine.mContext.getString(Const.BOARD_NAMES_IDS[boardSize]),moves);
 		
 		((GameFinishedListener)GameActivity.instance).onGameOver(win,moves,gameMode,boardSize);
 	}

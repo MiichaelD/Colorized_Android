@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import com.webs.itmexicali.colorized.R;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -18,6 +20,8 @@ public class Const {
 
 	//Debug variable
 	public final static boolean D = false;
+	
+	public final static boolean CHEATS = false;
 	
 	//ADS Constants	
 	public final static boolean SHOW_ADS = true;
@@ -47,15 +51,17 @@ public class Const {
 	public final static int SMALL = 0, MEDIUM =1, LARGE = 2, TOTAL_SIZES = 3;
 	
 	/** Board constants*/
-	public final static int mov_limit[]={21,34,44}, board_sizes[]={12,18,24};
+	public final static int MOV_LIMS[]={21,34,44}, BOARD_SIZES[]={12,18,24};
+	
+	public final static int BOARD_NAMES_IDS[]={R.string.options_easy, R.string.options_med, R.string.options_hard};
 	
 	
 	
     /** For HEXStrings <-> ByteArrays conversions*/
-    private static char[] hexChars={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+    private final static char[] hexChars={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
     
     /** Request codes we use when invoking an external activity*/
-    public static final int RC_RESOLVE = 5000, RC_UNUSED = 5001;
+    public static final int RC_RESOLVE = 5000, RC_UNUSED = 5001, RC_SHARE=7427;
     
     
     //Log\.([a-z]) -> Const.$1

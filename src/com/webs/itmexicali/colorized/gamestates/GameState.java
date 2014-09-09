@@ -140,12 +140,12 @@ public class GameState extends BaseState implements GameBoardListener{
 				}
 			}
 			else{
-				createNewBoard(Const.board_sizes[ProgNPrefs.getIns().getDifficulty()]);
+				createNewBoard(Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]);
 				StateMachine.getIns().pushState(BaseState.statesIDs.TUTO);			
 			}
 			
 			if(mColorBoard == null){
-				createNewBoard(Const.board_sizes[ProgNPrefs.getIns().getDifficulty()]);
+				createNewBoard(Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]);
 				setMoveLimit();
 			}
 
@@ -279,10 +279,21 @@ public class GameState extends BaseState implements GameBoardListener{
 		int action = event.getAction() & MotionEvent.ACTION_MASK;
 		int pointerIndex = (event.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
 		int pointerId = event.getPointerId(pointerIndex);
+		int pointerCount = event.getPointerCount();
 		switch (action) {
 		case MotionEvent.ACTION_DOWN:
 		case MotionEvent.ACTION_POINTER_DOWN:
 			dbc.onPressUpdate(event, pointerIndex, pointerId);
+			
+			if(Const.CHEATS && pointerCount == 4 && mRectFs[0] != null){				
+				for(int i =0 ; i<pointerCount;i++){
+					if(!mRectFs[0].contains((int)event.getX(i),(int)event.getY(i)))
+						return true;
+				}
+				//TODO ADD CHEATS
+				showGamOver(true);
+				Const.d(GameState.class.getSimpleName(),"CHEATS OPENED");
+			}
 			break;
 
 		case MotionEvent.ACTION_UP:
@@ -397,8 +408,8 @@ public class GameState extends BaseState implements GameBoardListener{
 		int boardSize = mColorBoard.blocksPerSide;
 		
 		//transform it from blocks/side to boardsize constant
-		boardSize = boardSize == Const.board_sizes[Const.SMALL]? Const.SMALL:
-			boardSize == Const.board_sizes[Const.MEDIUM]? Const.MEDIUM:Const.LARGE;
+		boardSize = boardSize == Const.BOARD_SIZES[Const.SMALL]? Const.SMALL:
+			boardSize == Const.BOARD_SIZES[Const.MEDIUM]? Const.MEDIUM:Const.LARGE;
 		
 		BaseState gameOver = BaseState.createStateByID(statesIDs.OVER);
 		((GameFinishedListener)gameOver).onGameOver(win, getMoves(),
@@ -472,7 +483,7 @@ public class GameState extends BaseState implements GameBoardListener{
 		if(ProgNPrefs.getIns().getGameMode() == Const.CASUAL)
 			mov_lim = -1;
 		else 
-			mov_lim = Const.mov_limit[ProgNPrefs.getIns().getDifficulty()];
+			mov_lim = Const.MOV_LIMS[ProgNPrefs.getIns().getDifficulty()];
 	}
 	
 	
@@ -482,7 +493,7 @@ public class GameState extends BaseState implements GameBoardListener{
 	@Override
 	public void restartBoard(boolean forced) {
 		if(forced){
-			createNewBoard(Const.board_sizes[ProgNPrefs.getIns().getDifficulty()]);
+			createNewBoard(Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]);
 			//Restart win streak counter to prevent cheating by restarting game before losing
 			ProgNPrefs.getIns().updateWinStreak(false);
 		}else{

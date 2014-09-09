@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 public abstract class BaseState {
 	
 	/** The Identifiers for each state extending this class*/
-	public static enum statesIDs{MAIN, TUTO, GAME, STATS, ABOUT, OPTION, OVER}
+	public static enum statesIDs{MAIN, TUTO, GAME, STATS, ABOUT, OPTION, OVER, TEST}
 	
 	
 	public BaseState(statesIDs id){mID = id; }
@@ -88,6 +88,8 @@ public abstract class BaseState {
 			return new StatisticState(statesIDs.STATS);
 		case TUTO:
 			return new TutoState(statesIDs.TUTO);
+		case TEST:
+			return new TestState(statesIDs.TEST);
 		}
 		return null;
 	}

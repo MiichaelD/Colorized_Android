@@ -80,6 +80,7 @@ public class MainState extends BaseState {
 				
 				new Thread(new Runnable(){public void run(){
 					StateMachine.getIns().pushState(BaseState.statesIDs.ABOUT);
+					//StateMachine.getIns().pushState(BaseState.statesIDs.TEST);
 				}}).start();}
 		});
 		

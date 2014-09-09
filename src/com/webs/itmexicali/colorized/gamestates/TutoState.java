@@ -50,7 +50,7 @@ public class TutoState extends BaseState{
 		//Const.v("TutoState","canvas size: "+width+"x"+height);
 		pGame.resize(width, height);
 
-		float boardPixels = pGame.mRectFs[0].width()/Const.board_sizes[ProgNPrefs.getIns().getDifficulty()];
+		float boardPixels = pGame.mRectFs[0].width()/Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()];
 		mRectFs[0] = new RectF(pGame.mRectFs[0].left, pGame.mRectFs[0].top, 
 				pGame.mRectFs[0].left + boardPixels, pGame.mRectFs[0].top + boardPixels);
 	}
