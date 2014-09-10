@@ -290,9 +290,8 @@ public class GameState extends BaseState implements GameBoardListener{
 					if(!mRectFs[0].contains((int)event.getX(i),(int)event.getY(i)))
 						return true;
 				}
-				//TODO ADD CHEATS
-				showGamOver(true);
 				Const.d(GameState.class.getSimpleName(),"CHEATS OPENED");
+				showGamOver(true);
 			}
 			break;
 

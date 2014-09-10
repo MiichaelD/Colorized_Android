@@ -19,25 +19,9 @@ import android.view.WindowManager;
 public class Const {
 
 	//Debug variable
-	public final static boolean D = false;
+	public final static boolean D = true;
 	
-	public final static boolean CHEATS = false;
-	
-	//ADS Constants	
-	public final static boolean SHOW_ADS = true;
-	
-    /** AdMob Advertising. Your ad unit id. Replace with your actual ad unit id. */
-    public static final String
-    	ADVIEW_AD_UNIT_ID 		= "ca-app-pub-4741238402050454/6518301004",
-    	INTERSTITIAL_AD_UNIT_ID = "ca-app-pub-4741238402050454/7995034204" ;
-    
-    public static final String
-    	APPID 	=	"236182",
-    	APIKEY	=	"1409523218201390512";
-
-    public final static int ADS_ADMOB = 0, ADS_AIRPUSH_BUNDLE = 1, ADS_AIRPUSH_STANDARD = 2;
-	
-	public final static int AD_SERVICE = ADS_AIRPUSH_STANDARD;
+	public final static boolean CHEATS = D && true;
 	
 	//Tag for debugging
 	public final static String TAG = "Colorized";

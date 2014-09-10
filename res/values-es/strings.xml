@@ -19,7 +19,7 @@
     
     <!-- GameOver State Texts -->
     <string name="game_over_share_btn">Compartir en G+</string>
-    <string name="game_over_share_txt">Conquisté un tablero <xliff:g id="brd_size">%1$s</xliff:g> en <xliff:g id="brd_movs">%2$d</xliff:g> movimientos!\n\nTú también juega #InvasiónDeColor (#ColorFlooded) en tu dispositivo android.</string>
+    <string name="game_over_share_txt">Conquisté un tablero <xliff:g id="brd_size">%1$s</xliff:g> en <xliff:g id="brd_movs">%2$d</xliff:g> movimientos!\n\nTú también juega #InvasiónDeColor ( #ColorFlooded ) en tu dispositivo android.</string>
     <string name="game_over_lose_title">Juego Terminado</string>
     <string name="game_over_lose_desc">Te quedaste sin movimientos.\n\nQuieres jugar de nuevo?</string>
     <string name="game_over_win_title">Felicidades!</string>

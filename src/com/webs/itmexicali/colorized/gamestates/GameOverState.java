@@ -70,7 +70,7 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
-				GameActivity.instance.shareOnGoogleP(pShareText);
+				GameActivity.instance.onShareRequested(pShareText);
 			}
 		});
 		
@@ -214,7 +214,7 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 		bgColor = win? Color.rgb(21, 183, 46):Color.RED;
 		bgColorText.setColor(bgColor);
 		
-		if(gameMode == Const.STEP && GameActivity.instance.isGAPPSavailable())
+		if(win && gameMode == Const.STEP && GameActivity.instance.isGAPPSavailable())
 			pShareText = String.format(StateMachine.mContext.getString(R.string.game_over_share_txt),
 					StateMachine.mContext.getString(Const.BOARD_NAMES_IDS[boardSize]),moves);
 		

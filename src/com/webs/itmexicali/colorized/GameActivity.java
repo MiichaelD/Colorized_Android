@@ -9,21 +9,17 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.Player;
 import com.google.example.games.basegameutils.BaseGameActivity;
 import com.webs.itmexicali.colorized.GameView.surfaceListener;
+import com.webs.itmexicali.colorized.ads.AdMob;
+import com.webs.itmexicali.colorized.ads.Advertising;
+import com.webs.itmexicali.colorized.ads.AirPushBundle;
+import com.webs.itmexicali.colorized.ads.AirPushStandard;
 import com.webs.itmexicali.colorized.gamestates.BaseState;
 import com.webs.itmexicali.colorized.gamestates.GameState.GameFinishedListener;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
@@ -31,24 +27,9 @@ import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.GameStatsSync;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
-import com.xsqhbao.bipppts201390.AdListener.AdType;
-//import com.xsqhbao.bipppts201390.MA; //AirPush_BNDL
-import com.xsqhbao.bipppts201390.Prm;//AirPush_STD
-
 public class GameActivity extends BaseGameActivity implements GameFinishedListener, surfaceListener{
 	
-	//AdMob Advertising
-    /** The view to show the ad. */
-    private AdView AdMobView = null;
-    private InterstitialAd interstitial =  null;
-    
-    //AirPush Ads
-    //Bundle
-    //private MA air = null;
-    private com.xsqhbao.bipppts201390.AdView AirPushView = null;
-    
-    private Prm air_std = null;
-    
+	private Advertising pAds = null;    
     
     // true if the game finished is the first one since the app being launched
     private boolean firstGameFinished = true;    
@@ -60,9 +41,6 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     private MediaPlayer soundPlayer = null, musicPlayer = null;
     //private SoundType previousSound = SoundType.NONE;
     public static enum SoundType{ NONE, TOUCH, WIN, LOSE};
-    
-    //SignInButton buttonSI = null;
-    
     
 	@SuppressLint({ "InlinedApi", "NewApi" })
 	@Override
@@ -102,7 +80,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		//set surface listener, to reposition Sign-In Button
 		((GameView)findViewById(R.id.gameView)).setSurfaceListener(this);
 		
-		initAds();  
+		initAds();
+		  
 	}
 	
 	public void onSurfaceChanged(float width, float height){
@@ -113,244 +92,66 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	/** Load ads if they are enabled, depending on the ads service using load
 	 * the corresponding one AirPush or AdMob*/
 	private void initAds(){
-		if(!Const.SHOW_ADS)
-			return;
-		// Add the AdView to the view hierarchy. The view will have no size
-        // until the ad is loaded.
-		LinearLayout layout = (LinearLayout) findViewById(R.id.LayMain);
-		switch(Const.AD_SERVICE){
-		case Const.ADS_ADMOB:
-			/*************************************	ADS ADMOB	*********************************************/
-			if(AdMobView != null){// remove the existing adView
-	        	layout.removeView(AdMobView); 
-	        	AdMobView.destroy();
-	        	AdMobView = null;
-	        }
-			// Create an ad.
-	        AdMobView = new AdView(this);
-	        AdMobView.setAdSize(AdSize.SMART_BANNER);
-	        AdMobView.setAdUnitId(Const.ADVIEW_AD_UNIT_ID);
-	        AdMobView.setVisibility(View.GONE);
-	        AdMobView.setAdListener(new AdListener() {
-	        	@Override
-	    		public void onAdOpened() {// Save app state before going to the ad overlay.
-	    			Const.d(Const.TAG,"AdView - Opened");
-	    			AdMobView.setVisibility(View.GONE);
-	    		}
-	    		@Override
-	    		public void onAdFailedToLoad(int errorCode){
-	    			Const.d(Const.TAG,"AdView - FailedToLoad = "+errorCode);
-	    			AdMobView.setVisibility(View.GONE);
-	    		}
-	    		@Override
-	    		public void onAdLoaded(){
-	    			AdMobView.setVisibility(View.VISIBLE);
-	    		}
-	    	});
-	        
-	        
-	        /* When the game_Screen.xml root tag used to be RelativeLayout, the ad was just
-	         OVER the GameView, now they share the screen size
-	        //layout = (LinearLayout) findViewById(R.id.LayMain);
+		
+		/* Now the ads object is just created once, not destroying it and loading it if 
+		 * it already exists, to change dad, remove the pAds == null validation from next
+		 * if clause*/		
+		if(Advertising.SHOW_ADS && pAds == null){
+			LinearLayout layout = (LinearLayout) findViewById(R.id.LayMain);
+			
+			/* If we want to create a new banner, destroy and remove current if it exists*/
+			if (pAds != null && pAds.getBanner() != null){
+				layout.removeView(pAds.getBanner());
+				pAds.destroyBanner();
+			}
+			
+			switch(Advertising.AD_SERVICE){
+			case Advertising.ADS_ADMOB:
+				pAds = new AdMob(this);
+				break;
+				
+			case Advertising.ADS_AIRPUSH_BUNDLE:
+				pAds = new AirPushBundle(this);
+				break;
+				
+			case Advertising.ADS_AIRPUSH_STANDARD:
+				pAds = new AirPushStandard(this);
+				break;
+			}
+			
+			
+			
+			/* When the game_Screen.xml root tag used to be RelativeLayout, the ad was just
+	         OVER the GameView, now the ad shares the screen size with GameView
 	        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
 	        		RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 	        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 	    	params.addRule(RelativeLayout.CENTER_HORIZONTAL);
 	    	layout.addView(adView, params);	    	*/
-			layout.addView(AdMobView);
-			// Start loading the ad in the background.
-	        AdMobView.loadAd(createAdRequest());
-	        
-	        // Create the INTERSTTIAL.
-	        interstitial = new InterstitialAd(this);
-	        interstitial.setAdUnitId(Const.INTERSTITIAL_AD_UNIT_ID);
-	        interstitial.setAdListener(new AdListener() {
-	            @Override
-	            public void onAdClosed() {
-	              interstitial.loadAd(createAdRequest());
-	            }
-	        });
-	        // Begin loading your interstitial.
-	        interstitial.loadAd(createAdRequest());
-	        /*************************************	ADS ADMOB	*********************************************/
 			
-			break;
-		case Const.ADS_AIRPUSH_BUNDLE:
-			/*************************************	ADS AIRPUSH	*********************************************/
-			if(AirPushView != null){// remove the existing adView
-	        	layout.removeView(AirPushView);
-	        	AirPushView = null;
-	        }
-			
-			AirPushView = new com.xsqhbao.bipppts201390.AdView(
-					this, com.xsqhbao.bipppts201390.AdView.BANNER_TYPE_IN_APP_AD,
-					com.xsqhbao.bipppts201390.AdView.PLACEMENT_TYPE_INLINE, false, false, 
-					com.xsqhbao.bipppts201390.AdView.ANIMATION_TYPE_FADE);
-			
-			layout.addView(AirPushView);
-			
-			/**Initializing Bundle SDK 
-			 * @param Activity * @param AdListener * @param caching*/
-			/*
-			air = new MA(this, 
-			
-					new com.xsqhbao.bipppts201390.AdListener(){
-				@Override
-				public void noAdAvailableListener() {
-					Const.e(instance.getLocalClassName(), "noAdAvailableListener");	
-				}
-				@Override
-				public void onAdCached(AdType arg0) {
-					Const.d(instance.getLocalClassName(), "onAdCached type: "+arg0.name());
-				}
-				@Override
-				public void onAdError(String arg0) {
-					Const.e(instance.getLocalClassName(), "onAdError: "+arg0);	
-				}
-				@Override
-				public void onSDKIntegrationError(String arg0) {
-					Const.e(instance.getLocalClassName(), "onSDKIntegrationError: "+arg0);	
-				}
-				@Override
-				public void onSmartWallAdClosed() {
-					Const.d(instance.getLocalClassName(), "onSmartWallAdClosed");
-					//Caching Smartwall Ad for future use
-					air.callSmartWallAd();
-				}
-				@Override
-				public void onSmartWallAdShowing() {
-					Const.d(instance.getLocalClassName(), "onSmartWallAdShowing");				
-				}
-			},
-			true);
-			
-			//Caching Smartwall Ad. 
-			//AirPush Bundle//air.callSmartWallAd();
-			
-			 */
-			
-			break;
-		case Const.ADS_AIRPUSH_STANDARD:
-			if(AirPushView != null){// remove the existing adView
-	        	layout.removeView(AirPushView);
-	        	AirPushView = null;
-	        }
-			
-			AirPushView = new com.xsqhbao.bipppts201390.AdView(
-					this, com.xsqhbao.bipppts201390.AdView.BANNER_TYPE_IN_APP_AD,
-					com.xsqhbao.bipppts201390.AdView.PLACEMENT_TYPE_INLINE, false, false, 
-					com.xsqhbao.bipppts201390.AdView.ANIMATION_TYPE_FADE);
-			
-			layout.addView(AirPushView);
-			
-			air_std = new Prm(this,
-					new com.xsqhbao.bipppts201390.AdListener(){
-				@Override
-				public void noAdAvailableListener() {
-					Const.e(instance.getLocalClassName(), "noAdAvailableListener");	
-				}
-				@Override
-				public void onAdCached(AdType arg0) {
-					Const.d(instance.getLocalClassName(), "onAdCached type: "+arg0.name());
-				}
-				@Override
-				public void onAdError(String arg0) {
-					Const.e(instance.getLocalClassName(), "onAdError: "+arg0);	
-				}
-				@Override
-				public void onSDKIntegrationError(String arg0) {
-					Const.e(instance.getLocalClassName(), "onSDKIntegrationError: "+arg0);	
-				}
-				@Override
-				public void onSmartWallAdClosed() {
-					Const.d(instance.getLocalClassName(), "onSmartWallAdClosed");
-					//Caching Smartwall Ad for future use
-					air_std.runSmartWallAd();
-				}
-				@Override
-				public void onSmartWallAdShowing() {
-					Const.d(instance.getLocalClassName(), "onSmartWallAdShowing");				
-				}
-			},
-			true);
-			air_std.runSmartWallAd();
-			break;
-		/*************************************	ADS AIRPUSH	*********************************************/
+			// Add the AdView to the view hierarchy. The view will have no size
+	        // until the ad is loaded.
+			layout.addView(pAds.getBanner());
 		}
 		
 	}
 	
-	/*************************************	ADS ADMOB	*********************************************/
-	/** Create an ad request. Check logcat output for the hashed device ID to
-     *	get test ads on a physical device.*/
-	private AdRequest createAdRequest(){
-		return new AdRequest.Builder()
-	            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-	            //.addTestDevice("584586A082596B5844C4E301E1285E95") //My Nexus 4
-	            .build();
-	}
-	
-	/*************************************	ADS ADMOB / AIRPUSH	*********************************************/
 	
 
 	/** Load Interstitial ads, some ads-services like airPush
 	 * needs to call SmartWallAds before showing them*/
 	public void loadInterstitial(){
 		Const.d(this.getLocalClassName(),"Loading interstitial");
-		try{
-			if(Const.SHOW_ADS){
-				switch(Const.AD_SERVICE){
-				case Const.ADS_ADMOB:
-					if(!interstitial.isLoaded())
-						interstitial.loadAd(createAdRequest());
-					break;
-				case Const.ADS_AIRPUSH_BUNDLE:
-					//AirPush Bundle//air.callSmartWallAd();
-					break;
-				case Const.ADS_AIRPUSH_STANDARD:
-					air_std.runSmartWallAd();
-					break;
-				}
-			}
-		}catch(Exception e){}
+		if(pAds != null)
+			pAds.loadInterstitial();
 	}
 	
 	
 
 	// Invoke displayInterstitial() when you are ready to display an interstitial.
 	public void displayInterstitial() {
-		if(!Const.SHOW_ADS)
-			return;
-		Const.i(this.getLocalClassName(),"ShowingInterstitials ");
-		
-		switch(Const.AD_SERVICE){
-		case Const.ADS_ADMOB:
-			if (interstitial.isLoaded()) {
-				interstitial.show();
-			}
-			else
-				Const.w(this.getLocalClassName(),"Interstitial not loaded");
-			break;
-		case Const.ADS_AIRPUSH_BUNDLE:
-			try {
-				//if(air.isSDKEnabled(this))
-				//AirPush Bundle//air.showCachedAd(this, AdType.smartwall);
-			} catch (Exception e) {
-				Const.w(this.getLocalClassName(),"Interstitial not showing Cached");
-				//AirPush Bundle//air.callSmartWallAd();
-				e.printStackTrace();
-			}
-			break;
-		case Const.ADS_AIRPUSH_STANDARD:
-			try {
-				air_std.runCachedAd(this, AdType.smartwall);
-			} catch (Exception e) {
-				Const.w(this.getLocalClassName(),"Interstitial not showing Cached");
-				air_std.runSmartWallAd();
-				e.printStackTrace();
-			}
-			break;
-		}
+		if(pAds != null)
+			pAds.showInterstitial();
 	}
 	  
 	/*******************************	ADS ADMOB / AIRPUSH END **************************************/
@@ -372,10 +173,9 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		//keep sticky full immersive screen in case we lost it
 		Const.setFullScreen(this);
 		
-		//ADMOB Advertising
-		if (AdMobView != null) {
-  	      AdMobView.resume();
-  		}
+		if(pAds != null)
+			pAds.onResume();
+		
 		//start Music playing
 		playMusic(true);
 	}
@@ -387,10 +187,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		super.onPause();
 		Const.v(GameActivity.class.getSimpleName(),"onPause()");
 		
-		//ADMOB Advertising
-		if (AdMobView != null) {
-			AdMobView.pause();
-  		}
+		if(pAds != null)
+			pAds.onPause();
 		
 		playMusic(false);		
 	}
@@ -528,6 +326,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 				GameStatsSync.unlockAchievement(getApiClient(), R.string.achievement_sharing_is_good);
 				Const.d(GameActivity.class.getSimpleName(),"onShare Successful");
 			}
+			else
+				GameStatsSync.revealAchievement(getApiClient(), R.string.achievement_sharing_is_good);
 		}
 	}
 	
@@ -589,6 +389,24 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
         return returnStr;
 	}
 	
+	/** Try to launch the Google+ share dialog*/
+   public boolean onShareRequested(String text){
+	   Const.d(GameActivity.class.getSimpleName(),"Launch the Google+ share.");
+	   if (isSignedIn()) {        	
+		   Intent shareIntent = new com.google.android.gms.plus.PlusShare.Builder(this)
+	          .setType("text/plain")
+	          .setText(text)
+	          .setContentUrl(Uri.parse("https://play.google.com/store/apps/details?id=com.webs.itmexicali.colorized"))
+	          .getIntent();
+
+	      startActivityForResult(shareIntent, Const.RC_SHARE);
+           return true;
+       } else {
+	       showAlert(getString(R.string.share_not_available));
+       }
+	   return false;
+   }
+	
 	
 	/** Try to show Achievements activity, if not signed in, show message
 	 * @return true if Achievements were shown*/
@@ -598,8 +416,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
                     Const.RC_UNUSED);
             return true;
         } else {
-        	if(GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext())
-        			== ConnectionResult.SUCCESS)
+        	if(isGAPPSavailable())
                 showAlert(getString(R.string.achievements_not_available));        		
         	else
         		StateMachine.getIns().pushState(BaseState.statesIDs.STATS);
@@ -617,8 +434,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
             return true;
         } else {
             
-        	if(GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext())
-        			== ConnectionResult.SUCCESS)
+        	if(isGAPPSavailable())
             	showAlert(getString(R.string.leaderboards_not_available));        		
         	else
         		StateMachine.getIns().pushState(BaseState.statesIDs.STATS);
@@ -669,21 +485,5 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
    }
 	
    
-   /** Launch the Google+ share dialog*/
-   public boolean shareOnGoogleP(String text){
-	   Const.d(GameActivity.class.getSimpleName(),"Launch the Google+ share.");
-	   if (isSignedIn()) {        	
-		   Intent shareIntent = new com.google.android.gms.plus.PlusShare.Builder(this)
-	          .setType("text/plain")
-	          .setText(text)
-	          .setContentUrl(Uri.parse("https://play.google.com/store/apps/details?id=com.webs.itmexicali.colorized"))
-	          .getIntent();
-
-	      startActivityForResult(shareIntent, Const.RC_SHARE);
-           return true;
-       } else {
-	       showAlert(getString(R.string.share_not_available));
-       }
-	   return false;
-   }
+   
 }
