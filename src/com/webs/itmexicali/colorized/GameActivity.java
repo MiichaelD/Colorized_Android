@@ -150,6 +150,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 
 	// Invoke displayInterstitial() when you are ready to display an interstitial.
 	public void displayInterstitial() {
+		Const.d(this.getLocalClassName(),"Displaying interstitial");
 		if(pAds != null)
 			pAds.showInterstitial();
 	}

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.webs.itmexicali.colorized"
-    android:versionCode="20"
-    android:versionName="1.1.1" >
+    android:versionCode="21"
+    android:versionName="1.1.2" >
 
     <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="20" />
     <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct"  android:required="false" />
@@ -48,12 +48,21 @@
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 		<meta-data android:name="com.xsqhbao.bipppts201390.APPID" android:value="236182" />
 		<meta-data android:name="com.xsqhbao.bipppts201390.APIKEY" android:value="android*1409523218201390512"/>
+		<!-- AirPush Bundle
 		<activity android:exported="false" android:name="com.xsqhbao.bipppts201390.AdActivity"
+		-->
+		<!-- AirPush STD -->
+		<activity android:exported="false" android:name="com.xsqhbao.bipppts201390.MainActivity"
 		     android:configChanges="orientation|screenSize"
 			android:theme="@android:style/Theme.Translucent" />
+			
 		<activity android:name="com.xsqhbao.bipppts201390.BrowserActivity"
 			android:configChanges="orientation|screenSize" />
+		<!-- AirPush Bundle
 		<activity android:name="com.xsqhbao.bipppts201390.VActivity"
+		-->
+		<!-- AirPush STD -->
+		<activity android:name="com.xsqhbao.bipppts201390.VDActivity"
 			android:configChanges="orientation|screenSize" android:screenOrientation="portrait"
 		    android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
 		</activity> 
