@@ -12,6 +12,13 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.facebook.FacebookException;
+import com.facebook.FacebookOperationCanceledException;
+import com.facebook.Session;
+import com.facebook.UiLifecycleHelper;
+import com.facebook.widget.FacebookDialog;
+import com.facebook.widget.WebDialog;
+import com.facebook.widget.WebDialog.OnCompleteListener;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.Player;
 import com.google.example.games.basegameutils.BaseGameActivity;
@@ -30,6 +37,9 @@ import com.webs.itmexicali.colorized.util.ProgNPrefs;
 public class GameActivity extends BaseGameActivity implements GameFinishedListener, surfaceListener{
 	
 	private Advertising pAds = null;    
+	
+	//facebook sharing helper
+	private UiLifecycleHelper uiHelper;
     
     // true if the game finished is the first one since the app being launched
     private boolean firstGameFinished = true;    
@@ -79,6 +89,9 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 
 		//set surface listener, to reposition Sign-In Button
 		((GameView)findViewById(R.id.gameView)).setSurfaceListener(this);
+		
+		 uiHelper = new UiLifecycleHelper(this, null);
+		 uiHelper.onCreate(savedInstanceState);
 		
 		initAds();
 		  
@@ -148,14 +161,12 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	
 	
 
-	// Invoke displayInterstitial() when you are ready to display an interstitial.
+	/** Invoke displayInterstitial() when you are ready to display an interstitial.*/
 	public void displayInterstitial() {
 		Const.d(this.getLocalClassName(),"Displaying interstitial");
 		if(pAds != null)
 			pAds.showInterstitial();
 	}
-	  
-	/*******************************	ADS ADMOB / AIRPUSH END **************************************/
 	
 	
 	@Override
@@ -177,6 +188,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		if(pAds != null)
 			pAds.onResume();
 		
+		uiHelper.onResume();
+		
 		//start Music playing
 		playMusic(true);
 	}
@@ -191,6 +204,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		if(pAds != null)
 			pAds.onPause();
 		
+		uiHelper.onPause();
+		
 		playMusic(false);		
 	}
 	
@@ -199,15 +214,27 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		super.onStop();
 		//release resources of the media player and delete it
 		Const.v(GameActivity.class.getSimpleName(),"onStop()");
+
+		uiHelper.onStop();
 		
 		stopSound();
 		stopMusicPlayer();
 	}
 	
+	@Override
 	public void onDestroy(){
 		super.onDestroy();
 		//release resources of the media player and delete it
 		Const.v(GameActivity.class.getSimpleName(),"onDestroy()");
+		
+		uiHelper.onDestroy();
+	}
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+	    super.onSaveInstanceState(outState);
+		Const.v(GameActivity.class.getSimpleName(),"onSaveInstanceState()");
+	    uiHelper.onSaveInstanceState(outState);
 	}
 	
 	
@@ -321,11 +348,32 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
+		
+		//facebook sharing
+		uiHelper.onActivityResult(requestCode, resultCode, intent, new FacebookDialog.Callback() {
+	        @Override
+	        public void onError(FacebookDialog.PendingCall pendingCall, Exception error, Bundle data) {
+	            Const.e("Activity", String.format("Error: %s", error.toString()));
+				GameStatsSync.revealAchievement(getApiClient(), R.string.achievement_sharing_is_good);
+	        }
+
+	        @Override
+	        public void onComplete(FacebookDialog.PendingCall pendingCall, Bundle data) {
+	        	GameStatsSync.revealAchievement(getApiClient(), R.string.achievement_sharing_is_good);
+	        	// To get the correct sharing result, I should implement FB Sign-in within app
+	        	boolean didCancel = FacebookDialog.getNativeDialogDidComplete(data);
+	        	String completionGesture = FacebookDialog.getNativeDialogCompletionGesture(data);
+	        	String postId = FacebookDialog.getNativeDialogPostId(data);
+				Const.d(GameActivity.class.getSimpleName(),"onFbShare didCancel="+didCancel+
+						",completionGesture="+completionGesture+", postID="+postId);
+	        }
+	    });
+		
 	
 		if(requestCode == Const.RC_SHARE) {
 			if(resultCode == RESULT_OK) {
 				GameStatsSync.unlockAchievement(getApiClient(), R.string.achievement_sharing_is_good);
-				Const.d(GameActivity.class.getSimpleName(),"onShare Successful");
+				Const.d(GameActivity.class.getSimpleName(),"onGoogleShare Successful");
 			}
 			else
 				GameStatsSync.revealAchievement(getApiClient(), R.string.achievement_sharing_is_good);
@@ -391,7 +439,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	}
 	
 	/** Try to launch the Google+ share dialog*/
-   public boolean onShareRequested(String text){
+   public boolean onGoogleShareRequested(String text){
 	   Const.d(GameActivity.class.getSimpleName(),"Launch the Google+ share.");
 	   if (isSignedIn()) {        	
 		   Intent shareIntent = new com.google.android.gms.plus.PlusShare.Builder(this)
@@ -408,6 +456,68 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	   return false;
    }
 	
+   /** Try to launch the Facebook share dialog*/
+   public boolean onFbShareRequested(String text, String pictureURL){
+	   if(pictureURL == null){
+		   pictureURL = "https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xpa1/v/t1.0-9/10603423_531397536990342_6991488415590407112_n.png?oh=b38087f27ad60743ff23cacaeb17d2db&oe=54CBB5A1&__gda__=1419341337_e67331aab67f68c2f25f631bd9b6b5fe";
+	   }
+	   
+	   if (FacebookDialog.canPresentShareDialog(getApplicationContext(), 
+               FacebookDialog.ShareDialogFeature.SHARE_DIALOG)) {
+		   // Publish the post using the Share Dialog
+		   FacebookDialog shareDialog = new FacebookDialog.ShareDialogBuilder(this)
+	   		.setApplicationName(getString(R.string.app_name))
+	   		.setName(getString(R.string.app_name))
+	   		.setCaption(text)
+	   		.setLink(getString(R.string.app_url))
+	   		.setPicture(pictureURL)
+	   		.build();
+		   uiHelper.trackPendingDialogCall(shareDialog.present());
+		   return true;
+		} else {
+			// Fallback. For example, publish the post using the Feed Dialog
+			Bundle params = new Bundle();
+		    params.putString("name", getString(R.string.app_name));
+		    params.putString("caption", text);
+		    params.putString("link", getString(R.string.app_url));
+		    params.putString("picture", pictureURL);
+
+		    WebDialog feedDialog = (
+		        new WebDialog.FeedDialogBuilder(this,
+		            Session.getActiveSession(),
+		            params)).setOnCompleteListener(new OnCompleteListener() {
+
+		            @Override
+		            public void onComplete(Bundle values, FacebookException error) {
+		                if (error == null) {
+		                    // When the story is posted, echo the success
+		                    // and the post Id.
+		                    final String postId = values.getString("post_id");
+		                    if (postId != null) {
+		                    	//Posted correctly
+		                    	Const.d(GameActivity.class.getSimpleName(),"onShare Successful thru webDialog");
+		        				GameStatsSync.unlockAchievement(getApiClient(), R.string.achievement_sharing_is_good);
+		                    } else {
+		                        // User clicked the Cancel button
+		                    	Const.d(GameActivity.class.getSimpleName(),"onShare Cancelled thru webDialog");
+		        				GameStatsSync.revealAchievement(getApiClient(), R.string.achievement_sharing_is_good);
+		                    }
+		                } else if (error instanceof FacebookOperationCanceledException) {
+		                    // User clicked the "x" button
+	                    	Const.d(GameActivity.class.getSimpleName(),"onShare clicked X from webDialog");
+		    				GameStatsSync.revealAchievement(getApiClient(), R.string.achievement_sharing_is_good);
+		                } else {
+		                    // Generic, ex: network error
+	                    	Const.d(GameActivity.class.getSimpleName(),"onShare error on webDialog: "+error.getStackTrace());
+		    				GameStatsSync.revealAchievement(getApiClient(), R.string.achievement_sharing_is_good);
+		                }
+		            }
+		        })
+		        .build();
+		    feedDialog.show();
+		}
+	   return true;
+   }
 	
 	/** Try to show Achievements activity, if not signed in, show message
 	 * @return true if Achievements were shown*/

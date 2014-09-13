@@ -70,7 +70,7 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
-				GameActivity.instance.onShareRequested(pShareText);
+				GameActivity.instance.onFbShareRequested(pShareText,null);
 			}
 		});
 		
