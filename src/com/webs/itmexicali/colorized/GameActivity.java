@@ -353,7 +353,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		uiHelper.onActivityResult(requestCode, resultCode, intent, new FacebookDialog.Callback() {
 	        @Override
 	        public void onError(FacebookDialog.PendingCall pendingCall, Exception error, Bundle data) {
-	            Const.e("Activity", String.format("Error: %s", error.toString()));
+	            Const.e(GameActivity.class.getSimpleName(), String.format("Error: %s", error.toString()));
 				GameStatsSync.revealAchievement(getApiClient(), R.string.achievement_sharing_is_good);
 	        }
 
@@ -466,7 +466,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
                FacebookDialog.ShareDialogFeature.SHARE_DIALOG)) {
 		   // Publish the post using the Share Dialog
 		   FacebookDialog shareDialog = new FacebookDialog.ShareDialogBuilder(this)
-	   		.setApplicationName(getString(R.string.app_name))
+		   	.setApplicationName("Color Flooded")
+		   //.setApplicationName("Invasión de Color")
 	   		.setName(getString(R.string.app_name))
 	   		.setCaption(text)
 	   		.setLink(getString(R.string.app_url))
