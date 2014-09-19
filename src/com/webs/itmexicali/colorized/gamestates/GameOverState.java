@@ -5,11 +5,14 @@ import com.webs.itmexicali.colorized.gamestates.GameState.GameFinishedListener;
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
 import com.webs.itmexicali.colorized.R;
+import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
+import com.webs.itmexicali.colorized.drawcomps.DrawText;
 import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -25,9 +28,13 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 	private MainState pState;
 	private GameState pGame;
 	
+	private Bitmap mBitmaps[];
+	
 	private int bgColor = Color.DKGRAY;
 	
 	private DrawButtonContainer pButtons;
+	
+	private DrawText pShareLabel;
 	
 	//variables containing previous game results
 	private boolean pWin;
@@ -40,7 +47,8 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 	public GameOverState(statesIDs id) {
 		super(id);
 		
-		pButtons = new DrawButtonContainer(3, true);
+		pButtons = new DrawButtonContainer(4, true);
+		mBitmaps = new Bitmap[4];
 		bgColorText = new TextPaint();
 		whiteText	= new TextPaint();
 		
@@ -64,8 +72,18 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 			}
 		});
 		
-		//SHARE
+		//SHARE G+
 		pButtons.setOnActionListener(2, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
+			@Override public void onActionPerformed() {
+				//play sound
+				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+				
+				GameActivity.instance.onGoogleShareRequested(pShareText);
+			}
+		});
+		
+		//SHARE FB
+		pButtons.setOnActionListener(3, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
@@ -73,6 +91,7 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 				GameActivity.instance.onFbShareRequested(pShareText,null);
 			}
 		});
+
 		
 		whiteText.setColor(Color.WHITE);
 		whiteText.setStyle(Paint.Style.FILL);
@@ -121,8 +140,25 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 		getLayout().draw(canvas);
 		canvas.restore();
 		
+		if(pShareLabel != null){
+			pShareLabel.draw(canvas, pState.roundness, whiteText);
+		}
 		
-		pButtons.drawButtonsAndText(0, pShareText == null?2:3, canvas, pState.roundness,
+		if(mBitmaps[0] != null &&  mBitmaps[1] != null){
+			canvas.drawBitmap(pButtons.getDButton(2).isPressed()?
+				mBitmaps[1]:mBitmaps[0],
+				pButtons.getDButton(2).left,
+				pButtons.getDButton(2).top, null);
+		}
+		
+		if(mBitmaps[2] != null &&  mBitmaps[3] != null){
+			canvas.drawBitmap(pButtons.getDButton(3).isPressed()?
+				mBitmaps[3]:mBitmaps[2],
+				pButtons.getDButton(3).left,
+				pButtons.getDButton(3).top, null);
+		}
+		
+		pButtons.drawButtonsAndText(0, 2, canvas, pState.roundness,
 				pState.mPaints[8], pState.mPaints[7], bgColorText, whiteText);
 	}
 	
@@ -165,8 +201,32 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 		pButtons.setText(1, GameActivity.instance.getString(R.string.no));
 		
 		if(pShareText != null){
-			pButtons.repositionDButton(2, 1.5f*width/16, 40*height/48, 14.5f*width/16, 45*height/48); // share
-			pButtons.setText(2, GameActivity.instance.getString(R.string.game_over_share_btn));
+			
+			pShareLabel = new DrawText(
+					GameActivity.instance.getString(R.string.game_over_share_btn),
+					1.5f*width/16, 40*height/48, 7.5f*width/16, 45*height/48);
+			
+			
+			mBitmaps[0] = BitmapLoader.resizeImage(GameActivity.instance,R.drawable.btn_g_normal,
+					false, 5*height/48, 5*height/48);
+			
+			mBitmaps[1] = BitmapLoader.resizeImage(GameActivity.instance,R.drawable.btn_g_pressed,
+					false, 5*height/48, 5*height/48);
+			
+			mBitmaps[2] = BitmapLoader.resizeImage(GameActivity.instance,R.drawable.btn_fb_normal,
+					false, 5*height/48, 5*height/48);
+			
+			mBitmaps[3] = BitmapLoader.resizeImage(GameActivity.instance,R.drawable.btn_fb_pressed,
+					false, 5*height/48, 5*height/48);
+			
+			
+			
+			pButtons.repositionDButton(2, 8.5f*width/16, 40*height/48,
+					8.5f*width/16 + 5*height/48, 45*height/48); // G+ share
+			//pButtons.setText(2, GameActivity.instance.getString(R.string.game_over_share_btn));
+			
+			pButtons.repositionDButton(3,  14.5f*width/16 - 5*height/48, 40*height/48,
+					14.5f*width/16, 45*height/48);// Fb share
 		}
 		
 		bgColorText.setTextSize(GameView.mPortrait? width/14 : height/14);

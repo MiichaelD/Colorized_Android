@@ -223,9 +223,9 @@ public class MainState extends BaseState {
 			playerName = GameActivity.instance.getPlayerName();
 			if(playerName == null){
 				pBitmap[0] = BitmapLoader.resizeImage(StateMachine.mContext, R.drawable.white_signin_medium_base_44dp,
-						2*width/5, height/12);
+						false, 2*width/5, height/12);
 				pBitmap[1] = BitmapLoader.resizeImage(StateMachine.mContext, R.drawable.white_signin_medium_press_44dp,
-						2*width/5, height/12);
+						false, 2*width/5, height/12);
 				dbc.setEnabled(6,true); 
 			}
 			else{

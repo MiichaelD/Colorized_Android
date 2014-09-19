@@ -194,8 +194,8 @@ public class GameState extends BaseState implements GameBoardListener{
 		
 		//settings buttons
 		val = GameView.mPortrait ? GameView.width/9 : GameView.height/9;
-		mBitmaps[0] = BitmapLoader.resizeImage(GameActivity.instance,R.drawable.ic_settings, val, val);
-		mBitmaps[1] = BitmapLoader.resizeImage(GameActivity.instance,R.drawable.ic_restart, val, val);
+		mBitmaps[0] = BitmapLoader.resizeImage(GameActivity.instance,R.drawable.ic_settings, false, val, val);
+		mBitmaps[1] = BitmapLoader.resizeImage(GameActivity.instance,R.drawable.ic_restart, false, val, val);
 		mBitmaps[2] = Bitmap.createBitmap(60, 60, Config.ARGB_8888);
 
 		
