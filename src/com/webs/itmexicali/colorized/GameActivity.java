@@ -448,6 +448,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	          .setContentUrl(Uri.parse("https://play.google.com/store/apps/details?id=com.webs.itmexicali.colorized"))
 	          .getIntent();
 
+		   //with this flag, we ensure that when we open again our app, it doesn't show the sharing intent screen
+		   shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 	      startActivityForResult(shareIntent, Const.RC_SHARE);
            return true;
        } else {

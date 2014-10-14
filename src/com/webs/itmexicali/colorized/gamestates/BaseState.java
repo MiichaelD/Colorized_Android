@@ -72,7 +72,7 @@ public abstract class BaseState {
 	/** Create a new State by it's ID and return it
 	 * @param id the type of BaseState to create
 	 * @return BaseState of type ID reference*/
-	public static BaseState createStateByID(statesIDs id){
+	public static BaseState stateFactory(statesIDs id){
 		switch(id){
 		case ABOUT:
 			return new AboutState(statesIDs.ABOUT);
@@ -90,6 +90,8 @@ public abstract class BaseState {
 			return new TutoState(statesIDs.TUTO);
 		case TEST:
 			return new TestState(statesIDs.TEST);
+		default:
+			return null;
 		}
 		return null;
 	}
