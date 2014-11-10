@@ -259,8 +259,8 @@ public class MainState extends BaseState {
 
 	@Override
 	public void draw(Canvas canvas, boolean isPortrait) {
-		canvas.drawColor(Color.rgb(0, 162, 232));
-		//canvas.drawColor(Color.DKGRAY);
+		//canvas.drawColor(Color.rgb(0, 162, 232));
+		canvas.drawColor(Color.DKGRAY);
 		
 		drawTitle(canvas, mAppName);//draw Title
 		
