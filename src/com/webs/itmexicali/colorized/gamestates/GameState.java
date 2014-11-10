@@ -410,7 +410,7 @@ public class GameState extends BaseState implements GameBoardListener{
 		boardSize = boardSize == Const.BOARD_SIZES[Const.SMALL]? Const.SMALL:
 			boardSize == Const.BOARD_SIZES[Const.MEDIUM]? Const.MEDIUM:Const.LARGE;
 		
-		BaseState gameOver = BaseState.createStateByID(statesIDs.OVER);
+		BaseState gameOver = BaseState.stateFactory(statesIDs.OVER);
 		((GameFinishedListener)gameOver).onGameOver(win, getMoves(),
 				mov_lim<0?Const.CASUAL:Const.STEP, boardSize );
 		StateMachine.getIns().pushState(gameOver);

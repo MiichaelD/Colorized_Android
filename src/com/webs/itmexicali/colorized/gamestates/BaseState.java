@@ -93,6 +93,5 @@ public abstract class BaseState {
 		default:
 			return null;
 		}
-		return null;
 	}
 }

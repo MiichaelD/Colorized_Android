@@ -73,7 +73,7 @@ public class StateMachine {
 			return;
 		
 		//create a new BaseState and push it to the list
-		pushAtEnd(BaseState.createStateByID(id));
+		pushAtEnd(BaseState.stateFactory(id));
 	}
 	
 	/** Push a new state object to start interacting with it*/
