@@ -61,7 +61,7 @@ public class AirPushStandard extends Advertising{
 		true);
 		
 		//360 Ad.
-		air_std.run360Ad(pAct,0,false,null);
+		//air_std.run360Ad(pAct,0,false,null);
 		
 		loadInterstitial();
 	}
