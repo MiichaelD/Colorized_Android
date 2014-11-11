@@ -1,15 +1,66 @@
 package com.webs.itmexicali.colorized.drawcomps;
 
+import com.webs.itmexicali.colorized.R;
+import com.webs.itmexicali.colorized.util.ServerConn;
+
+import java.io.InputStream;
 import java.util.HashMap;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.util.Log;
 
 public class BitmapLoader {
 	
 	static HashMap<String,Bitmap> bitmaps=new HashMap<String,Bitmap>();
 
+	
+	
+	/** load the origial Bitmap from URL*/
+	public static Bitmap fetchImage(Context ctx, String URL, boolean saveOnCache) {
+		if (bitmaps.containsKey(URL))
+			return bitmaps.get(URL);
+		
+		Bitmap BitmapOrg = null;
+		InputStream is = null;
+		try {
+			is = ServerConn.Connect(-1, URL, null).getInputStream();
+			BitmapOrg = BitmapFactory.decodeStream(is);
+			bitmaps.put(URL, BitmapOrg);
+		} catch (Exception e) {
+			Log.e("BitmapLoader","Problem fetching Bitmap from: "+URL+" - now loading default Bitmap");
+			e.printStackTrace();
+			BitmapOrg = BitmapFactory.decodeResource(ctx.getResources(),R.drawable.app_icon);
+		}
+		
+        return BitmapOrg;
+    }
+	
+	/** load the origial Bitmap from URL*/
+	public static Bitmap resizeImage(Context ctx, String URL, boolean saveOnCache ,float w, float h) {
+		Bitmap original = null;
+		String key = URL+"_"+w+"_"+h;
+		
+		if (bitmaps.containsKey(key))
+			original =  bitmaps.get(key);
+		
+		else if (original == null && bitmaps.containsKey(URL))
+			original =  bitmaps.get(URL);
+		
+		else if(original == null)
+			original = fetchImage(ctx,URL,saveOnCache);
+		
+		
+		original = resizeImage(original,w,h);
+		
+		
+		if(saveOnCache)
+			bitmaps.put(key, original);
+		
+        return original;
+    }
 	
 	/** load the origial Bitmap from resource ID and return it 
 	 * @param ctx context to get the resource from its Id
@@ -23,7 +74,8 @@ public class BitmapLoader {
 		
         Bitmap BitmapOrg = BitmapFactory.decodeResource(ctx.getResources(),resId);
         
-        bitmaps.put(key, BitmapOrg);
+        if(saveOnCache)
+        	bitmaps.put(key, BitmapOrg);
         return BitmapOrg;
 
     }
@@ -40,10 +92,11 @@ public class BitmapLoader {
 		if (bitmaps.containsKey(key))
 			return bitmaps.get(key);
 		
-        Bitmap BitmapOrg = BitmapFactory.decodeResource(ctx.getResources(),resId);
-        
-        bitmaps.put(key, resizeImage(BitmapOrg, w, h));
-        return bitmaps.get(key);
+        Bitmap BitmapOrg = getImage(ctx, resId, false);
+    	BitmapOrg = resizeImage(BitmapOrg, w, h);
+        if(saveOnCache)
+        	bitmaps.put(key, BitmapOrg);
+        return BitmapOrg;
 
     }
 	

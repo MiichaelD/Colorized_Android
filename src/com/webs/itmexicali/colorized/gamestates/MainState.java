@@ -26,7 +26,7 @@ public class MainState extends BaseState {
 	//paints to be used in the canvas
 	public TextPaint 				mPaints[];
 	private DrawButtonContainer 	dbc;
-	public float 					roundness;
+	public static float 			roundness;
 	
 	private Bitmap pBitmap[] = null;
 	
@@ -260,7 +260,7 @@ public class MainState extends BaseState {
 	@Override
 	public void draw(Canvas canvas, boolean isPortrait) {
 		//canvas.drawColor(Color.rgb(0, 162, 232));
-		canvas.drawColor(Color.DKGRAY);
+		//canvas.drawColor(Color.DKGRAY);
 		
 		drawTitle(canvas, mAppName);//draw Title
 		

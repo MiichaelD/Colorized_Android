@@ -7,7 +7,6 @@ import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 public class StatisticState extends BaseState {
 
 	DrawButtonContainer container;
@@ -96,7 +95,7 @@ public class StatisticState extends BaseState {
 	
 	@Override
 	public void draw(Canvas canvas, boolean isPortrait) {
-		canvas.drawColor(Color.DKGRAY);
+		//canvas.drawColor(Color.DKGRAY);
 		/*
 	  	float x = GameView.width/2, y = GameView.height, percent;
 		canvas.drawText(played,x, 3*y/8,ms.mPaints[8]);
@@ -105,7 +104,7 @@ public class StatisticState extends BaseState {
 		canvas.drawText(percentage,x, 5*y/8,ms.mPaints[8]);
 		ms.mPaints[8].setTextScaleX(1.0f);
 		*/
-		container.drawButtonsAndText(canvas, ms.roundness, ms.mPaints[8], null, ms.mPaints[1], null);
+		container.drawButtonsAndText(canvas, MainState.roundness, ms.mPaints[8], null, ms.mPaints[1], null);
 		
 		
 		canvas.drawText(small,container.getDButton(0).centerX(),container.getDButton(0).top-5, ms.mPaints[8]);

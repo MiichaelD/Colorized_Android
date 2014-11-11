@@ -101,7 +101,7 @@ public class AboutState extends BaseState {
 		}
 		*/		
 		
-		canvas.drawRoundRect(base, ms.roundness, ms.roundness, ms.mPaints[11]);
+		canvas.drawRoundRect(base, MainState.roundness, MainState.roundness, ms.mPaints[11]);
 		canvas.save(); // Before Scroll Y
 		canvas.translate(0,scrollY);
 		canvas.save(); // Before Text Alignment

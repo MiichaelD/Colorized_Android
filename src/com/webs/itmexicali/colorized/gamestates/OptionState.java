@@ -106,7 +106,7 @@ public class OptionState extends BaseState {
 		canvas.save();
 		canvas.translate(0, animY);
 		*/
-		canvas.drawRoundRect(base, pMain.roundness, pMain.roundness, pMain.mPaints[11]);
+		canvas.drawRoundRect(base, MainState.roundness, MainState.roundness, pMain.mPaints[11]);
 		
 		int dif = ProgNPrefs.getIns().getDifficulty();
 		int mod = ProgNPrefs.getIns().getGameMode();
@@ -122,25 +122,25 @@ public class OptionState extends BaseState {
 		
 		
 		//Draw Board Size Buttons
-		options.drawButtonsAndText(0, options.getButtonsCount(), canvas, pMain.roundness, pMain.mPaints[8],
+		options.drawButtonsAndText(0, options.getButtonsCount(), canvas, MainState.roundness, pMain.mPaints[8],
 				pMain.mPaints[7], pMain.mPaints[1], smallText);
 		
 		//paint different button on difficulty selected
-		options.drawButtonAndText(dif, canvas, pMain.roundness, pMain.mPaints[1],
+		options.drawButtonAndText(dif, canvas, MainState.roundness, pMain.mPaints[1],
 				pMain.mPaints[7], smallText, smallText);
 		
 		//paint different button on game mode selected
-		options.drawButtonAndText(mod+3, canvas, pMain.roundness, pMain.mPaints[1],
+		options.drawButtonAndText(mod+3, canvas, MainState.roundness, pMain.mPaints[1],
 				pMain.mPaints[7], smallText, smallText);
 		
 		
 		
 		if(ProgNPrefs.getIns().playMusic()) //paint music button different when on
-			options.drawButtonAndText(5, canvas, pMain.roundness, pMain.mPaints[1],
+			options.drawButtonAndText(5, canvas, MainState.roundness, pMain.mPaints[1],
 					pMain.mPaints[7], smallText, smallText);
 
 		if(ProgNPrefs.getIns().playSFX())//paint sounds button different when on
-			options.drawButtonAndText(6, canvas, pMain.roundness, pMain.mPaints[1],
+			options.drawButtonAndText(6, canvas, MainState.roundness, pMain.mPaints[1],
 					pMain.mPaints[7], smallText, smallText);
 		
 		//canvas.restore(); //ANIMATION

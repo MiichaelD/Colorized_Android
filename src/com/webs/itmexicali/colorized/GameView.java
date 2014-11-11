@@ -1,11 +1,13 @@
 package com.webs.itmexicali.colorized;
 
+import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
 import com.webs.itmexicali.colorized.gamestates.BaseState;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
 import com.webs.itmexicali.colorized.util.Const;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
 import android.util.AttributeSet;
@@ -39,11 +41,10 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	//canvas to be drawn on
 	protected Canvas canvas;
 	
-	//Context of the instance that instantiated this class
-	protected Context  mContext;
-	
-	//this clas instance
+	//this class instance
 	private static GameView instance = null;
+	
+	public static Bitmap mBackgroundBM = null; 
 	
 	private surfaceListener pListener = null;
 	
@@ -101,6 +102,9 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		ratio = ((float) width) / height;
 		mPortrait = true;// = ratio > 1.0f ? false : true;
 		
+		
+		mBackgroundBM = BitmapLoader.resizeImage(this.getContext(), R.drawable.background,true, wi, he);
+		
 		StateMachine.getIns().surfaceChanged(width, height);
 		
 		if(StateMachine.getIns().getCurrentState() == null){
@@ -126,6 +130,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 		super.onDraw(canvas);
 		try {
 			//canvas.drawColor(Color.WHITE);
+			canvas.drawBitmap(mBackgroundBM, 0, 0, null);
 			StateMachine.getIns().draw(canvas, mPortrait);
 			
 		} catch (Exception e) {

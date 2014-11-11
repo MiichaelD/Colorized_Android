@@ -17,10 +17,13 @@ import com.webs.itmexicali.colorized.util.ProgNPrefs;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Bitmap.Config;
+import android.graphics.Paint.Align;
 import android.text.TextPaint;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -41,7 +44,9 @@ public class GameState extends BaseState implements GameBoardListener{
 	public TextPaint	mPaints[];
 	public Bitmap		mBitmaps[];
 	public RectF		mRectFs[];
-	DrawButtonContainer dbc;
+	DrawButtonContainer dbc;	
+	
+	public TextPaint darkBlurPaint, movesTextPaint;
 	
 	public float boardWidth, remainHeight, roundness;
 	
@@ -58,9 +63,60 @@ public class GameState extends BaseState implements GameBoardListener{
 	GameState(statesIDs id){
 		super(id);
 		//Const.v("GameState","Constructor");
-			
+		
+		movesTextPaint = new TextPaint(); // WHITE for TEXT
+		movesTextPaint.setColor(Color.WHITE);
+		movesTextPaint.setStyle(Paint.Style.FILL);
+		movesTextPaint.setTextAlign(Align.CENTER);
+		movesTextPaint.setAntiAlias(true);
+		
+		darkBlurPaint = new TextPaint(0);//BACKGROUND
+		darkBlurPaint.setColor(0xff101010);
+		darkBlurPaint.setAlpha(170);
+		darkBlurPaint.setStyle(Paint.Style.FILL);
+		darkBlurPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.NORMAL));
+		
+		mPaints = new TextPaint[7];
+		
+		mPaints[0] = new TextPaint();//RED 
+		mPaints[0].setColor(Color.RED);
+		mPaints[0].setStyle(Paint.Style.FILL);
+		mPaints[0].setAntiAlias(true);
+		
+		mPaints[1] = new TextPaint();//BLUE 
+		mPaints[1].setColor(Color.rgb(0, 162, 232));
+		mPaints[1].setStyle(Paint.Style.FILL);
+		//mPaints[1].setTextSize(GameView.mPortrait? width/14 : height/14);
+		mPaints[1].setAntiAlias(true);		
+		
+		mPaints[2] = new TextPaint();//YELLOW 
+		mPaints[2].setColor(Color.YELLOW);
+		mPaints[2].setStyle(Paint.Style.FILL);
+		mPaints[2].setAntiAlias(true);
+		
+		mPaints[3] = new TextPaint();//PURPLE
+		mPaints[3].setColor(Color.rgb(163, 73, 164));
+		mPaints[3].setStyle(Paint.Style.FILL);
+		mPaints[3].setAntiAlias(true);
+		
+		mPaints[4] = new TextPaint();//GRAY
+		mPaints[4].setColor(Color.LTGRAY);
+		mPaints[4].setStyle(Paint.Style.FILL);
+		mPaints[4].setAntiAlias(true);
+		
+		mPaints[5] = new TextPaint();//GREEN
+		mPaints[5].setColor(Color.rgb(21, 183, 46));
+		mPaints[5].setStyle(Paint.Style.FILL);
+		mPaints[5].setAntiAlias(true);
+		
+		mPaints[6] = new TextPaint(); // DKGRAY for pushed buttons
+		mPaints[6].setColor(Color.DKGRAY);
+		mPaints[6].setStyle(Paint.Style.FILL);
+		mPaints[6].setAntiAlias(true);
+		mPaints[6].setAlpha(175);
+		
+		
 		mRectFs = new RectF[3];
-		mPaints = ((MainState)StateMachine.getIns().getFirstState()).mPaints;
 		mBitmaps = new Bitmap[3];
 		dbc = new DrawButtonContainer(8,true);
 		
@@ -155,9 +211,13 @@ public class GameState extends BaseState implements GameBoardListener{
 	
 	public void resize(float width, float height) {
 		//Log.i("GameState","resize(f,f)");
-		StateMachine.getIns().getFirstState().resize(width, height);
-		reloadByResize();		
 		roundness = height/48;
+
+		movesTextPaint.setTextSize(GameView.mPortrait? width/13 : height/13);
+		mPaints[1].setTextSize(GameView.mPortrait? width/14 : height/14);
+		movesTextPaint.setTextScaleX(1.0f);
+		
+		reloadByResize();		
 	}
 
 	/** This method will be called when the surface has been resized, so all
@@ -194,8 +254,8 @@ public class GameState extends BaseState implements GameBoardListener{
 		
 		//settings buttons
 		val = GameView.mPortrait ? GameView.width/9 : GameView.height/9;
-		mBitmaps[0] = BitmapLoader.resizeImage(GameActivity.instance,R.drawable.ic_settings, false, val, val);
-		mBitmaps[1] = BitmapLoader.resizeImage(GameActivity.instance,R.drawable.ic_restart, false, val, val);
+		mBitmaps[0] = BitmapLoader.resizeImage(GameActivity.instance,R.drawable.ic_settings, true, val, val);
+		mBitmaps[1] = BitmapLoader.resizeImage(GameActivity.instance,R.drawable.ic_restart, true, val, val);
 		mBitmaps[2] = Bitmap.createBitmap(60, 60, Config.ARGB_8888);
 
 		
@@ -205,7 +265,6 @@ public class GameState extends BaseState implements GameBoardListener{
 				15*width-mBitmaps[1].getWidth()+val,  remainHeight+val);
 		
 		mRectFs[2] = new RectF(width+val+5, remainHeight,	15*width-val-5, 3*remainHeight);
-		
 	}
 	
 	@Override
@@ -216,12 +275,12 @@ public class GameState extends BaseState implements GameBoardListener{
 	@Override
 	public void draw(Canvas canvas, boolean isPortrait) {
 		//Background
-		canvas.drawColor(Color.DKGRAY);//(mPaints[(int)(Math.random()*8)].getColor());
+		//canvas.drawColor(Color.DKGRAY);//(darkBlurPaint[(int)(Math.random()*8)].getColor());
 		
 		//Color Div
 		float roundness = GameView.height/48;
-		canvas.drawRect(mRectFs[0].left-20, mRectFs[0].top-20, mRectFs[0].right+20, mRectFs[0].bottom+20, mPaints[11]);
-		canvas.drawRoundRect(mRectFs[1], roundness, roundness, mPaints[11]);
+		canvas.drawRect(mRectFs[0].left-20, mRectFs[0].top-20, mRectFs[0].right+20, mRectFs[0].bottom+20, darkBlurPaint);
+		canvas.drawRoundRect(mRectFs[1], roundness, roundness, darkBlurPaint);
 		
 		//canvas.save(); dg = (dg+1)%360;
 		//canvas.rotate(dg, mRectFs[0].left+mRectFs[0].width()/2, mRectFs[0].top+mRectFs[0].height()/2);
@@ -231,8 +290,8 @@ public class GameState extends BaseState implements GameBoardListener{
 		drawText(canvas);
 		
 		if ( mBitmaps != null ){
-			canvas.drawRect(dbc.getDButton(6), mPaints[11]);
-			canvas.drawRect(dbc.getDButton(7), mPaints[11]);
+			canvas.drawRect(dbc.getDButton(6), darkBlurPaint);
+			canvas.drawRect(dbc.getDButton(7), darkBlurPaint);
 			canvas.drawBitmap(mBitmaps[0], GameView.width/16, remainHeight, null);
 			canvas.drawBitmap(mBitmaps[1], 15*GameView.width/16-mBitmaps[1].getWidth(), remainHeight, null);
 		}
@@ -249,14 +308,15 @@ public class GameState extends BaseState implements GameBoardListener{
 		else{
 			moves_txt = String.format(formated_moves_str, mColorBoard.getMoves(), mov_lim);
 		}
-		mPaints[8].setTextScaleX(ts0);
-		while((mPaints[8].measureText(moves_txt)+10) >= mRectFs[2].width()){
+
+		movesTextPaint.setTextScaleX(ts0);
+		while((movesTextPaint.measureText(moves_txt)+10) >= mRectFs[2].width()){
 			ts0-=0.05f;
-			mPaints[8].setTextScaleX(ts0);
+			movesTextPaint.setTextScaleX(ts0);
 		}
 		canvas.drawText(moves_txt,
-				GameView.width/2, 2.15f*remainHeight, mPaints[8]);
-		mPaints[8].setTextScaleX(1.0f);
+				GameView.width/2, 2.15f*remainHeight, movesTextPaint);
+		movesTextPaint.setTextScaleX(1.0f);
 	}
 	
 	/** Draw UI units capable to react to touch events*/
@@ -265,7 +325,7 @@ public class GameState extends BaseState implements GameBoardListener{
 			if(i < 6)//after position 5, we are painting bitmaps instead of buttons
 				canvas.drawRect(dbc.getDButton(i), mPaints[i]);
 			if( dbc.getDButton(i).isPressed() )
-				canvas.drawRect(dbc.getDButton(i), mPaints[7]);
+				canvas.drawRect(dbc.getDButton(i), mPaints[6]);
 		}
 	}
 	

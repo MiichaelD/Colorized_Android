@@ -24,17 +24,19 @@ import android.view.MotionEvent;
 
 public class GameOverState extends BaseState implements GameFinishedListener {
 
-	//A reference to MainState, so we can paint it before painting this UI
-	private MainState pState;
 	private GameState pGame;
 	
 	private Bitmap mBitmaps[];
+	
+	private TextPaint mPaints[];
 	
 	private int bgColor = Color.DKGRAY;
 	
 	private DrawButtonContainer pButtons;
 	
 	private DrawText pShareLabel;
+	
+	private float textScale = 1.0f;
 	
 	//variables containing previous game results
 	private boolean pWin;
@@ -91,7 +93,9 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 				GameActivity.instance.onFbShareRequested(pShareText,null);
 			}
 		});
-
+		
+		
+		mPaints = new TextPaint[3];
 		
 		whiteText.setColor(Color.WHITE);
 		whiteText.setStyle(Paint.Style.FILL);
@@ -102,6 +106,25 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 		bgColorText.setStyle(Paint.Style.FILL);
 		bgColorText.setTextAlign(Align.CENTER);
 		bgColorText.setAntiAlias(true);		
+		
+		mPaints[0] = new TextPaint(); // DKGRAY for pushed buttons
+		mPaints[0].setColor(Color.DKGRAY);
+		mPaints[0].setStyle(Paint.Style.FILL);
+		mPaints[0].setAntiAlias(true);
+		mPaints[0].setAlpha(120);
+		
+		mPaints[1] = new TextPaint(); // WHITE for TEXT
+		mPaints[1].setColor(Color.WHITE);
+		mPaints[1].setStyle(Paint.Style.FILL);
+		mPaints[1].setTextAlign(Align.CENTER);
+		mPaints[1].setAntiAlias(true);
+		
+		mPaints[2] = new TextPaint(); // WHITE for TITLE
+		mPaints[2].setColor(Color.WHITE);
+		mPaints[2].setFakeBoldText(true);
+		mPaints[2].setStyle(Paint.Style.FILL);
+		mPaints[2].setTextAlign(Align.CENTER);
+		mPaints[2].setAntiAlias(true);
 	}
 	
 	private StaticLayout layout;
@@ -128,11 +151,11 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 
 	@Override
 	public void draw(Canvas canvas, boolean isPortrait) {
-		canvas.drawColor(bgColor);
+		//canvas.drawColor(bgColor);
 
 		canvas.save();
 		canvas.translate(0, 3*GameView.height/48);
-		pState.drawTitle(canvas, pTitle);
+		drawTitle(canvas, pTitle);
 		canvas.restore();
 		
 		canvas.save();		
@@ -141,7 +164,7 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 		canvas.restore();
 		
 		if(pShareLabel != null){
-			pShareLabel.draw(canvas, pState.roundness, whiteText);
+			pShareLabel.draw(canvas, MainState.roundness, whiteText);
 		}
 		
 		if(mBitmaps[0] != null &&  mBitmaps[1] != null){
@@ -158,15 +181,20 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 				pButtons.getDButton(3).top, null);
 		}
 		
-		pButtons.drawButtonsAndText(0, 2, canvas, pState.roundness,
-				pState.mPaints[8], pState.mPaints[7], bgColorText, whiteText);
+		pButtons.drawButtonsAndText(0, 2, canvas, MainState.roundness,
+				mPaints[1], mPaints[0], bgColorText, whiteText);
 	}
 	
-	@Override
-	public void onPopped() {
-		//Const.d(TutoState.class.getSimpleName(),"onPopped");	
-		pState = null;
-	}	
+	private void drawTitle(Canvas canvas, String text){
+		float x = GameView.width,	y = GameView.height;
+		
+		while((mPaints[2].measureText(text))+10 >= GameView.width){
+			textScale-=0.05f;
+			mPaints[2].setTextScaleX(textScale);
+		}
+		canvas.drawText(text,x/2, 8*y/48, mPaints[2]);
+	}
+	
 
 	@Override
 	public void onPushed() {
@@ -177,9 +205,6 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 		if(! (bs instanceof GameState))
 			StateMachine.getIns().popState();
 		pGame = (GameState)bs;
-
-		pState = (MainState) StateMachine.getIns().getFirstState();
-		
 		
 		pTitle = StateMachine.mContext.getString(
 				pWin?R.string.game_over_win_title:R.string.game_over_lose_title);
@@ -191,10 +216,8 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 	
 	public void resize(float width, float height){
 		//Const.v("GameOverState","canvas size: "+width+"x"+height);
-		pState.resize(width, height);
-
-		pButtons.repositionDButton(0, 8.5f*width/16, 34*height/48, 14.5f*width/16, 39*height/48); //ok
-		pButtons.repositionDButton(1, 1.5f*width/16, 34*height/48, 7.5f*width/16, 39*height/48); // no
+		pButtons.repositionDButton(0, 8.5f*width/16, 31*height/48, 14.5f*width/16, 36*height/48); //ok
+		pButtons.repositionDButton(1, 1.5f*width/16, 31*height/48, 7.5f*width/16, 36*height/48); // no
 		
 
 		pButtons.setText(0, GameActivity.instance.getString(R.string.ok));
@@ -229,8 +252,14 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 					14.5f*width/16, 45*height/48);// Fb share
 		}
 		
-		bgColorText.setTextSize(GameView.mPortrait? width/14 : height/14);
-		whiteText.setTextSize(GameView.mPortrait? width/12 : height/12);
+		bgColorText.setTextSize(GameView.mPortrait? width/16 : height/16);
+		whiteText.setTextSize(GameView.mPortrait? width/15 : height/16);
+		
+		mPaints[1].setTextSize(GameView.mPortrait? width/13 : height/13);
+		textScale = 1.0f;
+		mPaints[2].setTextScaleX(textScale);
+		mPaints[2].setTextSize(GameView.mPortrait? width/7 : height/7);
+		
 		layout = null;
 	}
 
@@ -271,8 +300,9 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 	public void onGameOver(boolean win, int moves, int gameMode, int boardSize) {
 		pWin = win;
 		pMovesCount = moves;
-		bgColor = win? Color.rgb(21, 183, 46):Color.RED;
-		bgColorText.setColor(bgColor);
+		//bgColor = win? Color.rgb(21, 183, 46):Color.RED;
+		bgColor = Color.DKGRAY;
+		bgColorText.setColor(Color.rgb(0, 162, 232));
 		
 		if(win && gameMode == Const.STEP && GameActivity.instance.isGAPPSavailable())
 			pShareText = String.format(StateMachine.mContext.getString(R.string.game_over_share_txt),

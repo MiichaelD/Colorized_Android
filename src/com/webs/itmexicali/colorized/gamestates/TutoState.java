@@ -7,9 +7,12 @@ import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 import android.text.Layout.Alignment;
 import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.view.MotionEvent;
 
 public class TutoState extends BaseState{
@@ -20,10 +23,14 @@ public class TutoState extends BaseState{
 
 	enum innerStates{INIT, FIRST, SEC, THIRD, FOURTH, FIFTH, BACK, FINAL}
 	
+	private float translate_x;
+	
 	private innerStates mInnerState, mPreState;
 	
 	//A reference to GameState, so we can paint it before painting this UI
 	private GameState pGame;
+	
+	private TextPaint selectionPaint, tutoTextPaint;
 	
 	//Rects to be used on canvas
 	protected RectF			mRectFs[];
@@ -44,6 +51,16 @@ public class TutoState extends BaseState{
 		
 		mInnerState = innerStates.INIT;
 		mRectFs = new RectF[1];
+		
+		selectionPaint = new TextPaint(); //SELECTIONS
+		selectionPaint.setColor(Color.WHITE);
+		selectionPaint.setStyle(Paint.Style.STROKE);
+		selectionPaint.setAntiAlias(true);
+		
+		tutoTextPaint = new TextPaint(); // TUTO TEXT
+		tutoTextPaint.setColor(Color.WHITE);
+		tutoTextPaint.setStyle(Paint.Style.FILL);
+		tutoTextPaint.setAntiAlias(true);
 	}
 	
 	public void resize(float width, float height){
@@ -53,14 +70,16 @@ public class TutoState extends BaseState{
 		float boardPixels = pGame.mRectFs[0].width()/Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()];
 		mRectFs[0] = new RectF(pGame.mRectFs[0].left, pGame.mRectFs[0].top, 
 				pGame.mRectFs[0].left + boardPixels, pGame.mRectFs[0].top + boardPixels);
+		
+		selectionPaint.setStrokeWidth(width/50);
+		tutoTextPaint.setTextSize(GameView.mPortrait? width/14 : height/14);
 	}
 
 	@Override
 	public void draw(Canvas canvas, boolean isPortrait) {
-		//canvas.drawRect(new Rect(0,0,(int)GameView.width,(int)GameView.height),mPaints[2]);
 		pGame.draw(canvas, isPortrait);
 		
-		canvas.drawColor(pGame.mPaints[11].getColor());
+		canvas.drawColor(pGame.darkBlurPaint.getColor());
 		
 		StaticLayout mTextLayout;
 		canvas.save();
@@ -68,47 +87,46 @@ public class TutoState extends BaseState{
 		case INIT:// touch to continue
 			
 			canvas.drawText(GameActivity.instance.getString(R.string.tutorial),
-					GameView.width/2, GameView.height/3,	pGame.mPaints[8]);
+					GameView.width/2, GameView.height/3,	pGame.movesTextPaint);
 			mTextLayout = getTutoLayout(GameActivity.instance.getString(R.string.tuto0));
 
-			canvas.translate(0, GameView.height/2-pGame.mPaints[10].getTextSize());
+			canvas.translate(translate_x, GameView.height/2-selectionPaint.getTextSize());
 			mTextLayout.draw(canvas);
 			break;
 			
 		case FIRST://fill the board
 			mTextLayout = getTutoLayout(GameActivity.instance.getString(R.string.tuto1));
 
-			canvas.drawRoundRect(pGame.mRectFs[0],0,0,pGame.mPaints[10]);
+			canvas.drawRoundRect(pGame.mRectFs[0],0,0,selectionPaint);
 			pGame.drawBoard(canvas);
-			canvas.translate(0, GameView.height/2 + pGame.boardWidth/2 + 5);
+			canvas.translate(translate_x, GameView.height/2 + pGame.boardWidth/2 + 5);
 			mTextLayout.draw(canvas);
 			
 			break;
 		case SEC: // start with first tile
 			mTextLayout = getTutoLayout(GameActivity.instance.getString(R.string.tuto2));
 
-			canvas.drawRect(mRectFs[0],pGame.mPaints[10]);
+			canvas.drawRect(mRectFs[0],selectionPaint);
 			canvas.drawRect(mRectFs[0],pGame.mPaints[pGame.getFirstTileColor()]);
-			canvas.translate(0, GameView.height/2 - 4*pGame.mPaints[10].getTextSize());
+			canvas.translate(translate_x, GameView.height/2 - 4*selectionPaint.getTextSize());
 			mTextLayout.draw(canvas);
 			break;
 			
 		case THIRD:	// color picker
 			mTextLayout = getTutoLayout(GameActivity.instance.getString(R.string.tuto3));
 
-			canvas.drawRoundRect(pGame.mRectFs[1], 50.0f, 40.0f, pGame.mPaints[6]);
-			canvas.drawRect(pGame.mRectFs[1],pGame.mPaints[10]);
+			canvas.drawRoundRect(pGame.mRectFs[1], 50.0f, 40.0f, selectionPaint);
 			pGame.drawButtons(canvas);
-			canvas.translate(0, GameView.height/2 - 3*pGame.mPaints[10].getTextSize());
+			canvas.translate(translate_x, GameView.height/2 - 3*selectionPaint.getTextSize());
 				mTextLayout.draw(canvas);
 			break;
 			
 		case FOURTH:	//keep changing
 			mTextLayout = getTutoLayout(GameActivity.instance.getString(R.string.tuto4));
 			
-			canvas.drawRoundRect(pGame.mRectFs[0],0,0,pGame.mPaints[10]);
+			canvas.drawRoundRect(pGame.mRectFs[0],0,0, selectionPaint);
 			canvas.drawRect(pGame.mRectFs[0],pGame.mPaints[pGame.getLastTileColor()]);
-			canvas.translate(0, GameView.height/2 + pGame.boardWidth/2 + 5);
+			canvas.translate(translate_x, GameView.height/2 + pGame.boardWidth/2 + 5);
 			mTextLayout.draw(canvas);
 			break;
 			
@@ -117,22 +135,22 @@ public class TutoState extends BaseState{
 
 			//draw moves counter
 			pGame.drawText(canvas);			
-			canvas.drawRect(pGame.mRectFs[2], pGame.mPaints[10]); // highlight moves counter
+			canvas.drawRect(pGame.mRectFs[2], selectionPaint); // highlight moves counter
 			
-			canvas.translate(0, GameView.height/2 - 5*pGame.mPaints[10].getTextSize());
+			canvas.translate(translate_x, GameView.height/2 - 5*selectionPaint.getTextSize());
 			mTextLayout.draw(canvas);
 			break;
 		
 		case FINAL: //final text, have fun
 			mTextLayout = getTutoLayout(GameActivity.instance.getString(R.string.tuto6));
-			canvas.translate(0, GameView.height/2 - 4*pGame.mPaints[10].getTextSize());
+			canvas.translate(translate_x, GameView.height/2 - 4*selectionPaint.getTextSize());
 			mTextLayout.draw(canvas);
 			break;
 			
 			
 		case BACK:// want to exit tutorial?
 			mTextLayout = getTutoLayout(GameActivity.instance.getString(R.string.tuto_exit));
-			canvas.translate(0, GameView.height/2 - 3*pGame.mPaints[10].getTextSize());
+			canvas.translate(translate_x, GameView.height/2 - 3*selectionPaint.getTextSize());
 			mTextLayout.draw(canvas);
 			break;
 		}
@@ -140,9 +158,10 @@ public class TutoState extends BaseState{
 	}
 	
 	private StaticLayout getTutoLayout(String text){
+		translate_x = GameView.width/16;
 		return new StaticLayout(
-				text, pGame.mPaints[9],
-				(int)GameView.width, Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+				text, tutoTextPaint,
+				(int)translate_x*14, Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 	}
 	
 

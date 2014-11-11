@@ -31,7 +31,7 @@
     <string name="game_over_share_txt">"I Color Flooded a <xliff:g id="brd_size">%1$s</xliff:g> board in <xliff:g id="brd_movs">%2$d</xliff:g> moves!\n\nIf you think you can do it too, play #ColorFlooded on your android device."</string>
     <string name="game_over_lose_title">Game Over</string>
     <string name="game_over_lose_desc">You ran out of moves.\n\nDo you want to play again?</string>
-    <string name="game_over_win_title">Congratulations!</string>
+    <string name="game_over_win_title">Congrats!</string>
     <string name="game_over_win_desc">You finished the game with 
         <xliff:g id="integer_formating">%1$d</xliff:g> moves.\n\nDo you want to play again?</string>
     
@@ -62,11 +62,11 @@
     
     <!-- Tutorial Instruction Messages !-->
     <string name="tuto0">Touch to advance.</string>
-    <string name="tuto1">The goal of this game is to fill the board with just one color.</string>
-    <string name="tuto2">You start with the top-left corner tile and should change its color to control adjacent tiles of the same color.</string>
-    <string name="tuto3">Use the color picker to change to a new color to control more tiles.</string>
-    <string name="tuto4">Keep changing colors until the board is filled with just one color.</string>
-    <string name="tuto5">Just be careful to do it before run out of moves.</string>
+    <string name="tuto1">Fill the board with just one color.</string>
+    <string name="tuto2">You start with the top-left corner tile.</string>
+    <string name="tuto3">Use the color picker to change to a new color.</string>
+    <string name="tuto4">Change until the board is filled with just one color.</string>
+    <string name="tuto5">Do it before run out of moves.</string>
     <string name="tuto6">Do you think you can do it?\n\nTRY YOURSELF!!</string>
     <string name="tuto_exit">Press BACK again to exit the tutorial or touch to continue.</string>
     
