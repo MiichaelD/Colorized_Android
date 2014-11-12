@@ -15,9 +15,9 @@
     <string name="tutorial" translatable="false">TUTORIAL</string>
     
     <!-- Dialogs messages !-->
-    <string name="exit_confirmation">Are you sure you want to quit?</string>
-    <string name="restart_game_confirmation">Are you sure you want to restart current game?</string>
-    <string name="saved_game_confirmation">There is an unfinished game saved.\n\nDo you want to keep playing it?</string>
+    <string name="exit_confirmation">Quit?</string>
+    <string name="restart_game_confirmation">Restart board?</string>
+    <string name="saved_game_confirmation">Do you want to keep playing unfinished game?</string>
     
     <string name="achievement_unlocked">Achievement unlocked!\nSign in to get more info.</string>
     <string name="your_progress_will_be_uploaded">Your existing progress will be uploaded shortly.</string>
@@ -30,10 +30,10 @@
     <string name="game_over_share_btn">Share on: </string>
     <string name="game_over_share_txt">"I Color Flooded a <xliff:g id="brd_size">%1$s</xliff:g> board in <xliff:g id="brd_movs">%2$d</xliff:g> moves!\n\nIf you think you can do it too, play #ColorFlooded on your android device."</string>
     <string name="game_over_lose_title">Game Over</string>
-    <string name="game_over_lose_desc">You ran out of moves.\n\nDo you want to play again?</string>
+    <string name="game_over_lose_desc">You ran out of moves.\n\nPlay again?</string>
     <string name="game_over_win_title">Congrats!</string>
     <string name="game_over_win_desc">You finished the game with 
-        <xliff:g id="integer_formating">%1$d</xliff:g> moves.\n\nDo you want to play again?</string>
+        <xliff:g id="integer_formating">%1$d</xliff:g> moves.\n\nPlay again?</string>
     
     <!-- Main State Buttons !-->
     <string name="play_button">Play</string>
@@ -68,7 +68,7 @@
     <string name="tuto4">Change until the board is filled with just one color.</string>
     <string name="tuto5">Do it before run out of moves.</string>
     <string name="tuto6">Do you think you can do it?\n\nTRY YOURSELF!!</string>
-    <string name="tuto_exit">Press BACK again to exit the tutorial or touch to continue.</string>
+    <string name="tuto_exit">Press BACK again to exit or touch to continue.</string>
     
     <!-- Leaderboard texts !-->
     <string name="totalGamesPlayed">Games played: <xliff:g id="games_fin">%1$d</xliff:g>.</string>

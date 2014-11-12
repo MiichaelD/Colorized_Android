@@ -6,9 +6,9 @@
     <string name="cancel">Cancelar</string>
     
     <!-- Dialogs messages !-->
-    <string name="exit_confirmation">Estas seguro de querer salir?</string>
-    <string name="restart_game_confirmation">Estas seguro de reiniciar la partida actual?</string>
-    <string name="saved_game_confirmation">Hay un juego sin terminar.\n\nQuieres continuar jugándolo?</string>
+    <string name="exit_confirmation">Salir?</string>
+    <string name="restart_game_confirmation">Reiniciar tablero?</string>
+    <string name="saved_game_confirmation">Quieres continuar el tablero anterior?</string>
     
     <string name="achievement_unlock">Logro desbloqueado!\nInicia sesión para obtener mas información.</string>
     <string name="your_progress_will_be_uploaded">Tu progreso existente será sincronizado.</string>
@@ -21,10 +21,10 @@
     <string name="game_over_share_btn">Compartir: </string>
     <string name="game_over_share_txt">Conquisté un tablero <xliff:g id="brd_size">%1$s</xliff:g> en <xliff:g id="brd_movs">%2$d</xliff:g> movimientos!\n\nTú también juega #InvasiónDeColor ( #ColorFlooded ) en tu dispositivo android.</string>
     <string name="game_over_lose_title">Juego Terminado</string>
-    <string name="game_over_lose_desc">Te quedaste sin movimientos.\n\nQuieres jugar de nuevo?</string>
+    <string name="game_over_lose_desc">Te quedaste sin movimientos.\n\nJugar de nuevo?</string>
     <string name="game_over_win_title">Felicidades!</string>
     <string name="game_over_win_desc">Terminaste la partida con  
-        <xliff:g id="integer_formating">%1$d</xliff:g> movimientos.\n\nQuieres jugar de nuevo?</string>
+        <xliff:g id="integer_formating">%1$d</xliff:g> movimientos.\n\nJugar de nuevo?</string>
     
     <!-- Main State Buttons !-->
     <string name="play_button">Jugar</string>
@@ -60,7 +60,7 @@
     <string name="tuto1">Llena el tablero de un solo color.</string>
     <string name="tuto2">Empiezas desde la esquina superior izquierda.</string>
     <string name="tuto3">Cambia de color desde seleccionador.</string>
-    <string name="tuto4">Cambia de color hasta que se llene de uno solo.</string>
+    <string name="tuto4">Hasta que el tablero se llene de uno solo.</string>
     <string name="tuto5">Hazlo antes de quedarte sin movimientos.</string>
     <string name="tuto6">Crees poder lograrlo?\n\nINTENTALO!!</string>
     <string name="tuto_exit">Presiona ATRAS de nuevo para salir del tutorial o toca la pantalla para continuar.</string>
