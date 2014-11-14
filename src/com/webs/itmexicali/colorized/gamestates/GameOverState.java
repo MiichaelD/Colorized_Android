@@ -22,6 +22,11 @@ import android.text.TextPaint;
 import android.text.Layout.Alignment;
 import android.view.MotionEvent;
 
+import com.plattysoft.leonids.ParticleSystem;
+import com.plattysoft.leonids.modifiers.ScaleModifier;
+
+//Particle Effect from:					https://github.com/plattysoft/Leonids
+
 public class GameOverState extends BaseState implements GameFinishedListener {
 
 	private GameState pGame;
@@ -212,6 +217,20 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 		pDescription = pWin? 
 				String.format(StateMachine.mContext.getString(R.string.game_over_win_desc),pMovesCount) :
 				StateMachine.mContext.getString(R.string.game_over_lose_desc);
+				
+		if(pWin){
+			
+			new ParticleSystem(GameActivity.instance, 20, R.drawable.star, 3000)		
+			.setSpeedByComponentsRange(-0.25f, 0.25f, -0.7f, -0.2f)
+			.setAcceleration(0.000005f, 90)
+			.setInitialRotationRange(0, 360)
+			.setRotationSpeed(220)
+			.setFadeOut(2000)
+			.addModifier(new ScaleModifier(0f, 1f, 0, 1500))
+			//.oneShot(GameView.getIns(), 12);
+			.oneShot(GameActivity.instance.getBannerView(), 20);
+			
+		}
 	}
 	
 	public void resize(float width, float height){

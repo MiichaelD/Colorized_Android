@@ -321,11 +321,13 @@ public class GameState extends BaseState implements GameBoardListener{
 	
 	/** Draw UI units capable to react to touch events*/
 	public void drawButtons(Canvas canvas){
+		
+		
+		
 		for(int i =0 ; i < dbc.getButtonsCount();i++){
 			if(i < ColorBoard.NUMBER_OF_COLORS){//after position 5, we are painting bitmaps instead of buttons
-				//if(mColorBoard.isColorFinished(i))
-				canvas.drawRect(dbc.getDButton(i), mPaints[i]);
 				dbc.setEnabled(i, !mColorBoard.isColorFinished(i));
+				dbc.getDButton(i).draw(canvas, 0, mPaints[i], mPaints[6]);
 			}
 			if( dbc.getDButton(i).isPressed() )
 				canvas.drawRect(dbc.getDButton(i), mPaints[6]);
@@ -684,7 +686,7 @@ public class GameState extends BaseState implements GameBoardListener{
 		private int finishedColors = 0;
 		
 		public static final int NUMBER_OF_COLORS = 6;
-		private static final int FINISHED_COLORS_FLAGS[] = {1, 2, 4, 8, 16, 32};
+		private final int FINISHED_COLORS_FLAGS[] = {1, 2, 4, 8, 16, 32};
 		private static final int ALL_COLORS_FINISHED = 63; //(2^6 -1 )
 		
 		/** Initialize a new random {@link ColorBoard} matrix*/
@@ -702,10 +704,10 @@ public class GameState extends BaseState implements GameBoardListener{
 				startRandomColorBoard(blocks);
 				return;
 			}
-			restartFinishedColors();
 			this.moves.set(moves);
 			blocksPerSide = blocks;
 			mColorBoard = mat;
+			restartFinishedColors();
 		}
 		
 		
@@ -713,26 +715,34 @@ public class GameState extends BaseState implements GameBoardListener{
 		 * @param blocks the new number of blocks per side of the matrix*/
 		public void startRandomColorBoard(int blocks){
 			blocksPerSide = blocks;
+			mColorBoard = new int[blocks][blocks];
 			startRandomColorBoard();
 		}
 		
 		/** Start a new random matrix and reset moves counter*/
 		public void startRandomColorBoard(){
 			this.moves.set(0);
-			restartFinishedColors();
 			for(int i=0; i<blocksPerSide; i++)
 				for(int j=0; j<blocksPerSide; j++)
 					mColorBoard[i][j] = (int)(Math.random()*NUMBER_OF_COLORS);
+
+			restartFinishedColors();
 		}
 		
 		/** Restart the variable containing the finished colors*/
 		private void restartFinishedColors(){
 			finishedColors = 0 ;
+			checkBoardStatus();
 		}
 		
 		/** Store the color finished*/
 		private void addFinishedColor(int color){
 			finishedColors |= FINISHED_COLORS_FLAGS[color];
+		}
+		
+		private void removeFinishedColor(int color){
+			if ( isColorFinished(color) )
+				finishedColors ^= FINISHED_COLORS_FLAGS[color];
 		}
 		
 		public boolean allColorsFinished(){
@@ -742,7 +752,7 @@ public class GameState extends BaseState implements GameBoardListener{
 		/** Check if a color is finished
 		 * @param color color to check if is finished*/
 		public boolean isColorFinished(int color){
-			return 1 == (finishedColors & FINISHED_COLORS_FLAGS[color]);
+			return FINISHED_COLORS_FLAGS[color] == (finishedColors & FINISHED_COLORS_FLAGS[color]);
 		}
 		
 		/** Get the color of the main tile (upper-left corner)*/
@@ -787,9 +797,14 @@ public class GameState extends BaseState implements GameBoardListener{
 				for(j=0;j<blocksPerSide;j++)
 					colorCounter[mColorBoard[i][j]]++;
 			
-			for(i = 0; i < NUMBER_OF_COLORS ; i++)
+			for(i = 0; i < NUMBER_OF_COLORS ; i++){
+				Const.i("ColorBoard", "Color "+ i+" count: "+colorCounter[i]);
 				if(colorCounter[i] == 0)
 					addFinishedColor(i);
+				else
+					removeFinishedColor(i);
+			}
+			addFinishedColor(mColorBoard[0][0]);
 			
 		} 
 		

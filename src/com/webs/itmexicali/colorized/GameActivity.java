@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
@@ -147,6 +148,10 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 			layout.addView(pAds.getBanner());
 		}
 		
+	}
+	
+	public View getBannerView(){
+		return pAds.getBanner();
 	}
 	
 	
@@ -575,7 +580,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     	ProgNPrefs.getIns().updateGameFinished(boardSize, gameMode, win);
     	
     	//Each 2 games, show Interstitial.
-		if(ProgNPrefs.getIns().getGamesFinished(Const.TOTAL_SIZES)%2 == 0)
+		if( (ProgNPrefs.getIns().getGamesFinished(Const.TOTAL_SIZES) 
+				% Advertising.GAMEOVERS_TO_INTERSTITIAL) == 0)
 			GameActivity.instance.displayInterstitial();
 		else
 			GameActivity.instance.loadInterstitial();

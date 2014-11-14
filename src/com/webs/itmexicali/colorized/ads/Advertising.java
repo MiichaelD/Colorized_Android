@@ -8,6 +8,8 @@ public abstract class Advertising {
 	//ADS Constants	
 	public final static boolean SHOW_ADS = true;
 	
+	public final static int GAMEOVERS_TO_INTERSTITIAL = 3;
+	
     /** AdMob Advertising. Your ad unit id. Replace with your actual ad unit id. */
     public static final String
     	ADVIEW_AD_UNIT_ID 		= "ca-app-pub-4741238402050454/6518301004",

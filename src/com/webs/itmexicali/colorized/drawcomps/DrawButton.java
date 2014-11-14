@@ -68,7 +68,7 @@ public class DrawButton  extends RectF{
 		draw(c,round,relCol);
 		
 		//draw on TOP of release button (in case it has some transparency)
-		if(isPressed)
+		if(isPressed || !isEnabled)
 			draw(c,round,presCol);
 	}
 	
@@ -105,7 +105,7 @@ public class DrawButton  extends RectF{
 	 * @param textColRel Paint containing the size and color to draw on the text on release mode
 	 * @param textColRel Paint containing the size and color to draw on the text on pressed mode*/
 	public void draw(Canvas c, float round, Paint relCol, Paint presCol, TextPaint textColRel, TextPaint textColPres){
-		draw(c,round,relCol,presCol,isPressed?textColPres:textColRel);
+		draw(c,round,relCol,presCol,(isPressed||!isEnabled)?textColPres:textColRel);
 	}
 	
 	

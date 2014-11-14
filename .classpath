@@ -7,5 +7,6 @@
 	<classpathentry exported="true" kind="lib" path="libs/com-xsqhbao-bipppts201390.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="lib" path="libs/LeonidsLib.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
