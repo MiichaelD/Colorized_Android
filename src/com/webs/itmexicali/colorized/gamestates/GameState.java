@@ -1,16 +1,15 @@
 package com.webs.itmexicali.colorized.gamestates;
 
-import java.util.LinkedList;
 import java.util.Scanner;
-
-import ProtectedInt.ProtectedInt;
 
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
 import com.webs.itmexicali.colorized.R;
+import com.webs.itmexicali.colorized.board.ColorBoard;
 import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
+import com.webs.itmexicali.colorized.util.BoardSolver;
 import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
@@ -350,13 +349,25 @@ public class GameState extends BaseState implements GameBoardListener{
 		case MotionEvent.ACTION_POINTER_DOWN:
 			dbc.onPressUpdate(event, pointerIndex, pointerId);
 			
-			if(Const.CHEATS && pointerCount == 4 && mRectFs[0] != null){				
+			if(!Const.CHEATS) break;
+			
+			if(pointerCount == 4 && mRectFs[0] != null){				
 				for(int i =0 ; i<pointerCount;i++){
 					if(!mRectFs[0].contains((int)event.getX(i),(int)event.getY(i)))
 						return true;
 				}
 				Const.d(GameState.class.getSimpleName(),"CHEATS OPENED");
 				showGamOver(true);
+			} else if(pointerCount == 3 && mRectFs[0] != null){				
+				for(int i =0 ; i<pointerCount;i++){
+					if(!mRectFs[0].contains((int)event.getX(i),(int)event.getY(i)))
+						return true;
+				}
+				new Thread(new Runnable(){
+					public void run(){
+					System.out.println(BoardSolver.getOptimalPath(mColorBoard));
+				}}).start();
+				
 			}
 			break;
 
@@ -469,7 +480,7 @@ public class GameState extends BaseState implements GameBoardListener{
 	public void showGamOver(final boolean win){
 		Log.d(Const.TAG,"GameOver winning = "+win);
 		
-		int boardSize = mColorBoard.blocksPerSide;
+		int boardSize = mColorBoard.getBlocksPerSide();
 		
 		//transform it from blocks/side to boardsize constant
 		boardSize = boardSize == Const.BOARD_SIZES[Const.SMALL]? Const.SMALL:
@@ -479,64 +490,6 @@ public class GameState extends BaseState implements GameBoardListener{
 		((GameFinishedListener)gameOver).onGameOver(win, getMoves(),
 				mov_lim<0?Const.CASUAL:Const.STEP, boardSize );
 		StateMachine.getIns().pushState(gameOver);
-		
-		/* I used to use a pop-up ... WELL just to remember It will remain here :')
-		 
-		 //if we are still on the list
-		if(!StateMachine.getIns().checkStateIsInList(statesIDs.GAME))
-			return;
-		
-		GameActivity.instance.playMusic(false);
-		
-		//update games finished count
-		int[] results = Prefs.getIns().updateGameFinished(mColorBoard.blocksPerSide,
-				mov_lim < 0? Const.CASUAL:Const.STEP, win);
-		
-		if(results[0]%2 == 0)//each 2 games, show Interstitial
-			GameActivity.instance.displayInterstitial();
-				
-		
-		GameActivity.instance.runOnUiThread(new Runnable(){
-			public void run(){
-				String str =win? 
-						String.format(GameActivity.instance.getString(R.string.game_over_win),getMoves()) :
-							GameActivity.instance.getString(R.string.game_over_lose);
-				//Use the Builder class for convenient dialog construction
-				new AlertDialog.Builder(GameActivity.instance)
-				.setCancelable(false)
-				.setMessage(str)
-				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-		           public void onClick(DialogInterface dialog, int id) {
-		        	   restartBoard(true);
-		        	   Const.setFullScreen(GameActivity.instance);
-		        	   GameActivity.instance.playMusic(true);
-		           }
-				})
-				.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-		           public void onClick(DialogInterface dialog, int id) {
-		        	   Const.setFullScreen(GameActivity.instance);
-		        	   restartBoard(true);
-		        	   StateMachine.getIns().popState();
-		        	   GameActivity.instance.playMusic(true);
-		           }
-				})
-				/*
-				.setOnCancelListener(new DialogInterface.OnCancelListener() {
-					@Override
-					public void onCancel(DialogInterface arg0) {
-						restartBoard(true);
-			        	Const.setFullScreen(GameActivity.instance);
-			        	StateMachine.getIns().popState();
-			        	GameActivity.instance.playMusic(true);
-					}
-				})
-				*/ /*
-				.create()
-				.show();
-			}
-		});
-		  
-		 */
 		
 		
 	}
@@ -569,6 +522,25 @@ public class GameState extends BaseState implements GameBoardListener{
 		}
 		
 	}
+	
+	@Override
+	public void onBoardFloodingFinished(boolean won) {
+		if (won){
+			GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
+				GameActivity.instance.playSound(GameActivity.SoundType.WIN);
+				showGamOver(true);
+			}});
+			
+		}
+		else if(getMoves() >= mov_lim && mov_lim >= 0){
+			GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
+				GameActivity.instance.playSound(GameActivity.SoundType.LOSE);
+				showGamOver(false);
+			}});
+		}
+		
+	}
+	
 	
 	/** Create a new random board*/
 	public void createNewBoard(int blocks){
@@ -621,7 +593,8 @@ public class GameState extends BaseState implements GameBoardListener{
 	/** Get the color of the tile in the bottom-right corner
 	 * @return color as number*/
 	public int getLastTileColor(){
-		return mColorBoard.getMatrix()[mColorBoard.blocksPerSide-1][mColorBoard.blocksPerSide-1];
+		int lastIndex = mColorBoard.getBlocksPerSide()-1;
+		return mColorBoard.getMatrix()[lastIndex][lastIndex];
 	}
 	
 	/** The string representation of current game state
@@ -643,273 +616,17 @@ public class GameState extends BaseState implements GameBoardListener{
 		return mColorBoard.allColorsFinished();
 	}
 	
-	/** Callback to let the game know that the user input has been processed*/
-	public void onBoardOpFinish(boolean won){
-		if (won){
-			GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
-				GameActivity.instance.playSound(GameActivity.SoundType.WIN);
-				showGamOver(true);
-			}});
-			
-		}
-		else if(getMoves() >= mov_lim && mov_lim >= 0){
-			GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
-				GameActivity.instance.playSound(GameActivity.SoundType.LOSE);
-				showGamOver(false);
-			}});
-		}
-	}
 	
-
-	/**
-	 * This class will hold the matrix of colors and handle
-	 * the users interactions. */
-	private class ColorBoard{
-
-		/** the matrix holding the color blocks*/
-		private int mColorBoard[][];
-		
-		/** number of blocks per side in the square matrix*/
-		private int blocksPerSide;
-		
-		/** Actual movements counter*/
-		private ProtectedInt moves = new ProtectedInt(0);
-		
-		/** handle concurrent access to colorize method, not using blocking synchronized modifier*/
-		private boolean isColorizing = false;
-		
-		/** Structure to hold blocks to be checked*/
-		private LinkedList<Integer[]> toCheck;
-		
-		/** variable containing finished colors, each bit is either 1 for finished
-		 * or 0 for unfinished*/
-		private int finishedColors = 0;
-		
-		public static final int NUMBER_OF_COLORS = 6;
-		private final int FINISHED_COLORS_FLAGS[] = {1, 2, 4, 8, 16, 32};
-		private static final int ALL_COLORS_FINISHED = 63; //(2^6 -1 )
-		
-		/** Initialize a new random {@link ColorBoard} matrix*/
-		ColorBoard(int blocks){
-			startRandomColorBoard(blocks);
-		}
-		
-		
-		/** Load a given {@link ColorBoard} matrix
-		 * @param blocks number of blocks per side of board
-		 * @param moves number of user interactions in loaded board
-		 * @param mat the board representation as an array of integers*/
-		ColorBoard(int blocks, int moves, int[][] mat){
-			if(mat == null){
-				startRandomColorBoard(blocks);
-				return;
-			}
-			this.moves.set(moves);
-			blocksPerSide = blocks;
-			mColorBoard = mat;
-			restartFinishedColors();
-		}
-		
-		
-		/** Start a new random matrix and set moves to 0
-		 * @param blocks the new number of blocks per side of the matrix*/
-		public void startRandomColorBoard(int blocks){
-			blocksPerSide = blocks;
-			mColorBoard = new int[blocks][blocks];
-			startRandomColorBoard();
-		}
-		
-		/** Start a new random matrix and reset moves counter*/
-		public void startRandomColorBoard(){
-			this.moves.set(0);
-			for(int i=0; i<blocksPerSide; i++)
-				for(int j=0; j<blocksPerSide; j++)
-					mColorBoard[i][j] = (int)(Math.random()*NUMBER_OF_COLORS);
-
-			restartFinishedColors();
-		}
-		
-		/** Restart the variable containing the finished colors*/
-		private void restartFinishedColors(){
-			finishedColors = 0 ;
-			checkBoardStatus();
-		}
-		
-		/** Store the color finished*/
-		private void addFinishedColor(int color){
-			finishedColors |= FINISHED_COLORS_FLAGS[color];
-		}
-		
-		private void removeFinishedColor(int color){
-			if ( isColorFinished(color) )
-				finishedColors ^= FINISHED_COLORS_FLAGS[color];
-		}
-		
-		public boolean allColorsFinished(){
-			return finishedColors == ALL_COLORS_FINISHED;
-		}
-		
-		/** Check if a color is finished
-		 * @param color color to check if is finished*/
-		public boolean isColorFinished(int color){
-			return FINISHED_COLORS_FLAGS[color] == (finishedColors & FINISHED_COLORS_FLAGS[color]);
-		}
-		
-		/** Get the color of the main tile (upper-left corner)*/
-		public int getCurrentColor(){
-			return mColorBoard[0][0];
-		}	
-		
-		
-		/** change the color of the blocks neighbor the main block
-		 * which are from the same color (than the main block as well) */
-		public void colorize(int newColor){
-			//check if the new color is different from last one
-			// not the best approach, but will block a few threads
-			if(isColorizing || newColor == mColorBoard[0][0])
-				return;
-			
-			isColorizing = true;
-			Log.v("ColorBoard","colorise: "+newColor);
-			
-			this.moves.increment();//count this move
-			
-			//check the Neighbor block
-			//checkNeighborBlocks(1, 0, newColor);
-			//checkNeighborBlocks(0, 1, newColor);
-			toCheck = new LinkedList<Integer[]>();
-			toCheck.add(new Integer[]{0,0});
-			checkNeighborBlocks(newColor);
-			
-			mColorBoard[0][0] = newColor; //update the main block's color
-			checkBoardStatus();
-			onBoardOpFinish(allColorsFinished());
-			
-			isColorizing = false;		
-		}
-		
-		/** check if the board is filled by 1 color
-		 * @return true if completed, false if not*/
-		public void checkBoardStatus(){
-			int i,j;
-			int colorCounter[] = new int[NUMBER_OF_COLORS];
-			for(i=0;i<blocksPerSide;i++)
-				for(j=0;j<blocksPerSide;j++)
-					colorCounter[mColorBoard[i][j]]++;
-			
-			for(i = 0; i < NUMBER_OF_COLORS ; i++){
-				Const.i("ColorBoard", "Color "+ i+" count: "+colorCounter[i]);
-				if(colorCounter[i] == 0)
-					addFinishedColor(i);
-				else
-					removeFinishedColor(i);
-			}
-			addFinishedColor(mColorBoard[0][0]);
-			
-		} 
-		
-		/** compare neighbors colors with main block's color to update
-		 * color recursively*/
-		@SuppressWarnings("unused")
-		private void checkNeighborBlocks(int x, int y, int newColor){
-			//check if we are within the matrix boundaries and also that
-			// the boarding neighbor is from the same color as the main block
-			if((x==0 && y==0) || x < 0  || x >= blocksPerSide || y < 0 ||
-				y >= blocksPerSide ||mColorBoard[0][0] != mColorBoard[x][y])
-				return;
-			
-			mColorBoard[x][y] = newColor;
-			checkNeighborBlocks(x-1, y ,newColor);//check left neighbor
-			checkNeighborBlocks(x+1, y, newColor);//check right neighbor
-			checkNeighborBlocks(x, y-1, newColor);//check upper neighbor
-			checkNeighborBlocks(x, y+1, newColor);//check below neighbor
-		}	
-		
-		/** compare neighbors colors with main block's color to update
-		 * color iteratively*/
-		private void checkNeighborBlocks(int newColor){
-			Integer in[];
-			int oldColor = mColorBoard[0][0];
-			while(!toCheck.isEmpty()){
-				in = toCheck.removeLast();
-				mColorBoard[in[0]][in[1]] = newColor;
-				if(in[0]>0 && mColorBoard[in[0]-1][in[1]] == oldColor	&& !(in[0]-1==0 && in[1]==0)){
-					mColorBoard[in[0]-1][in[1]] = newColor;
-					toCheck.add(new Integer[]{in[0]-1,in[1]});
-				}
-				
-				if(in[1]>0 && mColorBoard[in[0]][in[1]-1] == oldColor	&& !(in[0]==0 && in[1]-1==0)){
-					mColorBoard[in[0]][in[1]-1] = newColor;
-					toCheck.add(new Integer[]{in[0],in[1]-1});
-				}
-				
-				if(in[0]<blocksPerSide-1 &&  mColorBoard[in[0]+1][in[1]] == oldColor){
-					mColorBoard[in[0]+1][in[1]] = newColor;
-					toCheck.add(new Integer[]{in[0]+1,in[1]});
-				}
-				
-				if(in[1]<blocksPerSide-1 &&  mColorBoard[in[0]][in[1]+1] == oldColor){
-					mColorBoard[in[0]][in[1]+1] = newColor;
-					toCheck.add(new Integer[]{in[0],in[1]+1});
-				}
-				
-			}
-			
-		}	
-		
-		/** return the matrix of colors*/
-		public int[][] getMatrix(){
-			return mColorBoard;
-		}
-		
-		/** The amount of moves this game has processed*/
-		public int getMoves(){
-			return this.moves.get();
-		}
-		
-		/** draw the board within the rect given*/
-		public void updateBoard(Canvas canvas, RectF rectf, TextPaint[] paints){
-			float boardPixels = rectf.width();
-			float blockPixels = boardPixels / blocksPerSide;
-			float left = rectf.left;
-			float top = rectf.top - blockPixels;
-			
-			for(int i=0; i<blocksPerSide; i++){
-				top+=blockPixels;
-				for(int j=0; j<blocksPerSide; j++)
-					canvas.drawRect(left+blockPixels*j, top, left+blockPixels*(j+1) + (j == blocksPerSide-1 ? 0:5),
-							top+blockPixels + (i == blocksPerSide-1? 0:5), paints[mColorBoard[i][j]]);
-					
-			}
-			
-		}
-		
-		/** Representation of current {@link ColorBoard} state
-		 * @return string formated as follows: "<b>i j []</b>",
-		 * where <b>i</b> is the number of blocks per side
-		 * <b>j</b> is the number of moves at current time and
-		 * <b>[]</b> is the representation of the board as a sucession of numbers*/
-		@Override
-		public String toString(){
-			StringBuilder sb = new StringBuilder();
-			sb.append(blocksPerSide);
-			sb.append(" ");
-			sb.append(moves.get());
-			for(int i=0;i<blocksPerSide;i++)
-				for(int k=0;k<blocksPerSide;k++)
-					sb.append(" ").append(mColorBoard[i][k]);
-			return sb.toString();
-		}
-
-	}
-
 }
-
-
 	/** Interface to request for a change in the GameBoard*/
 	interface GameBoardListener{
 		/** Ask for a new board
 		 * @param forced if true, it will not matter if the player has a current game state
 		 * if false, it will ask if want to restart*/
 		public void restartBoard(boolean forced);
+		
+		
+		/** Let the listener know that the operation on the board has been procesed 
+		 * and if the board is completed	 */
+		public void onBoardFloodingFinished(boolean won);
 	}
