@@ -6,12 +6,13 @@ import ProtectedInt.ProtectedInt;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.text.TextPaint;
-import android.util.Log;
-
 /**
  * This class will hold the matrix of colors and handle
  * the users interactions. */
 public class ColorBoard{
+	
+	/** */
+	private GameBoardListener m_listener;
 
 	/** the matrix holding the color blocks*/
 	private int m_colorMatrix[][];
@@ -79,6 +80,11 @@ public class ColorBoard{
 		restartFinishedColors();
 	}
 	
+	
+	public void setGameBoardListener(GameBoardListener listener){
+		m_listener = listener;
+	}
+	
 	/** Restart the variable containing the finished colors*/
 	private void restartFinishedColors(){
 		finishedColors = 0 ;
@@ -133,7 +139,7 @@ public class ColorBoard{
 			return;
 		
 		m_isColorizing = true;
-		Log.v("ColorBoard","colorize: "+newColor);
+//		Log.v("ColorBoard","colorize: "+newColor);
 		
 		this.m_moves.increment();//count this move
 		
@@ -146,8 +152,8 @@ public class ColorBoard{
 		
 		m_colorMatrix[0][0] = newColor; //update the main block's color
 		checkBoardStatus();
-		//TODO
-		//onBoardFloodingFinished(allColorsFinished());
+		if(m_listener != null)
+			m_listener.onBoardFloodingFinished(allColorsFinished());
 		
 		m_isColorizing = false;		
 	}

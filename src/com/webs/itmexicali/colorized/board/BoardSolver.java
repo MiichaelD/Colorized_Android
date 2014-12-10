@@ -1,20 +1,19 @@
-package com.webs.itmexicali.colorized.util;
+package com.webs.itmexicali.colorized.board;
 
 import java.util.LinkedList;
 
-import com.webs.itmexicali.colorized.board.ColorBoard;
 
 public class BoardSolver {
 
-	static StringBuilder s_path;
+	static LinkedList<StringBuilder> s_path;
 	static int s_minMoves;
 	
-	public static String getOptimalPath(ColorBoard board){
+	public static int getOptimalPath(ColorBoard board){
 		s_minMoves = Integer.MAX_VALUE;
-		s_path = null;
+		s_path = new LinkedList<StringBuilder>();
 		SolvingTree solver = new SolvingTree(board);
 		solver.printTree();
-		return s_path.toString();
+		return s_minMoves;
 	}
 }
 
@@ -39,38 +38,46 @@ class SolvingTree{
 	SolvingTree(SolvingTree parent, ColorBoard board, int newColor){
 		m_board = board.clone();
 		m_board.colorize(newColor);
-		if(!wasProductiveChange(m_board,board)){
-			parent.m_children.removeLast();
+		if(!wasProductiveChange(m_board,board) || m_board.getMoves() >= BoardSolver.s_minMoves){
+			parent.m_children.remove(this);
 			return;
 		}
 		m_parent = parent;
 		m_children = new LinkedList<SolvingTree>(); 
 		
 		boolean finished = true;
-		for(int i = newColor+1 ;i != newColor && BoardSolver.s_minMoves == Integer.MAX_VALUE; i++){
-			if( i >= ColorBoard.NUMBER_OF_COLORS)
-				i = 0;
+		int i = newColor;
+		do{
+			if(++i >= ColorBoard.NUMBER_OF_COLORS) i = 0;
 			
-			if(m_board.isColorFinished(i) || i == newColor)
-				continue;
+			if(i == newColor) break;
+			
+			if(m_board.isColorFinished(i))	continue;
+			
 			finished = false;
 			m_children.add(new SolvingTree(this, m_board,i));
-		}
-		if(finished && BoardSolver.s_minMoves > m_board.getMoves()){
+		}while(true);
+		
+		if(finished && BoardSolver.s_minMoves >= m_board.getMoves()){
+			if(BoardSolver.s_minMoves > m_board.getMoves()){
+				BoardSolver.s_path.clear();
+			}
 			BoardSolver.s_minMoves = m_board.getMoves();
-			BoardSolver.s_path = new StringBuilder();
+			StringBuilder path = new StringBuilder();
 			SolvingTree node = this;
 			System.out.print("SOLUTION in "+node.m_board.getMoves()+ " moves:");
 			do{
 				if(node.m_parent == null)
 					break;
-				BoardSolver.s_path.append(node.m_board.getCurrentColor());
-				BoardSolver.s_path.append(' ');
+				path.append(node.m_board.getCurrentColor());
+				path.append(' ');
 				node = node.m_parent;
 			}while(true);
 			
-			System.out.println(BoardSolver.s_path.toString());
+			BoardSolver.s_path.add(path);
+			System.out.println(path.toString());
 		}
+		parent.m_children.remove(this);
 	}
 	
 	
@@ -82,6 +89,11 @@ class SolvingTree{
 	}
 	
 	public void printTree(){
+		LinkedList<StringBuilder> paths = BoardSolver.s_path;
 		
+		System.out.println("COMPLETE PATHS: "+paths.size()+" - min:"+BoardSolver.s_minMoves);
+		for(StringBuilder path : paths){
+			System.out.println(path);
+		}
 	}
 }

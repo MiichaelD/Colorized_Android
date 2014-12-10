@@ -35,7 +35,7 @@ public class Const {
 	public final static int SMALL = 0, MEDIUM =1, LARGE = 2, TOTAL_SIZES = 3;
 	
 	/** Board constants*/
-	public final static int MOV_LIMS[]={21,34,44}, BOARD_SIZES[]={3,6,9};//BOARD_SIZES[]={12,18,24};
+	public final static int MOV_LIMS[]={21,34,44},BOARD_SIZES[]={4, 6, 8};// BOARD_SIZES[]={12,18,24};
 	
 	public final static int BOARD_NAMES_IDS[]={R.string.options_easy, R.string.options_med, R.string.options_hard};
 	

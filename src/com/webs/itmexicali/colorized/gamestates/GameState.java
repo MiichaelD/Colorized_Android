@@ -5,11 +5,12 @@ import java.util.Scanner;
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
 import com.webs.itmexicali.colorized.R;
+import com.webs.itmexicali.colorized.board.BoardSolver;
 import com.webs.itmexicali.colorized.board.ColorBoard;
+import com.webs.itmexicali.colorized.board.GameBoardListener;
 import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
-import com.webs.itmexicali.colorized.util.BoardSolver;
 import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
@@ -175,7 +176,7 @@ public class GameState extends BaseState implements GameBoardListener{
 		/* BUG FIX: this used to be in onPush() but in some devices (SCH-I535 - Android 4.3)
 		 * it took several seconds (about 10s) just painting background, because the resize(f,f)
 		 * method was not being called, sometimes causing the user to press back and cause a
-		 * null pointer exception due to no instance of mColorBoard to get the moves count*/
+		 * null pointer exception due there is no instance of mColorBoard yet to get the moves count*/
 		checkTutoAndSavedGame();
 	}
 	
@@ -365,7 +366,7 @@ public class GameState extends BaseState implements GameBoardListener{
 				}
 				new Thread(new Runnable(){
 					public void run(){
-					System.out.println(BoardSolver.getOptimalPath(mColorBoard));
+						mov_lim = BoardSolver.getOptimalPath(mColorBoard);
 				}}).start();
 				
 			}
@@ -548,6 +549,7 @@ public class GameState extends BaseState implements GameBoardListener{
 			mColorBoard.startRandomColorBoard();
 		else
 			mColorBoard = new ColorBoard(blocks);
+		mColorBoard.setGameBoardListener(this);
 		setMoveLimit();
 		//refreshUI();
 	}
@@ -569,6 +571,7 @@ public class GameState extends BaseState implements GameBoardListener{
 				for(int j=0;j<bps;j++)
 					board[i][j] = scanner.nextInt();
 			mColorBoard = new ColorBoard(bps, moves, board);
+			mColorBoard.setGameBoardListener(this);
 		}catch(Exception e){
 			if(scanner != null)
 				scanner.close();
@@ -615,18 +618,5 @@ public class GameState extends BaseState implements GameBoardListener{
 	public boolean isGameOver(){
 		return mColorBoard.allColorsFinished();
 	}
-	
-	
+		
 }
-	/** Interface to request for a change in the GameBoard*/
-	interface GameBoardListener{
-		/** Ask for a new board
-		 * @param forced if true, it will not matter if the player has a current game state
-		 * if false, it will ask if want to restart*/
-		public void restartBoard(boolean forced);
-		
-		
-		/** Let the listener know that the operation on the board has been procesed 
-		 * and if the board is completed	 */
-		public void onBoardFloodingFinished(boolean won);
-	}

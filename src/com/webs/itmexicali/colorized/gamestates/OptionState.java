@@ -3,6 +3,7 @@ package com.webs.itmexicali.colorized.gamestates;
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
 import com.webs.itmexicali.colorized.R;
+import com.webs.itmexicali.colorized.board.GameBoardListener;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.util.Const;
@@ -91,7 +92,7 @@ public class OptionState extends BaseState {
 	 * @param force if true it will not care if player is currently on a started board,
 	 * if it is false, it will ask for user confirmation. */
 	private void tryUpdateChangesNow(boolean force){
-		if(pPrevState instanceof GameState){
+		if(pPrevState instanceof GameBoardListener){
 			((GameBoardListener)pPrevState).restartBoard(force);
 			StateMachine.getIns().popState();
 		}
