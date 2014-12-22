@@ -454,7 +454,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	          .getIntent();
 
 		   //with this flag, we ensure that when we open again our app, it doesn't show the sharing intent screen
-		   shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+		   shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
 	      startActivityForResult(shareIntent, Const.RC_SHARE);
            return true;
        } else {
