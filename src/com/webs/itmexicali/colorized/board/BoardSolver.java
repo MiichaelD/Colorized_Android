@@ -12,6 +12,7 @@ public class BoardSolver {
 		s_minMoves = Integer.MAX_VALUE;
 		s_path = new LinkedList<StringBuilder>();
 		SolvingTree solver = new SolvingTree(board);
+		solver.solveRecursively();
 		solver.printTree();
 		return s_minMoves;
 	}
@@ -26,16 +27,29 @@ class SolvingTree{
 	SolvingTree(ColorBoard board){
 		m_board = board.clone();
 		m_children = new LinkedList<SolvingTree>();
-
+	}
+	
+	void solveRecursively(){
 		int currentColor = m_board.getCurrentColor();
+		SolvingTree aux;
 		for(int i = 0 ;i < ColorBoard.NUMBER_OF_COLORS ; i++){
 			if(m_board.isColorFinished(i) || i == currentColor)
 				continue;
-			m_children.add(new SolvingTree(this, m_board,i));
+			aux = new SolvingTree(m_board.clone());
+//			m_children.add(new SolvingTree(this, m_board,i));
+			m_children.add(aux);
 		}
 	}
 	
+	void solveIteratively(){
+		
+	}
+	
 	SolvingTree(SolvingTree parent, ColorBoard board, int newColor){
+		solveBoard(parent, board, newColor);
+	}
+	
+	void solveBoard(SolvingTree parent, ColorBoard board, int newColor){
 		m_board = board.clone();
 		m_board.colorize(newColor);
 		if(!wasProductiveChange(m_board,board) || m_board.getMoves() >= BoardSolver.s_minMoves){
@@ -79,7 +93,6 @@ class SolvingTree{
 		}
 		parent.m_children.remove(this);
 	}
-	
 	
 	boolean wasProductiveChange(ColorBoard newBoard, ColorBoard prevBoard){
 		int prevColor = prevBoard.getCurrentColor();
