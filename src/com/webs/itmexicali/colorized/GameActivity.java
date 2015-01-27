@@ -444,7 +444,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	}
 	
 	/** Try to launch the Google+ share dialog*/
-   public boolean onGoogleShareRequested(String text){
+   @SuppressLint("InlinedApi")
+public boolean onGoogleShareRequested(String text){
 	   Const.d(GameActivity.class.getSimpleName(),"Launch the Google+ share.");
 	   if (isSignedIn()) {        	
 		   Intent shareIntent = new com.google.android.gms.plus.PlusShare.Builder(this)

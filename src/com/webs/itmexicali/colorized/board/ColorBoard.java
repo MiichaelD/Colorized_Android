@@ -158,9 +158,9 @@ public class ColorBoard{
 		m_isColorizing = false;		
 	}
 	
-	/** check if the board is filled by 1 color
-	 * @return true if completed, false if not*/
-	public void checkBoardStatus(){
+	/** Update board status.
+	 * @return true if the board is filled with 1 color*/
+	public boolean checkBoardStatus(){
 		int i,j;
 		m_colorCounter = new int[NUMBER_OF_COLORS];
 		for(i=0;i<m_blocksPerSide;i++)
@@ -175,7 +175,7 @@ public class ColorBoard{
 				removeFinishedColor(i);
 		}
 		addFinishedColor(m_colorMatrix[0][0]);
-		
+		return allColorsFinished();
 	} 
 	
 	/** compare neighbors colors with main block's color to update

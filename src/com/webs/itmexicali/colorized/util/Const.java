@@ -39,7 +39,7 @@ public class Const {
 	
 	public final static int BOARD_NAMES_IDS[]={R.string.options_easy, R.string.options_med, R.string.options_hard};
 	
-	
+	public final static String COLOR_NAMES[] = {"RED", "BLUE", "YELLOW", "PURPLE", "GRAY", "GREEN"};
 	
     /** For HEXStrings <-> ByteArrays conversions*/
     private final static char[] hexChars={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
