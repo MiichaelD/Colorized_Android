@@ -8,9 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-/**
- * Splash Screen to display the LOGO
- */
+/** Splash Screen to display the LOGO */
 public class SplashScreen extends Activity {
 	
 	// Splash screen timer
