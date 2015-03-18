@@ -525,14 +525,18 @@ public boolean onGoogleShareRequested(String text){
 	/** Try to show Achievements activity, if not signed in, show message
 	 * @return true if Achievements were shown*/
 	public boolean onShowAchievementsRequested() {
-		//TODO add a callback to show achievements when reconnect function is done
         if (isSignedIn()) {
-        		try{
+        	startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), Const.RC_UNUSED);
+        	return true;
         } else {
         	if(isGAPPSavailable())
+//                showAlert(getString(R.string.achievements_not_available));
+        		onSignInButtonClicked();
         	else
         		StateMachine.getIns().pushState(BaseState.statesIDs.STATS);
         }
+        //TODO if we sign out from leader/achieve UI we don't get a callback to update our UI
+        updateCurrentState();
         return false;
     }
 
@@ -540,12 +544,17 @@ public boolean onGoogleShareRequested(String text){
 	 * @return true if Leaderboards were shown*/
     public boolean onShowLeaderboardsRequested() {
         if (isSignedIn()) {
+        	startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(getApiClient()), Const.RC_UNUSED);
             return true;
         } else {
         	if(isGAPPSavailable())
+//            	showAlert(getString(R.string.leaderboards_not_available));
+        		onSignInButtonClicked();
         	else
         		StateMachine.getIns().pushState(BaseState.statesIDs.STATS);
         }
+        //TODO if we sign out from leader/achieve UI we don't get a callback to update our UI
+        updateCurrentState();
         return false;
     }
     
