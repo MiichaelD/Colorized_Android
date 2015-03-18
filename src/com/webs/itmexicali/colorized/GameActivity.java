@@ -1,7 +1,6 @@
 package com.webs.itmexicali.colorized;
 
 import ProtectedInt.ProtectedInt;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -186,6 +185,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	public void onResume(){
 		super.onResume();
 		Const.v(GameActivity.class.getSimpleName(),"onResume()");
+		updateCurrentState(); // in case we sign-out from GPS Achievements/Leaderboards UI
 		
 		//keep sticky full immersive screen in case we lost it
 		Const.setFullScreen(this);
@@ -407,6 +407,12 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		GameStatsSync.syncAchievements(getApiClient());
         
 		updateCurrentState();
+		
+		if(mActivityToShow == ACHIEVEMENTS_AFTER_SIGNIN){
+			onShowAchievementsRequested();
+		} else if ( mActivityToShow == LEADERBOARDS_AFTER_SIGNIN){
+			onShowLeaderboardsRequested();
+		}
     }
 
 	/** If signed in, return the player name, else return null*/
@@ -531,12 +537,10 @@ public boolean onGoogleShareRequested(String text){
         } else {
         	if(isGAPPSavailable())
 //                showAlert(getString(R.string.achievements_not_available));
-        		onSignInButtonClicked();
+        		signInAndShow(ACHIEVEMENTS_AFTER_SIGNIN);
         	else
         		StateMachine.getIns().pushState(BaseState.statesIDs.STATS);
         }
-        //TODO if we sign out from leader/achieve UI we don't get a callback to update our UI
-        updateCurrentState();
         return false;
     }
 
@@ -549,12 +553,10 @@ public boolean onGoogleShareRequested(String text){
         } else {
         	if(isGAPPSavailable())
 //            	showAlert(getString(R.string.leaderboards_not_available));
-        		onSignInButtonClicked();
+        		signInAndShow(LEADERBOARDS_AFTER_SIGNIN);
         	else
         		StateMachine.getIns().pushState(BaseState.statesIDs.STATS);
         }
-        //TODO if we sign out from leader/achieve UI we don't get a callback to update our UI
-        updateCurrentState();
         return false;
     }
     
@@ -606,6 +608,4 @@ public boolean onGoogleShareRequested(String text){
 	 if(StateMachine.getIns().getCurrentState() != null)
 		 StateMachine.getIns().getCurrentState().onFocus();
    }
-   
-   
 }
