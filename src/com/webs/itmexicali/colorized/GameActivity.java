@@ -527,22 +527,11 @@ public boolean onGoogleShareRequested(String text){
 	public boolean onShowAchievementsRequested() {
 		//TODO add a callback to show achievements when reconnect function is done
         if (isSignedIn()) {
-        	try{
-            startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), Const.RC_UNUSED);
-        	} catch (Exception e){ // fix for googles sign-out crashing problem.
         		try{
-        			reconnectClient(); // this shows the login flow  but it doesn't connect 
-        		}catch(Exception e1){ }
-        		updateCurrentState();
-    			return false;
-        	}
-            return true;
         } else {
         	if(isGAPPSavailable())
-                showAlert(getString(R.string.achievements_not_available));        		
         	else
         		StateMachine.getIns().pushState(BaseState.statesIDs.STATS);
-        	
         }
         return false;
     }
@@ -551,21 +540,9 @@ public boolean onGoogleShareRequested(String text){
 	 * @return true if Leaderboards were shown*/
     public boolean onShowLeaderboardsRequested() {
         if (isSignedIn()) {
-        	try{
-                startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(getApiClient()), Const.RC_UNUSED);
-            } catch (Exception e){ // fix for googles sign-out crashing problem.
-            	//TODO add a callback to show leaderboards when reconnect function is done
-            	try{
-            		reconnectClient(); // this shows the login flow  but it doesn't connect 
-            	}catch(Exception e1){ }
-            	updateCurrentState();
-        		return false;
-            }
             return true;
         } else {
-            
         	if(isGAPPSavailable())
-            	showAlert(getString(R.string.leaderboards_not_available));        		
         	else
         		StateMachine.getIns().pushState(BaseState.statesIDs.STATS);
         }
