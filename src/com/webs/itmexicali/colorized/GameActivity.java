@@ -391,10 +391,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	@Override
 	public void onSignInFailed() {
 		// Show sign-in button on main menu
-		
-		//UPDATE CURRENT STATE
-		if(StateMachine.getIns().getCurrentState() != null)
-			StateMachine.getIns().getCurrentState().onFocus();
+		updateCurrentState();
 	}
 
 	@Override
@@ -409,10 +406,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		GameStatsSync.syncLeaderboardsScores(getApiClient(), true);
 		GameStatsSync.syncAchievements(getApiClient());
         
-        
-        //UPDATE CURRENT STATE//UPDATE CURRENT STATE
-		if(StateMachine.getIns().getCurrentState() != null)
-			StateMachine.getIns().getCurrentState().onFocus();
+		updateCurrentState();
     }
 
 	/** If signed in, return the player name, else return null*/
@@ -531,9 +525,17 @@ public boolean onGoogleShareRequested(String text){
 	/** Try to show Achievements activity, if not signed in, show message
 	 * @return true if Achievements were shown*/
 	public boolean onShowAchievementsRequested() {
-        if (isSignedIn()) {        	
-            startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()),
-                    Const.RC_UNUSED);
+		//TODO add a callback to show achievements when reconnect function is done
+        if (isSignedIn()) {
+        	try{
+            startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), Const.RC_UNUSED);
+        	} catch (Exception e){ // fix for googles sign-out crashing problem.
+        		try{
+        			reconnectClient(); // this shows the login flow  but it doesn't connect 
+        		}catch(Exception e1){ }
+        		updateCurrentState();
+    			return false;
+        	}
             return true;
         } else {
         	if(isGAPPSavailable())
@@ -548,9 +550,17 @@ public boolean onGoogleShareRequested(String text){
 	/** Try to show Leaderboards activity, if not signed in, show message
 	 * @return true if Leaderboards were shown*/
     public boolean onShowLeaderboardsRequested() {
-        if (isSignedIn()) {        	
-            startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(getApiClient()),
-                    Const.RC_UNUSED);
+        if (isSignedIn()) {
+        	try{
+                startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(getApiClient()), Const.RC_UNUSED);
+            } catch (Exception e){ // fix for googles sign-out crashing problem.
+            	//TODO add a callback to show leaderboards when reconnect function is done
+            	try{
+            		reconnectClient(); // this shows the login flow  but it doesn't connect 
+            	}catch(Exception e1){ }
+            	updateCurrentState();
+        		return false;
+            }
             return true;
         } else {
             
@@ -605,6 +615,11 @@ public boolean onGoogleShareRequested(String text){
        signOut();
    }
 	
+   private void updateCurrentState(){
+	 //UPDATE CURRENT STATE
+	 if(StateMachine.getIns().getCurrentState() != null)
+		 StateMachine.getIns().getCurrentState().onFocus();
+   }
    
    
 }
