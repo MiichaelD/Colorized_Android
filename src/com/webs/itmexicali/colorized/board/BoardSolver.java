@@ -18,13 +18,6 @@ public class BoardSolver {
 		SolvingTree solver = new SolvingTree(board);
 		
 		long startT = System.currentTimeMillis();
-		solver.solveRecursively();
-		Const.v(BoardSolver.class.getSimpleName(),"Recursive time: "+(System.currentTimeMillis()-startT));
-		solver.printTree();
-		
-		s_minMoves = Integer.MAX_VALUE;
-		s_path = new LinkedList<String>();
-		startT = System.currentTimeMillis();
 		solver.solveIterativelyDepthFirst();
 		Const.v(BoardSolver.class.getSimpleName(),"Iterative DepthFirst time: "+(System.currentTimeMillis()-startT));
 		solver.printTree();
@@ -34,6 +27,14 @@ public class BoardSolver {
 		startT = System.currentTimeMillis();
 		solver.solveIterativelyBreadthFirst();
 		Const.v(BoardSolver.class.getSimpleName(),"Iterative BreadthFirst time: "+(System.currentTimeMillis()-startT));
+		solver.printTree();
+		
+
+		s_minMoves = Integer.MAX_VALUE;
+		s_path = new LinkedList<String>();
+		startT = System.currentTimeMillis();
+		solver.solveRecursively();
+		Const.v(BoardSolver.class.getSimpleName(),"Recursive time: "+(System.currentTimeMillis()-startT));
 		solver.printTree();
 		
 		return s_minMoves;
