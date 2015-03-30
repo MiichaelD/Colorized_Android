@@ -2,6 +2,8 @@ package com.webs.itmexicali.colorized.gamestates;
 
 import java.util.Scanner;
 
+import net.opentracker.android.OTLogService;
+
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
 import com.webs.itmexicali.colorized.R;
@@ -192,6 +194,7 @@ public class GameState extends BaseState implements GameBoardListener{
 					if(parseBoardFromString(ProgNPrefs.getIns().getSavedGame())){
 						Const.d("GameState","Finished parsing");
 						showSavedGameDialog();
+						OTLogService.sendEvent("User continue to play saved game in a "+mColorBoard.getBlocksPerSide()+"x"+mColorBoard.getBlocksPerSide()+" board ");
 					}
 				}
 			}
@@ -511,7 +514,8 @@ public class GameState extends BaseState implements GameBoardListener{
 	@Override
 	public void restartBoard(boolean forced) {
 		if(forced){
-			createNewBoard(Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]);
+			int blocksPerSide = Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()];
+			createNewBoard(blocksPerSide);
 			//Restart win streak counter to prevent cheating by restarting game before losing
 			ProgNPrefs.getIns().updateWinStreak(false);
 		}else{
@@ -521,7 +525,6 @@ public class GameState extends BaseState implements GameBoardListener{
 			else
 				restartBoard(true);
 		}
-		
 	}
 	
 	@Override
@@ -552,6 +555,7 @@ public class GameState extends BaseState implements GameBoardListener{
 		mColorBoard.setGameBoardListener(this);
 		setMoveLimit();
 		//refreshUI();
+		OTLogService.sendEvent("User started to play in a "+blocks+"x"+blocks+" board ");
 	}
 	
 	/** Given a string containing a saved ColorBoard state,

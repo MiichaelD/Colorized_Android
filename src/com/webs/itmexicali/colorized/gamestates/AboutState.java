@@ -4,8 +4,6 @@ import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
 import com.webs.itmexicali.colorized.R;
 
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
@@ -59,17 +57,8 @@ public class AboutState extends BaseState {
 		vSounds[4]	= GameActivity.instance.getString(R.string.about_sound_values_5);
 		vSounds[5]	= GameActivity.instance.getString(R.string.about_sound_values_6);
 		
-		PackageInfo pi = null;
-		try{
-			pi =GameActivity.instance.getPackageManager().getPackageInfo(GameActivity.instance.getPackageName(), 0);
-		}catch(NameNotFoundException e){
-			vVersion = "0.0.0";
-		}
-		
-		if(vVersion == null && pi != null){
-			vVersion = pi.versionName;
-		}	
-		
+		vVersion = GameActivity.instance.getVersionName();
+			
 		smallText = new TextPaint();
 		smallText.setColor(Color.WHITE);
 		

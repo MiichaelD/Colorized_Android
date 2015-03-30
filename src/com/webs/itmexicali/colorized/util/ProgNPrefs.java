@@ -1,5 +1,7 @@
 package com.webs.itmexicali.colorized.util;
 
+import net.opentracker.android.OTLogService;
+
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.R;
 import com.webs.itmexicali.colorized.security.MCrypt;
@@ -50,6 +52,8 @@ public class ProgNPrefs {
 		isTuto = 	getBool(R.string.key_tutorial_played, false);
 		playMusic = getBool(R.string.key_music,true);
 		playSFX =	getBool(R.string.key_sfx,true);
+		OTLogService.sendEvent("Playing Background Music: "+playMusic);
+		OTLogService.sendEvent("Playing Sound Effects: "+playSFX);
 		
 		gMode =		getInt(R.string.key_game_mode, Const.STEP);
 		difficulty= getInt(R.string.key_difficulty,0);
@@ -182,6 +186,8 @@ public class ProgNPrefs {
 		spEdit.putBoolean(mContext.getString(R.string.key_music), play);
 		spEdit.commit();
 		GameActivity.instance.playMusic(play);
+		
+		OTLogService.sendEvent("Playing Background Music: "+play);
 	}
 	
 	/** Check if sound effects will be played*/
@@ -202,6 +208,8 @@ public class ProgNPrefs {
 		playSFX = play;
 		spEdit.putBoolean(mContext.getString(R.string.key_sfx), play);
 		spEdit.commit();
+		
+		OTLogService.sendEvent("Playing Sound Effects: "+play);
 	}
 
 	/** Check if there is a game saved*/

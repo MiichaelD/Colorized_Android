@@ -1,5 +1,7 @@
 package com.webs.itmexicali.colorized.gamestates;
 
+import net.opentracker.android.OTLogService;
+
 import com.webs.itmexicali.colorized.gamestates.GameState.GameFinishedListener;
 
 import com.webs.itmexicali.colorized.GameActivity;
@@ -217,6 +219,9 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 		pDescription = pWin? 
 				String.format(StateMachine.mContext.getString(R.string.game_over_win_desc),pMovesCount) :
 				StateMachine.mContext.getString(R.string.game_over_lose_desc);
+				
+
+		OTLogService.sendEvent("User "+(pWin?"WON":"LOST")+" previous game");
 				
 		if(pWin){
 			

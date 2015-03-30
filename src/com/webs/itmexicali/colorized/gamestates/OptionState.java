@@ -1,5 +1,7 @@
 package com.webs.itmexicali.colorized.gamestates;
 
+import net.opentracker.android.OTLogService;
+
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
 import com.webs.itmexicali.colorized.R;
@@ -211,6 +213,9 @@ public class OptionState extends BaseState {
 		t1.setPriority(Thread.MAX_PRIORITY);
 		t1.start();
 		*/
+		
+
+		OTLogService.sendEvent("User entered to Options");
 	}
 
 	@Override

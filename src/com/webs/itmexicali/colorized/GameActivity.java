@@ -1,10 +1,14 @@
 package com.webs.itmexicali.colorized;
 
+import net.opentracker.android.*;
+
 import ProtectedInt.ProtectedInt;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -40,6 +44,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	
 	//facebook sharing helper
 	private UiLifecycleHelper uiHelper;
+	
+	private String pVersionName = null;
     
     // true if the game finished is the first one since the app being launched
     private boolean firstGameFinished = true;    
@@ -60,6 +66,9 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		enableDebugLog(Const.D);
 		instance = this;
 		
+		//get the version name to track it
+		getVersionName();
+		
 		//run on FullScreen with no Action and Navigation Bars
 		Const.setFullScreen(this);
 		
@@ -70,10 +79,19 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		if(!ProtectedInt.isSetup())
 			ProtectedInt.setup();
 		
+		//OpenTracking
+        OTLogService.onCreate(getApplicationContext(), "colorized");
+        // to test things real-time always send data directly to logging service
+        // make sure to comment this out if you are not testing
+        OTLogService.setDirectSend(Const.D);
+
+        // Record an event with the title "onCreate() called", but you can call
+        // it anything you want
+        OTLogService.sendEvent("App version "+pVersionName+" initialized");
+		
 		//Init Preferences once
 		ProgNPrefs.initPreferences(this);
-		
-		
+        
 		// INCREMENT THE APP OPENED COUNTER if onCreate has no savedState ONLY
 		// AFTER FINISHING THE FIRST GAME since app launch
 		if(savedInstanceState == null){
@@ -94,7 +112,6 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		 uiHelper.onCreate(savedInstanceState);
 		
 		initAds();
-		  
 	}
 	
 	public void onSurfaceChanged(float width, float height){
@@ -197,6 +214,9 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		
 		//start Music playing
 		playMusic(true);
+		
+
+        OTLogService.sendEvent("App is in foreground");
 	}
 	
 	
@@ -212,6 +232,12 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		uiHelper.onPause();
 		
 		playMusic(false);		
+		
+		OTLogService.sendEvent("App is in background");
+		// uploads the file containing the logged events. The onPause method is
+        // guaranteed to be called in the life cycle of an Android App, so we
+        // are guaranteed the events log file are uploaded
+        OTLogService.onPause();
 	}
 	
 	@Override
@@ -270,7 +296,22 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		.show();
 	}
 	
-	
+	public String getVersionName(){
+		if(pVersionName != null)
+			return pVersionName;
+		
+		PackageInfo pi = null;
+		try{
+			pi =GameActivity.instance.getPackageManager().getPackageInfo(GameActivity.instance.getPackageName(), 0);
+		}catch(NameNotFoundException e){
+			pVersionName = "0.0.0";
+		}
+		
+		if(pVersionName == null && pi != null){
+			pVersionName = pi.versionName;
+		}	
+		return pVersionName;
+	}
 	
 	@Override
 	public void onBackPressed(){
@@ -427,6 +468,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	        	returnStr = displayName = "Unknown User";
 	        } else {
 	            displayName = p.getDisplayName();
+	            OTLogService.sendEvent("User's name: "+displayName);
 	            returnStr = displayName;
 	            try{
 		            int counter = 0, firstSpace = -1;

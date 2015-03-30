@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.webs.itmexicali.colorized"
-    android:versionCode="25"
-    android:versionName="1.1.6" >
+    android:versionCode="26"
+    android:versionName="1.1.7" >
 
-    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="20" />
+    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="22" />
     <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct"  android:required="false" />
     
     
@@ -12,6 +12,12 @@
     <uses-permission android:name="android.permission.INTERNET"/>
   	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 <!-- AdMob Implementation END -->    
+
+
+<!-- OpenTracking Implementation START -->
+    <!-- uses-permission android:name="android.permission.INTERNET"/-->
+  	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+<!-- OpenTracking Implementation END -->    
 
 
 <!-- AirPush Implementation START -->  

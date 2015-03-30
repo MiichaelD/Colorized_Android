@@ -1,5 +1,7 @@
 package com.webs.itmexicali.colorized.gamestates;
 
+import net.opentracker.android.OTLogService;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.webs.itmexicali.colorized.GameActivity;
@@ -75,6 +77,7 @@ public class MainState extends BaseState {
 		//About	
 		dbc.setOnActionListener(3, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
+				OTLogService.sendEvent("User entered to About");
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
@@ -87,6 +90,7 @@ public class MainState extends BaseState {
 		//LEADERboards
 		dbc.setOnActionListener(4, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
+				OTLogService.sendEvent("User entered to Leaderboards");
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
@@ -96,6 +100,7 @@ public class MainState extends BaseState {
 		//Achievements
 		dbc.setOnActionListener(5, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
+				OTLogService.sendEvent("User entered to Achievements");
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
