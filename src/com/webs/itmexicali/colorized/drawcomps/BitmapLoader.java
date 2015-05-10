@@ -1,7 +1,7 @@
 package com.webs.itmexicali.colorized.drawcomps;
 
 import com.webs.itmexicali.colorized.R;
-import com.webs.itmexicali.colorized.util.ServerConn;
+import com.webs.itmexicali.colorized.util.ServerCom;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -26,7 +26,7 @@ public class BitmapLoader {
 		Bitmap BitmapOrg = null;
 		InputStream is = null;
 		try {
-			is = ServerConn.Connect(-1, URL, null).getInputStream();
+			is = ServerCom.shared().openConnection(ServerCom.Method.GET, URL).getInputStream();
 			BitmapOrg = BitmapFactory.decodeStream(is);
 			bitmaps.put(URL, BitmapOrg);
 		} catch (Exception e) {
