@@ -1,13 +1,10 @@
 package com.webs.itmexicali.colorized.util;
 
-//http://stackoverflow.com/questions/2793150/how-to-use-java-net-urlconnection-to-fire-and-handle-http-requests
+import com.webs.itmexicali.colorized.GameActivity;
 
-import java.util.Scanner;
-import java.net.*;
-import java.io.IOException;
-import java.io.OutputStream;
-
-import android.util.Log;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 public class ServerCom extends server.ServerCom{
 
@@ -26,9 +23,22 @@ public class ServerCom extends server.ServerCom{
 
 
 
-@Override
-public boolean isNetworkAvailable() {
-	// TODO Auto-generated method stub
-	return false;
-}
+	@Override
+	public boolean isNetworkAvailable() {
+		boolean connected = false;
+		ConnectivityManager cm = (ConnectivityManager) GameActivity.instance.getSystemService(Context.CONNECTIVITY_SERVICE);
+		
+		//this method iterates thru all the networks available to check which one is connected
+		NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+		for (NetworkInfo ni : netInfo) 
+			if ( ni.isConnected() /*&& ni.getTypeName().equalsIgnoreCase("WIFI")*/ )
+				connected = true;
+		
+		//this method gets the active network and checks if it is connected
+		NetworkInfo activeNetworkInfo = cm.getActiveNetworkInfo();
+		connected = activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+		
+		
+		return connected;
+	}
 }
