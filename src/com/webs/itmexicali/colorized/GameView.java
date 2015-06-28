@@ -20,7 +20,7 @@ import android.view.SurfaceView;
 @SuppressLint("WrongCall")
 public class GameView extends SurfaceView implements Callback, Runnable{
 	
-	public interface surfaceListener{
+	public interface SurfaceListener{
 		void onSurfaceChanged(float width, float height);
 	}
 	
@@ -46,9 +46,9 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	
 	public static Bitmap mBackgroundBM = null; 
 	
-	private surfaceListener pListener = null;
+	private SurfaceListener pListener = null;
 	
-	public void setSurfaceListener(surfaceListener l){
+	public void setSurfaceListener(SurfaceListener l){
 		pListener = l;
 	}
 	
@@ -95,7 +95,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	}
     
 	@Override
-	public void surfaceChanged(SurfaceHolder holder, int format, int wi,	int he) {
+	public void surfaceChanged(SurfaceHolder holder, int format, int wi, int he) {
 		Const.v(Const.TAG, "SurfaceChanged: "+wi+"x"+he+" Ratio = "+((double) wi) / he);
 		GameView.width = wi; 
 		GameView.height = he;

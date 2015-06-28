@@ -50,6 +50,8 @@ public class GameState extends BaseState implements GameBoardListener{
 	
 	public TextPaint darkBlurPaint, movesTextPaint;
 	
+	private boolean ignoreSavedGame = false, askToPlaySavedGame = true;
+	
 	public float boardWidth, remainHeight, roundness;
 	
 	private String formated_moves_str = null, formated_moves_str_casual = null, moves_txt;
@@ -60,7 +62,6 @@ public class GameState extends BaseState implements GameBoardListener{
 
 	//the matrix of color
 	public ColorBoard mColorBoard = null;
-	
 	
 	GameState(statesIDs id){
 		super(id);
@@ -189,11 +190,12 @@ public class GameState extends BaseState implements GameBoardListener{
 			//check if the tutorial has been completed
 			if(ProgNPrefs.getIns().isTutorialCompleted()){
 				//if there is a gamestate saved, load it again
-				if(ProgNPrefs.getIns().isGameSaved()){
+				if(!ignoreSavedGame && ProgNPrefs.getIns().isGameSaved()){
 					//parse the gamestate
 					if(parseBoardFromString(ProgNPrefs.getIns().getSavedGame())){
 						Const.d("GameState","Finished parsing");
-						showSavedGameDialog();
+						if(askToPlaySavedGame)
+							showSavedGameDialog();
 						OTLogService.sendEvent("User continue to play saved game in a "+mColorBoard.getBlocksPerSide()+"x"+mColorBoard.getBlocksPerSide()+" board ");
 					}
 				}
@@ -393,6 +395,16 @@ public class GameState extends BaseState implements GameBoardListener{
 	@Override
 	public boolean onBackPressed() {
 		return false;
+	}
+	
+	/** Ignore saved game and load normal board */
+	public void setIgnoreSavedGame(boolean ignore){
+		ignoreSavedGame = ignore;
+	}
+	
+	/** ask player if he wishes to play saved game */
+	public void setAskToPlaySavedGame(boolean ask){
+		askToPlaySavedGame = ask;
 	}
 	
 	/** If there is any progress in the game, save it in case the user
