@@ -42,7 +42,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	protected Canvas canvas;
 	
 	//this class instance
-	private static GameView instance = null;
+	public static GameView instance = null;
 	
 	public static Bitmap mBackgroundBM = null; 
 	

@@ -35,6 +35,8 @@ public class SplashScreen extends Activity {
                 Intent i = new Intent(SplashScreen.this, GameActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                if(getIntent().getExtras() != null)
+                	i.putExtras(getIntent().getExtras());
                 startActivity(i);
                 
                 // close this activity

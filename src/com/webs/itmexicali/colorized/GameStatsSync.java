@@ -1,4 +1,4 @@
-package com.webs.itmexicali.colorized.util;
+package com.webs.itmexicali.colorized;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,15 +16,13 @@ import com.google.android.gms.games.leaderboard.LeaderboardScore;
 import com.google.android.gms.games.leaderboard.LeaderboardVariant;
 import com.google.android.gms.games.leaderboard.Leaderboards;
 import com.google.android.gms.games.leaderboard.Leaderboards.LoadPlayerScoreResult;
-import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.R;
+import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
 public class GameStatsSync {
 	
 	static int sChanges = 0;
-	
-	
-
 	
 	/** Update achievements and leaderboard after finishing a game*/
 	public static void updateAchievementsAndLeaderboards(GoogleApiClient gApiClient,

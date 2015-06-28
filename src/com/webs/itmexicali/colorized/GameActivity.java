@@ -35,7 +35,6 @@ import com.webs.itmexicali.colorized.gamestates.BaseState;
 import com.webs.itmexicali.colorized.gamestates.GameState.GameFinishedListener;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
 import com.webs.itmexicali.colorized.util.Const;
-import com.webs.itmexicali.colorized.util.GameStatsSync;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
 public class GameActivity extends BaseGameActivity implements GameFinishedListener, surfaceListener{
@@ -104,6 +103,17 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 
 		//set the game screen
 		setContentView(R.layout.game_screen);
+		if (GameView.instance != null)
+			GameView.instance.setSurfaceListener(new surfaceListener(){
+				@Override
+				public void onSurfaceChanged(float width, float height) {
+					if(getIntent().getExtras() != null && getIntent().getExtras().getBoolean(Notifier.DIRECT_TO_GAME)){
+						Const.i("GameActivity", Notifier.DIRECT_TO_GAME + " from getIntent().getExtras()");
+						StateMachine.getIns().pushState(BaseState.statesIDs.GAME);
+						getIntent().getExtras().remove(Notifier.DIRECT_TO_GAME);
+					}
+				}
+			});
 
 		//set surface listener, to reposition Sign-In Button
 		((GameView)findViewById(R.id.gameView)).setSurfaceListener(this);
@@ -112,6 +122,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		 uiHelper.onCreate(savedInstanceState);
 		
 		initAds();
+		
+		Notifier.getInstance(this).clearAll();
 	}
 	
 	public void onSurfaceChanged(float width, float height){
@@ -276,6 +288,11 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		.setMessage(R.string.exit_confirmation)
 		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) { // Exit the game
+        	   if(ProgNPrefs.getIns().isGameSaved()){
+		   		   Notifier notifier = Notifier.getInstance(GameActivity.instance);
+		   		   notifier.clearAll();
+		   		   notifier.schedule("Come back", "A board is waiting to be flooded...", SplashScreen.class, 24, true);
+        	   }
                GameActivity.this.finish();
            }
 		})
@@ -589,7 +606,7 @@ public boolean onGoogleShareRequested(String text){
 	/** Try to show Leaderboards activity, if not signed in, show message
 	 * @return true if Leaderboards were shown*/
     public boolean onShowLeaderboardsRequested() {
-        if (isSignedIn()) {
+    	if (isSignedIn()) {
         	startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(getApiClient()), Const.RC_UNUSED);
             return true;
         } else {
@@ -645,9 +662,10 @@ public boolean onGoogleShareRequested(String text){
        signOut();
    }
 	
+   /** Update currently active state in the statestack*/
    private void updateCurrentState(){
-	 //UPDATE CURRENT STATE
 	 if(StateMachine.getIns().getCurrentState() != null)
 		 StateMachine.getIns().getCurrentState().onFocus();
    }
+   
 }
