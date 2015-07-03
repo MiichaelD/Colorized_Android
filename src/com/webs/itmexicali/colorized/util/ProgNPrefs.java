@@ -32,8 +32,15 @@ public class ProgNPrefs {
 	public static ProgNPrefs getIns(){
 		return instance;
 	}
+		
+	//get preferences singleton
+	public static ProgNPrefs getIns(Context context){
+		if(instance == null)
+			initPreferences(context);
+		return instance;
+	}
 	
-	boolean isTuto, playSFX, playMusic;
+	boolean isTuto, playSFX, playMusic, showNotifs;
 	ProtectedInt difficulty, gMode, gFinished[], gWon[], pOpenedTimes, pCurrentStreak, pBestStreak;
 	
 	/** IDS used for save number of times player finish a game in different board sizes*/
@@ -51,7 +58,9 @@ public class ProgNPrefs {
 		
 		isTuto = 	getBool(R.string.key_tutorial_played, false);
 		playMusic = getBool(R.string.key_music,true);
+		showNotifs =getBool(R.string.key_notifications, true);
 		playSFX =	getBool(R.string.key_sfx,true);
+		OTLogService.sendEvent("Notifications: " + (showNotifs ? "Enabled":"Disabled"));
 		OTLogService.sendEvent("Playing Background Music: "+playMusic);
 		OTLogService.sendEvent("Playing Sound Effects: "+playSFX);
 		
@@ -220,6 +229,28 @@ public class ProgNPrefs {
 		OTLogService.sendEvent("Playing Sound Effects: "+play);
 	}
 
+	/** Check if notifications are enabled*/
+	public boolean showNotifications(){
+		return showNotifs;
+	}
+	
+	/** Change the current value of playSFX to the opposite*/
+	public void toggleNotifications(){
+		setShowNotifications(!showNotifs);
+		GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+	}
+	
+	/** set notifications preference to enable/disable
+	 * @param play whether the music will be played or not*/
+	public void setShowNotifications(boolean show){
+		Const.i(ProgNPrefs.class.getSimpleName(),"Notifications enabled: "+show);
+		showNotifs = show;
+		spEdit.putBoolean(mContext.getString(R.string.key_notifications), showNotifs);
+		spEdit.commit();
+		OTLogService.sendEvent("Notifications enabled: "+show);
+	}
+	
+	
 	/** Check if there is a game saved*/
 	public boolean isGameSaved(){
 		return sp.getBoolean(mContext.getString(R.string.key_is_game_saved), false);

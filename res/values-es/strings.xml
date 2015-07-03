@@ -33,6 +33,7 @@
     <string name="achiev_button">Logros</string>
     <string name="music_button">Música</string>
     <string name="about_button">Información</string>
+    <string name="notifications_button">Notificaciones</string>
     <string name="options_button">Opciones</string>
     <string name="stats_button">Estadísticas</string>
     
@@ -41,9 +42,12 @@
     
     <!-- Option State Texts -->
     <string name="options_difficulty">Tamaño de tablero: </string>
-    <string name="options_easy">Chico (<xliff:g id="easy_size">12x12</xliff:g>)</string>
-    <string name="options_med">Mediano (<xliff:g id="med_size">18x18</xliff:g>)</string>
-    <string name="options_hard">Grande (<xliff:g id="hard_size">24x24</xliff:g>)</string>
+    <string name="options_easy_descriptive">Chico (<xliff:g id="easy_size">12x12</xliff:g>)</string>
+    <string name="options_med_descriptive">Mediano (<xliff:g id="med_size">18x18</xliff:g>)</string>
+    <string name="options_hard_descriptive">Grande (<xliff:g id="hard_size">24x24</xliff:g>)</string>
+    <string name="options_easy">Chico</string>
+    <string name="options_med">Mediano</string>
+    <string name="options_hard">Grande</string>
     <string name="options_size_all">Todos los tamaños</string>
     <string name="options_game_mode">Modo de Juego: </string>
     <string name="options_step_mode">Modo Reto</string>

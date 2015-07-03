@@ -42,6 +42,7 @@
     <string name="achiev_button">Achievements</string>
     <string name="music_button">Music</string>
     <string name="sfx_button" translatable="false">SFX</string>
+    <string name="notifications_button">Notifications</string>
     <string name="about_button">About</string>    
     <string name="options_button">Options</string>
     <string name="stats_button">Statistics</string>
@@ -51,9 +52,12 @@
     
     <!-- Option State Texts -->
     <string name="options_difficulty">Board Size: </string>
-    <string name="options_easy">Small (<xliff:g id="easy_size">12x12</xliff:g>)</string>
-    <string name="options_med">Medium (<xliff:g id="med_size">18x18</xliff:g>)</string>
-    <string name="options_hard">Large (<xliff:g id="hard_size">24x24</xliff:g>)</string>
+    <string name="options_easy_descriptive">Small (<xliff:g id="easy_size">12x12</xliff:g>)</string>
+    <string name="options_med_descriptive">Medium (<xliff:g id="med_size">18x18</xliff:g>)</string>
+    <string name="options_hard_descriptive">Large (<xliff:g id="hard_size">24x24</xliff:g>)</string>
+    <string name="options_easy">Small</string>
+    <string name="options_med">Medium</string>
+    <string name="options_hard">Large</string>
     <string name="options_size_all">All board sizes</string>
     <string name="options_game_mode">Game Mode: </string>
     <string name="options_step_mode">Step Mode</string>
@@ -79,6 +83,7 @@
     <string name="key_is_game_saved" translatable="false">key_is_game_saved</string>
     <string name="key_tutorial_played" translatable="false">key_tutorial_played</string>
     <string name="key_music" translatable="false">key_music</string>
+    <string name="key_notifications" translatable="false">key_notifications</string>
     <string name="key_sfx" translatable="false">key_sfx</string>
     <string name="key_board_size" translatable="false">key_board_size</string>
     <string name="key_difficulty" translatable="false">"key_difficulty"</string>

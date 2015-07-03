@@ -36,7 +36,7 @@ public class OptionState extends BaseState {
 	protected OptionState(statesIDs id){
 		super(id);
 		
-		options = new DrawButtonContainer(7,true);
+		options = new DrawButtonContainer(8,true);
 		
 		for(int i =0;i<3;i++){
 			registerButtons2Dificulties(i);
@@ -69,6 +69,11 @@ public class OptionState extends BaseState {
 		options.setOnActionListener(6, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
 				ProgNPrefs.getIns().toggleSFX();
+		}});
+		
+		options.setOnActionListener(7, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
+			@Override public void onActionPerformed() {
+				ProgNPrefs.getIns().toggleNotifications();
 		}});
 
 		smallText = new TextPaint();
@@ -117,11 +122,11 @@ public class OptionState extends BaseState {
 		
 		// Difficulty subtitle
 		canvas.drawText(GameActivity.instance.getString(R.string.options_difficulty),
-				GameView.width/2, base.top + 1.5f*pMain.mPaints[9].getTextSize(),pMain.mPaints[9]);
+				GameView.width/2, base.top + 1.5f*pMain.mPaints[9].getTextSize(), pMain.mPaints[9]);
 		
 		// Mode subtitle
 		canvas.drawText(GameActivity.instance.getString(R.string.options_game_mode),
-				GameView.width/2, base.centerY() + 1*pMain.mPaints[9].getTextSize(),pMain.mPaints[9]);
+				GameView.width/2, base.centerY() - pMain.mPaints[9].getTextSize(), pMain.mPaints[9]);
 		
 		
 		//Draw Board Size Buttons
@@ -136,14 +141,16 @@ public class OptionState extends BaseState {
 		options.drawButtonAndText(mod+3, canvas, MainState.roundness, pMain.mPaints[1],
 				pMain.mPaints[7], smallText, smallText);
 		
-		
-		
-		if(ProgNPrefs.getIns().playMusic()) //paint music button different when on
+		if(ProgNPrefs.getIns().playMusic()) //paint music button different when enabled
 			options.drawButtonAndText(5, canvas, MainState.roundness, pMain.mPaints[1],
 					pMain.mPaints[7], smallText, smallText);
 
-		if(ProgNPrefs.getIns().playSFX())//paint sounds button different when on
+		if(ProgNPrefs.getIns().playSFX())//paint sounds button different when enabled
 			options.drawButtonAndText(6, canvas, MainState.roundness, pMain.mPaints[1],
+					pMain.mPaints[7], smallText, smallText);
+		
+		if(ProgNPrefs.getIns().showNotifications()) //paint notifications button different when enabled
+			options.drawButtonAndText(7, canvas, MainState.roundness, pMain.mPaints[1],
 					pMain.mPaints[7], smallText, smallText);
 		
 		//canvas.restore(); //ANIMATION
@@ -158,13 +165,16 @@ public class OptionState extends BaseState {
 		base = new RectF(width/16,height/8,15*width/16,7*height/8);
 		
 		dy = height/48;
-		options.repositionDButton(0, width/4, 11.0f*height/48,3*width/4, 14.0f*height/48); // play
-		options.repositionDButton(1, width/4, 15.0f*height/48,3*width/4, 18.0f*height/48);// tuto
-		options.repositionDButton(2, width/4, 19.0f*height/48,3*width/4, 22.0f*height/48); // leaderboard
+		options.repositionDButton(0, 3f*width/16,    11.0f*height/48,   7.5f*width/16, 14.0f*height/48); // small
+		options.repositionDButton(1, 8.5f*width/16,  11.0f*height/48,    13f*width/16, 14.0f*height/48);// medium
+		options.repositionDButton(2, 5.75f*width/16, 15.0f*height/48, 10.25f*width/16, 18.0f*height/48); // large
 		
-		options.repositionDButton(3, width/4, 27.5f*height/48,3*width/4, 30.5f*height/48);// Step mode
-		options.repositionDButton(4, width/4, 31.5f*height/48,3*width/4, 34.5f*height/48); //Casual mode
+
+		options.repositionDButton(3, 3f*width/16,   23.5f*height/48, 7.5f*width/16, 26.5f*height/48); //  Step mode
+		options.repositionDButton(4, 8.5f*width/16, 23.5f*height/48,  13f*width/16, 26.5f*height/48);// Casual mode
 		
+
+		options.repositionDButton(7, 5.75f*width/16, base.bottom-5*dy - height/12, 10.25f*width/16, base.bottom-2*dy - height/12); //notifications
 		options.repositionDButton(5, 3*width/16, base.bottom-5*dy,7.5f*width/16, base.bottom-2*dy); // music
 		options.repositionDButton(6, 8.5f*width/16, base.bottom-5*dy,13*width/16, base.bottom-2*dy); //sounds
 		
@@ -192,6 +202,7 @@ public class OptionState extends BaseState {
 		
 		options.setText(5, GameActivity.instance.getString(R.string.music_button));
 		options.setText(6, GameActivity.instance.getString(R.string.sfx_button));
+		options.setText(7, GameActivity.instance.getString(R.string.notifications_button));
 		
 		/* //ANIMATION
 		animY = -GameView.height;

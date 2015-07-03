@@ -16,6 +16,7 @@ import android.support.v4.app.NotificationCompat;
 import com.webs.itmexicali.colorized.R;
 import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
 import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
 public class Notifier {
 	
@@ -91,6 +92,13 @@ public class Notifier {
 	}
 	
 	public void notify(Bundle bundle){
+		
+		if (ProgNPrefs.getIns() == null){
+			ProgNPrefs.initPreferences(mContext);
+		}
+		if (!ProgNPrefs.getIns().showNotifications())
+			return;
+		
 		//get variables from bundle
 		int smallIcon = bundle.getInt(SMALL_ICON, android.R.drawable.ic_menu_agenda);
 		int bigIcon = bundle.getInt(BIG_ICON, R.drawable.app_icon);
