@@ -4,12 +4,12 @@ import java.util.Calendar;
 
 import android.app.Activity;
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.RingtoneManager;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
@@ -25,9 +25,9 @@ public class Notifier {
 	
 	NotificationManager mNotifMan = null;
 	
-	private static String ACTIVITY = "activity", TITLE = "title", TICKER = "ticker";
-	private static String MESSAGE = "message", NOTIF_KEY = "last_notif_id";
-	private static String SMALL_ICON = "small", BIG_ICON = "big";
+	public static String ACTIVITY = "activity", TITLE = "title", TICKER = "ticker", WHEN = "when";
+	public static String MESSAGE = "message", CONTENT_INFO = "content_info", NOTIF_KEY = "last_notif_id";
+	public static String SMALL_ICON = "small", BIG_ICON = "big", VIBRATE = "vibrate", SOUND = "sound";
 	public static String DIRECT_TO_GAME = "go_to_gamestate";
 	
 	public Notifier(Context ctx){
@@ -92,33 +92,50 @@ public class Notifier {
 	
 	public void notify(Bundle bundle){
 		//get variables from bundle
+		int smallIcon = bundle.getInt(SMALL_ICON, android.R.drawable.ic_menu_agenda);
+		int bigIcon = bundle.getInt(BIG_ICON, R.drawable.app_icon);
+		int notifId = bundle.getInt(NOTIF_KEY, ++NOTIFICATION_ID);
 		String targetActivity = bundle.getString(ACTIVITY);
 		String title = bundle.getString(TITLE);
 		String message = bundle.getString(MESSAGE);
 		String ticker = bundle.getString(TICKER);
+		String contentInfo = bundle.getString(CONTENT_INFO);
+		String when = bundle.getString(WHEN);
+		boolean vibrate = bundle.getBoolean(VIBRATE);
+		boolean sound = bundle.getBoolean(SOUND);
 	    Class<? extends Activity> activityClass = null;
 		try {
 			if (targetActivity != null)
 				activityClass = Class.forName(targetActivity).asSubclass(Activity.class);
 		} catch (ClassNotFoundException e) { }
 		
-		int smallIcon = bundle.getInt(SMALL_ICON, android.R.drawable.ic_menu_agenda);
-		int bigIcon = bundle.getInt(BIG_ICON, R.drawable.app_icon);
-		int notifId = bundle.getInt(NOTIF_KEY, ++NOTIFICATION_ID);
 		Const.v("Notifier", "Starting notification: "+notifId);
 		long t0 = System.currentTimeMillis();
 		
+		int notifFlags = NotificationCompat.DEFAULT_LIGHTS |  NotificationCompat.FLAG_AUTO_CANCEL | NotificationCompat.FLAG_ONLY_ALERT_ONCE;
+		if(vibrate)
+			notifFlags |= NotificationCompat.DEFAULT_VIBRATE;
+		if(sound)
+			notifFlags |= NotificationCompat.DEFAULT_SOUND;
 	    //creating notification
 		NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext)
+		.setAutoCancel(true)
 		.setSmallIcon(smallIcon)
 		.setLargeIcon(BitmapLoader.getImage(mContext, bigIcon, true))
 		.setContentTitle(title)
 		.setContentText(message)
 		.setTicker(ticker == null? title : ticker)
-		.setWhen(System.currentTimeMillis())
-		.setContentInfo(Integer.toString(notifId))
-		.setAutoCancel(true)
-		.setDefaults(Notification.DEFAULT_LIGHTS | Notification.FLAG_AUTO_CANCEL);// | Notification.DEFAULT_SOUND);
+		.setWhen(when == null ? System.currentTimeMillis() : Long.parseLong(when)*1000)
+		.setContentInfo(contentInfo == null || contentInfo.isEmpty() ?  Integer.toString(notifId) : contentInfo)
+		.setDefaults(notifFlags)
+		.setStyle(new NotificationCompat.BigTextStyle() // text to be displayed when expanded
+			.setBigContentTitle(title)
+			.bigText(message));
+		
+		if(vibrate)
+			builder.setVibrate(new long[] { 1000, 1000});
+		if(sound)
+			builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
 		
 		//adding an action to the notification
 		if (activityClass != null){
@@ -126,12 +143,13 @@ public class Notifier {
 			notIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 			if(bundle.getBoolean(DIRECT_TO_GAME))
 				notIntent.putExtra(DIRECT_TO_GAME, true);
-			PendingIntent contIntent = PendingIntent.getActivity(mContext, 0, notIntent, 0);
+			PendingIntent contIntent = PendingIntent.getActivity(mContext, NOTIFICATION_ID, notIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 			builder.setContentIntent(contIntent);
 		}
 	   
 		//send the notification
 		mNotifMan.notify(notifId, builder.build());
+		saveNotifId();
 		Const.v(this.getClass().getSimpleName(), "finihed in: "+(System.currentTimeMillis()-t0));
 	}
 	
@@ -173,5 +191,15 @@ public class Notifier {
     	schedule("testNotifs","cann you see this?", GameActivity.class, 45, false);
     	schedule("testNotifs","you shouldn't see this!", GameActivity.class, 60, false);
     	schedule("testNotifs","neither this notif", GameActivity.class, 70, false);
+	}
+	
+	public void saveNotifId(){
+		SharedPreferences sp = mContext.getSharedPreferences(Const.TAG, 0);
+		int stored = sp.getInt(NOTIF_KEY, NO_NOTIF);
+		if ( stored < NOTIFICATION_ID){
+			SharedPreferences.Editor spe = sp.edit();
+			spe.putInt(NOTIF_KEY, NOTIFICATION_ID);
+			spe.commit();
+		}
 	}
 }

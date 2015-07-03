@@ -7,8 +7,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -44,19 +42,25 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	
 	//facebook sharing helper
 	private UiLifecycleHelper uiHelper;
-	
-	private String pVersionName = null;
     
     // true if the game finished is the first one since the app being launched
     private boolean firstGameFinished = true;    
 	
 	/** This activity instance, to access its members from other classes*/
-    public static GameActivity instance;
+    public static GameActivity instance; //TODO: make it private and refactor everywhere using direct access to it
+    
+    public static GameActivity getActivity(){
+    	return instance;
+    }
     
     /**Media player to play sounds of user interactions & background music.*/
     private MediaPlayer soundPlayer = null, musicPlayer = null;
     //private SoundType previousSound = SoundType.NONE;
     public static enum SoundType{ NONE, TOUCH, WIN, LOSE};
+    
+    
+    private boolean p_suscribeForPush = false;
+
     
 	@SuppressLint({ "InlinedApi", "NewApi" })
 	@Override
@@ -65,9 +69,6 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		Const.v(GameActivity.class.getSimpleName(),"onCreate()");
 		enableDebugLog(Const.D);
 		instance = this;
-		
-		//get the version name to track it
-		getVersionName();
 		
 		//run on FullScreen with no Action and Navigation Bars
 		Const.setFullScreen(this);
@@ -87,7 +88,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 
         // Record an event with the title "onCreate() called", but you can call
         // it anything you want
-        OTLogService.sendEvent("App version "+pVersionName+" initialized");
+        OTLogService.sendEvent("App version "+Const.getVersionName()+" initialized");
 		
 		//Init Preferences once
 		ProgNPrefs.initPreferences(this);
@@ -288,7 +289,10 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
         	   if(ProgNPrefs.getIns().isGameSaved()){
 		   		   Notifier notifier = Notifier.getInstance(GameActivity.instance);
 		   		   notifier.clearAll();
-		   		   notifier.schedule("Come back", "A board is waiting to be flooded...", SplashScreen.class, (60 * 24 - 15), true);
+		   		   String title = getResources().getString(R.string.notif_title_need_you);
+		   		   String msg = getResources().getString(R.string.notif_msg_need_you);
+		   		   int oneDayInMinutes = (60 * 24 - 15);
+		   		   notifier.schedule(title, msg, SplashScreen.class, oneDayInMinutes, true);
         	   }
                GameActivity.this.finish();
            }
@@ -308,23 +312,6 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		})
 		.create()
 		.show();
-	}
-	
-	public String getVersionName(){
-		if(pVersionName != null)
-			return pVersionName;
-		
-		PackageInfo pi = null;
-		try{
-			pi =GameActivity.instance.getPackageManager().getPackageInfo(GameActivity.instance.getPackageName(), 0);
-		}catch(NameNotFoundException e){
-			pVersionName = "0.0.0";
-		}
-		
-		if(pVersionName == null && pi != null){
-			pVersionName = pi.versionName;
-		}	
-		return pVersionName;
 	}
 	
 	@Override
@@ -463,6 +450,15 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
         
 		updateCurrentState();
 		
+		if (p_suscribeForPush == false){
+			PushNotificationHelper push = new PushNotificationHelper();
+			Player p = Games.Players.getCurrentPlayer(getApiClient());
+			if (p!=null){
+				push.subscribeToPush(p.getPlayerId());
+				p_suscribeForPush= true;
+			}
+		}
+		
 		if(mActivityToShow == ACHIEVEMENTS_AFTER_SIGNIN){
 			onShowAchievementsRequested();
 		} else if ( mActivityToShow == LEADERBOARDS_AFTER_SIGNIN){
@@ -477,10 +473,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		String returnStr = null;
 		if(isSignedIn()){		
 			Player p = Games.Players.getCurrentPlayer(getApiClient());
-	        
-	        if (p == null) {
-	        	returnStr = displayName = "Unknown User";
-	        } else {
+	        if (p != null) {
 	            displayName = p.getDisplayName();
 	            OTLogService.sendEvent("User's name: "+displayName);
 	            returnStr = displayName;
@@ -664,5 +657,4 @@ public boolean onGoogleShareRequested(String text){
 	 if(StateMachine.getIns().getCurrentState() != null)
 		 StateMachine.getIns().getCurrentState().onFocus();
    }
-   
 }

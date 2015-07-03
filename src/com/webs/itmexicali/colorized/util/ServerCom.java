@@ -10,9 +10,8 @@ public class ServerCom extends server.ServerCom{
 
 	private static ServerCom instance;
 	
-	private ServerCom(){
-		
-	}
+	//let the user have many instances so each one has different headers/properties
+	public ServerCom(){	}
 	
 	public static ServerCom shared(){
 		if(instance == null){

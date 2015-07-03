@@ -3,6 +3,7 @@ package com.webs.itmexicali.colorized.gamestates;
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
 import com.webs.itmexicali.colorized.R;
+import com.webs.itmexicali.colorized.util.Const;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -57,7 +58,7 @@ public class AboutState extends BaseState {
 		vSounds[4]	= GameActivity.instance.getString(R.string.about_sound_values_5);
 		vSounds[5]	= GameActivity.instance.getString(R.string.about_sound_values_6);
 		
-		vVersion = GameActivity.instance.getVersionName();
+		vVersion = Const.getVersionName();
 			
 		smallText = new TextPaint();
 		smallText.setColor(Color.WHITE);

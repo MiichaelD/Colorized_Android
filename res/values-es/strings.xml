@@ -79,5 +79,7 @@
     <string name="about_sound_values_5">Más detalles en</string>
     <string name="about_sound_values_6">"www.itmexicali.webs.com/colorized"</string>
     
-    
+    <!-- Local notifications Texts !-->
+    <string name="notif_title_need_you">Algo requiere de tu ayuda</string>
+    <string name="notif_msg_need_you">Hay un tablero esperando que termines de invadirlo completamente</string>
 </resources>

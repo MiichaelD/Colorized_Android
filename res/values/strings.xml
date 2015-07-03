@@ -121,6 +121,11 @@
     <string name="about_sound_values_4">"'cheer 4.wav' by-nc timtube."</string>
     <string name="about_sound_values_5">More details in</string>
     <string name="about_sound_values_6">"www.itmexicali.webs.com/colorized"</string>
+    
+    
+	<!-- Local notifications Texts !-->
+    <string name="notif_title_need_you">Something needs your help</string>
+    <string name="notif_msg_need_you">There\'s a board waiting for you to flood it completely</string>
      
     
 

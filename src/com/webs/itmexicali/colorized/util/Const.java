@@ -5,11 +5,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.R;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +29,9 @@ public class Const {
 	//Tag for debugging
 	public final static String TAG = "Colorized";
 	
+	// version name and code
+	private static String pVersionName = null;
+	private static int pVersionCode = 0;
 	
 	// Game board constants
 	/** Game modes*/
@@ -46,7 +52,6 @@ public class Const {
     
     /** Request codes we use when invoking an external activity*/
     public static final int RC_RESOLVE = 5000, RC_UNUSED = 5001, RC_SHARE=7427;
-    
     
     //Log\.([a-z]) -> Const.$1
     /** Android logging, only prints out if debug variable is set to true*/
@@ -196,4 +201,31 @@ public class Const {
 			return 0;
     	}
     }
+    
+    private static void updateVersionInfo(){
+		PackageInfo pi = null;
+		try{
+			pi =GameActivity.instance.getPackageManager().getPackageInfo(GameActivity.instance.getPackageName(), 0);
+		}catch(NameNotFoundException e){
+			pVersionName = "0.0.0";
+			pVersionCode = 0;
+		}
+		
+		if(pVersionName == null && pi != null){
+			pVersionName = pi.versionName;
+			pVersionCode = pi.versionCode;
+		}	
+	}
+	
+	public static String getVersionName(){
+		if(pVersionName == null)
+			updateVersionInfo();
+		return pVersionName;
+	}
+	
+	public static int getVersionCode(){
+		if (pVersionCode == 0)
+			updateVersionInfo();
+		return pVersionCode;
+	}
 }

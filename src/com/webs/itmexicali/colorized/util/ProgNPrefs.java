@@ -99,6 +99,14 @@ public class ProgNPrefs {
 		deleteUnnecessaryData();
 	}
 	
+	public SharedPreferences getSharedPrefs(){
+		return sp;
+	}
+	
+	public SharedPreferences.Editor getSharedPrefsEditor(){
+		return spEdit;
+	}
+	
 	/** called once every game launch to delete unnecessary data*/
 	private void deleteUnnecessaryData(){
 	    spEdit.remove("key_board_saved");
