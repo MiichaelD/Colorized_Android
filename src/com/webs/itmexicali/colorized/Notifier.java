@@ -70,7 +70,7 @@ public class Notifier {
 		Calendar cal = Calendar.getInstance();
 	    cal.add(Calendar.MINUTE, mins);
 
-	    Intent intent = new Intent(mContext, NotificationReceiver.class);
+	    Intent intent = new Intent(mContext, AlarmReceiver.class);
 	    intent.putExtra(MESSAGE, message);
 	    intent.putExtra(TITLE, title);
 	    intent.putExtra(NOTIF_KEY, ++NOTIFICATION_ID);
@@ -167,7 +167,7 @@ public class Notifier {
 		if (NOTIFICATION_ID == NO_NOTIF)
 			return;
 		  
-	    Intent intent = new Intent(mContext, NotificationReceiver.class);
+	    Intent intent = new Intent(mContext, AlarmReceiver.class);
 	    AlarmManager am = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
 
 	    //clear scheduled notifications 

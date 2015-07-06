@@ -2,7 +2,6 @@ package com.webs.itmexicali.colorized;
 
 import net.opentracker.android.*;
 
-import ProtectedInt.ProtectedInt;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -76,15 +75,6 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		//Keep screen on
 	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
-		//Setup ProtectedInt once
-		if(!ProtectedInt.isSetup())
-			ProtectedInt.setup();
-		
-		//OpenTracking
-        OTLogService.onCreate(getApplicationContext(), "colorized");
-        // to test things real-time always send data directly to logging service
-        // make sure to comment this out if you are not testing
-        OTLogService.setDirectSend(Const.D);
 
         // Record an event with the title "onCreate() called", but you can call
         // it anything you want
