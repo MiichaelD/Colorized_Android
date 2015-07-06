@@ -34,7 +34,7 @@ public class Notifier {
 	public Notifier(Context ctx){
 		mContext = ctx;
 		mNotifMan = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-		SharedPreferences sp = mContext.getSharedPreferences(Const.TAG, 0);
+		SharedPreferences sp = ProgNPrefs.getIns().getSharedPrefs();
 		NOTIFICATION_ID = sp.getInt(NOTIF_KEY, NO_NOTIF);
 	}
 	
@@ -85,17 +85,13 @@ public class Notifier {
 	    AlarmManager am = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
 	    am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), sender);
 
-		SharedPreferences.Editor spe = mContext.getSharedPreferences(Const.TAG, 0).edit();
+		SharedPreferences.Editor spe = ProgNPrefs.getIns().getSharedPrefsEditor();
 		Const.v("Notifier", "We just Scheduled notif: "+NOTIFICATION_ID);
 		spe.putInt(NOTIF_KEY, NOTIFICATION_ID);
 		spe.commit();
 	}
 	
 	public void notify(Bundle bundle){
-		
-		if (ProgNPrefs.getIns() == null){
-			ProgNPrefs.initPreferences(mContext);
-		}
 		if (!ProgNPrefs.getIns().showNotifications())
 			return;
 		
@@ -185,7 +181,8 @@ public class Notifier {
 
 		Const.v("Notifier", "Clearing notifs already in the drawer and resetting counter to 0");
 		NOTIFICATION_ID = NO_NOTIF;
-		SharedPreferences.Editor spe = mContext.getSharedPreferences(Const.TAG, 0).edit();
+		
+		SharedPreferences.Editor spe = ProgNPrefs.getIns().getSharedPrefsEditor();
 		spe.putInt(NOTIF_KEY, NO_NOTIF);
 		spe.commit();
 	}
@@ -202,7 +199,7 @@ public class Notifier {
 	}
 	
 	public void saveNotifId(){
-		SharedPreferences sp = mContext.getSharedPreferences(Const.TAG, 0);
+		SharedPreferences sp = ProgNPrefs.getIns().getSharedPrefs();
 		int stored = sp.getInt(NOTIF_KEY, NO_NOTIF);
 		if ( stored < NOTIFICATION_ID){
 			SharedPreferences.Editor spe = sp.edit();

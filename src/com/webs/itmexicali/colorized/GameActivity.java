@@ -79,10 +79,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
         // Record an event with the title "onCreate() called", but you can call
         // it anything you want
         OTLogService.sendEvent("App version "+Const.getVersionName()+" initialized");
-		
-		//Init Preferences once
-		ProgNPrefs.initPreferences(this);
-        
+		        
 		// INCREMENT THE APP OPENED COUNTER if onCreate has no savedState ONLY
 		// AFTER FINISHING THE FIRST GAME since app launch
 		if(savedInstanceState == null){
