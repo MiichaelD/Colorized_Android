@@ -266,6 +266,17 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	}
 	
 	
+	private void scheduleReminderNotifForSavedGame(){
+		if(ProgNPrefs.getIns().isGameSaved()){
+	   		   Notifier notifier = Notifier.getInstance(GameActivity.instance);
+	   		   notifier.clearAll();
+	   		   String title = getResources().getString(R.string.notif_title_need_you);
+	   		   String msg = getResources().getString(R.string.notif_msg_need_you);
+	   		   int oneDayInMinutes = (60 * 24 - 15);
+	   		   notifier.schedule(title, msg, SplashScreen.class, oneDayInMinutes, true);
+ 	   }
+	}
+	
 	/** Display an exit confirmation dialog to prevent accidentally quitting the game*/
 	public void showExitDialog(){
 		//Use the Builder class for convenient dialog construction
@@ -273,14 +284,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		.setMessage(R.string.exit_confirmation)
 		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) { // Exit the game
-        	   if(ProgNPrefs.getIns().isGameSaved()){
-		   		   Notifier notifier = Notifier.getInstance(GameActivity.instance);
-		   		   notifier.clearAll();
-		   		   String title = getResources().getString(R.string.notif_title_need_you);
-		   		   String msg = getResources().getString(R.string.notif_msg_need_you);
-		   		   int oneDayInMinutes = (60 * 24 - 15);
-		   		   notifier.schedule(title, msg, SplashScreen.class, oneDayInMinutes, true);
-        	   }
+        	   scheduleReminderNotifForSavedGame();
+        	   GameActivity.instance = null;
                GameActivity.this.finish();
            }
 		})

@@ -25,24 +25,33 @@ public class SplashScreen extends Activity {
 
 		setContentView(R.layout.splash_screen);
 		
+		if(GameActivity.getActivity() != null){
+			startMainActivityAndClose();
+			return;
+		}
 		//set the timer to start the new activity
 		new Handler().postDelayed(new Runnable() {
             @SuppressLint("InlinedApi")
 			@Override
             public void run() {
-                // This method will be executed once the timer is over
-                // Start your app main activity
-                Intent i = new Intent(SplashScreen.this, GameActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                if(getIntent().getExtras() != null)
-                	i.putExtras(getIntent().getExtras());
-                startActivity(i);
-                
-                // close this activity
-                finish();
+                startMainActivityAndClose();
             }
         }, SPLASH_TIME_OUT);
+	}
+	
+	private void startMainActivityAndClose(){
+		// This method will be executed once the timer is over
+        // Start your app main activity
+        Intent i = new Intent(SplashScreen.this, GameActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        if(getIntent().getExtras() != null)
+        	i.putExtras(getIntent().getExtras());
+        startActivity(i);
+        
+        // close this activity
+        finish();
 	}
 	
 	@Override
