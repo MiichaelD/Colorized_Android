@@ -1,4 +1,4 @@
-package com.webs.itmexicali.colorized;
+package com.webs.itmexicali.colorized.util;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -10,9 +10,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.webs.itmexicali.colorized.util.Const;
-import com.webs.itmexicali.colorized.util.ProgNPrefs;
-import com.webs.itmexicali.colorized.util.ServerCom;
+import com.webs.itmexicali.colorized.GameActivity;
 
 public class PushNotificationHelper {
 	/** Google Cloud Messaging Service constants*/
@@ -78,6 +76,8 @@ public class PushNotificationHelper {
 		        return null;
 		    }
 		    
+		    //set the current valid registration id to the tracking lib
+            Tracking.shared().setPushRegistrationId(regId);
 		    return regId;
 		}
 
@@ -148,6 +148,9 @@ public class PushNotificationHelper {
 	               if(registered){
 	            	   setRegistrationId(params[0], regId);
 	               }
+
+	               //set the recently gotten registration id to the tracking lib
+	               Tracking.shared().setPushRegistrationId(regId);
 	           } catch (IOException ex) {
 	        	   Const.v(TAG, "Error registering in GCM:" + ex.getMessage());
 	           }

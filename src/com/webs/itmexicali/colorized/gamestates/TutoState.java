@@ -1,12 +1,11 @@
 package com.webs.itmexicali.colorized.gamestates;
 
-import net.opentracker.android.OTLogService;
-
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
 import com.webs.itmexicali.colorized.R;
 import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
+import com.webs.itmexicali.colorized.util.Tracking;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -63,7 +62,7 @@ public class TutoState extends BaseState{
 		tutoTextPaint.setColor(Color.WHITE);
 		tutoTextPaint.setStyle(Paint.Style.FILL);
 		tutoTextPaint.setAntiAlias(true);
-		OTLogService.sendEvent("User entered to tutorial");
+		Tracking.shared().track("Tutorial", null);
 	}
 	
 	public void resize(float width, float height){

@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="app_name" translatable="false">Color Flooded</string>
+    <string name="company_name" translatable="false">MD Games</string>
+    <string name="app_name">Color Flooded</string>
+    <string name="app_codename_no_space" translatable="false">colorized</string>
     <string name="app_url" translatable="false">"https://play.google.com/store/apps/details?id=com.webs.itmexicali.colorized"</string>
+   
+    <!-- Google project ID - GCM Sender Id -->
+    <string name="gcm_sender_id" translatable="false">920688942654</string>
+    
     <!-- FB APP ID -->
     <string name="fb_app_id" translatable="false">544594058974778</string>
     
+    <!-- MIXPANEL API TOKEN -->
+    <string name="mixpanel_api_token" translatable="false">76281048f6b2eee0d1d7ca25009fe1cb</string>
     
-    <string name="company_name" translatable="false">MD Games</string>
     <string name="greeting_player">Hello, <xliff:g id="name">%1$s</xliff:g></string>
     <string name="ok" translatable="false">OK</string>
     <string name="cancel">Cancel</string>
@@ -110,8 +117,6 @@
     
     <!-- USING KEY INDEX 4 -->
     <string name="key_best_win_streak" translatable="false">"651BF6F9C05C978AF0AC60A159D2864105BC49E02B4499F87F6130EE26B68391"</string>
-    
-    
     
 	<!-- About Texts !-->
     <string name="about_developer">Android Developer.</string>

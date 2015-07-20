@@ -1,7 +1,5 @@
 package com.webs.itmexicali.colorized.gamestates;
 
-import net.opentracker.android.OTLogService;
-
 import com.webs.itmexicali.colorized.gamestates.GameState.GameFinishedListener;
 
 import com.webs.itmexicali.colorized.GameActivity;
@@ -13,6 +11,7 @@ import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.drawcomps.DrawText;
 import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
+import com.webs.itmexicali.colorized.util.Tracking;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -221,7 +220,7 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 				StateMachine.mContext.getString(R.string.game_over_lose_desc);
 				
 
-		OTLogService.sendEvent("User "+(pWin?"WON":"LOST")+" previous game");
+		Tracking.shared().track("User "+(pWin?"WON":"LOST")+" previous game", null);
 				
 		if(pWin){
 			

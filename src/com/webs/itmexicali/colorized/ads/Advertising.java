@@ -23,7 +23,21 @@ public abstract class Advertising {
 	
 	public final static int AD_SERVICE = ADS_AIRPUSH_STANDARD;
 	
-	
+	public final static Advertising instantiate(Activity activity){
+		switch(Advertising.AD_SERVICE){
+		case Advertising.ADS_AIRPUSH_BUNDLE:
+			return new AirPushBundle(activity);
+			
+		case Advertising.ADS_AIRPUSH_STANDARD:
+			return new AirPushStandard(activity);
+			
+		case Advertising.ADS_ADMOB:
+		default:
+			return new AdMob(activity);
+				
+		}
+		
+	}
 	
 	
 	protected Activity pAct = null;

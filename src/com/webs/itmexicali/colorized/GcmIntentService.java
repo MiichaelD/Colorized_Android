@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.Notifier;
 
 public class GcmIntentService extends IntentService{
 	public static String TAG = GcmIntentService.class.getSimpleName();

@@ -2,8 +2,6 @@ package com.webs.itmexicali.colorized.gamestates;
 
 import java.util.Scanner;
 
-import net.opentracker.android.OTLogService;
-
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
 import com.webs.itmexicali.colorized.R;
@@ -15,6 +13,7 @@ import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
+import com.webs.itmexicali.colorized.util.Tracking;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -196,7 +195,7 @@ public class GameState extends BaseState implements GameBoardListener{
 						Const.d("GameState","Finished parsing");
 						if(askToPlaySavedGame)
 							showSavedGameDialog();
-						OTLogService.sendEvent("User continue to play saved game in a "+mColorBoard.getBlocksPerSide()+"x"+mColorBoard.getBlocksPerSide()+" board ");
+						Tracking.shared().track("User continue to play saved game in a "+mColorBoard.getBlocksPerSide()+"x"+mColorBoard.getBlocksPerSide()+" board ",null);
 					}
 				}
 			}
@@ -567,7 +566,7 @@ public class GameState extends BaseState implements GameBoardListener{
 		mColorBoard.setGameBoardListener(this);
 		setMoveLimit();
 		//refreshUI();
-		OTLogService.sendEvent("User started to play in a "+blocks+"x"+blocks+" board ");
+		Tracking.shared().track("User started to play in a "+blocks+"x"+blocks+" board ", null);
 	}
 	
 	/** Given a string containing a saved ColorBoard state,

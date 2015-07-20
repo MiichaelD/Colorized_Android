@@ -1,6 +1,6 @@
 package com.webs.itmexicali.colorized.util;
 
-import net.opentracker.android.OTLogService;
+import java.util.HashMap;
 
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.R;
@@ -23,20 +23,22 @@ public class ProgNPrefs {
 	private static ProgNPrefs instance;
 	
 	// create a new instance of Preferences
-	public static ProgNPrefs initPreferences(Context context){
+	public static ProgNPrefs init(Context context){
 		instance = new ProgNPrefs(context);
 		return instance;
 	}
 	
 	//get preferences singleton
 	public static ProgNPrefs getIns(){
+		if (instance == null)
+			throw new IllegalStateException("You must initialize ProgNPrefs before using it");
 		return instance;
 	}
 		
 	//get preferences singleton
 	public static ProgNPrefs getIns(Context context){
 		if(instance == null)
-			initPreferences(context);
+			init(context);
 		return instance;
 	}
 	
@@ -60,9 +62,11 @@ public class ProgNPrefs {
 		playMusic = getBool(R.string.key_music,true);
 		showNotifs =getBool(R.string.key_notifications, true);
 		playSFX =	getBool(R.string.key_sfx,true);
-		OTLogService.sendEvent("Notifications: " + (showNotifs ? "Enabled":"Disabled"));
-		OTLogService.sendEvent("Playing Background Music: "+playMusic);
-		OTLogService.sendEvent("Playing Sound Effects: "+playSFX);
+		HashMap<String, Object> props = new HashMap<String, Object>();
+		props.put("Notifications", showNotifs);
+		props.put("Music", playMusic);
+		props.put("Sfx", playSFX);
+		Tracking.shared().registerSuperProperties(props);
 		
 		gMode =		getInt(R.string.key_game_mode, Const.STEP);
 		difficulty= getInt(R.string.key_difficulty,0);
@@ -204,7 +208,9 @@ public class ProgNPrefs {
 		spEdit.commit();
 		GameActivity.instance.playMusic(play);
 		
-		OTLogService.sendEvent("Playing Background Music: "+play);
+		HashMap<String, Object> props = new HashMap<String, Object>();
+		props.put("Music", play);
+		Tracking.shared().registerSuperProperties(props);
 	}
 	
 	/** Check if sound effects will be played*/
@@ -226,7 +232,9 @@ public class ProgNPrefs {
 		spEdit.putBoolean(mContext.getString(R.string.key_sfx), play);
 		spEdit.commit();
 		
-		OTLogService.sendEvent("Playing Sound Effects: "+play);
+		HashMap<String, Object> props = new HashMap<String, Object>();
+		props.put("Sfx", play);
+		Tracking.shared().registerSuperProperties(props);
 	}
 
 	/** Check if notifications are enabled*/
@@ -247,7 +255,10 @@ public class ProgNPrefs {
 		showNotifs = show;
 		spEdit.putBoolean(mContext.getString(R.string.key_notifications), showNotifs);
 		spEdit.commit();
-		OTLogService.sendEvent("Notifications enabled: "+show);
+		
+		HashMap<String, Object> props = new HashMap<String, Object>();
+		props.put("Notifications", show);
+		Tracking.shared().registerSuperProperties(props);
 	}
 	
 	

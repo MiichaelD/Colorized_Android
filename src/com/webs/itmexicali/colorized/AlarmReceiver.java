@@ -1,5 +1,7 @@
 package com.webs.itmexicali.colorized;
 
+import com.webs.itmexicali.colorized.util.Notifier;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;

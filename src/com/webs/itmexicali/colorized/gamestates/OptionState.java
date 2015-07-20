@@ -1,7 +1,5 @@
 package com.webs.itmexicali.colorized.gamestates;
 
-import net.opentracker.android.OTLogService;
-
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
 import com.webs.itmexicali.colorized.R;
@@ -10,6 +8,7 @@ import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
+import com.webs.itmexicali.colorized.util.Tracking;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -226,7 +225,7 @@ public class OptionState extends BaseState {
 		*/
 		
 
-		OTLogService.sendEvent("User entered to Options");
+		Tracking.shared().track("Options", null);
 	}
 
 	@Override

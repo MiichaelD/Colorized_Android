@@ -1,4 +1,4 @@
-package com.webs.itmexicali.colorized;
+package com.webs.itmexicali.colorized.util;
 
 import java.util.Calendar;
 
@@ -13,10 +13,10 @@ import android.media.RingtoneManager;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
+import com.webs.itmexicali.colorized.AlarmReceiver;
+import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.R;
 import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
-import com.webs.itmexicali.colorized.util.Const;
-import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
 public class Notifier {
 	
