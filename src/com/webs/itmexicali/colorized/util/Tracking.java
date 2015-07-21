@@ -73,7 +73,7 @@ public class Tracking {
 		m_mixpanel.alias(playerId, null);
 		m_mixpanel.getPeople().identify(playerId);
 		
-		setPlayerProperty("$user_id", playerId);
+		setPlayerProperty("user_id", playerId);
 		incrementPlayerProperty("Signed in", 1);
 		
 		Map<String, Object> props = new HashMap<String, Object>();
@@ -99,8 +99,22 @@ public class Tracking {
 		m_mixpanel.registerSuperPropertiesMap(map);
 	}
 	
+	
+	/** Track an event. Events have a string name, and an optional set of name/value pairs that describe
+	 * the properties of that event.
+     *
+     * @param eventName The name of the event to send
+     * @param properties A Map containing the key value pairs of the properties to include in this event.
+     *                   Pass null if no extra properties exist.*/
 	public void track(String event, Map<String, Object> properties){
 		m_mixpanel.trackMap(event, properties);
+	}
+	
+	/** Begin timing of an event. Calling timeEvent("Thing") will not send an event, but
+     * when you eventually call track("Thing"), your tracked event will be sent with a "$duration"
+     * property, representing the number of seconds between your calls.*/
+	public void time(String event){
+		m_mixpanel.timeEvent(event);
 	}
 	
 	
@@ -112,12 +126,10 @@ public class Tracking {
 		registerSuperProperties(props);
 	}
 	//TODO improve:
-	/*
-	 * GameOverState 223
-	 * GameState 198, 569
-	 * MainState 79, 92, 102
-	 * OptionState 228
-	 * TutoState 65
-	 * ProgNPrefs 66
+	/* GameActivity 	OK
+	 * GameState        OK
+	 * MainState 	 	OK
+	 * OptionState 		OK
+	 * ProgNPrefs 		OK
 	 */
 }

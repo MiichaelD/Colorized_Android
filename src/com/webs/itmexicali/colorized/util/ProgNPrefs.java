@@ -53,6 +53,21 @@ public class ProgNPrefs {
 	private int[] won_ids = {R.string.key_times_won_0,R.string.key_times_won_1,
 			  		 R.string.key_times_won_2, R.string.key_times_won};
 	
+	private void trackCurrentPrefs(){
+		HashMap<String, Object> props = new HashMap<String, Object>();
+		props.put("Notifications", showNotifs);
+		props.put("Music", playMusic);
+		props.put("Sfx", playSFX);
+		props.put("Mode", gMode.get());
+		props.put("ModeStr", Const.GAME_MODES[gMode.get()]);
+		props.put("Dificulty", difficulty.get());
+		props.put("CurrentStreak", pCurrentStreak.get());
+		props.put("BestStreak", pBestStreak.get());
+		props.put("GamesWon", gWon[Const.TOTAL_SIZES].get());
+		props.put("GamesPlayed", gFinished[Const.TOTAL_SIZES].get());
+		Tracking.shared().registerSuperProperties(props);
+	}
+	
 	private ProgNPrefs(Context context){
 		mContext = 	context;
 		sp = 		context.getSharedPreferences(Const.TAG, 0);
@@ -62,20 +77,13 @@ public class ProgNPrefs {
 		playMusic = getBool(R.string.key_music,true);
 		showNotifs =getBool(R.string.key_notifications, true);
 		playSFX =	getBool(R.string.key_sfx,true);
-		HashMap<String, Object> props = new HashMap<String, Object>();
-		props.put("Notifications", showNotifs);
-		props.put("Music", playMusic);
-		props.put("Sfx", playSFX);
-		Tracking.shared().registerSuperProperties(props);
 		
 		gMode =		getInt(R.string.key_game_mode, Const.STEP);
 		difficulty= getInt(R.string.key_difficulty,0);
 		
-		
 		pOpenedTimes	= getEncryptedInt(R.string.key_times_app_opened, -1, 0);
 		pCurrentStreak	= getEncryptedInt(R.string.key_current_win_streak, -1, 0);
 		pBestStreak		= getEncryptedInt(R.string.key_best_win_streak, -1, 0);
-		
 		
 		gFinished = new ProtectedInt[Const.TOTAL_SIZES+1];
 		gWon =		new ProtectedInt[Const.TOTAL_SIZES+1];
@@ -108,7 +116,7 @@ public class ProgNPrefs {
 		if(gWinTotal < temp.get())
 			gWon[Const.TOTAL_SIZES] = temp;
 		
-		
+		trackCurrentPrefs();
 		deleteUnnecessaryData();
 	}
 	
@@ -282,18 +290,18 @@ public class ProgNPrefs {
 			}
 		}catch(NullPointerException npe){
 			gameState = null;
-			saveGame(false,null);
+			saveCurrentGameState(false,null);
 			npe.printStackTrace();
 		}
 		
 		return gameState;
 	}
 	
-	/** Save game progress or delete saved game
+	/** Save current game progress or delete saved game
 	 * @param save true to save the game, false to delete it
 	 * @param gameState the string containing the game state, can be null
 	 * when save is set to false*/
-	public void saveGame(boolean save, String gameState){
+	public void saveCurrentGameState(boolean save, String gameState){
 		if(save){
 			//Encrypt the gameState
 			gameState = Const.byteArrayToHexString(MCrypt.getIns().encrypt(MCrypt.AES_PREF+gameState));
@@ -303,6 +311,44 @@ public class ProgNPrefs {
 		else{
 			spEdit.remove(mContext.getString(R.string.key_is_game_saved));
 		    spEdit.remove(mContext.getString(R.string.key_board_saved));
+		}
+	    spEdit.commit();
+	}
+	
+	/** get the saved game string*/
+	public String getLastBoardStarted(){
+		String lastBoard = sp.getString(mContext.getString(R.string.key_last_new_board), null);
+		
+		//if the gameState contains spaces, it is not encrypted
+		Const.i(this.getClass().getSimpleName(),"last board to check: "+lastBoard);
+		try{
+			lastBoard = new String(MCrypt.getIns().decrypt(Const.HexStringToByte(lastBoard)));
+			Const.i(this.getClass().getSimpleName(),"last board decrypted: "+lastBoard);
+			if(lastBoard.startsWith(MCrypt.AES_PREF)){
+				lastBoard = lastBoard.substring(4);
+				Const.i(this.getClass().getSimpleName(),"gameState: "+lastBoard);
+			}
+		}catch(NullPointerException npe){
+			lastBoard = null;
+			saveNewBoard(false,null);
+			npe.printStackTrace();
+		}
+		
+		return lastBoard;
+	}
+	
+	/** Save newly created board
+	 * @param save true to save the game, false to delete it
+	 * @param gameState the string containing the game state, can be null
+	 * when save is set to false*/
+	public void saveNewBoard(boolean save, String gameState){
+		if(save){
+			//Encrypt the gameState
+			gameState = Const.byteArrayToHexString(MCrypt.getIns().encrypt(MCrypt.AES_PREF+gameState));
+			spEdit.putString(mContext.getString(R.string.key_last_new_board),gameState);
+		}
+		else{
+		    spEdit.remove(mContext.getString(R.string.key_last_new_board));
 		}
 	    spEdit.commit();
 	}

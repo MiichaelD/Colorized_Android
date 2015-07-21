@@ -2,6 +2,8 @@ package com.webs.itmexicali.colorized.board;
 
 import java.util.LinkedList;
 
+import com.webs.itmexicali.colorized.util.Const;
+
 import ProtectedInt.ProtectedInt;
 import android.graphics.Canvas;
 import android.graphics.RectF;
@@ -129,6 +131,12 @@ public class ColorBoard{
 		return m_blocksPerSide;
 	}
 	
+	public int getSize(){
+		//transform it from blocks/side to boardsize constant
+		int boardSize = m_blocksPerSide == Const.BOARD_SIZES[Const.SMALL]? Const.SMALL:
+			m_blocksPerSide == Const.BOARD_SIZES[Const.MEDIUM]? Const.MEDIUM:Const.LARGE;
+		return boardSize;
+	}
 	
 	/** change the color of the blocks neighbor the main block
 	 * which are from the same color (than the main block as well) */

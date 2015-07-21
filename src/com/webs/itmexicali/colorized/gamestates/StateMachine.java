@@ -67,7 +67,7 @@ public class StateMachine {
 	
 	/** Push a new state to start interacting with it*/
 	public void pushState(BaseState.statesIDs id){
-		Const.i(StateMachine.class.getSimpleName(),"pushState by ID");
+		Const.i(StateMachine.class.getSimpleName(),"pushState by ID: "+id);
 		
 		if(checkStateIsInList(id))
 			return;
@@ -89,7 +89,7 @@ public class StateMachine {
 	/** After validating that there is no state with same ID in the list, push it in the list*/
 	private void pushAtEnd(BaseState bs){
 		//let the previous state that it has lost focus
-		if(pStateList.size()>1)
+		if(pStateList.size()>0)
 			pStateList.getLast().onFocusLost();
 		
 		pStateList.addLast(bs);

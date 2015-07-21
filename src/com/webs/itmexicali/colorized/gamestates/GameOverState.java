@@ -11,7 +11,6 @@ import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.drawcomps.DrawText;
 import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
-import com.webs.itmexicali.colorized.util.Tracking;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -43,6 +42,8 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 	private DrawText pShareLabel;
 	
 	private float textScale = 1.0f;
+	
+	private ParticleSystem effect = null;
 	
 	//variables containing previous game results
 	private boolean pWin;
@@ -219,20 +220,17 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 				String.format(StateMachine.mContext.getString(R.string.game_over_win_desc),pMovesCount) :
 				StateMachine.mContext.getString(R.string.game_over_lose_desc);
 				
-
-		Tracking.shared().track("User "+(pWin?"WON":"LOST")+" previous game", null);
-				
 		if(pWin){
 			
-			new ParticleSystem(GameActivity.instance, 20, R.drawable.star, 3000)		
+			effect = new ParticleSystem(GameActivity.instance, 20, R.drawable.star, 3000)		
 			.setSpeedByComponentsRange(-0.25f, 0.25f, -0.7f, -0.2f)
 			.setAcceleration(0.000005f, 90)
 			.setInitialRotationRange(0, 360)
 			.setRotationSpeed(220)
 			.setFadeOut(2000)
-			.addModifier(new ScaleModifier(0f, 1f, 0, 1500))
+			.addModifier(new ScaleModifier(0f, 1f, 0, 1500));
 			//.oneShot(GameView.getIns(), 12);
-			.oneShot(GameActivity.instance.getBannerView(), 20);
+			effect.oneShot(GameActivity.instance.getBannerView(), 30);
 			
 		}
 	}

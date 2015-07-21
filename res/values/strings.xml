@@ -99,6 +99,7 @@
     <!-- USING KEY INDEX 0 -->
     <string name="key_current_win_streak" translatable="false">"CBD414988171DF61260270FCFDA26BC8CB8B5F3651BFB8110C17E4B5941B74C3"</string>
     <string name="key_board_saved" translatable="false">AABE3C791BFA94FD6DDEBDB880ED3D97</string>
+    <string name="key_last_new_board" translatable="false">2CEC454667D0B61D0910B6928B6DFBFF037CAE5A5514088151AA86B716506399</string>
     
     <!-- USING KEY INDEX 1 -->
     <string name="key_times_finished" translatable="false">DA67CBBAE23B723933CAEB4B28C147B821C55BB37D1D5D0EB01FC657D7FF1914</string>

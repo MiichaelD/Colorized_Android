@@ -129,7 +129,11 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 				pAds.destroyBanner();
 			}
 			
+			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+			params.gravity = android.view.Gravity.CENTER_HORIZONTAL;
+			
 			pAds = Advertising.instantiate(this);
+			pAds.getBanner().setLayoutParams(params);
 			
 			/* When the game_Screen.xml root tag used to be RelativeLayout, the ad was just
 	         OVER the GameView, now the ad shares the screen size with GameView

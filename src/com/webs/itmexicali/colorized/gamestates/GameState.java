@@ -30,7 +30,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 public class GameState extends BaseState implements GameBoardListener{
-	
+    
 	/** Interface to communicate game results to the listeners*/
 	public interface GameFinishedListener{
 		/** Pass all the game match parameters to be processed
@@ -195,7 +195,6 @@ public class GameState extends BaseState implements GameBoardListener{
 						Const.d("GameState","Finished parsing");
 						if(askToPlaySavedGame)
 							showSavedGameDialog();
-						Tracking.shared().track("User continue to play saved game in a "+mColorBoard.getBlocksPerSide()+"x"+mColorBoard.getBlocksPerSide()+" board ",null);
 					}
 				}
 			}
@@ -211,6 +210,45 @@ public class GameState extends BaseState implements GameBoardListener{
 
 		
 		//}}).start();
+	}
+	
+	void trackGameContinue(){
+		java.util.HashMap<String, Object> map = new java.util.HashMap<String, Object>();
+		map.put("BoardPlayed", ProgNPrefs.getIns().getLastBoardStarted());
+		map.put("BoardCompleted", getBoardAsString());
+		map.put("BlocksPerSide", mColorBoard.getBlocksPerSide());
+		map.put("Difficulty", getBoardSize());
+		map.put("Moves", mColorBoard.getMoves());
+		map.put("MovesLimit", mov_lim);
+		map.put("GameMode", getGameMode());
+		Tracking.shared().track("GameContinue",map);
+	}
+	
+	void trackGameStart(String currentBoard){
+		//start counting time required to finish this board
+		Tracking.shared().time("GameFinished");
+		
+		java.util.HashMap<String, Object> map = new java.util.HashMap<String, Object>();
+		map.put("BoardPlayed", currentBoard);
+		map.put("BlocksPerSide", mColorBoard.getBlocksPerSide());
+		map.put("Difficulty", getBoardSize());
+		map.put("Moves", mColorBoard.getMoves());
+		map.put("MovesLimit", mov_lim);
+		map.put("GameMode", getGameMode());
+		Tracking.shared().track("NewGame", map);
+	}
+	
+	void trackGameOver(boolean win){
+		java.util.HashMap<String, Object> map = new java.util.HashMap<String, Object>();
+		map.put("Result", win);
+		map.put("Moves", getMoves());
+		map.put("BoardPlayed", ProgNPrefs.getIns().getLastBoardStarted());
+		map.put("BoardCompleted", getBoardAsString());
+		map.put("BlocksPerSide", mColorBoard.getBlocksPerSide());
+		map.put("Difficulty", getBoardSize());
+		map.put("MovesLimit", mov_lim);
+		map.put("GameMode", getGameMode());
+		Tracking.shared().track("GameFinished", map);
 	}
 	
 	public void resize(float width, float height) {
@@ -416,7 +454,7 @@ public class GameState extends BaseState implements GameBoardListener{
 		*/
 		int moves = getMoves();
 		if(moves > 0 && !isGameOver() && (mov_lim < 0 || moves < mov_lim)){
-			ProgNPrefs.getIns().saveGame(true,getBoardAsString());
+			ProgNPrefs.getIns().saveCurrentGameState(true,getBoardAsString());
 		}
 	}
 	
@@ -428,9 +466,6 @@ public class GameState extends BaseState implements GameBoardListener{
 		if(!StateMachine.getIns().checkStateIsInList(statesIDs.GAME))
 			return;
 		
-		//remove the saved game from the preferences
-	    ProgNPrefs.getIns().saveGame(false, null);
-	    
 	    GameActivity.instance.runOnUiThread(new Runnable(){
 			public void run(){
 				//Use the Builder class for convenient dialog construction
@@ -459,8 +494,7 @@ public class GameState extends BaseState implements GameBoardListener{
 		});
 	}
 	
-	/** Display dialog informing that there is a gamestate saved
-	 * and ask if the user wants to play it or prefers a new match*/
+	/** Ask for confirmation if player wants to start a new board*/
 	public void showRestartDialog(){		
 		//Use the Builder class for convenient dialog construction
 		GameActivity.instance.runOnUiThread(new Runnable(){
@@ -494,19 +528,15 @@ public class GameState extends BaseState implements GameBoardListener{
 	 * @param win if true, show congratulations text, else show condolences*/
 	public void showGamOver(final boolean win){
 		Log.d(Const.TAG,"GameOver winning = "+win);
-		
-		int boardSize = mColorBoard.getBlocksPerSide();
-		
-		//transform it from blocks/side to boardsize constant
-		boardSize = boardSize == Const.BOARD_SIZES[Const.SMALL]? Const.SMALL:
-			boardSize == Const.BOARD_SIZES[Const.MEDIUM]? Const.MEDIUM:Const.LARGE;
+		trackGameOver(win);
+        
+        //remove the previous saved game and last new board from the preferences, if any
+        ProgNPrefs.getIns().saveCurrentGameState(false, null);
+        ProgNPrefs.getIns().saveNewBoard(false, null);
 		
 		BaseState gameOver = BaseState.stateFactory(statesIDs.OVER);
-		((GameFinishedListener)gameOver).onGameOver(win, getMoves(),
-				mov_lim<0?Const.CASUAL:Const.STEP, boardSize );
+		((GameFinishedListener)gameOver).onGameOver(win, getMoves(), getGameMode(), getBoardSize() );
 		StateMachine.getIns().pushState(gameOver);
-		
-		
 	}
 	
 	/** Set the move limit corresponding to the board size or set it to negative if the game
@@ -565,8 +595,13 @@ public class GameState extends BaseState implements GameBoardListener{
 			mColorBoard = new ColorBoard(blocks);
 		mColorBoard.setGameBoardListener(this);
 		setMoveLimit();
-		//refreshUI();
-		Tracking.shared().track("User started to play in a "+blocks+"x"+blocks+" board ", null);
+		
+		//remove the previous saved game from the preferences, if any
+		ProgNPrefs.getIns().saveCurrentGameState(false, null);
+		String currentBoard = getBoardAsString();
+		ProgNPrefs.getIns().saveNewBoard(true, currentBoard);
+		
+		trackGameStart(currentBoard);
 	}
 	
 	/** Given a string containing a saved ColorBoard state,
@@ -619,7 +654,6 @@ public class GameState extends BaseState implements GameBoardListener{
 	 * @return board representation*/
 	public String getBoardAsString(){
 		return mov_lim+" "+mColorBoard.toString();
-		
 	}
 	
 	/** The number of moves (user interactions) in current game
@@ -633,5 +667,12 @@ public class GameState extends BaseState implements GameBoardListener{
 	public boolean isGameOver(){
 		return mColorBoard.allColorsFinished();
 	}
+	
+	public int getBoardSize(){
+		return mColorBoard.getSize();
+	}
 		
+	public int getGameMode(){
+		return mov_lim < 0 ? Const.CASUAL : Const.STEP;
+	}
 }

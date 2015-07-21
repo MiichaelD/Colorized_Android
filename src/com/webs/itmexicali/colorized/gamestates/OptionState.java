@@ -1,5 +1,7 @@
 package com.webs.itmexicali.colorized.gamestates;
 
+import java.util.HashMap;
+
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
 import com.webs.itmexicali.colorized.R;
@@ -223,9 +225,12 @@ public class OptionState extends BaseState {
 		t1.setPriority(Thread.MAX_PRIORITY);
 		t1.start();
 		*/
-		
-
-		Tracking.shared().track("Options", null);
+		HashMap<String, Object> map = null;
+		if ( pPrevState != null && pPrevState.getID() != null){
+			map = new HashMap<String,Object>();
+			map.put("PreviousScreen", pPrevState.getID().name());
+		}
+		Tracking.shared().track("Options", map);
 	}
 
 	@Override

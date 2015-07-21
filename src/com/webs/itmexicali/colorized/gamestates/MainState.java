@@ -1,5 +1,7 @@
 package com.webs.itmexicali.colorized.gamestates;
 
+import java.util.HashMap;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.webs.itmexicali.colorized.GameActivity;
@@ -54,6 +56,10 @@ public class MainState extends BaseState {
 		//Tutorial button
 		dbc.setOnActionListener(1, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
+				HashMap<String, Object> map = new HashMap<String,Object>();
+				map.put("Intentionally", true);
+				Tracking.shared().track("Tutorial", map);
+				
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
@@ -109,6 +115,7 @@ public class MainState extends BaseState {
 		//Sign in
 		dbc.setOnActionListener(6, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
+				Tracking.shared().track("Sign-in", null);
 				dbc.setEnabled(6,false);
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);

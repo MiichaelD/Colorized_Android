@@ -133,7 +133,7 @@ public class MCrypt {
     	}
     }
     
-    public static void test(){
+    public static void main(String []args){
 		try {
 			MCrypt mc= new MCrypt();
 			

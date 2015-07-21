@@ -15,16 +15,23 @@ public class GcmIntentService extends IntentService{
 	public static String TAG = GcmIntentService.class.getSimpleName();
 	
 	public GcmIntentService(){
-		super("GcmIntentService");
+		super(TAG);
 	}
 	
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
 		String messageType = gcm.getMessageType(intent);
-        Bundle extras = intent.getExtras();
-        Const.i(TAG, "message Type: "+messageType);
+		Bundle extras = intent.getExtras();
+
+        Const.i(TAG, "Action: "+intent.getAction());
+        Const.i(TAG, "Data: "+intent.getDataString());
+        Const.i(TAG, "message Type: (gcm)="+messageType+"  (intent)="+intent.getType());
         if (!extras.isEmpty()){
+        	if(extras.containsKey("origin") ){
+        		Const.i(TAG, "Origin: "+extras.getString("origin"));
+        	}
+        	
         	Iterator<String> keyIterator = extras.keySet().iterator();
         	while(keyIterator.hasNext()){
         		String key = keyIterator.next();
@@ -55,8 +62,8 @@ public class GcmIntentService extends IntentService{
             		bundle.putString(Notifier.WHEN, when);
         		}
 
-    			bundle.putBoolean(Notifier.VIBRATE,extras.getBoolean(Notifier.VIBRATE));
-    			bundle.putBoolean(Notifier.SOUND,extras.getBoolean(Notifier.SOUND));
+    			bundle.putBoolean(Notifier.VIBRATE, extras.getBoolean(Notifier.VIBRATE));
+    			bundle.putBoolean(Notifier.SOUND, extras.getBoolean(Notifier.SOUND));
         		
         		Notifier.getInstance(getApplicationContext()).notify(bundle);
         	}
