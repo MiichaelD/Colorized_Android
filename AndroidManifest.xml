@@ -163,13 +163,13 @@
              This will allow you to tweak your surveys or in app notifications without having to create
              a new one each time. -->
         <meta-data android:name="com.mixpanel.android.MPConfig.TestMode"
-            android:value="true" />
+            android:value="false" />
 
         <!-- This will enable various debugging messages that shows communication between the Mixpanel
              Android library and the Mixpanel API servers, which are useful for seeing when track requests
              go out and when surveys and notifications are received. -->
         <meta-data android:name="com.mixpanel.android.MPConfig.EnableDebugLogging"
-            android:value="true" />
+            android:value="false" />
 
 
 		<!-- This activity allows your application to show Mixpanel surveys and takeover in app notifications.

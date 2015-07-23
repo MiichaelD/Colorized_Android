@@ -15,9 +15,9 @@ public class GameApplication extends Application {
   		if(!ProtectedInt.isSetup())
   			ProtectedInt.setup();
   		
-  		//Init tracking lib
-  		Tracking.shared().init(this, getResources().getString(R.string.mixpanel_api_token));
-        
+  		//Init tracking lib in case we don't start the app form an activity but a broadcast receiver
+  		Tracking.shared().init(this);
+  		
   		//Initialize Preferences, it depends on ProtectedInt and OpenTracking since 
        ProgNPrefs.init(this);
 	}

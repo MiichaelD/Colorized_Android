@@ -57,7 +57,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     
     private String mPlayerName = null;
     
-    private boolean p_suscribeForPush = false;
+    private boolean p_subscribeForPush = false;
 
     
 	@SuppressLint({ "InlinedApi", "NewApi" })
@@ -74,8 +74,10 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		//Keep screen on
 	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
-	    //keep current version on tracking info
-        Tracking.shared().updateVersion(Const.getVersionName(), Const.getVersionCode());
+	    //keep current version and locale on tracking info
+	    Const.updateVersionInfo(this);
+	    Tracking.shared().updateVersion(Const.getVersionName(), Const.getVersionCode());
+	    Tracking.shared().updateLocale(Const.getLocale(this));
                 
 		// INCREMENT THE APP OPENED COUNTER if onCreate has no savedState ONLY
 		// AFTER FINISHING THE FIRST GAME since app launch
@@ -435,13 +437,24 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 
 		
 		if (player!=null){
-	    	Tracking.shared().onPlayerIdUpdated(player.getPlayerId());
-		
-			if (p_suscribeForPush == false){
+			//subscribe for push notifications only when player has signed in 
+			//using his google account.
+			if (p_subscribeForPush == false){
 				PushNotificationHelper push = new PushNotificationHelper();
 					push.subscribeToPush(player.getPlayerId());
-					p_suscribeForPush= true;
+					p_subscribeForPush= true;
 			}
+			
+			//track the player info
+	    	Tracking.shared().onPlayerIdUpdated(player.getPlayerId());
+    		Tracking.shared().setPlayerProperty("$name", player.getDisplayName());
+    		Tracking.shared().setPlayerProperty("player title", player.getTitle());
+    		Tracking.shared().setPlayerProperty("player level", Integer.toString(player.getLevelInfo().getCurrentLevel().getLevelNumber()));
+	    	if (player.hasHiResImage())
+	    		Tracking.shared().setPlayerProperty("image", player.getHiResImageUrl());
+	    	if (player.hasIconImage())
+	    		Tracking.shared().setPlayerProperty("icon", player.getIconImageUrl());
+        	
 		}
 		
 		if(mActivityToShow == ACHIEVEMENTS_AFTER_SIGNIN){
@@ -459,8 +472,6 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 				Player p = Games.Players.getCurrentPlayer(getApiClient());
 		        if (p != null) {
 		        	mPlayerName = p.getDisplayName();
-		        	Tracking.shared().setPlayerProperty("$full_name", mPlayerName);
-		        	
 		        	//show only 3 names
 		            String[] names = mPlayerName.split(" ");
 		            if (names.length > maxNumOfNames){

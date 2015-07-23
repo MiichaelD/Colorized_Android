@@ -60,7 +60,7 @@ public class ProgNPrefs {
 		props.put("Sfx", playSFX);
 		props.put("Mode", gMode.get());
 		props.put("ModeStr", Const.GAME_MODES[gMode.get()]);
-		props.put("Dificulty", difficulty.get());
+		props.put("Difficulty", difficulty.get());
 		props.put("CurrentStreak", pCurrentStreak.get());
 		props.put("BestStreak", pBestStreak.get());
 		props.put("GamesWon", gWon[Const.TOTAL_SIZES].get());

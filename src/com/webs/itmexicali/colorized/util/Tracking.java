@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
+import com.webs.itmexicali.colorized.R;
 
 public class Tracking {
 
@@ -20,10 +21,10 @@ public class Tracking {
 		return instance;
 	}
 	
-	public void init(Context context, String token) {
+	public void init(Context context) {
 		// Initialize the Mixpanel library for tracking and push notifications.
   		// We also identify the current user with a distinct ID
-  		m_mixpanel = MixpanelAPI.getInstance(context, token);
+  		m_mixpanel = MixpanelAPI.getInstance(context, context.getResources().getString(R.string.mixpanel_api_token));
   		// set user id, this can be different ID from event id, but meh!
   		// that will be used for people analytics. You must set this explicitly in order
         // to dispatch people data.
@@ -32,6 +33,9 @@ public class Tracking {
         // The data-sets are separate, and may have different unique keys (distinct_id).
         // We recommend using the same distinct_id value for a given user in both,
         // and identifying the user with that id as early as possible.
+  		
+  		//clear super properties no longer needed:
+  		m_mixpanel.unregisterSuperProperty("dificulty");
 	}
 	
 	/** Get the tracking service.
@@ -125,7 +129,12 @@ public class Tracking {
 		props.put("version_int", ver_int);
 		registerSuperProperties(props);
 	}
-	//TODO improve:
+	
+	public void updateLocale(String locale){
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("locale", locale);
+		registerSuperProperties(props);
+	}
 	/* GameActivity 	OK
 	 * GameState        OK
 	 * MainState 	 	OK

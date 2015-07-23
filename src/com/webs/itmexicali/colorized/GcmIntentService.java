@@ -27,43 +27,55 @@ public class GcmIntentService extends IntentService{
         Const.i(TAG, "Action: "+intent.getAction());
         Const.i(TAG, "Data: "+intent.getDataString());
         Const.i(TAG, "message Type: (gcm)="+messageType+"  (intent)="+intent.getType());
-        if (!extras.isEmpty()){
-        	if(extras.containsKey("origin") ){
-        		Const.i(TAG, "Origin: "+extras.getString("origin"));
-        	}
-        	
+        if (!extras.isEmpty()){        	
         	Iterator<String> keyIterator = extras.keySet().iterator();
         	while(keyIterator.hasNext()){
         		String key = keyIterator.next();
         		Const.v(TAG, "key: "+key+"="+extras.get(key).toString());
         	}
         	
+
+        	if(!extras.containsKey("origin") ){
+        		return;        		
+        	} 
         	
-        	if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)){
+        	String origin = extras.getString("origin");
+    		Const.i(TAG, "Origin: "+origin);
+    		
+        	if (origin.equals("colorized") && GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)){
         		Bundle bundle = new Bundle();
         		bundle.putString(Notifier.ACTIVITY,SplashScreen.class.getCanonicalName());
-        		if(extras.getString(Notifier.TITLE) != null)
-        			bundle.putString(Notifier.TITLE,extras.getString(Notifier.TITLE));
+        		String title, message, ticker, content, when;
+        		title = extras.getString(Notifier.TITLE);
+        		content = extras.getString(Notifier.CONTENT_INFO);
+        		message = extras.getString(Notifier.MESSAGE);
+        		ticker = extras.getString(Notifier.TICKER);
+        		when = extras.getString(Notifier.WHEN);
         		
-        		if(extras.getString(Notifier.MESSAGE) != null)
-        			bundle.putString(Notifier.MESSAGE,extras.getString(Notifier.MESSAGE));
-
-
-        		if(extras.getString(Notifier.TICKER) != null)
-        			bundle.putString(Notifier.TICKER,extras.getString(Notifier.TICKER));
+        		//needed contents:
+        		if (message == null)
+        			return;
         		
-        		if(extras.getString(Notifier.CONTENT_INFO) != null)
+        		bundle.putString(Notifier.TITLE, title);
+        		bundle.putString(Notifier.MESSAGE,message);
+        		bundle.putString(Notifier.TICKER,ticker == null? message : ticker);
+        		
+        		//optional contents:
+        		if(content != null){
         			bundle.putString(Notifier.CONTENT_INFO,extras.getString(Notifier.CONTENT_INFO));
+        		}
         		
-        		String when = extras.getString(Notifier.WHEN);
         		if (when != null){
         			Date d = new Date(Long.parseLong(when)*1000);
             		Const.i(TAG, "time: "+when+": "+d.toString());
             		bundle.putString(Notifier.WHEN, when);
         		}
 
-    			bundle.putBoolean(Notifier.VIBRATE, extras.getBoolean(Notifier.VIBRATE));
-    			bundle.putBoolean(Notifier.SOUND, extras.getBoolean(Notifier.SOUND));
+        		if(extras.containsKey(Notifier.VIBRATE))
+        			bundle.putBoolean(Notifier.VIBRATE, extras.getBoolean(Notifier.VIBRATE));
+        		
+        		if(extras.containsKey(Notifier.SOUND))
+        			bundle.putBoolean(Notifier.SOUND, extras.getBoolean(Notifier.SOUND));
         		
         		Notifier.getInstance(getApplicationContext()).notify(bundle);
         	}
