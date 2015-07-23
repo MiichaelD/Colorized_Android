@@ -28,6 +28,7 @@ import com.webs.itmexicali.colorized.gamestates.GameState;
 import com.webs.itmexicali.colorized.gamestates.GameState.GameFinishedListener;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
 import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.GameStatsSync;
 import com.webs.itmexicali.colorized.util.Notifier;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 import com.webs.itmexicali.colorized.util.PushNotificationHelper;

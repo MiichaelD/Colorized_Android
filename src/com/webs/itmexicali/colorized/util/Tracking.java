@@ -70,7 +70,7 @@ public class Tracking {
 	 */
 	public void onPause(){
 		m_mixpanel.flush();
-		m_mixpanel.track("Brackground");
+		m_mixpanel.track("Background");
 	}
 	
 	public void onPlayerIdUpdated(String playerId){
