@@ -392,25 +392,27 @@ public class GameState extends BaseState implements GameBoardListener{
 		case MotionEvent.ACTION_POINTER_DOWN:
 			dbc.onPressUpdate(event, pointerIndex, pointerId);
 			
-			if(!Const.CHEATS) break;
-			
-			if(pointerCount == 4 && mRectFs[0] != null){				
-				for(int i =0 ; i<pointerCount;i++){
-					if(!mRectFs[0].contains((int)event.getX(i),(int)event.getY(i)))
-						return true;
+			if(Const.CHEATS){
+				//finish game if 4 fingers on board
+				if(pointerCount == 4 && mRectFs[0] != null){				
+					for(int i =0 ; i<pointerCount;i++){
+						if(!mRectFs[0].contains((int)event.getX(i),(int)event.getY(i)))
+							return true;
+					}
+					Const.d(GameState.class.getSimpleName(),"CHEATS OPENED");
+					showGamOver(true);
+					//
+				} else if(pointerCount == 3 && mRectFs[0] != null){				
+					for(int i =0 ; i<pointerCount;i++){
+						if(!mRectFs[0].contains((int)event.getX(i),(int)event.getY(i)))
+							return true;
+					}
+					new Thread(new Runnable(){
+						public void run(){
+							mov_lim = BoardSolver.getOptimalPath(mColorBoard);
+					}}).start();
+					Const.d(GameState.class.getSimpleName(),"SOLVING BOARD");					
 				}
-				Const.d(GameState.class.getSimpleName(),"CHEATS OPENED");
-				showGamOver(true);
-			} else if(pointerCount == 3 && mRectFs[0] != null){				
-				for(int i =0 ; i<pointerCount;i++){
-					if(!mRectFs[0].contains((int)event.getX(i),(int)event.getY(i)))
-						return true;
-				}
-				new Thread(new Runnable(){
-					public void run(){
-						mov_lim = BoardSolver.getOptimalPath(mColorBoard);
-				}}).start();
-				
 			}
 			break;
 

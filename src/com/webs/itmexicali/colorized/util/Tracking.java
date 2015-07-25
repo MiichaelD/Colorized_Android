@@ -60,8 +60,6 @@ public class Tracking {
 	public void onResume(Activity act){
 		m_mixpanel.getPeople().showNotificationIfAvailable(act);
 		m_mixpanel.getPeople().showSurveyIfAvailable(act);
-		m_mixpanel.track("Foreground");
-		m_mixpanel.timeEvent("Background");
 	}
 	
 	/** To preserve battery life, the Mixpanel library will store  events rather than send
@@ -70,7 +68,6 @@ public class Tracking {
 	 */
 	public void onPause(){
 		m_mixpanel.flush();
-		m_mixpanel.track("Background");
 	}
 	
 	public void onPlayerIdUpdated(String playerId){

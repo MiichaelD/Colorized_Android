@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.webs.itmexicali.colorized"
-    android:versionCode="30"
-    android:versionName="1.1.11" >
+    android:versionCode="31"
+    android:versionName="1.1.12" >
 
     <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="22" />
     <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct"  android:required="false" />
@@ -188,7 +188,7 @@
         </receiver>
 
         <!-- This receiver will allow your application to record referrer parameters as super properties automatically -->
-        <receiver android:name="com.mixpanel.android.mpmetrics.InstallReferrerReceiver" android:exported="true">
+        <receiver android:name="com.mixpanel.android.mpmetrics.InstallReferrerReceiver" android:exported="false">
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
