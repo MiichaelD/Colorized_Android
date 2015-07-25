@@ -6,20 +6,18 @@ import java.io.IOException;
 import com.webs.itmexicali.colorized.R;
 import com.webs.itmexicali.colorized.util.Const;
 
-import android.app.Activity;
 import android.app.Service;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
-import android.os.SystemClock;
-import android.test.TouchUtils;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 
+//http://stackoverflow.com/questions/14928197/how-to-simulate-touch-from-background-service-with-sendevent-or-other-way/31623908#31623908
+//https://android.googlesource.com/platform/frameworks/base/+/HEAD/cmds/input/src/com/android/commands/input/Input.java
 public class TestService extends Service{
 
 	Process m_process = null;
@@ -39,7 +37,8 @@ public class TestService extends Service{
 	    return null;
 	  }
 	
-	  @Override
+	  @SuppressWarnings("deprecation")
+	@Override
 	  public void onCreate() {
 	    super.onCreate();
 	    Const.i(TAG, "OnCreate");
