@@ -1,7 +1,5 @@
 package com.webs.itmexicali.colorized;
 
-import net.opentracker.android.*;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -24,16 +22,17 @@ import com.google.android.gms.games.Games;
 import com.google.android.gms.games.Player;
 import com.google.example.games.basegameutils.BaseGameActivity;
 import com.webs.itmexicali.colorized.GameView.SurfaceListener;
-import com.webs.itmexicali.colorized.ads.AdMob;
 import com.webs.itmexicali.colorized.ads.Advertising;
-import com.webs.itmexicali.colorized.ads.AirPushBundle;
-import com.webs.itmexicali.colorized.ads.AirPushStandard;
 import com.webs.itmexicali.colorized.gamestates.BaseState;
 import com.webs.itmexicali.colorized.gamestates.GameState;
 import com.webs.itmexicali.colorized.gamestates.GameState.GameFinishedListener;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
 import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.GameStatsSync;
+import com.webs.itmexicali.colorized.util.Notifier;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
+import com.webs.itmexicali.colorized.util.PushNotificationHelper;
+import com.webs.itmexicali.colorized.util.Tracking;
 
 public class GameActivity extends BaseGameActivity implements GameFinishedListener, SurfaceListener{
 	
@@ -57,8 +56,9 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     //private SoundType previousSound = SoundType.NONE;
     public static enum SoundType{ NONE, TOUCH, WIN, LOSE};
     
+    private String mPlayerName = null;
     
-    private boolean p_suscribeForPush = false;
+    private boolean p_subscribeForPush = false;
 
     
 	@SuppressLint({ "InlinedApi", "NewApi" })
@@ -75,11 +75,11 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		//Keep screen on
 	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
-
-        // Record an event with the title "onCreate() called", but you can call
-        // it anything you want
-        OTLogService.sendEvent("App version "+Const.getVersionName()+" initialized");
-		        
+	    //keep current version and locale on tracking info
+	    Const.updateVersionInfo(this);
+	    Tracking.shared().updateVersion(Const.getVersionName(), Const.getVersionCode());
+	    Tracking.shared().updateLocale(Const.getLocale(this));
+                
 		// INCREMENT THE APP OPENED COUNTER if onCreate has no savedState ONLY
 		// AFTER FINISHING THE FIRST GAME since app launch
 		if(savedInstanceState == null){
@@ -132,21 +132,11 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 				pAds.destroyBanner();
 			}
 			
-			switch(Advertising.AD_SERVICE){
-			case Advertising.ADS_ADMOB:
-				pAds = new AdMob(this);
-				break;
-				
-			case Advertising.ADS_AIRPUSH_BUNDLE:
-				pAds = new AirPushBundle(this);
-				break;
-				
-			case Advertising.ADS_AIRPUSH_STANDARD:
-				pAds = new AirPushStandard(this);
-				break;
-			}
+			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+			params.gravity = android.view.Gravity.CENTER_HORIZONTAL;
 			
-			
+			pAds = Advertising.instantiate(this);
+			pAds.getBanner().setLayoutParams(params);
 			
 			/* When the game_Screen.xml root tag used to be RelativeLayout, the ad was just
 	         OVER the GameView, now the ad shares the screen size with GameView
@@ -212,8 +202,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		//start Music playing
 		playMusic(true);
 		
-
-        OTLogService.sendEvent("App is in foreground");
+		Tracking.shared().onResume(this);
 	}
 	
 	
@@ -230,16 +219,14 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		
 		playMusic(false);		
 		
-		OTLogService.sendEvent("App is in background");
 		// uploads the file containing the logged events. The onPause method is
         // guaranteed to be called in the life cycle of an Android App, so we
         // are guaranteed the events log file are uploaded
-        OTLogService.onPause();
+		Tracking.shared().onPause();
 	}
 	
 	@Override
 	public void onStop(){
-		super.onStop();
 		//release resources of the media player and delete it
 		Const.v(GameActivity.class.getSimpleName(),"onStop()");
 
@@ -247,15 +234,16 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		
 		stopSound();
 		stopMusicPlayer();
+		
+		super.onStop();
 	}
 	
 	@Override
 	public void onDestroy(){
-		super.onDestroy();
-		//release resources of the media player and delete it
 		Const.v(GameActivity.class.getSimpleName(),"onDestroy()");
 		
 		uiHelper.onDestroy();
+		super.onDestroy();
 	}
 	
 	@Override
@@ -426,10 +414,14 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	public void onSignInFailed() {
 		// Show sign-in button on main menu
 		updateCurrentState();
+		
+		mPlayerName = null;
 	}
 
 	@Override
     public void onSignInSucceeded() {
+		Player player = Games.Players.getCurrentPlayer(getApiClient());
+		
         // Show sign-out button on main menu
 
         // Show "you are signed in" message on win screen, with no sign in button.
@@ -442,13 +434,28 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
         
 		updateCurrentState();
 		
-		if (p_suscribeForPush == false){
-			PushNotificationHelper push = new PushNotificationHelper();
-			Player p = Games.Players.getCurrentPlayer(getApiClient());
-			if (p!=null){
-				push.subscribeToPush(p.getPlayerId());
-				p_suscribeForPush= true;
+		// We also want to keep track of how many times the user has signed in
+
+		
+		if (player!=null){
+			//subscribe for push notifications only when player has signed in 
+			//using his google account.
+			if (p_subscribeForPush == false){
+				PushNotificationHelper push = new PushNotificationHelper();
+					push.subscribeToPush(player.getPlayerId());
+					p_subscribeForPush= true;
 			}
+			
+			//track the player info
+	    	Tracking.shared().onPlayerIdUpdated(player.getPlayerId());
+    		Tracking.shared().setPlayerProperty("$name", player.getDisplayName());
+    		Tracking.shared().setPlayerProperty("player title", player.getTitle());
+    		Tracking.shared().setPlayerProperty("player level", Integer.toString(player.getLevelInfo().getCurrentLevel().getLevelNumber()));
+	    	if (player.hasHiResImage())
+	    		Tracking.shared().setPlayerProperty("image", player.getHiResImageUrl());
+	    	if (player.hasIconImage())
+	    		Tracking.shared().setPlayerProperty("icon", player.getIconImageUrl());
+        	
 		}
 		
 		if(mActivityToShow == ACHIEVEMENTS_AFTER_SIGNIN){
@@ -460,28 +467,26 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 
 	/** If signed in, return the player name, else return null*/
 	public String getPlayerName(){
-		final int maxNumOfNames = 3;
-		String displayName = null;
-		String returnStr = null;
-		if(isSignedIn()){		
-			Player p = Games.Players.getCurrentPlayer(getApiClient());
-	        if (p != null) {
-	            displayName = p.getDisplayName();
-	            OTLogService.sendEvent("User's name: "+displayName);
-	            returnStr = displayName;
-	            try{
-		            int counter = 0, firstSpace = -1;
-		            do{
-		            	firstSpace = displayName.indexOf(' ', firstSpace+1);
-		            }while(firstSpace != -1 && ++counter < maxNumOfNames);
-	            	if(firstSpace != -1)
-	            		returnStr = displayName.substring(0,firstSpace);
-	            }catch(Exception e){Const.w(GameActivity.class.getSimpleName(),
-	            		e.getMessage());}
-	        }
-	        Const.d(GameActivity.class.getSimpleName(),"User: "+displayName);
+		if (mPlayerName == null){
+			final int maxNumOfNames = 3;
+			if(isSignedIn()){		
+				Player p = Games.Players.getCurrentPlayer(getApiClient());
+		        if (p != null) {
+		        	mPlayerName = p.getDisplayName();
+		        	//show only 3 names
+		            String[] names = mPlayerName.split(" ");
+		            if (names.length > maxNumOfNames){
+		            	StringBuilder sb = new StringBuilder();
+		            	for (int i = 0 ; i < maxNumOfNames ; ++i){
+		            		sb.append(names[i]);
+		            	}
+		            	mPlayerName = sb.toString();
+		            }
+		        }
+		        Const.d(GameActivity.class.getSimpleName(),"User: "+mPlayerName);
+			}
 		}
-        return returnStr;
+        return mPlayerName;
 	}
 	
 	/** Try to launch the Google+ share dialog*/
@@ -611,7 +616,6 @@ public boolean onGoogleShareRequested(String text){
     /** Once the game is over saved all the info locally and try
      * to push it to Google Games Services*/
     public void onGameOver(boolean win, int moves, int gameMode, int boardSize) {
-    	
     	if(firstGameFinished){
     		firstGameFinished = false;
 			ProgNPrefs.getIns().incrementAppOpened();// LOCALLY
@@ -635,6 +639,7 @@ public boolean onGoogleShareRequested(String text){
 	   if(isSignedIn()||getApiClient().isConnecting()||getApiClient().isConnected())
 		   return;
 	   Const.d(GameActivity.class.getSimpleName(),"onSignInButtonClicked()");
+	   mPlayerName = null;
        beginUserInitiatedSignIn();
    }
 
@@ -642,6 +647,7 @@ public boolean onGoogleShareRequested(String text){
    /** Start sign-out flow by user interaction*/
    public void onSignOutButtonClicked() {
        signOut();
+       mPlayerName = null;
    }
 	
    /** Update currently active state in the statestack*/

@@ -5,12 +5,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import com.webs.itmexicali.colorized.BuildConfig;
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.R;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
@@ -22,12 +24,14 @@ import android.view.WindowManager;
 public class Const {
 
 	//Debug variable
-	public final static boolean D = true;
+	public final static boolean D = BuildConfig.DEBUG;
 	
 	public final static boolean CHEATS = D && true;
 	
 	//Tag for debugging
 	public final static String TAG = "Colorized";
+	
+	private static String pLocale = null;
 	
 	// version name and code
 	private static String pVersionName = null;
@@ -46,6 +50,8 @@ public class Const {
 	public final static int BOARD_NAMES_IDS[]={R.string.options_easy, R.string.options_med, R.string.options_hard};
 	
 	public final static String COLOR_NAMES[] = {"RED", "BLUE", "YELLOW", "PURPLE", "GRAY", "GREEN"};
+	
+	public final static String GAME_MODES[] = {"STEP", "CASUAL"};
 	
     /** For HEXStrings <-> ByteArrays conversions*/
     private final static char[] hexChars={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
@@ -202,7 +208,7 @@ public class Const {
     	}
     }
     
-    private static void updateVersionInfo(){
+    public static void updateVersionInfo(Context appContext){
 		PackageInfo pi = null;
 		try{
 			pi =GameActivity.instance.getPackageManager().getPackageInfo(GameActivity.instance.getPackageName(), 0);
@@ -218,14 +224,16 @@ public class Const {
 	}
 	
 	public static String getVersionName(){
-		if(pVersionName == null)
-			updateVersionInfo();
 		return pVersionName;
 	}
 	
 	public static int getVersionCode(){
-		if (pVersionCode == 0)
-			updateVersionInfo();
 		return pVersionCode;
 	}
+	
+	public static String getLocale(Context appContext) {
+		if (pLocale == null)
+			pLocale = appContext.getResources().getConfiguration().locale.toString();
+		return pLocale;
+    }
 }

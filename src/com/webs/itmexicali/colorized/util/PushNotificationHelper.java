@@ -1,4 +1,4 @@
-package com.webs.itmexicali.colorized;
+package com.webs.itmexicali.colorized.util;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -10,9 +10,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.webs.itmexicali.colorized.util.Const;
-import com.webs.itmexicali.colorized.util.ProgNPrefs;
-import com.webs.itmexicali.colorized.util.ServerCom;
+import com.webs.itmexicali.colorized.GameActivity;
 
 public class PushNotificationHelper {
 	/** Google Cloud Messaging Service constants*/
@@ -78,6 +76,8 @@ public class PushNotificationHelper {
 		        return null;
 		    }
 		    
+		    //set the current valid registration id to the tracking lib
+            Tracking.shared().setPushRegistrationId(regId);
 		    return regId;
 		}
 
@@ -94,8 +94,9 @@ public class PushNotificationHelper {
 	}
 	
 	private void storeRegistrationIdOnDb(){
-		SharedPreferences sh = ProgNPrefs.getIns().getSharedPrefs();
-		if (sh.getBoolean(SAVED_ONLINE, false) == false)
+		//changed my mind, send it every time possible, in case the player use many devices
+//		SharedPreferences sh = ProgNPrefs.getIns().getSharedPrefs();
+//		if (sh.getBoolean(SAVED_ONLINE, false) == false) 
 			new Thread(){
 				public void run(){
 					sendIdToServer(m_userId, m_regId);    	    	
@@ -107,13 +108,15 @@ public class PushNotificationHelper {
 		boolean saved = false;
 		final String URL = "http://skeleton.byethost13.com", URI = "/colorflooded/index.php", SERVER_URL = URL+URI;
 		HashMap<String,String> properties = new HashMap<String,String>();
-		
 		properties.put("action","register_push_id");
 		properties.put("user_id",user);
 		properties.put("gcm_id",gcmId);
 		String playerName = GameActivity.getActivity().getPlayerName();
 		if(playerName != null)
 			properties.put("player_name", playerName);
+		
+        //set the recently gotten registration id to the tracking lib
+        Tracking.shared().setPushRegistrationId(gcmId);
 		
 		try {
 			ServerCom request = ServerCom.shared();
@@ -127,33 +130,32 @@ public class PushNotificationHelper {
 		}
 		return saved;
 	}
-		private class RegisterToGcmTask extends AsyncTask<String,Integer,String> {
-			@Override
-			protected String doInBackground(String... params){
-	           String msg = "";
-	           
-	           try{
-	               if (m_gcm == null){
-	            	   m_gcm = GoogleCloudMessaging.getInstance(GameActivity.getActivity());
-	               }
-	               
-	               //Register in GCM servers
-	               String regId = m_gcm.register(SENDER_ID);
-	               Const.v(TAG, "Registered in GCM: registration_id=" + regId);
+	private class RegisterToGcmTask extends AsyncTask<String,Integer,String> {
+		@Override
+		protected String doInBackground(String... params){
+           String msg = "";
+           
+           try{
+               if (m_gcm == null){
+            	   m_gcm = GoogleCloudMessaging.getInstance(GameActivity.getActivity());
+               }
+               
+               //Register in GCM servers
+               String regId = m_gcm.register(SENDER_ID);
+               Const.v(TAG, "Registered in GCM: registration_id=" + regId);
 
-	               //Send register id to our server
-	               boolean registered = sendIdToServer(params[0], regId);
+               //Send register id to our server
+               boolean registered = sendIdToServer(params[0], regId);
 
-	        	   //save on preferences
-	               if(registered){
-	            	   setRegistrationId(params[0], regId);
-	               }
-	           } catch (IOException ex) {
-	        	   Const.v(TAG, "Error registering in GCM:" + ex.getMessage());
-	           }
-	           
-	           return msg;
-	       }
-		}
-		
+        	   //save on preferences
+               if(registered){
+            	   setRegistrationId(params[0], regId);
+               }
+           } catch (IOException ex) {
+        	   Const.v(TAG, "Error registering in GCM:" + ex.getMessage());
+           }
+           
+           return msg;
+       }
+	}
 }

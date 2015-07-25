@@ -1,6 +1,6 @@
 package com.webs.itmexicali.colorized.gamestates;
 
-import net.opentracker.android.OTLogService;
+import java.util.HashMap;
 
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
@@ -10,6 +10,7 @@ import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
+import com.webs.itmexicali.colorized.util.Tracking;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -224,9 +225,12 @@ public class OptionState extends BaseState {
 		t1.setPriority(Thread.MAX_PRIORITY);
 		t1.start();
 		*/
-		
-
-		OTLogService.sendEvent("User entered to Options");
+		HashMap<String, Object> map = null;
+		if ( pPrevState != null && pPrevState.getID() != null){
+			map = new HashMap<String,Object>();
+			map.put("PreviousScreen", pPrevState.getID().name());
+		}
+		Tracking.shared().track("Options", map);
 	}
 
 	@Override

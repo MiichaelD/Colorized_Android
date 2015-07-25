@@ -11,8 +11,8 @@ public class GcmReceiver extends WakefulBroadcastReceiver{
 	public static String TAG = GcmReceiver.class.getSimpleName();
 	@Override
     public void onReceive(Context context, Intent intent) {
-		Const.i(TAG, "GcmReceiver got a callback!");
-        ComponentName comp = new ComponentName(context.getPackageName(), GcmIntentService.class.getName());
+		Const.i(TAG, "GcmReceiver got a push!");
+		ComponentName comp = new ComponentName(context.getPackageName(), GcmIntentService.class.getName());
         startWakefulService(context, (intent.setComponent(comp)));
         setResultCode(Activity.RESULT_OK);
     }

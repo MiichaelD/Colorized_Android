@@ -1,6 +1,6 @@
 package com.webs.itmexicali.colorized.gamestates;
 
-import net.opentracker.android.OTLogService;
+import java.util.HashMap;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -10,6 +10,7 @@ import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
+import com.webs.itmexicali.colorized.util.Tracking;
 import com.webs.itmexicali.colorized.R;
 
 import android.graphics.Bitmap;
@@ -55,6 +56,10 @@ public class MainState extends BaseState {
 		//Tutorial button
 		dbc.setOnActionListener(1, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
+				HashMap<String, Object> map = new HashMap<String,Object>();
+				map.put("Intentionally", true);
+				Tracking.shared().track("Tutorial", map);
+				
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
@@ -77,7 +82,7 @@ public class MainState extends BaseState {
 		//About	
 		dbc.setOnActionListener(3, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				OTLogService.sendEvent("User entered to About");
+				Tracking.shared().track("About", null);
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
@@ -90,7 +95,7 @@ public class MainState extends BaseState {
 		//LEADERboards
 		dbc.setOnActionListener(4, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				OTLogService.sendEvent("User entered to Leaderboards");
+				Tracking.shared().track("Leaderboards", null);
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
@@ -100,7 +105,7 @@ public class MainState extends BaseState {
 		//Achievements
 		dbc.setOnActionListener(5, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				OTLogService.sendEvent("User entered to Achievements");
+				Tracking.shared().track("Achievements", null);
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
@@ -110,6 +115,7 @@ public class MainState extends BaseState {
 		//Sign in
 		dbc.setOnActionListener(6, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
+				Tracking.shared().track("Sign-in", null);
 				dbc.setEnabled(6,false);
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);

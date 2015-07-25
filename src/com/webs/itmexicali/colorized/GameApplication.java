@@ -1,9 +1,6 @@
 package com.webs.itmexicali.colorized;
-
-import net.opentracker.android.OTLogService;
-
-import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
+import com.webs.itmexicali.colorized.util.Tracking;
 
 import ProtectedInt.ProtectedInt;
 import android.app.Application;
@@ -18,13 +15,10 @@ public class GameApplication extends Application {
   		if(!ProtectedInt.isSetup())
   			ProtectedInt.setup();
   		
-  		//OpenTracking
-        OTLogService.onCreate(getApplicationContext(), getResources().getString(R.string.app_name));
-        // to test things real-time always send data directly to logging service
-        // make sure to comment this out if you are not testing
-        OTLogService.setDirectSend(Const.D);
-
+  		//Init tracking lib in case we don't start the app form an activity but a broadcast receiver
+  		Tracking.shared().init(this);
+  		
   		//Initialize Preferences, it depends on ProtectedInt and OpenTracking since 
-       ProgNPrefs.initPreferences(this);
+       ProgNPrefs.init(this);
 	}
 }

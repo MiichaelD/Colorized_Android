@@ -1,9 +1,10 @@
-package com.webs.itmexicali.colorized;
+package com.webs.itmexicali.colorized.util;
 
 import java.util.Calendar;
 
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -13,10 +14,10 @@ import android.media.RingtoneManager;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
+import com.webs.itmexicali.colorized.AlarmReceiver;
+import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.R;
 import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
-import com.webs.itmexicali.colorized.util.Const;
-import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
 public class Notifier {
 	
@@ -46,7 +47,7 @@ public class Notifier {
 		final Bundle bundle = new Bundle();
 		bundle.putString(TITLE, title);
 		bundle.putString(MESSAGE, message);
-		bundle.putString(TICKER, title);
+		bundle.putString(TICKER, message);
 		new Thread(new Runnable(){ public void run(){
 			Notifier.this.notify(bundle);
 		}}).start();
@@ -57,7 +58,7 @@ public class Notifier {
 		bundle.putString(MESSAGE, message);
 		bundle.putString(TITLE, title);
 		bundle.putInt(NOTIF_KEY, ++NOTIFICATION_ID);
-		bundle.putString(TICKER, title);
+		bundle.putString(TICKER, message);
 		bundle.putInt(SMALL_ICON, android.R.drawable.ic_menu_agenda);
 		bundle.putInt(BIG_ICON, R.drawable.app_icon);
 		bundle.putString(ACTIVITY, classToStart.getCanonicalName());
@@ -74,7 +75,7 @@ public class Notifier {
 	    intent.putExtra(MESSAGE, message);
 	    intent.putExtra(TITLE, title);
 	    intent.putExtra(NOTIF_KEY, ++NOTIFICATION_ID);
-	    intent.putExtra(TICKER, title);
+	    intent.putExtra(TICKER, message);
 	    intent.putExtra(SMALL_ICON, android.R.drawable.ic_menu_agenda);
 	    intent.putExtra(BIG_ICON, R.drawable.app_icon);
 	    intent.putExtra(ACTIVITY, classToStart.getCanonicalName());
@@ -108,6 +109,21 @@ public class Notifier {
 		boolean vibrate = bundle.getBoolean(VIBRATE);
 		boolean sound = bundle.getBoolean(SOUND);
 	    Class<? extends Activity> activityClass = null;
+	    
+	    if (message == null || message.isEmpty()){
+	    	Const.e(Notifier.class.getSimpleName(),"Message is null, cancelling sending notification.");
+	    	return;
+	    }
+	    if(title == null || title.isEmpty()){
+	    	title = mContext.getResources().getString(R.string.app_name);
+	    }
+	    if (ticker == null || ticker.isEmpty()){
+	    	ticker = message;
+	    }
+	    if (contentInfo == null){
+	    	contentInfo = Integer.toString(notifId);
+	    }
+	    
 		try {
 			if (targetActivity != null)
 				activityClass = Class.forName(targetActivity).asSubclass(Activity.class);
@@ -117,10 +133,7 @@ public class Notifier {
 		long t0 = System.currentTimeMillis();
 		
 		int notifFlags = NotificationCompat.DEFAULT_LIGHTS |  NotificationCompat.FLAG_AUTO_CANCEL | NotificationCompat.FLAG_ONLY_ALERT_ONCE;
-		if(vibrate)
-			notifFlags |= NotificationCompat.DEFAULT_VIBRATE;
-		if(sound)
-			notifFlags |= NotificationCompat.DEFAULT_SOUND;
+		
 	    //creating notification
 		NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext)
 		.setAutoCancel(true)
@@ -128,18 +141,21 @@ public class Notifier {
 		.setLargeIcon(BitmapLoader.getImage(mContext, bigIcon, true))
 		.setContentTitle(title)
 		.setContentText(message)
-		.setTicker(ticker == null? title : ticker)
+		.setTicker(ticker)
 		.setWhen(when == null ? System.currentTimeMillis() : Long.parseLong(when)*1000)
-		.setContentInfo(contentInfo == null || contentInfo.isEmpty() ?  Integer.toString(notifId) : contentInfo)
-		.setDefaults(notifFlags)
+		.setContentInfo(contentInfo)
 		.setStyle(new NotificationCompat.BigTextStyle() // text to be displayed when expanded
 			.setBigContentTitle(title)
 			.bigText(message));
 		
-		if(vibrate)
+		if (vibrate){
+			notifFlags |= NotificationCompat.DEFAULT_VIBRATE;
 			builder.setVibrate(new long[] { 1000, 1000});
-		if(sound)
+		}if (sound){
+			notifFlags |= NotificationCompat.DEFAULT_SOUND;
 			builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+		}
+		builder.setDefaults(notifFlags);
 		
 		//adding an action to the notification
 		if (activityClass != null){
@@ -151,8 +167,10 @@ public class Notifier {
 			builder.setContentIntent(contIntent);
 		}
 	   
+		Notification notif = builder.build();
+		
 		//send the notification
-		mNotifMan.notify(notifId, builder.build());
+		mNotifMan.notify(notifId, notif);
 		saveNotifId();
 		Const.v(this.getClass().getSimpleName(), "finihed in: "+(System.currentTimeMillis()-t0));
 	}
