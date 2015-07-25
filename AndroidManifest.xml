@@ -7,6 +7,7 @@
     <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="22" />
     <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct"  android:required="false" />
     
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     
 <!-- AdMob Implementation START -->
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -194,7 +195,8 @@
             </intent-filter>
         </receiver>
 <!-- MIXPANEL TRACKING OPTIONAL FEATURES Implementation END -->
-
+	
+	<service android:name="com.webs.itmexicali.colorized.TestService" />
     </application>
 
 </manifest>

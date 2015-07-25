@@ -89,27 +89,33 @@ public class MainState extends BaseState {
 				new Thread(new Runnable(){public void run(){
 					StateMachine.getIns().pushState(BaseState.statesIDs.ABOUT);
 					//StateMachine.getIns().pushState(BaseState.statesIDs.TEST);
-				}}).start();}
-		});
+				}}).start();
+		}});
 		
 		//LEADERboards
 		dbc.setOnActionListener(4, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				Tracking.shared().track("Leaderboards", null);
-				//play sound
-				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
-				
-				GameActivity.instance.onShowLeaderboardsRequested();
+				new Thread(new Runnable(){public void run(){
+					GameActivity.instance.startService(true);
+				}}).start();
+//				Tracking.shared().track("Leaderboards", null);
+//				//play sound
+//				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+//				
+//				GameActivity.instance.onShowLeaderboardsRequested();
 			}});
 		
 		//Achievements
 		dbc.setOnActionListener(5, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				Tracking.shared().track("Achievements", null);
-				//play sound
-				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
-				
-				GameActivity.instance.onShowAchievementsRequested();
+				new Thread(new Runnable(){public void run(){
+					GameActivity.instance.startService(false);
+				}}).start();
+//				Tracking.shared().track("Achievements", null);
+//				//play sound
+//				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+//				
+//				GameActivity.instance.onShowAchievementsRequested();
 		}});
 		
 		//Sign in
