@@ -10,10 +10,12 @@ import com.webs.itmexicali.colorized.util.Const;
 public class BoardSolver {
 
 	static LinkedList<String> s_path;
-	static int s_minMoves;
+	static int s_minMoves, s_currentMoves, s_numTries;
 	
 	public static int getOptimalPath(ColorBoard board){
+		s_currentMoves = board.getMoves();
 		s_minMoves = Integer.MAX_VALUE;
+		s_numTries = 0;
 		s_path = new LinkedList<String>();
 		Const.v(BoardSolver.class.getSimpleName(),"Solving board: "+board.toString());
 		
@@ -24,20 +26,21 @@ public class BoardSolver {
 		Const.i(BoardSolver.class.getSimpleName(),"Iterative DepthFirst time: "+(System.currentTimeMillis()-startT));
 		solver.printTree();
 		
-		s_minMoves = Integer.MAX_VALUE;
-		s_path = new LinkedList<String>();
-		startT = System.currentTimeMillis();
-		solver.solveIterativelyBreadthFirst();
-		Const.i(BoardSolver.class.getSimpleName(),"Iterative BreadthFirst time: "+(System.currentTimeMillis()-startT));
-		solver.printTree();
+//		s_minMoves = Integer.MAX_VALUE;
+//		s_path = new LinkedList<String>();
+//		solver = new SolvingTree(board);
+//		startT = System.currentTimeMillis();
+//		solver.solveIterativelyBreadthFirst();
+//		Const.i(BoardSolver.class.getSimpleName(),"Iterative BreadthFirst time: "+(System.currentTimeMillis()-startT));
+//		solver.printTree();
 		
 
-		s_minMoves = Integer.MAX_VALUE;
-		s_path = new LinkedList<String>();
-		startT = System.currentTimeMillis();
-		solver.solveRecursively();
-		Const.i(BoardSolver.class.getSimpleName(),"Recursive time: "+(System.currentTimeMillis()-startT));
-		solver.printTree();
+//		s_minMoves = Integer.MAX_VALUE;
+//		s_path = new LinkedList<String>();
+//		startT = System.currentTimeMillis();
+//		solver.solveRecursively();
+//		Const.i(BoardSolver.class.getSimpleName(),"Recursive time: "+(System.currentTimeMillis()-startT));
+//		solver.printTree();
 		
 		return s_minMoves;
 	}
@@ -51,6 +54,11 @@ class SolvingTree{
 	
 	SolvingTree(ColorBoard board){
 		m_board = board.clone();
+	}
+	
+	SolvingTree(SolvingTree tree){
+		m_board = tree.m_board.clone();
+		m_parent = tree;
 	}
 	
 	void solveIteratively(){
@@ -92,6 +100,7 @@ class SolvingTree{
 	}
 	
 	void solveIterativelyBreadthFirst(){
+		BoardSolver.s_numTries = 1 ;
 		Queue<SolvingTree> collection = new LinkedList<SolvingTree>(); //BREADTH-FIRST SEARCH
 		collection.offer(this);
 		SolvingTree node = null;
@@ -108,8 +117,9 @@ class SolvingTree{
 				
 				finished = false;
 				SolvingTree aux = new SolvingTree(node.m_board);
+				++BoardSolver.s_numTries;
 				aux.m_board.colorize(i);
-				if(!wasProductiveChange(aux.m_board,m_board) || aux.m_board.getMoves() >= BoardSolver.s_minMoves){
+				if(aux.m_board.getMoves() >= BoardSolver.s_minMoves || !wasProductiveChange(aux.m_board,node.m_board)){
 					continue;
 				}
 				aux.m_parent = node;
@@ -124,6 +134,7 @@ class SolvingTree{
 	}
 	
 	void solveIterativelyDepthFirst(){
+		BoardSolver.s_numTries = 1 ;
 		Stack<SolvingTree> collection = new Stack<SolvingTree>();// DEPTH-FIRST SEARCH
 		collection.push(this);
 		SolvingTree node = null;
@@ -141,7 +152,8 @@ class SolvingTree{
 				finished = false;
 				SolvingTree aux = new SolvingTree(node.m_board);
 				aux.m_board.colorize(i);
-				if(!wasProductiveChange(aux.m_board,m_board) || aux.m_board.getMoves() >= BoardSolver.s_minMoves){
+				++BoardSolver.s_numTries;
+				if(aux.m_board.getMoves() >= BoardSolver.s_minMoves || !wasProductiveChange(aux.m_board,node.m_board)){
 					continue;
 				}
 				aux.m_parent = node;
@@ -205,9 +217,10 @@ class SolvingTree{
 			BoardSolver.s_minMoves = moves;
 		}
 		
+		moves -= BoardSolver.s_currentMoves;
 		StringBuilder path = new StringBuilder();
 		int solution[] = new int[moves];
-		for(i = 0 ; i < moves; i++, node=node.m_parent){
+		for(i = 0 ; i < moves && node != null; i++, node=node.m_parent){
 			solution[i] = node.m_board.getCurrentColor();
 		}
 		for(i = moves-1 ; i >= 0; i--){
@@ -227,7 +240,7 @@ class SolvingTree{
 	public void printTree(){
 		LinkedList<String> paths = BoardSolver.s_path;
 		
-		Const.i(BoardSolver.class.getSimpleName(),"COMPLETE PATHS: "+paths.size()+" - min:"+BoardSolver.s_minMoves);
+		Const.i(BoardSolver.class.getSimpleName(),"COMPLETE PATHS: "+paths.size()+" - minMoves:"+BoardSolver.s_minMoves+", number of tries: "+BoardSolver.s_numTries);
 		for(String path : paths){
 			Const.i(BoardSolver.class.getSimpleName(),"\t"+path);
 		}

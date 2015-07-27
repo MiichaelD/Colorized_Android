@@ -407,10 +407,12 @@ public class GameState extends BaseState implements GameBoardListener{
 						if(!mRectFs[0].contains((int)event.getX(i),(int)event.getY(i)))
 							return true;
 					}
-					new Thread(new Runnable(){
+					Thread solver = new Thread(new Runnable(){
 						public void run(){
 							mov_lim = BoardSolver.getOptimalPath(mColorBoard);
-					}}).start();
+					}});
+					solver.setPriority(Thread.MAX_PRIORITY);
+					solver.start();
 					Const.d(GameState.class.getSimpleName(),"SOLVING BOARD");					
 				}
 			}
