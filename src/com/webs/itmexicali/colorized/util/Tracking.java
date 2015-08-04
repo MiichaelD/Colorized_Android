@@ -34,8 +34,13 @@ public class Tracking {
         // We recommend using the same distinct_id value for a given user in both,
         // and identifying the user with that id as early as possible.
   		
-  		//clear super properties no longer needed:
-  		m_mixpanel.unregisterSuperProperty("dificulty");
+  		HashMap<String, Object> props = new HashMap<String, Object>();
+  		props.put("First Run", System.currentTimeMillis());
+  		m_mixpanel.registerSuperPropertiesOnceMap(props);
+  		
+  		props.clear();
+  		props.put("Last Run", System.currentTimeMillis());
+  		m_mixpanel.registerSuperPropertiesOnceMap(props);
 	}
 	
 	/** Get the tracking service.
