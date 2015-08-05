@@ -49,7 +49,7 @@ public class ColorBoard{
 	
 	/** Initialize a new random {@link ColorBoard} matrix*/
 	public ColorBoard(int blocks){
-		startRandomColorBoard(blocks);
+		randomize(blocks);
 	}
 	
 	/** Load a given {@link ColorBoard} matrix
@@ -58,7 +58,7 @@ public class ColorBoard{
 	 * @param mat a reference to the board representation as an array of integers*/
 	public ColorBoard(int blocks, int cur_moves, int moves_lim, int[][] mat){
 		if(mat == null){
-			startRandomColorBoard(blocks);
+			randomize(blocks);
 			return;
 		}
 		m_movesCount.set(cur_moves);
@@ -66,25 +66,27 @@ public class ColorBoard{
 		m_blocksPerSide = blocks;
 		m_colorMatrix = mat;
 		restartFinishedColors();
+		setDefaultMoveLimit();
 	}
 	
 	
 	/** Start a new random matrix and set moves to 0
 	 * @param blocks the new number of blocks per side of the matrix*/
-	public void startRandomColorBoard(int blocks){
+	public void randomize(int blocks){
 		m_blocksPerSide = blocks;
 		m_colorMatrix = new int[blocks][blocks];
-		startRandomColorBoard();
+		randomize();
 	}
 	
 	/** Start a new random matrix and reset moves counter*/
-	public void startRandomColorBoard(){
+	public void randomize(){
 		this.m_movesCount.set(0);
 		for(int i=0; i<m_blocksPerSide; i++)
 			for(int j=0; j<m_blocksPerSide; j++)
 				m_colorMatrix[i][j] = (int)(Math.random()*NUMBER_OF_COLORS);
 
 		restartFinishedColors();
+		setDefaultMoveLimit();
 	}
 	
 	/** check if we have 1 or more moves remaining*/
@@ -331,21 +333,25 @@ public class ColorBoard{
 		
 	}
 	
+	/** Get the representation of current {@link ColorBoard} state
+	 * @return Json formatted String formated*/
+	@Override
+	public String toString(){
+		return getCurrentState().toString();
+//		return getCurrentStateAsLegacyString();
+		
+	}
+	
 	/** Representation of current {@link ColorBoard} state
 	 * @return string formated as follows: "<b>i j []</b>",
 	 * where <b>i</b> is the number of blocks per side
 	 * <b>j</b> is the number of moves at current time and
 	 * <b>[]</b> is the representation of the board as a succession of numbers*/
-	@Override
-	public String toString(){
-//		return getCurrentState().toString();
-		return getCurrentStateAsLegacyString();
-		
-	}
-	
+	@SuppressWarnings("unused")
+	@Deprecated
 	private String getCurrentStateAsLegacyString(){
 		StringBuilder sb = new StringBuilder();
-		sb.append(m_movesLimit).append(' ');
+		sb.append(m_movesLimit.get()).append(' ');
 		sb.append(m_blocksPerSide).append(' ');
 		sb.append(m_movesCount.get());
 		for(int i=0;i<m_blocksPerSide;i++)

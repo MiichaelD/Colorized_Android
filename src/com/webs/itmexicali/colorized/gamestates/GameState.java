@@ -1,7 +1,5 @@
 package com.webs.itmexicali.colorized.gamestates;
 
-import org.json.JSONObject;
-
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
 import com.webs.itmexicali.colorized.R;
@@ -143,14 +141,12 @@ public class GameState extends BaseState implements GameBoardListener{
 		
 		formated_moves_str = GameActivity.instance.getString(R.string.moves_txt);
 		formated_moves_str_casual = formated_moves_str.substring(0,formated_moves_str.length()-5);
-		
-		//create board to prevent NullPointerException
-		//if(mColorBoard == null)
-		{
-			//Const.v("GameState","created New Board");
-			restartBoard(true);			
-		}
-		
+
+		/* Create board to prevent NullPointerException, in some devices (SCH-I535 - Android 4.3)
+		 * it took several seconds (about 10s) just painting background, because the resize(f,f)
+		 * method was not being called, sometimes causing the user to press back and cause a
+		 * null pointer exception due there is no instance of mColorBoard yet to get the moves count*/
+		createDefaultBoard();
 	}
 	
 	/** Register each button to colorize certain color*/
@@ -158,7 +154,7 @@ public class GameState extends BaseState implements GameBoardListener{
 		dbc.setOnActionListener(i, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
 			//only if it's a different color and game has not finished
-			if (!mColorBoard.isCurrentColor(i)  && mColorBoard.hasMovesRemaining() ){
+			if (mColorBoard != null && !mColorBoard.isCurrentColor(i)  && mColorBoard.hasMovesRemaining() ){
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
@@ -186,9 +182,10 @@ public class GameState extends BaseState implements GameBoardListener{
 	private void checkTutoAndSavedGame(){
 		//new Thread(new Runnable(){public void run(){
 			//check if the tutorial has been completed
-			if(ProgNPrefs.getIns().isTutorialCompleted()){
+			if (ProgNPrefs.getIns().isTutorialCompleted()){
 				//if there is a game state saved, load it again
-				if(!ignoreSavedGame && ProgNPrefs.getIns().isGameSaved()){
+				if (!ignoreSavedGame && ProgNPrefs.getIns().isGameSaved()){
+					try { Thread.sleep(8000); } catch (InterruptedException e) {}
 					//parse the game state
 					String boardSave = ProgNPrefs.getIns().getSavedGame();
 					mColorBoard = ColorBoard.newBoardFromString(boardSave);
@@ -201,13 +198,19 @@ public class GameState extends BaseState implements GameBoardListener{
 				}
 			}
 			else{
-				createNewBoard(Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]);
+				//show the tutorial state
+				if (mColorBoard == null){
+					restartBoard(true);
+				} else {
+					//keep using the same board we already have, do the corresponding tracking
+					onNewBoardStarted();
+				}
 				StateMachine.getIns().pushState(BaseState.statesIDs.TUTO);			
 			}
 			
-			if(mColorBoard == null){
-				createNewBoard(Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]);
-				mColorBoard.setDefaultMoveLimit();
+			//No save game to load and no tutorial state to show
+			if (mColorBoard == null){
+				restartBoard(true);
 			}
 
 		
@@ -265,7 +268,7 @@ public class GameState extends BaseState implements GameBoardListener{
 	}
 
 	/** This method will be called when the surface has been resized, so all
-	 * screen width and height dependents must be reloaded - 
+	 * screen width and height dependent objects must be reloaded - 
 	 * NOTE: DO NOT INCLUDE initPaints()*/
 	protected void reloadByResize() {
 		float width = GameView.width/16,  height= GameView.height/16;
@@ -346,6 +349,8 @@ public class GameState extends BaseState implements GameBoardListener{
 	
 	/** Draw the text on the canvas*/
 	public void drawText(Canvas canvas){
+		if(mColorBoard == null) return;
+		
 		if(mColorBoard.getGameMode() == Const.CASUAL){
 			moves_txt = String.format(formated_moves_str_casual,mColorBoard.getMovesCount());
 		}
@@ -365,8 +370,7 @@ public class GameState extends BaseState implements GameBoardListener{
 	
 	/** Draw UI units capable to react to touch events*/
 	public void drawButtons(Canvas canvas){
-		
-		
+		if (mColorBoard == null) return;	
 		
 		for(int i =0 ; i < dbc.getButtonsCount();i++){
 			if(i < ColorBoard.NUMBER_OF_COLORS){//after position 5, we are painting bitmaps instead of buttons
@@ -380,6 +384,7 @@ public class GameState extends BaseState implements GameBoardListener{
 	
 	/** Draw board on surface's canvas*/
 	public void drawBoard(Canvas canvas){
+		if (mColorBoard == null) return;
 		mColorBoard.updateBoard(canvas, mRectFs[0], mPaints);
 	}
 
@@ -459,8 +464,9 @@ public class GameState extends BaseState implements GameBoardListener{
 		 * - the board is not completed & 
 		 * - our moves is less than limit | the limit is negative (we have no limit)
 		*/
-		if(mColorBoard.isStarted() && !mColorBoard.isCompleted()){
-			ProgNPrefs.getIns().saveCurrentGameState(true,mColorBoard.toString());
+		if (mColorBoard != null && mColorBoard.isStarted() && !mColorBoard.isCompleted()){
+			String boardSave = mColorBoard.toString();
+			ProgNPrefs.getIns().saveCurrentGameState(true,boardSave);
 		}
 	}
 	
@@ -554,8 +560,9 @@ public class GameState extends BaseState implements GameBoardListener{
 	@Override
 	public void restartBoard(boolean forced) {
 		if(forced){
-			int blocksPerSide = Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()];
-			createNewBoard(blocksPerSide);
+			createNewBoard(-1);
+			//Remove the previous saved game from the preferences, if any
+			ProgNPrefs.getIns().saveCurrentGameState(false, null);
 			//Restart win streak counter to prevent cheating by restarting game before losing
 			ProgNPrefs.getIns().updateWinStreak(false);
 		}else{
@@ -582,23 +589,39 @@ public class GameState extends BaseState implements GameBoardListener{
 	
 	
 	/** Create a new random board*/
-	public void createNewBoard(int blocks){
-		if(blocks < 0)//if blocks is negative, this will have the same blocks #
-			mColorBoard.startRandomColorBoard();
-		else
+	private void createNewBoard(int blocks){
+		//if blocks is negative, this will have the same blocks #
+		if (mColorBoard == null){
+			if (blocks < 1) //if its 0 or -1 get the default size
+				blocks = Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()];
 			mColorBoard = new ColorBoard(blocks);
+		} else {
+			if(blocks < 1 || blocks == mColorBoard.getBlocksPerSide())
+				mColorBoard.randomize();
+			else
+				mColorBoard = new ColorBoard(blocks);
+		}
 		mColorBoard.setGameBoardListener(this);
-		mColorBoard.setDefaultMoveLimit();
 		
-		//remove the previous saved game from the preferences, if any
-		ProgNPrefs.getIns().saveCurrentGameState(false, null);
-		String currentBoard = mColorBoard.toString();
-		ProgNPrefs.getIns().saveNewBoard(true, currentBoard);
-		
-		trackGameStart(currentBoard);
+		onNewBoardStarted();
 	}
 	
+	/** Some devices take forever loading a board from the local storage.
+	 * This method creates a default board so players can play and most importantly
+	 * NOT CRASHING when loading their boards.*/
+	private void createDefaultBoard(){
+		if (mColorBoard == null){
+			mColorBoard = new ColorBoard(Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]);
+			mColorBoard.setGameBoardListener(this);
+		}
+	}
 	
+	private void onNewBoardStarted(){
+		//Store the newest board and start tracking the time needed to be resolved
+		String currentBoard = mColorBoard.toString();
+		ProgNPrefs.getIns().saveNewBoard(true, currentBoard);
+		trackGameStart(currentBoard);
+	}
 	
 	/** Get the color of the tile in the top-left corner
 	 * @return color as number*/
@@ -612,8 +635,4 @@ public class GameState extends BaseState implements GameBoardListener{
 		int lastIndex = mColorBoard.getBlocksPerSide()-1;
 		return mColorBoard.getMatrix()[lastIndex][lastIndex];
 	}
-	
-	public JSONObject getBoardAsJson(){
-		return mColorBoard.getCurrentState();
-	}	
 }

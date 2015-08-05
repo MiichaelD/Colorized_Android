@@ -278,12 +278,9 @@ public class ProgNPrefs {
 	/** get the saved game string*/
 	public String getSavedGame(){
 		String gameState = sp.getString(mContext.getString(R.string.key_board_saved), null);
-		
-		//if the gameState contains spaces, it is not encrypted
-		System.out.println("gameState to check: "+gameState);
+
 		try{
 			gameState = new String(MCrypt.getIns().decrypt(Const.HexStringToByte(gameState)));
-			System.out.println("gameState decrypted: "+gameState);
 			if(gameState.startsWith(MCrypt.AES_PREF)){
 				gameState = gameState.substring(4);
 				System.out.println("gameState: "+gameState);

@@ -87,7 +87,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
     
     @Override
 	public void surfaceCreated(SurfaceHolder holder) {
-		Const.v(Const.TAG,"SurfaceCreated ");
+		Const.v(GameView.class.getSimpleName(),"SurfaceCreated ");
 		canvas = null;
 		surfaceCreated=true;
 
@@ -96,7 +96,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
     
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int wi, int he) {
-		Const.v(Const.TAG, "SurfaceChanged: "+wi+"x"+he+" Ratio = "+((double) wi) / he);
+		Const.v(GameView.class.getSimpleName(), "SurfaceChanged: "+wi+"x"+he+" Ratio = "+((double) wi) / he);
 		GameView.width = wi; 
 		GameView.height = he;
 		ratio = ((float) width) / height;
@@ -117,7 +117,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
-		Const.v(Const.TAG, "surfaceDestroyed ");
+		Const.v(GameView.class.getSimpleName(), "surfaceDestroyed ");
 		surfaceCreated = false;
 		stopThread();
 	}
@@ -134,7 +134,8 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			StateMachine.getIns().draw(canvas, mPortrait);
 			
 		} catch (Exception e) {
-			Const.e(Const.TAG, "onDraw(canvas)"+e.getMessage());
+			Const.e(GameView.class.getSimpleName(), "onDraw(canvas): ");
+			e.printStackTrace();
 		}
 		
 	}
@@ -165,7 +166,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 						tDraw.join();
 					retry = false;
 				} catch (InterruptedException e) {
-					//Const.e(Const.TAG, "stopThread: " + e.getMessage());
+					//Const.e(GameView.class.getSimpleName(), "stopThread: " + e.getMessage());
 				}
 			}
 		}
@@ -188,7 +189,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 
 	/** Refresh the User Interface to show the updates*/
 	public final void refreshUI() {
-		//Const.v(Const.TAG,"Refreshing UI GameView");
+		//Const.v(GameView.class.getSimpleName(),"Refreshing UI");
 		canvas = null;
 		if (surfaceCreated && sh != null){
 			try {
@@ -203,7 +204,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			}	
 		}
 		else{
-			Const.e(Const.TAG,"Refreshing UI GameView CANCELLED because surface is not created");
+			Const.e(GameView.class.getSimpleName(),"Refreshing UI GameView CANCELLED because surface is not created");
 		}
 		canvas = null;
 	}

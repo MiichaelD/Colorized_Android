@@ -14,6 +14,10 @@ public class GcmReceiver extends WakefulBroadcastReceiver{
 		Const.i(TAG, "GcmReceiver got a push!");
 		ComponentName comp = new ComponentName(context.getPackageName(), GcmIntentService.class.getName());
         startWakefulService(context, (intent.setComponent(comp)));
-        setResultCode(Activity.RESULT_OK);
+        try{
+        	setResultCode(Activity.RESULT_OK);
+        }catch(Exception e){
+        	e.printStackTrace();
+        }
     }
 }

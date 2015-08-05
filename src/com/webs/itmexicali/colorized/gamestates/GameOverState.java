@@ -10,7 +10,6 @@ import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.drawcomps.DrawText;
 import com.webs.itmexicali.colorized.util.Const;
-import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -143,7 +142,7 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 	
 	private void restartGamePlay(){
 		GameActivity.instance.playMusic(true);
-		pGame.createNewBoard(Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]);
+		pGame.restartBoard(true);
 		StateMachine.getIns().popState();		
 	}
 	
