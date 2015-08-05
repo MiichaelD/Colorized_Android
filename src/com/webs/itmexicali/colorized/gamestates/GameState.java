@@ -1,6 +1,6 @@
 package com.webs.itmexicali.colorized.gamestates;
 
-import java.util.Scanner;
+import org.json.JSONObject;
 
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
@@ -36,8 +36,8 @@ public class GameState extends BaseState implements GameBoardListener{
 		/** Pass all the game match parameters to be processed
 		 * @param win if the player win this match
 		 * @param moves the number of moves needed
-		 * @param GameMode gamemode used in the game
-		 * @param boardSize the boardsize of game played {small,medium,large}*/
+		 * @param GameMode game mode used in the game
+		 * @param boardSize the board size of game played {small,medium,large}*/
 		public void onGameOver(boolean win, int moves, int gameMode, int boardSize);
 	}
 	
@@ -54,7 +54,6 @@ public class GameState extends BaseState implements GameBoardListener{
 	public float boardWidth, remainHeight, roundness;
 	
 	private String formated_moves_str = null, formated_moves_str_casual = null, moves_txt;
-	private int mov_lim = 0;
 
 	//font text size modifiers, this helps to change the Xfactor to texts
 	float ts0 = 1.0f;
@@ -158,8 +157,8 @@ public class GameState extends BaseState implements GameBoardListener{
 	private void registerButtonToColorize(final int i){
 		dbc.setOnActionListener(i, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-			if(mColorBoard.getCurrentColor() != i  &&//only if it's a different color
-					(getMoves() < mov_lim || mov_lim < 0) ){// and game has not finished
+			//only if it's a different color and game has not finished
+			if (!mColorBoard.isCurrentColor(i)  && mColorBoard.hasMovesRemaining() ){
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
@@ -188,13 +187,16 @@ public class GameState extends BaseState implements GameBoardListener{
 		//new Thread(new Runnable(){public void run(){
 			//check if the tutorial has been completed
 			if(ProgNPrefs.getIns().isTutorialCompleted()){
-				//if there is a gamestate saved, load it again
+				//if there is a game state saved, load it again
 				if(!ignoreSavedGame && ProgNPrefs.getIns().isGameSaved()){
-					//parse the gamestate
-					if(parseBoardFromString(ProgNPrefs.getIns().getSavedGame())){
-						Const.d("GameState","Finished parsing");
-						if(askToPlaySavedGame)
+					//parse the game state
+					String boardSave = ProgNPrefs.getIns().getSavedGame();
+					mColorBoard = ColorBoard.newBoardFromString(boardSave);
+					if(mColorBoard != null){
+						mColorBoard.setGameBoardListener(this);
+						if(askToPlaySavedGame){
 							showSavedGameDialog();
+						}
 					}
 				}
 			}
@@ -205,7 +207,7 @@ public class GameState extends BaseState implements GameBoardListener{
 			
 			if(mColorBoard == null){
 				createNewBoard(Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]);
-				setMoveLimit();
+				mColorBoard.setDefaultMoveLimit();
 			}
 
 		
@@ -215,12 +217,12 @@ public class GameState extends BaseState implements GameBoardListener{
 	void trackGameContinue(){
 		java.util.HashMap<String, Object> map = new java.util.HashMap<String, Object>();
 		map.put("BoardPlayed", ProgNPrefs.getIns().getLastBoardStarted());
-		map.put("BoardCompleted", getBoardAsString());
+		map.put("BoardCompleted", mColorBoard.toString());
 		map.put("BlocksPerSide", mColorBoard.getBlocksPerSide());
-		map.put("Difficulty", getBoardSize());
-		map.put("Moves", mColorBoard.getMoves());
-		map.put("MovesLimit", mov_lim);
-		map.put("GameMode", getGameMode());
+		map.put("Difficulty", mColorBoard.getSize());
+		map.put("Moves", mColorBoard.getMovesCount());
+		map.put("MovesLimit", mColorBoard.getMovesLimit());
+		map.put("GameMode", mColorBoard.getGameMode());
 		Tracking.shared().track("GameContinue",map);
 	}
 	
@@ -231,23 +233,23 @@ public class GameState extends BaseState implements GameBoardListener{
 		java.util.HashMap<String, Object> map = new java.util.HashMap<String, Object>();
 		map.put("BoardPlayed", currentBoard);
 		map.put("BlocksPerSide", mColorBoard.getBlocksPerSide());
-		map.put("Difficulty", getBoardSize());
-		map.put("Moves", mColorBoard.getMoves());
-		map.put("MovesLimit", mov_lim);
-		map.put("GameMode", getGameMode());
+		map.put("Difficulty", mColorBoard.getSize());
+		map.put("Moves", mColorBoard.getMovesCount());
+		map.put("MovesLimit", mColorBoard.getMovesLimit());
+		map.put("GameMode", mColorBoard.getGameMode());
 		Tracking.shared().track("NewGame", map);
 	}
 	
 	void trackGameOver(boolean win){
 		java.util.HashMap<String, Object> map = new java.util.HashMap<String, Object>();
 		map.put("Result", win);
-		map.put("Moves", getMoves());
+		map.put("Moves", mColorBoard.getMovesCount());
 		map.put("BoardPlayed", ProgNPrefs.getIns().getLastBoardStarted());
-		map.put("BoardCompleted", getBoardAsString());
+		map.put("BoardCompleted", mColorBoard.toString());
 		map.put("BlocksPerSide", mColorBoard.getBlocksPerSide());
-		map.put("Difficulty", getBoardSize());
-		map.put("MovesLimit", mov_lim);
-		map.put("GameMode", getGameMode());
+		map.put("Difficulty", mColorBoard.getSize());
+		map.put("MovesLimit", mColorBoard.getMovesLimit());
+		map.put("GameMode", mColorBoard.getGameMode());
 		Tracking.shared().track("GameFinished", map);
 	}
 	
@@ -344,11 +346,11 @@ public class GameState extends BaseState implements GameBoardListener{
 	
 	/** Draw the text on the canvas*/
 	public void drawText(Canvas canvas){
-		if(mov_lim < 0){
-			moves_txt = String.format(formated_moves_str_casual,mColorBoard.getMoves());
+		if(mColorBoard.getGameMode() == Const.CASUAL){
+			moves_txt = String.format(formated_moves_str_casual,mColorBoard.getMovesCount());
 		}
 		else{
-			moves_txt = String.format(formated_moves_str, mColorBoard.getMoves(), mov_lim);
+			moves_txt = String.format(formated_moves_str, mColorBoard.getMovesCount(), mColorBoard.getMovesLimit());
 		}
 
 		movesTextPaint.setTextScaleX(ts0);
@@ -409,7 +411,8 @@ public class GameState extends BaseState implements GameBoardListener{
 					}
 					Thread solver = new Thread(new Runnable(){
 						public void run(){
-							mov_lim = BoardSolver.getOptimalPath(mColorBoard);
+							int mov_lim = BoardSolver.getOptimalPath(mColorBoard);
+							mColorBoard.setTotalMoves(mov_lim);
 					}});
 					solver.setPriority(Thread.MAX_PRIORITY);
 					solver.start();
@@ -456,9 +459,8 @@ public class GameState extends BaseState implements GameBoardListener{
 		 * - the board is not completed & 
 		 * - our moves is less than limit | the limit is negative (we have no limit)
 		*/
-		int moves = getMoves();
-		if(moves > 0 && !isGameOver() && (mov_lim < 0 || moves < mov_lim)){
-			ProgNPrefs.getIns().saveCurrentGameState(true,getBoardAsString());
+		if(mColorBoard.isStarted() && !mColorBoard.isCompleted()){
+			ProgNPrefs.getIns().saveCurrentGameState(true,mColorBoard.toString());
 		}
 	}
 	
@@ -539,18 +541,11 @@ public class GameState extends BaseState implements GameBoardListener{
         ProgNPrefs.getIns().saveNewBoard(false, null);
 		
 		BaseState gameOver = BaseState.stateFactory(statesIDs.OVER);
-		((GameFinishedListener)gameOver).onGameOver(win, getMoves(), getGameMode(), getBoardSize() );
+		((GameFinishedListener)gameOver).onGameOver(win, mColorBoard.getMovesCount(), mColorBoard.getGameMode(), mColorBoard.getSize() );
 		StateMachine.getIns().pushState(gameOver);
 	}
 	
-	/** Set the move limit corresponding to the board size or set it to negative if the game
-	 * mode is CASUAL_MODE */
-	private void setMoveLimit(){
-		if(ProgNPrefs.getIns().getGameMode() == Const.CASUAL)
-			mov_lim = -1;
-		else 
-			mov_lim = Const.MOV_LIMS[ProgNPrefs.getIns().getDifficulty()];
-	}
+	
 	
 	
 	
@@ -564,8 +559,7 @@ public class GameState extends BaseState implements GameBoardListener{
 			//Restart win streak counter to prevent cheating by restarting game before losing
 			ProgNPrefs.getIns().updateWinStreak(false);
 		}else{
-			int moves = getMoves();
-			if(moves > 0 && !isGameOver() && (mov_lim < 0 || moves < mov_lim))
+			if(mColorBoard.isStarted() && !mColorBoard.isCompleted())
 				showRestartDialog();
 			else
 				restartBoard(true);
@@ -573,21 +567,17 @@ public class GameState extends BaseState implements GameBoardListener{
 	}
 	
 	@Override
-	public void onBoardFloodingFinished(boolean won) {
-		if (won){
-			GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
+	public void onBoardFloodingFinished(final boolean won) {
+		
+		GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
+			if (won){
 				GameActivity.instance.playSound(GameActivity.SoundType.WIN);
 				showGamOver(true);
-			}});
-			
-		}
-		else if(getMoves() >= mov_lim && mov_lim >= 0){
-			GameActivity.instance.runOnUiThread(new Runnable(){public void run(){
+			} else if (mColorBoard.isStarted() && !mColorBoard.hasMovesRemaining()){
 				GameActivity.instance.playSound(GameActivity.SoundType.LOSE);
 				showGamOver(false);
-			}});
-		}
-		
+			}
+		}});
 	}
 	
 	
@@ -598,48 +588,17 @@ public class GameState extends BaseState implements GameBoardListener{
 		else
 			mColorBoard = new ColorBoard(blocks);
 		mColorBoard.setGameBoardListener(this);
-		setMoveLimit();
+		mColorBoard.setDefaultMoveLimit();
 		
 		//remove the previous saved game from the preferences, if any
 		ProgNPrefs.getIns().saveCurrentGameState(false, null);
-		String currentBoard = getBoardAsString();
+		String currentBoard = mColorBoard.toString();
 		ProgNPrefs.getIns().saveNewBoard(true, currentBoard);
 		
 		trackGameStart(currentBoard);
 	}
 	
-	/** Given a string containing a saved ColorBoard state,
-	 * parse it to create a new game state identical */
-	public boolean  parseBoardFromString(String state){
-		Log.v("GameState","startingParsing");
-		if(state == null)
-			return false;
-		Scanner scanner = null;
-		try{
-			scanner = new Scanner(state);
-			mov_lim = scanner.nextInt();
-			int bps = scanner.nextInt();
-			int moves = scanner.nextInt();
-			int[][] board = new int[bps][bps];
-			for(int i =0;i<bps;i++)
-				for(int j=0;j<bps;j++)
-					board[i][j] = scanner.nextInt();
-			mColorBoard = new ColorBoard(bps, moves, board);
-			mColorBoard.setGameBoardListener(this);
-		}catch(Exception e){
-			if(scanner != null)
-				scanner.close();
-			
-			setMoveLimit();
-			
-			return false;
-		}
-		finally{
-			if(scanner != null)
-				scanner.close();
-		}
-		return true;
-	}
+	
 	
 	/** Get the color of the tile in the top-left corner
 	 * @return color as number*/
@@ -654,29 +613,7 @@ public class GameState extends BaseState implements GameBoardListener{
 		return mColorBoard.getMatrix()[lastIndex][lastIndex];
 	}
 	
-	/** The string representation of current game state
-	 * @return board representation*/
-	public String getBoardAsString(){
-		return mov_lim+" "+mColorBoard.toString();
-	}
-	
-	/** The number of moves (user interactions) in current game
-	 * @return number of moves*/
-	public int getMoves(){
-		return mColorBoard.getMoves();
-	}
-	
-	/** Check if the board is completed in one color
-	 * @return true if game is over, false if not */
-	public boolean isGameOver(){
-		return mColorBoard.allColorsFinished();
-	}
-	
-	public int getBoardSize(){
-		return mColorBoard.getSize();
-	}
-		
-	public int getGameMode(){
-		return mov_lim < 0 ? Const.CASUAL : Const.STEP;
-	}
+	public JSONObject getBoardAsJson(){
+		return mColorBoard.getCurrentState();
+	}	
 }

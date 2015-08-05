@@ -13,7 +13,7 @@ public class BoardSolver {
 	static int s_minMoves, s_currentMoves, s_numTries;
 	
 	public static int getOptimalPath(ColorBoard board){
-		s_currentMoves = board.getMoves();
+		s_currentMoves = board.getMovesCount();
 		s_minMoves = Integer.MAX_VALUE;
 		s_numTries = 0;
 		s_path = new LinkedList<String>();
@@ -82,7 +82,7 @@ class SolvingTree{
 				finished = false;
 				SolvingTree aux = new SolvingTree(node.m_board);
 				aux.m_board.colorize(i);
-				if(!wasProductiveChange(aux.m_board,m_board) || aux.m_board.getMoves() >= BoardSolver.s_minMoves){
+				if(!wasProductiveChange(aux.m_board,m_board) || aux.m_board.getMovesCount() >= BoardSolver.s_minMoves){
 					continue;
 				}
 				aux.m_parent = node;
@@ -90,7 +90,7 @@ class SolvingTree{
 				collection.push(aux);
 			}while(!node.m_board.allColorsFinished());
 			
-			if(finished && BoardSolver.s_minMoves >= node.m_board.getMoves()){
+			if(finished && BoardSolver.s_minMoves >= node.m_board.getMovesCount()){
 				savePath(node);
 //				uncomment if we are doing a breadth-first search (queue) to stop
 //				at the first ocurrence (it should be the best/shortest path)
@@ -119,14 +119,14 @@ class SolvingTree{
 				SolvingTree aux = new SolvingTree(node.m_board);
 				++BoardSolver.s_numTries;
 				aux.m_board.colorize(i);
-				if(aux.m_board.getMoves() >= BoardSolver.s_minMoves || !wasProductiveChange(aux.m_board,node.m_board)){
+				if(aux.m_board.getMovesCount() >= BoardSolver.s_minMoves || !wasProductiveChange(aux.m_board,node.m_board)){
 					continue;
 				}
 				aux.m_parent = node;
 				collection.offer(aux);
 			}while(!node.m_board.allColorsFinished());
 			
-			if(finished && BoardSolver.s_minMoves >= node.m_board.getMoves()){
+			if(finished && BoardSolver.s_minMoves >= node.m_board.getMovesCount()){
 				savePath(node);
 				collection.clear();
 			}
@@ -153,14 +153,14 @@ class SolvingTree{
 				SolvingTree aux = new SolvingTree(node.m_board);
 				aux.m_board.colorize(i);
 				++BoardSolver.s_numTries;
-				if(aux.m_board.getMoves() >= BoardSolver.s_minMoves || !wasProductiveChange(aux.m_board,node.m_board)){
+				if(aux.m_board.getMovesCount() >= BoardSolver.s_minMoves || !wasProductiveChange(aux.m_board,node.m_board)){
 					continue;
 				}
 				aux.m_parent = node;
 				collection.push(aux);
 			}while(!node.m_board.allColorsFinished());
 			
-			if(finished && BoardSolver.s_minMoves >= node.m_board.getMoves()){
+			if(finished && BoardSolver.s_minMoves >= node.m_board.getMovesCount()){
 				savePath(node);
 			}
 		}
@@ -182,7 +182,7 @@ class SolvingTree{
 	void addTreeNode(SolvingTree parent, ColorBoard board, int newColor){
 		SolvingTree aux = new SolvingTree(board);
 		aux.m_board.colorize(newColor);
-		if(!wasProductiveChange(aux.m_board,board) || aux.m_board.getMoves() >= BoardSolver.s_minMoves){
+		if(!wasProductiveChange(aux.m_board,board) || aux.m_board.getMovesCount() >= BoardSolver.s_minMoves){
 			return;
 		}
 		parent.m_children.add(aux);
@@ -203,14 +203,14 @@ class SolvingTree{
 			aux.addTreeNode(aux, aux.m_board, i);
 		}while(true);
 
-		if(finished && BoardSolver.s_minMoves >= aux.m_board.getMoves()){
+		if(finished && BoardSolver.s_minMoves >= aux.m_board.getMovesCount()){
 			savePath(aux);
 		}
 		parent.m_children.remove(aux);
 	}	
 	
 	private void savePath(SolvingTree node){
-		int i, moves = node.m_board.getMoves();
+		int i, moves = node.m_board.getMovesCount();
 		
 		if(BoardSolver.s_minMoves > moves){
 			BoardSolver.s_path.clear();
