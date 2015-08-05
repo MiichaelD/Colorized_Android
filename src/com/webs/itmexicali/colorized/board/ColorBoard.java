@@ -335,10 +335,23 @@ public class ColorBoard{
 	 * @return string formated as follows: "<b>i j []</b>",
 	 * where <b>i</b> is the number of blocks per side
 	 * <b>j</b> is the number of moves at current time and
-	 * <b>[]</b> is the representation of the board as a sucession of numbers*/
+	 * <b>[]</b> is the representation of the board as a succession of numbers*/
 	@Override
 	public String toString(){
-		return getCurrentState().toString();
+//		return getCurrentState().toString();
+		return getCurrentStateAsLegacyString();
+		
+	}
+	
+	private String getCurrentStateAsLegacyString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(m_movesLimit).append(' ');
+		sb.append(m_blocksPerSide).append(' ');
+		sb.append(m_movesCount.get());
+		for(int i=0;i<m_blocksPerSide;i++)
+			for(int k=0;k<m_blocksPerSide;k++)
+				sb.append(' ').append(m_colorMatrix[i][k]);
+		return sb.toString();
 	}
 	
 	private String getBoardRepresentation(){
@@ -354,7 +367,7 @@ public class ColorBoard{
 		try {
 			curState.put("blocks_per_side", m_blocksPerSide);
 			curState.put("moves_count", m_movesCount.get());
-			curState.put("moves_total", m_movesCount.get());
+			curState.put("moves_limit", m_movesLimit.get());
 			curState.put("board_matrix", getBoardRepresentation());
 			
 			//optionals
@@ -406,7 +419,7 @@ public class ColorBoard{
 		try {
 			int bps = object.getInt("blocks_per_side");
 			int moves = object.getInt("moves_count");
-			int mov_lim = object.getInt("moves_total");
+			int mov_lim = object.getInt("moves_limit");
 			String matrix = object.getString("board_matrix");
 			int[][] board = new int[bps][bps];
 			for(int i =0;i<bps;i++)
