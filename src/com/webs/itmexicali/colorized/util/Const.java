@@ -24,9 +24,9 @@ import android.view.WindowManager;
 public class Const {
 
 	//Debug variable
-	public final static boolean D = BuildConfig.DEBUG;
+	public final static boolean D = BuildConfig.DEBUG && false;
 	
-	public final static boolean CHEATS = D && true;
+	public final static boolean CHEATS = D ;
 	
 	//Tag for debugging
 	public final static String TAG = "Colorized";

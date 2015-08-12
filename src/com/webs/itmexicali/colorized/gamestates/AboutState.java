@@ -58,7 +58,7 @@ public class AboutState extends BaseState {
 		vSounds[4]	= GameActivity.instance.getString(R.string.about_sound_values_5);
 		vSounds[5]	= GameActivity.instance.getString(R.string.about_sound_values_6);
 		
-		vVersion = Const.getVersionName();
+		vVersion = Const.D ? Const.getVersionName()+"-Dbg" : Const.getVersionName();
 			
 		smallText = new TextPaint();
 		smallText.setColor(Color.WHITE);

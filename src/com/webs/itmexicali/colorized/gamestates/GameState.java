@@ -185,7 +185,6 @@ public class GameState extends BaseState implements GameBoardListener{
 			if (ProgNPrefs.getIns().isTutorialCompleted()){
 				//if there is a game state saved, load it again
 				if (!ignoreSavedGame && ProgNPrefs.getIns().isGameSaved()){
-					try { Thread.sleep(8000); } catch (InterruptedException e) {}
 					//parse the game state
 					String boardSave = ProgNPrefs.getIns().getSavedGame();
 					mColorBoard = ColorBoard.newBoardFromString(boardSave);
