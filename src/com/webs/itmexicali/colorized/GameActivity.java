@@ -27,6 +27,7 @@ import com.webs.itmexicali.colorized.gamestates.BaseState;
 import com.webs.itmexicali.colorized.gamestates.GameState;
 import com.webs.itmexicali.colorized.gamestates.GameState.GameFinishedListener;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
+import com.webs.itmexicali.colorized.board.Constants;
 import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.Log;
 import com.webs.itmexicali.colorized.util.Screen;
@@ -624,8 +625,7 @@ public boolean onGoogleShareRequested(String text){
     	ProgNPrefs.getIns().updateGameFinished(boardSize, gameMode, win);
     	
     	//Each 2 games, show Interstitial.
-		if( (ProgNPrefs.getIns().getGamesFinished(Const.TOTAL_SIZES) 
-				% Advertising.GAMEOVERS_TO_INTERSTITIAL) == 0)
+		if( (ProgNPrefs.getIns().getGamesFinished(Constants.TOTAL_SIZES) % Advertising.GAMEOVERS_TO_INTERSTITIAL) == 0)
 			GameActivity.instance.displayInterstitial();
 		else
 			GameActivity.instance.loadInterstitial();

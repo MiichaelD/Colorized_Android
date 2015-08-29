@@ -17,6 +17,7 @@ import com.google.android.gms.games.leaderboard.LeaderboardVariant;
 import com.google.android.gms.games.leaderboard.Leaderboards;
 import com.google.android.gms.games.leaderboard.Leaderboards.LoadPlayerScoreResult;
 import com.webs.itmexicali.colorized.GameActivity;
+import com.webs.itmexicali.colorized.board.Constants;
 import com.webs.itmexicali.colorized.R;
 
 public class GameStatsSync {
@@ -40,12 +41,12 @@ public class GameStatsSync {
 		
     	
     	//if the game is not casual, finish 1000 games in any board size
-    	if(gameMode != Const.CASUAL)
+    	if(gameMode != Constants.CASUAL)
     		incrementAchievement(gApiClient,1,R.string.achievement_not_just_anybody);
     			
     	
     	
-		if(!win || gameMode == Const.CASUAL)
+		if(!win || gameMode == Constants.CASUAL)
 			return;
 
 		
@@ -56,7 +57,7 @@ public class GameStatsSync {
 		
 		
 		switch(boardSize){
-		case Const.SMALL:
+		case Constants.SMALL:
 			//Win small board step mode  < 20 movs
 			if(moves < 20)
 				unlockAchievement(gApiClient, R.string.achievement_premature);
@@ -69,7 +70,7 @@ public class GameStatsSync {
 					R.string.achievement_small_teacher,
 					R.string.achievement_small_champion});
 			break;
-		case Const.MEDIUM:
+		case Constants.MEDIUM:
 			//Win medium board step mode  < 30 movs
 			if(moves < 30)
 				unlockAchievement(gApiClient, R.string.achievement_that_was_easy);
@@ -82,7 +83,7 @@ public class GameStatsSync {
 					R.string.achievement_pro,
 					R.string.achievement_champion});
 			break;
-		case Const.LARGE:
+		case Constants.LARGE:
 			//Win large board step mode  < 39 movs
 			if(moves < 39)
 				unlockAchievement(gApiClient, R.string.achievement_big_flood);
@@ -101,7 +102,7 @@ public class GameStatsSync {
 		
 		
 		checkStreakAchievements(gApiClient);
-		revealWonCountPerBoard(gApiClient, Const.TOTAL_SIZES);		
+		revealWonCountPerBoard(gApiClient, Constants.TOTAL_SIZES);		
 		updateLeaderboards(gApiClient,boardSize,true);
     }
 	
@@ -116,9 +117,9 @@ public class GameStatsSync {
 		// & syncAchievements() ) one EACH TIME THE GAME IS FINISHED AND ONE WHEN SYNC-ING
 		
 		//These achievements don't care of board sizes, gameModes or if the player won
-		if(ProgNPrefs.getIns().getGamesFinished(Const.TOTAL_SIZES) > 0)
+		if(ProgNPrefs.getIns().getGamesFinished(Constants.TOTAL_SIZES) > 0)
 			setAchievementSteps(gApiClient,
-				ProgNPrefs.getIns().getGamesFinished(Const.TOTAL_SIZES),
+				ProgNPrefs.getIns().getGamesFinished(Constants.TOTAL_SIZES),
 				new int[]{
 					R.string.achievement_bored,
 					R.string.achievement_really_bored,
@@ -126,16 +127,16 @@ public class GameStatsSync {
 		
     	
     	//if the game is not casual, finish 1000 games in any board size (sum of step mode finished counters)
-		int sum = ProgNPrefs.getIns().getGamesFinished(Const.SMALL)+
-				ProgNPrefs.getIns().getGamesFinished(Const.MEDIUM)+
-				ProgNPrefs.getIns().getGamesFinished(Const.LARGE);
+		int sum = ProgNPrefs.getIns().getGamesFinished(Constants.SMALL)+
+				ProgNPrefs.getIns().getGamesFinished(Constants.MEDIUM)+
+				ProgNPrefs.getIns().getGamesFinished(Constants.LARGE);
 		if( sum > 0)
 			setAchievementSteps(gApiClient, sum, R.string.achievement_not_just_anybody);    			
     	
 		
-		if(ProgNPrefs.getIns().getGamesWon(Const.TOTAL_SIZES) > 0)
+		if(ProgNPrefs.getIns().getGamesWon(Constants.TOTAL_SIZES) > 0)
 			setAchievementSteps(gApiClient,
-				ProgNPrefs.getIns().getGamesWon(Const.TOTAL_SIZES),
+				ProgNPrefs.getIns().getGamesWon(Constants.TOTAL_SIZES),
 				new int[]{
 					R.string.achievement_it_is_not_that_hard,//step mode win 5 games in any board size
 					R.string.achievement_getting_used_to_it, //step mode win 100 games in any board size
@@ -155,9 +156,9 @@ public class GameStatsSync {
 		
 		
 		//step mode win 10,50,100 games in small board size
-		if(ProgNPrefs.getIns().getGamesWon(Const.SMALL)>0)
+		if(ProgNPrefs.getIns().getGamesWon(Constants.SMALL)>0)
 			setAchievementSteps(gApiClient,
-				ProgNPrefs.getIns().getGamesWon(Const.SMALL),
+				ProgNPrefs.getIns().getGamesWon(Constants.SMALL),
 				new int[]{
 					R.string.achievement_small_amateur,	//step mode win 10 games in small board size
 					R.string.achievement_small_apprentice,//step mode win 20 games in small board size
@@ -167,9 +168,9 @@ public class GameStatsSync {
 		
 
 		//step mode win 10,50,100 games in medium board size
-		if(ProgNPrefs.getIns().getGamesWon(Const.MEDIUM)>0)
+		if(ProgNPrefs.getIns().getGamesWon(Constants.MEDIUM)>0)
 			setAchievementSteps(gApiClient,
-				ProgNPrefs.getIns().getGamesWon(Const.MEDIUM),
+				ProgNPrefs.getIns().getGamesWon(Constants.MEDIUM),
 				new int[]{
 					R.string.achievement_amateur,	//step mode win 10 games in medium board size
 					R.string.achievement_apprentice,//step mode win 20 games in medium board size
@@ -179,9 +180,9 @@ public class GameStatsSync {
 		
 		
 		//step mode win 10,50,100 games in large board size
-		if(ProgNPrefs.getIns().getGamesWon(Const.LARGE)>0)
+		if(ProgNPrefs.getIns().getGamesWon(Constants.LARGE)>0)
 			setAchievementSteps(gApiClient,
-				ProgNPrefs.getIns().getGamesWon(Const.LARGE),
+				ProgNPrefs.getIns().getGamesWon(Constants.LARGE),
 				new int[]{
 					R.string.achievement_big_amateur,	//step mode win 10 games in large board size
 					R.string.achievement_big_apprentice,//step mode win 20 games in large board size
@@ -197,7 +198,7 @@ public class GameStatsSync {
 
 		checkStreakAchievements(gApiClient);
 		revealFinishedCountAchievements(gApiClient);
-		revealWonCountPerBoard(gApiClient, Const.TOTAL_SIZES);
+		revealWonCountPerBoard(gApiClient, Constants.TOTAL_SIZES);
 		
 
 		compareAchievementsInfo(gApiClient);
@@ -245,8 +246,8 @@ public class GameStatsSync {
                 	  ProgNPrefs.getIns().setAppOpened(steps,true);
                   
                   //get the total of games finished counter (TO KEEP COUNTING THEM)
-                  else if(id.equals(not_just_anybody) && steps > ProgNPrefs.getIns().getGamesFinished(Const.TOTAL_SIZES))
-                	  ProgNPrefs.getIns().setGamesFinishedValue(Const.TOTAL_SIZES, steps, true);
+                  else if(id.equals(not_just_anybody) && steps > ProgNPrefs.getIns().getGamesFinished(Constants.TOTAL_SIZES))
+                	  ProgNPrefs.getIns().setGamesFinishedValue(Constants.TOTAL_SIZES, steps, true);
                   
                   Log.i(GameStatsSync.class.getSimpleName(),"Ach:"+name+",unlocked("+unlocked+(incremental?"), steps: "+steps+"/"+ach.getTotalSteps():")"));
                   //Log.d(GameStatsSync.class.getSimpleName(),"Ach:"+name+",img("+ach.getRevealedImageUrl()+") - "+ach.getUnlockedImageUrl());
@@ -363,7 +364,7 @@ public class GameStatsSync {
     /** Check if the finished counting achievements (Finish 32, 96, 192 games)
      * and reveal them if the previous one has already been unlocked*/
     public static void revealFinishedCountAchievements(GoogleApiClient gApiClient){
-    	int finished = ProgNPrefs.getIns().getGamesFinished(Const.TOTAL_SIZES);
+    	int finished = ProgNPrefs.getIns().getGamesFinished(Constants.TOTAL_SIZES);
     	if(finished > 95)
     		revealAchievement(gApiClient, R.string.achievement_a_lot_of_free_time);
     	else if (finished > 31)
@@ -377,35 +378,35 @@ public class GameStatsSync {
      * @param boardSize check for the specific boardsize index*/
     public static void revealWonCountPerBoard(GoogleApiClient gApiClient, int boardSize){
     	switch(boardSize){
-    	case Const.SMALL:
-    		if(ProgNPrefs.getIns().getGamesWon(Const.SMALL)>34)
+    	case Constants.SMALL:
+    		if(ProgNPrefs.getIns().getGamesWon(Constants.SMALL)>34)
 				return;
-			else if(ProgNPrefs.getIns().getGamesWon(Const.SMALL)>19)
+			else if(ProgNPrefs.getIns().getGamesWon(Constants.SMALL)>19)
 				revealAchievement(gApiClient, R.string.achievement_small_teacher);
-			else if(ProgNPrefs.getIns().getGamesWon(Const.SMALL)>9)
+			else if(ProgNPrefs.getIns().getGamesWon(Constants.SMALL)>9)
 				revealAchievement(gApiClient, R.string.achievement_small_apprentice); 
 			break;
-    	case Const.MEDIUM:
-    		if(ProgNPrefs.getIns().getGamesWon(Const.MEDIUM)>34)
+    	case Constants.MEDIUM:
+    		if(ProgNPrefs.getIns().getGamesWon(Constants.MEDIUM)>34)
     			return;
-    		else if(ProgNPrefs.getIns().getGamesWon(Const.MEDIUM)>19)
+    		else if(ProgNPrefs.getIns().getGamesWon(Constants.MEDIUM)>19)
     			revealAchievement(gApiClient, R.string.achievement_teacher);
-    		else if(ProgNPrefs.getIns().getGamesWon(Const.MEDIUM)>9)
+    		else if(ProgNPrefs.getIns().getGamesWon(Constants.MEDIUM)>9)
     			revealAchievement(gApiClient, R.string.achievement_apprentice);
     		break;
-    	case Const.LARGE:
-    		if(ProgNPrefs.getIns().getGamesWon(Const.LARGE)>34)
+    	case Constants.LARGE:
+    		if(ProgNPrefs.getIns().getGamesWon(Constants.LARGE)>34)
     			return;
-    		else if(ProgNPrefs.getIns().getGamesWon(Const.LARGE)>19)
+    		else if(ProgNPrefs.getIns().getGamesWon(Constants.LARGE)>19)
     			revealAchievement(gApiClient, R.string.achievement_big_teacher);
-    		else if(ProgNPrefs.getIns().getGamesWon(Const.LARGE)>9)
+    		else if(ProgNPrefs.getIns().getGamesWon(Constants.LARGE)>9)
     			revealAchievement(gApiClient, R.string.achievement_big_apprentice);
     		break;
-    	case Const.TOTAL_SIZES:
+    	case Constants.TOTAL_SIZES:
     	default:
-    		revealWonCountPerBoard(gApiClient,Const.SMALL);
-    		revealWonCountPerBoard(gApiClient,Const.MEDIUM);
-    		revealWonCountPerBoard(gApiClient,Const.LARGE);
+    		revealWonCountPerBoard(gApiClient,Constants.SMALL);
+    		revealWonCountPerBoard(gApiClient,Constants.MEDIUM);
+    		revealWonCountPerBoard(gApiClient,Constants.LARGE);
     		break;
     		
     	}
@@ -517,16 +518,16 @@ public class GameStatsSync {
  		   int id = 0;
 			
  		   switch(boardSize){
-			case Const.SMALL:
+			case Constants.SMALL:
 				id = R.string.leaderboard_small_board;
 				break;
-			case Const.MEDIUM:
+			case Constants.MEDIUM:
 				id = R.string.leaderboard_medium_board;
 				break;
-			case Const.LARGE:
+			case Constants.LARGE:
 				id = R.string.leaderboard_large_board;
 				break;
-			case Const.TOTAL_SIZES:
+			case Constants.TOTAL_SIZES:
 				id = R.string.leaderboard_all_board_sizes;
 				break;
 			default:
@@ -541,7 +542,7 @@ public class GameStatsSync {
 				//save on leaderboard game won counter for all boardSizes
 				Games.Leaderboards.submitScore(gApiClient, 
 						GameActivity.instance.getString(R.string.leaderboard_all_board_sizes),
-						ProgNPrefs.getIns().getGamesWon(Const.TOTAL_SIZES));
+						ProgNPrefs.getIns().getGamesWon(Constants.TOTAL_SIZES));
 			}
  	   }
     }

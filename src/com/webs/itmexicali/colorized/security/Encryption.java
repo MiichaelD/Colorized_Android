@@ -10,8 +10,6 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.webs.itmexicali.colorized.util.Const;
-
 import android.annotation.SuppressLint;
 
 public class Encryption {
@@ -101,7 +99,7 @@ public class Encryption {
 				System.out.println("Provider: "+i.getName()+",info:"+i.getInfo());
 			}
 			String st1 = Encryption.generateKey("boardSize");
-			String st2 = Encryption.generateKey("boardSize");//Const.generateKey("boardSize");
+			String st2 = Encryption.generateKey("boardSize");//Utils.generateKey("boardSize");
 			String st3 = Encryption.generateKey("boardsize");
 			System.out.println(st1);
 			System.out.println(st2);
@@ -113,17 +111,17 @@ public class Encryption {
 			
 			String toEncode = "AES:21 12 3 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 5 2 1 1 1 1 1 1 1 4 1 1 0 2";
 			System.out.println("toEncode: "+toEncode);
-			System.out.println("toEncode: "+Const.byteArrayToHexString(toEncode.getBytes()));
+			System.out.println("toEncode: "+Utils.byteArrayToHexString(toEncode.getBytes()));
 			
 			byte[] key = Encryption.generateKey("coloRized");
-			System.out.println("ourKey: "+Const.byteArrayToHexString(key));
+			System.out.println("ourKey: "+Utils.byteArrayToHexString(key));
 			System.out.println("ourKey: "+new String(key));
 			
 			byte[] encrypted = Encryption.encode(key, toEncode);
-			System.out.println("encrypted: "+Const.byteArrayToHexString(encrypted));
+			System.out.println("encrypted: "+Utils.byteArrayToHexString(encrypted));
 			
 			byte[] decrypted = Encryption.decode(key, encrypted);
-			System.out.println("decrypted: "+Const.byteArrayToHexString(decrypted));
+			System.out.println("decrypted: "+Utils.byteArrayToHexString(decrypted));
 			System.out.println("decrypted: "+new String(decrypted));
 			
 			

@@ -3,8 +3,9 @@ package com.webs.itmexicali.colorized.util;
 import java.util.HashMap;
 
 import com.webs.itmexicali.colorized.GameActivity;
-import com.webs.itmexicali.colorized.R;
+import com.webs.itmexicali.colorized.board.Constants;
 import com.webs.itmexicali.colorized.security.MCrypt;
+import com.webs.itmexicali.colorized.R;
 
 import ProtectedInt.ProtectedInt;
 import android.content.Context;
@@ -59,12 +60,12 @@ public class ProgNPrefs {
 		props.put("Music", playMusic);
 		props.put("Sfx", playSFX);
 		props.put("Mode", gMode.get());
-		props.put("ModeStr", Const.GAME_MODES[gMode.get()]);
+		props.put("ModeStr", Constants.GAME_MODES[gMode.get()]);
 		props.put("Difficulty", difficulty.get());
 		props.put("CurrentStreak", pCurrentStreak.get());
 		props.put("BestStreak", pBestStreak.get());
-		props.put("GamesWon", gWon[Const.TOTAL_SIZES].get());
-		props.put("GamesPlayed", gFinished[Const.TOTAL_SIZES].get());
+		props.put("GamesWon", gWon[Constants.TOTAL_SIZES].get());
+		props.put("GamesPlayed", gFinished[Constants.TOTAL_SIZES].get());
 		Tracking.shared().registerSuperProperties(props);
 	}
 	
@@ -78,43 +79,43 @@ public class ProgNPrefs {
 		showNotifs =getBool(R.string.key_notifications, true);
 		playSFX =	getBool(R.string.key_sfx,true);
 		
-		gMode =		getInt(R.string.key_game_mode, Const.STEP);
+		gMode =		getInt(R.string.key_game_mode, Constants.STEP);
 		difficulty= getInt(R.string.key_difficulty,0);
 		
 		pOpenedTimes	= getEncryptedInt(R.string.key_times_app_opened, -1, 0);
 		pCurrentStreak	= getEncryptedInt(R.string.key_current_win_streak, -1, 0);
 		pBestStreak		= getEncryptedInt(R.string.key_best_win_streak, -1, 0);
 		
-		gFinished = new ProtectedInt[Const.TOTAL_SIZES+1];
-		gWon =		new ProtectedInt[Const.TOTAL_SIZES+1];
+		gFinished = new ProtectedInt[Constants.TOTAL_SIZES+1];
+		gWon =		new ProtectedInt[Constants.TOTAL_SIZES+1];
 		
-		gFinished[Const.TOTAL_SIZES] =	new ProtectedInt();
-		gWon[Const.TOTAL_SIZES] =		new ProtectedInt();
+		gFinished[Constants.TOTAL_SIZES] =	new ProtectedInt();
+		gWon[Constants.TOTAL_SIZES] =		new ProtectedInt();
 		
-		int gFinTotal = gFinished[Const.TOTAL_SIZES].get();
-		int gWinTotal = gWon[Const.TOTAL_SIZES].get();
+		int gFinTotal = gFinished[Constants.TOTAL_SIZES].get();
+		int gWinTotal = gWon[Constants.TOTAL_SIZES].get();
 		
-		for(int i =0;i<Const.TOTAL_SIZES;i++){
+		for(int i =0;i<Constants.TOTAL_SIZES;i++){
 			gFinished[i] =	getEncryptedInt(finished_ids[i], i, 0);
 			gWon[i] =		getEncryptedInt(won_ids[i], i, 0);
 			
 			//last index of array is just a sum from previous array's values
-			gFinished[Const.TOTAL_SIZES].add(gFinished[i].get());
-			gWon[Const.TOTAL_SIZES].add(gWon[i].get());
+			gFinished[Constants.TOTAL_SIZES].add(gFinished[i].get());
+			gWon[Constants.TOTAL_SIZES].add(gWon[i].get());
 		}
 		
 		
-		gFinTotal = gFinished[Const.TOTAL_SIZES].get();
-		gWinTotal = gWon[Const.TOTAL_SIZES].get();
+		gFinTotal = gFinished[Constants.TOTAL_SIZES].get();
+		gWinTotal = gWon[Constants.TOTAL_SIZES].get();
 		
 		//check if we have a stored value greater than the derived one:
-		ProtectedInt temp = getEncryptedInt(finished_ids[Const.TOTAL_SIZES], -1, 0);
+		ProtectedInt temp = getEncryptedInt(finished_ids[Constants.TOTAL_SIZES], -1, 0);
 		if(gFinTotal < temp.get())
-			gFinished[Const.TOTAL_SIZES] = temp;
+			gFinished[Constants.TOTAL_SIZES] = temp;
 		
-		temp = getEncryptedInt(won_ids[Const.TOTAL_SIZES], -1, 0);
+		temp = getEncryptedInt(won_ids[Constants.TOTAL_SIZES], -1, 0);
 		if(gWinTotal < temp.get())
-			gWon[Const.TOTAL_SIZES] = temp;
+			gWon[Constants.TOTAL_SIZES] = temp;
 		
 		trackCurrentPrefs();
 		deleteUnnecessaryData();
@@ -280,7 +281,7 @@ public class ProgNPrefs {
 		String gameState = sp.getString(mContext.getString(R.string.key_board_saved), null);
 
 		try{
-			gameState = new String(MCrypt.getIns().decrypt(Const.HexStringToByte(gameState)));
+			gameState = MCrypt.getIns().decryptHexStringToString(gameState);
 			if(gameState.startsWith(MCrypt.AES_PREF)){
 				gameState = gameState.substring(4);
 				System.out.println("gameState: "+gameState);
@@ -301,7 +302,7 @@ public class ProgNPrefs {
 	public void saveCurrentGameState(boolean save, String gameState){
 		if(save){
 			//Encrypt the gameState
-			gameState = Const.byteArrayToHexString(MCrypt.getIns().encrypt(MCrypt.AES_PREF+gameState));
+			gameState = MCrypt.getIns().encryptToHexString(MCrypt.AES_PREF+gameState);
 			spEdit.putBoolean(mContext.getString(R.string.key_is_game_saved),true);
 		    spEdit.putString(mContext.getString(R.string.key_board_saved),gameState);
 		}
@@ -319,7 +320,7 @@ public class ProgNPrefs {
 		//if the gameState contains spaces, it is not encrypted
 		Log.i(this.getClass().getSimpleName(),"last board to check: "+lastBoard);
 		try{
-			lastBoard = new String(MCrypt.getIns().decrypt(Const.HexStringToByte(lastBoard)));
+			lastBoard = MCrypt.getIns().decryptHexStringToString(lastBoard);
 			Log.i(this.getClass().getSimpleName(),"last board decrypted: "+lastBoard);
 			if(lastBoard.startsWith(MCrypt.AES_PREF)){
 				lastBoard = lastBoard.substring(4);
@@ -341,7 +342,7 @@ public class ProgNPrefs {
 	public void saveNewBoard(boolean save, String gameState){
 		if(save){
 			//Encrypt the gameState
-			gameState = Const.byteArrayToHexString(MCrypt.getIns().encrypt(MCrypt.AES_PREF+gameState));
+			gameState = MCrypt.getIns().encryptToHexString(MCrypt.AES_PREF+gameState);
 			spEdit.putString(mContext.getString(R.string.key_last_new_board),gameState);
 		}
 		else{
@@ -406,7 +407,7 @@ public class ProgNPrefs {
 			}
 			
 			//decrypt the string and build a new one from the gotten bytes
-			aux = new String (MCrypt.getIns().decrypt(Const.HexStringToByte(aux)));
+			aux = MCrypt.getIns().decryptHexStringToString(aux);
 			
 			if(aux.startsWith(MCrypt.AES_PREF)){
 				aux = aux.substring(MCrypt.AES_PREF.length());
@@ -451,11 +452,11 @@ public class ProgNPrefs {
 	 * @param win true if this game was won or false if it was lost*/
 	public void updateGameFinished(int boardSize, int game_mode, Boolean win){		 
 		//increment the finished games value for given board size & Save
-		gFinished[Const.TOTAL_SIZES].increment();
-		saveFinishedGame(Const.TOTAL_SIZES);
+		gFinished[Constants.TOTAL_SIZES].increment();
+		saveFinishedGame(Constants.TOTAL_SIZES);
 		
 		//Only if the game played was of mode Step Challenge, save data to its board size
-		if(game_mode == Const.STEP){
+		if(game_mode == Constants.STEP){
 			updateWinStreak(win);
 			
 			//increment the finished games value for given board size index
@@ -465,8 +466,8 @@ public class ProgNPrefs {
 			
 			if(win){//if won, update wins count
 				//increment the finished games value for all board sizes
-				gWon[Const.TOTAL_SIZES].increment();
-				saveWonGame(Const.TOTAL_SIZES);
+				gWon[Constants.TOTAL_SIZES].increment();
+				saveWonGame(Constants.TOTAL_SIZES);
 				
 				//increment the won games value for given board size index
 				gWon[boardSize].increment();
@@ -561,15 +562,13 @@ public class ProgNPrefs {
 		String encrypted = null;
 		
 		switch(boardSize){
-		case Const.TOTAL_SIZES:
+		case Constants.TOTAL_SIZES:
 			//encrypt as AES_PREF+value
-			encrypted = Const.byteArrayToHexString(MCrypt.getIns().encrypt(
-					MCrypt.AES_PREF+gFinished[Const.TOTAL_SIZES].get()));
+			encrypted = MCrypt.getIns().encryptToHexString(MCrypt.AES_PREF+gFinished[Constants.TOTAL_SIZES].get());
 			break;
 		default:
 			//encrypt as AES_PREF+[boardSize]+<space>+value
-			encrypted = Const.byteArrayToHexString(MCrypt.getIns().encrypt(
-					MCrypt.AES_PREF+boardSize+" "+gFinished[boardSize].get()));
+			encrypted = MCrypt.getIns().encryptToHexString( MCrypt.AES_PREF+boardSize+" "+gFinished[boardSize].get());
 			break;
 		}
 		
@@ -589,15 +588,13 @@ public class ProgNPrefs {
 		String encrypted = null;
 		
 		switch(boardSize){
-		case Const.TOTAL_SIZES:
+		case Constants.TOTAL_SIZES:
 			//encrypt as AES_PREF+value
-			encrypted = Const.byteArrayToHexString(MCrypt.getIns().encrypt(
-					MCrypt.AES_PREF+gWon[Const.TOTAL_SIZES].get()));
+			encrypted = MCrypt.getIns().encryptToHexString(MCrypt.AES_PREF+gWon[Constants.TOTAL_SIZES].get());
 			break;
 		default:
 			//encrypt as AES_PREF+[boardSize]+<space>+value
-			encrypted = Const.byteArrayToHexString(MCrypt.getIns().encrypt(
-					MCrypt.AES_PREF+boardSize+" "+gWon[boardSize].get()));
+			encrypted = MCrypt.getIns().encryptToHexString(MCrypt.AES_PREF+boardSize+" "+gWon[boardSize].get());
 			break;
 		}
 		
@@ -616,7 +613,7 @@ public class ProgNPrefs {
 		// Set key for Won Games
 		MCrypt.getIns().setSecretKeyIndex(enc_key_index);
 		String key = mContext.getString(val_key_id);
-		String encrypted = Const.byteArrayToHexString(MCrypt.getIns().encrypt(toEncrypt));
+		String encrypted = MCrypt.getIns().encryptToHexString(toEncrypt);
 		
 		//store the value
 		spEdit.putString(key, encrypted);

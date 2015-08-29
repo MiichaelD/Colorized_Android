@@ -5,11 +5,11 @@ import com.webs.itmexicali.colorized.gamestates.GameState.GameFinishedListener;
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
 import com.webs.itmexicali.colorized.R;
+import com.webs.itmexicali.colorized.board.Constants;
 import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.drawcomps.DrawText;
-import com.webs.itmexicali.colorized.util.Const;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -324,9 +324,9 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 		bgColor = Color.DKGRAY;
 		bgColorText.setColor(Color.rgb(0, 162, 232));
 		
-		if(win && gameMode == Const.STEP && GameActivity.instance.isGAPPSavailable())
+		if(win && gameMode == Constants.STEP && GameActivity.instance.isGAPPSavailable())
 			pShareText = String.format(StateMachine.mContext.getString(R.string.game_over_share_txt),
-					StateMachine.mContext.getString(Const.BOARD_NAMES_IDS[boardSize]),moves);
+					StateMachine.mContext.getString(Constants.BOARD_NAMES_IDS[boardSize]),moves);
 		
 		((GameFinishedListener)GameActivity.instance).onGameOver(win,moves,gameMode,boardSize);
 	}

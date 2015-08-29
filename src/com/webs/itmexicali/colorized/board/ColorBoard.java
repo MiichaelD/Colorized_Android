@@ -6,7 +6,6 @@ import java.util.Scanner;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.Log;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
@@ -162,9 +161,9 @@ public class ColorBoard{
 	/** Get the size of the board.
 	 * @returns 0 for Small, 1 for Medium and 2 for Large sizes*/
 	public int getSize(){
-		//transform it from blocks/side to boardsize constant
-		int boardSize = m_blocksPerSide == Const.BOARD_SIZES[Const.SMALL]? Const.SMALL:
-			m_blocksPerSide == Const.BOARD_SIZES[Const.MEDIUM]? Const.MEDIUM:Const.LARGE;
+		//transform it from blocks/side to boardsize Constantsant
+		int boardSize = m_blocksPerSide == Constants.BOARD_SIZES[Constants.SMALL]? Constants.SMALL:
+			m_blocksPerSide == Constants.BOARD_SIZES[Constants.MEDIUM]? Constants.MEDIUM:Constants.LARGE;
 		return boardSize;
 	}
 	
@@ -174,7 +173,7 @@ public class ColorBoard{
 	public int getGameMode(){
 		int total = getMovesLimit();
 		//if the limit is negative or is the max value, we are playing casual
-		return (total < 0 || total == Integer.MAX_VALUE) ? Const.CASUAL : Const.STEP;
+		return (total < 0 || total == Integer.MAX_VALUE) ? Constants.CASUAL : Constants.STEP;
 	}
 	
 	// ------------------------ BOARD CONTROLS ------------------------------/
@@ -311,10 +310,10 @@ public class ColorBoard{
 	/** Set the move limit corresponding to the board size or set it to negative if the game
 	 * mode is CASUAL_MODE */
 	public void setDefaultMoveLimit(){
-		if(ProgNPrefs.getIns().getGameMode() == Const.CASUAL)
+		if(ProgNPrefs.getIns().getGameMode() == Constants.CASUAL)
 			m_movesLimit.set(-1);
 		else 
-			m_movesLimit.set(Const.MOV_LIMS[ProgNPrefs.getIns().getDifficulty()]);
+			m_movesLimit.set(Constants.MOV_LIMS[ProgNPrefs.getIns().getDifficulty()]);
 	}
 	
 	/** draw the board within the rect given*/

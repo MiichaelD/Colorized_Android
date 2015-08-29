@@ -8,7 +8,7 @@ import com.webs.itmexicali.colorized.R;
 import com.webs.itmexicali.colorized.board.GameBoardListener;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
-import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.board.Constants;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 import com.webs.itmexicali.colorized.util.Tracking;
 
@@ -48,7 +48,7 @@ public class OptionState extends BaseState {
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
-				ProgNPrefs.getIns().setGameMode(Const.STEP);
+				ProgNPrefs.getIns().setGameMode(Constants.STEP);
 				tryUpdateChangesNow(false);
 		}});
 		
@@ -57,7 +57,7 @@ public class OptionState extends BaseState {
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
-				ProgNPrefs.getIns().setGameMode(Const.CASUAL);
+				ProgNPrefs.getIns().setGameMode(Constants.CASUAL);
 				tryUpdateChangesNow(false);
 		}});
 

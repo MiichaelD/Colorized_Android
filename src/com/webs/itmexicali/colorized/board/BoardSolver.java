@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.Log;
 
 
@@ -225,7 +224,7 @@ class SolvingTree{
 			solution[i] = node.m_board.getCurrentColor();
 		}
 		for(i = moves-1 ; i >= 0; i--){
-			path.append(Const.COLOR_NAMES[solution[i]]);
+			path.append(Constants.COLOR_NAMES[solution[i]]);
 			path.append(' ');
 		}
 		BoardSolver.s_path.add(path.toString());

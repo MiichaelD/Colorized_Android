@@ -3,7 +3,7 @@ package com.webs.itmexicali.colorized.gamestates;
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
 import com.webs.itmexicali.colorized.R;
-import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.board.Constants;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
 import android.graphics.Canvas;
@@ -67,7 +67,7 @@ public class TutoState extends BaseState{
 		//Log.v("TutoState","canvas size: "+width+"x"+height);
 		pGame.resize(width, height);
 
-		float boardPixels = pGame.mRectFs[0].width()/Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()];
+		float boardPixels = pGame.mRectFs[0].width()/Constants.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()];
 		mRectFs[0] = new RectF(pGame.mRectFs[0].left, pGame.mRectFs[0].top, 
 				pGame.mRectFs[0].left + boardPixels, pGame.mRectFs[0].top + boardPixels);
 		

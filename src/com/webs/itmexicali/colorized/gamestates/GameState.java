@@ -9,6 +9,7 @@ import com.webs.itmexicali.colorized.board.GameBoardListener;
 import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
+import com.webs.itmexicali.colorized.board.Constants;
 import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.Screen;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
@@ -62,7 +63,7 @@ public class GameState extends BaseState implements GameBoardListener{
 	
 	GameState(statesIDs id){
 		super(id);
-		//Log.v("GameState","Constructor");
+		//Log.v("GameState","Constantsructor");
 		
 		movesTextPaint = new TextPaint(); // WHITE for TEXT
 		movesTextPaint.setColor(Color.WHITE);
@@ -354,7 +355,7 @@ public class GameState extends BaseState implements GameBoardListener{
 	public void drawText(Canvas canvas){
 		if(mColorBoard == null) return;
 		
-		if(mColorBoard.getGameMode() == Const.CASUAL){
+		if(mColorBoard.getGameMode() == Constants.CASUAL){
 			moves_txt = String.format(formated_moves_str_casual,mColorBoard.getMovesCount());
 		}
 		else{
@@ -483,7 +484,7 @@ public class GameState extends BaseState implements GameBoardListener{
 		
 	    GameActivity.instance.runOnUiThread(new Runnable(){
 			public void run(){
-				//Use the Builder class for convenient dialog construction
+				//Use the Builder class for convenient dialog Constantsruction
 				new AlertDialog.Builder(GameActivity.instance)
 				.setMessage(R.string.saved_game_confirmation)
 				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
@@ -511,7 +512,7 @@ public class GameState extends BaseState implements GameBoardListener{
 	
 	/** Ask for confirmation if player wants to start a new board*/
 	public void showRestartDialog(){		
-		//Use the Builder class for convenient dialog construction
+		//Use the Builder class for convenient dialog Constantsruction
 		GameActivity.instance.runOnUiThread(new Runnable(){
 			public void run(){
 				new AlertDialog.Builder(GameActivity.instance)
@@ -542,7 +543,7 @@ public class GameState extends BaseState implements GameBoardListener{
 	/** Display dialog informing that the game is over and restart again
 	 * @param win if true, show congratulations text, else show condolences*/
 	public void showGamOver(final boolean win){
-		Log.d(Const.TAG,"GameOver winning = "+win);
+		Log.d(GameState.class.getSimpleName(),"GameOver winning = "+win);
 		trackGameOver(win);
         
         //remove the previous saved game and last new board from the preferences, if any
@@ -563,7 +564,7 @@ public class GameState extends BaseState implements GameBoardListener{
 	@Override
 	public void restartBoard(boolean forced) {
 		if(forced){
-			createNewBoard(Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]);
+			createNewBoard(Constants.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]);
 			//Remove the previous saved game from the preferences, if any
 			ProgNPrefs.getIns().saveCurrentGameState(false, null);
 			//Restart win streak counter to prevent cheating by restarting game before losing
@@ -596,12 +597,12 @@ public class GameState extends BaseState implements GameBoardListener{
 		//if blocks is negative, this will have the same blocks #
 		if (mColorBoard == null){
 			if (blocks < 1) //if its 0 or -1 get the default size
-				blocks = Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()];
+				blocks = Constants.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()];
 			mColorBoard = new ColorBoard(blocks);
 		} else {
 			//if we try to create a new board with default size but the size has changed, assign new size
-			if (blocks < 1 && mColorBoard.getBlocksPerSide() != Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]){
-				blocks = Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()];
+			if (blocks < 1 && mColorBoard.getBlocksPerSide() != Constants.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]){
+				blocks = Constants.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()];
 			}
 			//create a new board with same size.
 			if(blocks < 1 || blocks == mColorBoard.getBlocksPerSide() )
@@ -619,7 +620,7 @@ public class GameState extends BaseState implements GameBoardListener{
 	 * NOT CRASHING when loading their boards.*/
 	private void createDefaultBoard(){
 		if (mColorBoard == null){
-			mColorBoard = new ColorBoard(Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]);
+			mColorBoard = new ColorBoard(Constants.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]);
 			mColorBoard.setGameBoardListener(this);
 		}
 	}

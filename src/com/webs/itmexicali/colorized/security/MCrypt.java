@@ -8,8 +8,6 @@ import javax.crypto.NoSuchPaddingException;
 //import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.webs.itmexicali.colorized.util.Const;
-
 /** Encrypt / Decrypt Between Android, PC-JAVA and PHP and vice-versa
  * https://github.com/serpro/Android-PHP-Encrypt-Decrypt
  * https://github.com/MiichaelD/Android-PHP-Encrypt-Decrypt*/
@@ -80,6 +78,19 @@ public class MCrypt {
     	keyIndex = MAIN_IND;
     }
 
+    public String encryptToHexString(String text){
+    	return Utils.byteArrayToHexString(encrypt(text));
+    }
+    
+    public byte[] encrypt(String text){
+    	try{
+    		return encrypt(text.getBytes(charset));
+    	}catch(UnsupportedEncodingException e){
+    		return encrypt(text.getBytes());
+    	}
+    }
+    
+
     public byte[] encrypt(byte[] text){
         if(!pEncrypt)
         	return text;
@@ -96,6 +107,22 @@ public class MCrypt {
             e.printStackTrace();
         }
         return encrypted;
+    }
+    
+    public String decryptHexStringToString(String hexString){
+    	return new String(decryptHexString(hexString));
+    }
+    
+    public byte[] decryptHexString(String hexString){
+    	return decrypt(Utils.HexStringToByte(hexString));
+    }
+    
+    public byte[] decrypt(String code){
+    	try{
+    		return decrypt(code.getBytes(charset));
+    	}catch(UnsupportedEncodingException e){
+    		return decrypt(code.getBytes());
+    	}
     }
 
     public byte[] decrypt(byte[] code){
@@ -117,22 +144,6 @@ public class MCrypt {
         return decrypted;
     }
     
-    public byte[] encrypt(String text){
-    	try{
-    		return encrypt(text.getBytes(charset));
-    	}catch(UnsupportedEncodingException e){
-    		return encrypt(text.getBytes());
-    	}
-    }
-    
-    public byte[] decrypt(String code){
-    	try{
-    		return decrypt(code.getBytes(charset));
-    	}catch(UnsupportedEncodingException e){
-    		return decrypt(code.getBytes());
-    	}
-    }
-    
     public static void main(String []args){
 		try {
 			MCrypt mc= new MCrypt();
@@ -143,13 +154,13 @@ public class MCrypt {
 			
 			String toEncode = "AES:21 12 3 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 5 2 1 1 1 1 1 1 1 4 1 1 0 2";
 			System.out.println("toEncode: "+toEncode);
-			System.out.println("toEncode: "+Const.byteArrayToHexString(toEncode.getBytes()));
+			System.out.println("toEncode: "+Utils.byteArrayToHexString(toEncode.getBytes()));
 			
 			byte[] encrypted = mc.encrypt(toEncode);
-			System.out.println("encrypted: "+Const.byteArrayToHexString(encrypted));
+			System.out.println("encrypted: "+Utils.byteArrayToHexString(encrypted));
 			
 			byte[] decrypted = mc.decrypt(encrypted);
-			System.out.println("decrypted: "+Const.byteArrayToHexString(decrypted));
+			System.out.println("decrypted: "+Utils.byteArrayToHexString(decrypted));
 			System.out.println("decrypted: "+new String(decrypted));
 			
 		} catch (Exception e) {
