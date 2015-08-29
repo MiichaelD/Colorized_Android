@@ -427,7 +427,7 @@ public class GameStatsSync {
     			R.string.leaderboard_large_board,
     			R.string.leaderboard_all_board_sizes};
     	
-    	for(int i =0; i<ids.length;i++){
+    	for(int i =0; i<ids.length && GameActivity.instance != null; i++){
     		
     		final String lboardID = GameActivity.instance.getString(ids[i]);
     		final int lboardNumber = i;

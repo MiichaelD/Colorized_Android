@@ -414,29 +414,20 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	public void onSignInFailed() {
 		// Show sign-in button on main menu
 		updateCurrentState();
-		
 		mPlayerName = null;
 	}
 
 	@Override
     public void onSignInSucceeded() {
 		Player player = Games.Players.getCurrentPlayer(getApiClient());
-		
         // Show sign-out button on main menu
-
         // Show "you are signed in" message on win screen, with no sign in button.
-
         // Set the greeting appropriately on main menu
-        
 		// Sync data between local  and google games services saves
 		GameStatsSync.syncLeaderboardsScores(getApiClient(), true);
 		GameStatsSync.syncAchievements(getApiClient());
-        
-		updateCurrentState();
 		
 		// We also want to keep track of how many times the user has signed in
-
-		
 		if (player!=null){
 			//subscribe for push notifications only when player has signed in 
 			//using his google account.
@@ -446,17 +437,20 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 					p_subscribeForPush= true;
 			}
 			
+			Const.v(GameActivity.class.getSimpleName(), "onSignInSucceeded tracking player properties");
 			//track the player info
 	    	Tracking.shared().onPlayerIdUpdated(player.getPlayerId());
     		Tracking.shared().setPlayerProperty("$name", player.getDisplayName());
-    		Tracking.shared().setPlayerProperty("player title", player.getTitle());
-    		Tracking.shared().setPlayerProperty("player level", Integer.toString(player.getLevelInfo().getCurrentLevel().getLevelNumber()));
+    		Tracking.shared().setPlayerProperty("google_title", player.getTitle());
+    		Tracking.shared().setPlayerProperty("google_level", Integer.toString(player.getLevelInfo().getCurrentLevel().getLevelNumber()));
 	    	if (player.hasHiResImage())
 	    		Tracking.shared().setPlayerProperty("image", player.getHiResImageUrl());
 	    	if (player.hasIconImage())
 	    		Tracking.shared().setPlayerProperty("icon", player.getIconImageUrl());
-        	
+	    	Tracking.shared().track("onSignIn", null);
 		}
+		
+		updateCurrentState(); //let main state grab the players name
 		
 		if(mActivityToShow == ACHIEVEMENTS_AFTER_SIGNIN){
 			onShowAchievementsRequested();
@@ -502,7 +496,8 @@ public boolean onGoogleShareRequested(String text){
 
 		   //with this flag, we ensure that when we open again our app, it doesn't show the sharing intent screen
 		   shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
-	      startActivityForResult(shareIntent, Const.RC_SHARE);
+	       startActivityForResult(shareIntent, Const.RC_SHARE);
+	       Tracking.shared().onShare("Google");
            return true;
        } else {
 	       showAlert(getString(R.string.share_not_available));
@@ -570,6 +565,7 @@ public boolean onGoogleShareRequested(String text){
 		        })
 		        .build();
 		    feedDialog.show();
+		    Tracking.shared().onShare("Facebook");
 		}
 	   return true;
    }
@@ -578,6 +574,7 @@ public boolean onGoogleShareRequested(String text){
 	 * @return true if Achievements were shown*/
 	public boolean onShowAchievementsRequested() {
         if (isSignedIn()) {
+			Tracking.shared().track("Achievements", null);
         	startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), Const.RC_UNUSED);
         	return true;
         } else {
@@ -594,6 +591,7 @@ public boolean onGoogleShareRequested(String text){
 	 * @return true if Leaderboards were shown*/
     public boolean onShowLeaderboardsRequested() {
     	if (isSignedIn()) {
+			Tracking.shared().track("Leaderboards", null);
         	startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(getApiClient()), Const.RC_UNUSED);
             return true;
         } else {

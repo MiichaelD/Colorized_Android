@@ -28,7 +28,11 @@ public class Tracking {
   		// set user id, this can be different ID from event id, but meh!
   		// that will be used for people analytics. You must set this explicitly in order
         // to dispatch people data.
-  		m_mixpanel.getPeople().identify(m_mixpanel.getDistinctId()); 
+  		String currentId = m_mixpanel.getDistinctId();
+  		String currentPlayerId = m_mixpanel.getPeople().getDistinctId();
+		Const.i(Tracking.class.getSimpleName(), "Init - current eventId = "+currentId+", playerId = "+currentPlayerId);
+		if (currentPlayerId == null)
+			m_mixpanel.getPeople().identify(currentId); 
         // People analytics must be identified separately from event analytics.
         // The data-sets are separate, and may have different unique keys (distinct_id).
         // We recommend using the same distinct_id value for a given user in both,
@@ -40,7 +44,7 @@ public class Tracking {
   		
   		props.clear();
   		props.put("Last Run", System.currentTimeMillis());
-  		m_mixpanel.registerSuperPropertiesOnceMap(props);
+  		m_mixpanel.registerSuperPropertiesMap(props);
 	}
 	
 	/** Get the tracking service.
@@ -76,8 +80,19 @@ public class Tracking {
 	}
 	
 	public void onPlayerIdUpdated(String playerId){
+		String Id = m_mixpanel.getDistinctId();
+		String PlayerId = m_mixpanel.getPeople().getDistinctId();
+		Const.i(Tracking.class.getSimpleName(), "current eventId = "+Id+", playerId = "+PlayerId);
 		m_mixpanel.alias(playerId, null);
+		// so my thought was that as long as we have identified the player, all the tracking events
+		// were going to appear in this profile, and I was going to keep using the default event-distinct_id 
+		// so that I could notice every different device the player has used. But what really happens is that
+		// the events are linked to the device, but not to the player (weird).
+		m_mixpanel.identify(playerId); // this is the Event (device specific) not updating.
 		m_mixpanel.getPeople().identify(playerId);
+		Id = m_mixpanel.getDistinctId();
+		PlayerId = m_mixpanel.getPeople().getDistinctId();
+		Const.i(Tracking.class.getSimpleName(), "new eventId = "+Id+", playerId = "+PlayerId);
 		
 		setPlayerProperty("user_id", playerId);
 		incrementPlayerProperty("Signed in", 1);
@@ -136,6 +151,12 @@ public class Tracking {
 		Map<String, Object> props = new HashMap<String, Object>();
 		props.put("locale", locale);
 		registerSuperProperties(props);
+	}
+
+	public void onShare(String socialNetwork){
+		Map<String, Object> props = new HashMap<String, Object>();
+		props.put("social_net", socialNetwork);
+		track("share",props);
 	}
 	/* GameActivity 	OK
 	 * GameState        OK

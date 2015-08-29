@@ -24,7 +24,7 @@ import android.view.WindowManager;
 public class Const {
 
 	//Debug variable
-	public final static boolean D = BuildConfig.DEBUG && false;
+	public final static boolean D = BuildConfig.DEBUG;
 	
 	public final static boolean CHEATS = D ;
 	

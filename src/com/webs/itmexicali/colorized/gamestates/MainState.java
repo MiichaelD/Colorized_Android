@@ -95,7 +95,6 @@ public class MainState extends BaseState {
 		//LEADERboards
 		dbc.setOnActionListener(4, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				Tracking.shared().track("Leaderboards", null);
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				
@@ -105,7 +104,6 @@ public class MainState extends BaseState {
 		//Achievements
 		dbc.setOnActionListener(5, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener(){
 			@Override public void onActionPerformed() {
-				Tracking.shared().track("Achievements", null);
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 				

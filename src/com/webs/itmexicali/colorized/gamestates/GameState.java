@@ -187,14 +187,17 @@ public class GameState extends BaseState implements GameBoardListener{
 				if (!ignoreSavedGame && ProgNPrefs.getIns().isGameSaved()){
 					//parse the game state
 					String boardSave = ProgNPrefs.getIns().getSavedGame();
+					ProgNPrefs.getIns().saveCurrentGameState(false, null);
 					mColorBoard = ColorBoard.newBoardFromString(boardSave);
 					if(mColorBoard != null){
 						mColorBoard.setGameBoardListener(this);
 						if(askToPlaySavedGame){
 							showSavedGameDialog();
 						}
+						return;
 					}
 				}
+				onNewBoardStarted();
 			}
 			else{
 				//show the tutorial state
@@ -559,7 +562,7 @@ public class GameState extends BaseState implements GameBoardListener{
 	@Override
 	public void restartBoard(boolean forced) {
 		if(forced){
-			createNewBoard(-1);
+			createNewBoard(Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]);
 			//Remove the previous saved game from the preferences, if any
 			ProgNPrefs.getIns().saveCurrentGameState(false, null);
 			//Restart win streak counter to prevent cheating by restarting game before losing
@@ -595,9 +598,14 @@ public class GameState extends BaseState implements GameBoardListener{
 				blocks = Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()];
 			mColorBoard = new ColorBoard(blocks);
 		} else {
-			if(blocks < 1 || blocks == mColorBoard.getBlocksPerSide())
+			//if we try to create a new board with default size but the size has changed, assign new size
+			if (blocks < 1 && mColorBoard.getBlocksPerSide() != Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()]){
+				blocks = Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()];
+			}
+			//create a new board with same size.
+			if(blocks < 1 || blocks == mColorBoard.getBlocksPerSide() )
 				mColorBoard.randomize();
-			else
+			else // create a new board with different size
 				mColorBoard = new ColorBoard(blocks);
 		}
 		mColorBoard.setGameBoardListener(this);
