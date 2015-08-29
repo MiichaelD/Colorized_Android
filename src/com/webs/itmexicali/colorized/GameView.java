@@ -3,7 +3,7 @@ package com.webs.itmexicali.colorized;
 import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
 import com.webs.itmexicali.colorized.gamestates.BaseState;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
-import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.Log;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -87,7 +87,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
     
     @Override
 	public void surfaceCreated(SurfaceHolder holder) {
-		Const.v(GameView.class.getSimpleName(),"SurfaceCreated ");
+		Log.v(GameView.class.getSimpleName(),"SurfaceCreated ");
 		canvas = null;
 		surfaceCreated=true;
 
@@ -96,7 +96,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
     
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int wi, int he) {
-		Const.v(GameView.class.getSimpleName(), "SurfaceChanged: "+wi+"x"+he+" Ratio = "+((double) wi) / he);
+		Log.v(GameView.class.getSimpleName(), "SurfaceChanged: "+wi+"x"+he+" Ratio = "+((double) wi) / he);
 		GameView.width = wi; 
 		GameView.height = he;
 		ratio = ((float) width) / height;
@@ -117,7 +117,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
-		Const.v(GameView.class.getSimpleName(), "surfaceDestroyed ");
+		Log.v(GameView.class.getSimpleName(), "surfaceDestroyed ");
 		surfaceCreated = false;
 		stopThread();
 	}
@@ -134,7 +134,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			StateMachine.getIns().draw(canvas, mPortrait);
 			
 		} catch (Exception e) {
-			Const.e(GameView.class.getSimpleName(), "onDraw(canvas): ");
+			Log.e(GameView.class.getSimpleName(), "onDraw(canvas): ");
 			e.printStackTrace();
 		}
 		
@@ -145,7 +145,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	 * There is no other thread running  and
 	 * The SurfaceView has been created */
 	public final void startThread(){
-		Const.v(GameView.class.getName(), "Starting Thread" );
+		Log.v(GameView.class.getName(), "Starting Thread" );
 		if(run == false){
 			tDraw = new Thread(this);
 			tDraw.setPriority(Thread.MAX_PRIORITY);
@@ -156,7 +156,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 	
 	/** Stop any thread in charge of refreshing the UI*/
 	public final void stopThread(){
-		Const.v(GameView.class.getName(), "Stoping Thread" );
+		Log.v(GameView.class.getName(), "Stoping Thread" );
 		if(run){
 			run = false;
 			boolean retry = true;
@@ -166,7 +166,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 						tDraw.join();
 					retry = false;
 				} catch (InterruptedException e) {
-					//Const.e(GameView.class.getSimpleName(), "stopThread: " + e.getMessage());
+					//Log.e(GameView.class.getSimpleName(), "stopThread: " + e.getMessage());
 				}
 			}
 		}
@@ -181,7 +181,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 				Thread.sleep(drawSleep);
 				//Long t = System.currentTimeMillis();
 				refreshUI();
-				//Const.d("Draw","Time painting: "+(System.currentTimeMillis()-t));
+				//Log.d("Draw","Time painting: "+(System.currentTimeMillis()-t));
 			} catch (InterruptedException e) { }
 		}
 	}
@@ -189,7 +189,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 
 	/** Refresh the User Interface to show the updates*/
 	public final void refreshUI() {
-		//Const.v(GameView.class.getSimpleName(),"Refreshing UI");
+		//Log.v(GameView.class.getSimpleName(),"Refreshing UI");
 		canvas = null;
 		if (surfaceCreated && sh != null){
 			try {
@@ -204,7 +204,7 @@ public class GameView extends SurfaceView implements Callback, Runnable{
 			}	
 		}
 		else{
-			Const.e(GameView.class.getSimpleName(),"Refreshing UI GameView CANCELLED because surface is not created");
+			Log.e(GameView.class.getSimpleName(),"Refreshing UI GameView CANCELLED because surface is not created");
 		}
 		canvas = null;
 	}

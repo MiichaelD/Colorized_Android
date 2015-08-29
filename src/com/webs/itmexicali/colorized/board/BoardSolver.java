@@ -5,6 +5,7 @@ import java.util.Queue;
 import java.util.Stack;
 
 import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.Log;
 
 
 public class BoardSolver {
@@ -17,13 +18,13 @@ public class BoardSolver {
 		s_minMoves = Integer.MAX_VALUE;
 		s_numTries = 0;
 		s_path = new LinkedList<String>();
-		Const.v(BoardSolver.class.getSimpleName(),"Solving board: "+board.toString());
+		Log.v(BoardSolver.class.getSimpleName(),"Solving board: "+board.toString());
 		
 		SolvingTree solver = new SolvingTree(board);
 		
 		long startT = System.currentTimeMillis();
 		solver.solveIterativelyDepthFirst();
-		Const.i(BoardSolver.class.getSimpleName(),"Iterative DepthFirst time: "+(System.currentTimeMillis()-startT));
+		Log.i(BoardSolver.class.getSimpleName(),"Iterative DepthFirst time: "+(System.currentTimeMillis()-startT));
 		solver.printTree();
 		
 //		s_minMoves = Integer.MAX_VALUE;
@@ -31,7 +32,7 @@ public class BoardSolver {
 //		solver = new SolvingTree(board);
 //		startT = System.currentTimeMillis();
 //		solver.solveIterativelyBreadthFirst();
-//		Const.i(BoardSolver.class.getSimpleName(),"Iterative BreadthFirst time: "+(System.currentTimeMillis()-startT));
+//		Log.i(BoardSolver.class.getSimpleName(),"Iterative BreadthFirst time: "+(System.currentTimeMillis()-startT));
 //		solver.printTree();
 		
 
@@ -39,7 +40,7 @@ public class BoardSolver {
 //		s_path = new LinkedList<String>();
 //		startT = System.currentTimeMillis();
 //		solver.solveRecursively();
-//		Const.i(BoardSolver.class.getSimpleName(),"Recursive time: "+(System.currentTimeMillis()-startT));
+//		Log.i(BoardSolver.class.getSimpleName(),"Recursive time: "+(System.currentTimeMillis()-startT));
 //		solver.printTree();
 		
 		return s_minMoves;
@@ -240,9 +241,9 @@ class SolvingTree{
 	public void printTree(){
 		LinkedList<String> paths = BoardSolver.s_path;
 		
-		Const.i(BoardSolver.class.getSimpleName(),"COMPLETE PATHS: "+paths.size()+" - minMoves:"+BoardSolver.s_minMoves+", number of tries: "+BoardSolver.s_numTries);
+		Log.i(BoardSolver.class.getSimpleName(),"COMPLETE PATHS: "+paths.size()+" - minMoves:"+BoardSolver.s_minMoves+", number of tries: "+BoardSolver.s_numTries);
 		for(String path : paths){
-			Const.i(BoardSolver.class.getSimpleName(),"\t"+path);
+			Log.i(BoardSolver.class.getSimpleName(),"\t"+path);
 		}
 	}
 }

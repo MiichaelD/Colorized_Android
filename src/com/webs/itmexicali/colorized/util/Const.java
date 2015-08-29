@@ -8,17 +8,9 @@ import java.io.IOException;
 import com.webs.itmexicali.colorized.BuildConfig;
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.R;
-
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.os.Build;
-import android.util.Log;
-import android.view.View;
-import android.view.WindowManager;
 
 /** Class containing constants and static methods accessible across the app*/ 
 public class Const {
@@ -58,56 +50,6 @@ public class Const {
     
     /** Request codes we use when invoking an external activity*/
     public static final int RC_RESOLVE = 5000, RC_UNUSED = 5001, RC_SHARE=7427;
-    
-    //Log\.([a-z]) -> Const.$1
-    /** Android logging, only prints out if debug variable is set to true*/
-    public static void v(String tag, String msg){
-    	if(D)Log.v(tag, msg);
-    }
-    
-    public static void d(String tag, String msg){
-    	if(D)Log.d(tag, msg);
-    }
-    
-    public static void i(String tag, String msg){
-    	if(D)Log.i(tag, msg);
-    }
-    
-    public static void w(String tag, String msg){
-    	if(D)Log.w(tag, msg);
-    }
-    
-    public static void e(String tag, String msg){
-    	if(D)Log.e(tag, msg);
-    }
-    
-    
-    
-    /** Hide Action Bar in devices that support it */
-	@SuppressLint("InlinedApi")
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	public static void setFullScreen(Activity ac){
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			ac.getActionBar().hide();
-			
-			try{
-
-				View decorView = ac.getWindow().getDecorView();
-				// Hide both the navigation bar and the status bar.
-				// SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as
-				// a general rule, you should design your app to hide the status bar whenever you
-				// hide the navigation bar.
-				int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
-						View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-		
-				decorView.setSystemUiVisibility(uiOptions);
-			}catch(NoSuchMethodError e){ /* some devices have not defined this method*/}
-		}
-		
-		ac.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN ,
-		WindowManager.LayoutParams.FLAG_FULLSCREEN);
-	}
-	
 	
 	/** Read from file.
 	 * @param fileName the file to read from*/

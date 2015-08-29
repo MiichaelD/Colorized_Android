@@ -248,9 +248,9 @@ public class GameStatsSync {
                   else if(id.equals(not_just_anybody) && steps > ProgNPrefs.getIns().getGamesFinished(Const.TOTAL_SIZES))
                 	  ProgNPrefs.getIns().setGamesFinishedValue(Const.TOTAL_SIZES, steps, true);
                   
-                  Const.i(GameStatsSync.class.getSimpleName(),"Ach:"+name+",unlocked("+unlocked+(incremental?"), steps: "+steps+"/"+ach.getTotalSteps():")"));
-                  //Const.d(GameStatsSync.class.getSimpleName(),"Ach:"+name+",img("+ach.getRevealedImageUrl()+") - "+ach.getUnlockedImageUrl());
-                  //Const.d(GameStatsSync.class.getSimpleName(),"Ach:"+name+",img("+ach.getRevealedImageUri()+") - "+ach.getUnlockedImageUri());
+                  Log.i(GameStatsSync.class.getSimpleName(),"Ach:"+name+",unlocked("+unlocked+(incremental?"), steps: "+steps+"/"+ach.getTotalSteps():")"));
+                  //Log.d(GameStatsSync.class.getSimpleName(),"Ach:"+name+",img("+ach.getRevealedImageUrl()+") - "+ach.getUnlockedImageUrl());
+                  //Log.d(GameStatsSync.class.getSimpleName(),"Ach:"+name+",img("+ach.getRevealedImageUri()+") - "+ach.getUnlockedImageUri());
                   //System.out.println("EMPTYLINE");
                   
                }
@@ -504,8 +504,8 @@ public class GameStatsSync {
 		   incrementChangesAndNotifyOnce();
 		   ProgNPrefs.getIns().setGamesWonValue(bNumber, score, true);
 	   }
-	   Const.d(GameStatsSync.class.getSimpleName(),"Leaderboard '"+bNumber+"' Score: Google-"+score+" == Local-"+local+" - changes: "+sChanges);
-	   //Const.d(GameStatsSync.class.getSimpleName(),"Tiempo en ejecucion "+bNumber+": "+(System.currentTimeMillis()-tTime));
+	   Log.d(GameStatsSync.class.getSimpleName(),"Leaderboard '"+bNumber+"' Score: Google-"+score+" == Local-"+local+" - changes: "+sChanges);
+	   //Log.d(GameStatsSync.class.getSimpleName(),"Tiempo en ejecucion "+bNumber+": "+(System.currentTimeMillis()-tTime));
     }
     
     

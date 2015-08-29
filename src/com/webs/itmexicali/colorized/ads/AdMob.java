@@ -8,7 +8,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
-import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.Log;
 
 public class AdMob extends Advertising{
 
@@ -37,12 +37,12 @@ public class AdMob extends Advertising{
         AdMobView.setAdListener(new AdListener() {
         	@Override
     		public void onAdOpened() {// Save app state before going to the ad overlay.
-    			Const.d(Const.TAG,"AdView - Opened");
+    			Log.d(this.getClass().getSimpleName(),"AdView - Opened");
     			AdMobView.setVisibility(View.GONE);
     		}
     		@Override
     		public void onAdFailedToLoad(int errorCode){
-    			Const.d(Const.TAG,"AdView - FailedToLoad = "+errorCode);
+    			Log.d(this.getClass().getSimpleName(),"AdView - FailedToLoad = "+errorCode);
     			AdMobView.setVisibility(View.GONE);
     		}
     		@Override
@@ -75,11 +75,11 @@ public class AdMob extends Advertising{
 
 	@Override
 	public void showInterstitial() {
-		Const.i(this.getClass().getSimpleName(),"ShowingInterstitials ");
+		Log.i(this.getClass().getSimpleName(),"ShowingInterstitials ");
 		if (interstitial.isLoaded())
 			interstitial.show();
 		else
-			Const.w(this.getClass().getSimpleName(),"Interstitial not loaded");		
+			Log.w(this.getClass().getSimpleName(),"Interstitial not loaded");		
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.Log;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 
 import ProtectedInt.ProtectedInt;
@@ -214,7 +215,7 @@ public class ColorBoard{
 				m_colorCounter[m_colorMatrix[i][j]]++;
 		
 		for(i = 0; i < NUMBER_OF_COLORS ; i++){
-//			Const.i("ColorBoard", "Color "+ i+" count: "+m_colorCounter[i]);
+//			Log.i("ColorBoard", "Color "+ i+" count: "+m_colorCounter[i]);
 			if(m_colorCounter[i] == 0)
 				addFinishedColor(i);
 			else
@@ -393,7 +394,7 @@ public class ColorBoard{
 			JSONObject object = new JSONObject(state);
 			return newBoardFromJson(object);
 		}catch(Exception e){
-			Const.v(ColorBoard.class.getSimpleName(), "Parsing board as Json failed. continuing to parse it as a regular string");
+			Log.v(ColorBoard.class.getSimpleName(), "Parsing board as Json failed. continuing to parse it as a regular string");
 		}
 		
 		Scanner scanner = null;
@@ -436,7 +437,7 @@ public class ColorBoard{
 			ColorBoard colorBoard = new ColorBoard(bps, moves, mov_lim, board);
 			return colorBoard;
 		} catch (JSONException e) {
-			Const.e(ColorBoard.class.getSimpleName(),"Error parsing game from Json");
+			Log.e(ColorBoard.class.getSimpleName(),"Error parsing game from Json");
 			e.printStackTrace();
 		}
 		return null;

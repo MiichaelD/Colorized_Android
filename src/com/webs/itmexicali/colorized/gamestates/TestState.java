@@ -1,6 +1,6 @@
 package com.webs.itmexicali.colorized.gamestates;
 
-import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.Log;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -49,7 +49,7 @@ public TestState(statesIDs id) {
 		switch (action) {
 		case MotionEvent.ACTION_DOWN:
 		case MotionEvent.ACTION_POINTER_DOWN:
-			Const.d(TestState.class.getSimpleName(),"touchID:"+pointerId+",touchIndx"+pointerIndex+
+			Log.d(TestState.class.getSimpleName(),"touchID:"+pointerId+",touchIndx"+pointerIndex+
 					"=("+event.getX(pointerIndex)+","+event.getY(pointerIndex)+")");
 			clicks[pointerId] = true;
 			clickX[pointerId] = event.getX(pointerIndex);
@@ -59,7 +59,7 @@ public TestState(statesIDs id) {
 		case MotionEvent.ACTION_UP:
 		case MotionEvent.ACTION_POINTER_UP:
 		case MotionEvent.ACTION_CANCEL:
-			Const.w(TestState.class.getSimpleName(),"relID:"+pointerId+",relIndx"+pointerIndex+
+			Log.w(TestState.class.getSimpleName(),"relID:"+pointerId+",relIndx"+pointerIndex+
 					"=("+event.getX(pointerIndex)+","+event.getY(pointerIndex)+")");
 			clicks[pointerId] = false;
 			clickX[pointerId] = clickY[pointerIndex] = -1f;
@@ -69,7 +69,7 @@ public TestState(statesIDs id) {
 			for (int i = 0; i < pointerCount; i++) {
 				pointerIndex = i;
 				pointerId = event.getPointerId(pointerIndex);
-				Const.i(TestState.class.getSimpleName(),"moveID:"+pointerId+",moveIndx"+pointerIndex+
+				Log.i(TestState.class.getSimpleName(),"moveID:"+pointerId+",moveIndx"+pointerIndex+
 						"=("+event.getX(pointerIndex)+","+event.getY(pointerIndex)+")");
 	
 				clickX[pointerId] = event.getX(pointerIndex);

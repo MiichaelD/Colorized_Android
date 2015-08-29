@@ -30,7 +30,7 @@ public class Tracking {
         // to dispatch people data.
   		String currentId = m_mixpanel.getDistinctId();
   		String currentPlayerId = m_mixpanel.getPeople().getDistinctId();
-		Const.i(Tracking.class.getSimpleName(), "Init - current eventId = "+currentId+", playerId = "+currentPlayerId);
+		Log.i(Tracking.class.getSimpleName(), "Init - current eventId = "+currentId+", playerId = "+currentPlayerId);
 		if (currentPlayerId == null)
 			m_mixpanel.getPeople().identify(currentId); 
         // People analytics must be identified separately from event analytics.
@@ -82,7 +82,7 @@ public class Tracking {
 	public void onPlayerIdUpdated(String playerId){
 		String Id = m_mixpanel.getDistinctId();
 		String PlayerId = m_mixpanel.getPeople().getDistinctId();
-		Const.i(Tracking.class.getSimpleName(), "current eventId = "+Id+", playerId = "+PlayerId);
+		Log.i(Tracking.class.getSimpleName(), "current eventId = "+Id+", playerId = "+PlayerId);
 		m_mixpanel.alias(playerId, null);
 		// so my thought was that as long as we have identified the player, all the tracking events
 		// were going to appear in this profile, and I was going to keep using the default event-distinct_id 
@@ -92,7 +92,7 @@ public class Tracking {
 		m_mixpanel.getPeople().identify(playerId);
 		Id = m_mixpanel.getDistinctId();
 		PlayerId = m_mixpanel.getPeople().getDistinctId();
-		Const.i(Tracking.class.getSimpleName(), "new eventId = "+Id+", playerId = "+PlayerId);
+		Log.i(Tracking.class.getSimpleName(), "new eventId = "+Id+", playerId = "+PlayerId);
 		
 		setPlayerProperty("user_id", playerId);
 		incrementPlayerProperty("Signed in", 1);

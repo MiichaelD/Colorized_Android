@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
-import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.Log;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -67,7 +67,7 @@ public class StateMachine {
 	
 	/** Push a new state to start interacting with it*/
 	public void pushState(BaseState.statesIDs id){
-		Const.i(StateMachine.class.getSimpleName(),"pushState by ID: "+id);
+		Log.i(StateMachine.class.getSimpleName(),"pushState by ID: "+id);
 		
 		if(checkStateIsInList(id))
 			return;
@@ -78,7 +78,7 @@ public class StateMachine {
 	
 	/** Push a new state object to start interacting with it*/
 	public void pushState(BaseState bs){
-		Const.i(StateMachine.class.getSimpleName(),"pushState by Object Reference");
+		Log.i(StateMachine.class.getSimpleName(),"pushState by Object Reference");
 		
 		if(checkStateIsInList(bs.getID()))
 			return;
@@ -105,7 +105,7 @@ public class StateMachine {
 		BaseState bs = null;
 		while(it.hasNext()){
 			bs = it.next();
-			//Const.v(StateMachine.class.getSimpleName(),"States: "+bs.getID());
+			//Log.v(StateMachine.class.getSimpleName(),"States: "+bs.getID());
 			if(bs.mID == id)
 				return true;
 		}

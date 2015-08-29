@@ -28,6 +28,8 @@ import com.webs.itmexicali.colorized.gamestates.GameState;
 import com.webs.itmexicali.colorized.gamestates.GameState.GameFinishedListener;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
 import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.Log;
+import com.webs.itmexicali.colorized.util.Screen;
 import com.webs.itmexicali.colorized.util.GameStatsSync;
 import com.webs.itmexicali.colorized.util.Notifier;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
@@ -65,12 +67,12 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Const.v(GameActivity.class.getSimpleName(),"onCreate()");
+		Log.v(GameActivity.class.getSimpleName(),"onCreate()");
 		enableDebugLog(Const.D);
 		instance = this;
 		
 		//run on FullScreen with no Action and Navigation Bars
-		Const.setFullScreen(this);
+		Screen.setFullScreen(this);
 		
 		//Keep screen on
 	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -107,7 +109,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	public void onSurfaceChanged(float width, float height){
         //buttonSI.setPadding((int)(8*width/16), (int)(38*height/48), 0, 0);
 		if(getIntent().getExtras() != null && getIntent().getExtras().getBoolean(Notifier.DIRECT_TO_GAME)){
-			Const.i("GameActivity", Notifier.DIRECT_TO_GAME + " from getIntent().getExtras()");
+			Log.i("GameActivity", Notifier.DIRECT_TO_GAME + " from getIntent().getExtras()");
 			GameState gameState = (GameState) BaseState.stateFactory(BaseState.statesIDs.GAME);
 			gameState.setAskToPlaySavedGame(false);
 			StateMachine.getIns().pushState(gameState);
@@ -162,7 +164,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	/** Load Interstitial ads, some ads-services like airPush
 	 * needs to call SmartWallAds before showing them*/
 	public void loadInterstitial(){
-		Const.d(this.getLocalClassName(),"Loading interstitial");
+		Log.d(this.getLocalClassName(),"Loading interstitial");
 		if(pAds != null)
 			pAds.loadInterstitial();
 	}
@@ -171,7 +173,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 
 	/** Invoke displayInterstitial() when you are ready to display an interstitial.*/
 	public void displayInterstitial() {
-		Const.d(this.getLocalClassName(),"Displaying interstitial");
+		Log.d(this.getLocalClassName(),"Displaying interstitial");
 		if(pAds != null)
 			pAds.showInterstitial();
 	}
@@ -180,7 +182,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	@Override
 	public void onStart(){
 		super.onStart();
-		Const.v(GameActivity.class.getSimpleName(),"onStart()");
+		Log.v(GameActivity.class.getSimpleName(),"onStart()");
 		
 		startMusicPlayer();
 	}
@@ -188,11 +190,11 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	@Override
 	public void onResume(){
 		super.onResume();
-		Const.v(GameActivity.class.getSimpleName(),"onResume()");
+		Log.v(GameActivity.class.getSimpleName(),"onResume()");
 		updateCurrentState(); // in case we sign-out from GPS Achievements/Leaderboards UI
 		
 		//keep sticky full immersive screen in case we lost it
-		Const.setFullScreen(this);
+		Screen.setFullScreen(this);
 		
 		if(pAds != null)
 			pAds.onResume();
@@ -210,7 +212,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	@Override
 	public void onPause(){
 		super.onPause();
-		Const.v(GameActivity.class.getSimpleName(),"onPause()");
+		Log.v(GameActivity.class.getSimpleName(),"onPause()");
 		
 		if(pAds != null)
 			pAds.onPause();
@@ -228,7 +230,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	@Override
 	public void onStop(){
 		//release resources of the media player and delete it
-		Const.v(GameActivity.class.getSimpleName(),"onStop()");
+		Log.v(GameActivity.class.getSimpleName(),"onStop()");
 
 		uiHelper.onStop();
 		
@@ -240,7 +242,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	
 	@Override
 	public void onDestroy(){
-		Const.v(GameActivity.class.getSimpleName(),"onDestroy()");
+		Log.v(GameActivity.class.getSimpleName(),"onDestroy()");
 		
 		uiHelper.onDestroy();
 		super.onDestroy();
@@ -249,7 +251,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 	    super.onSaveInstanceState(outState);
-		Const.v(GameActivity.class.getSimpleName(),"onSaveInstanceState()");
+		Log.v(GameActivity.class.getSimpleName(),"onSaveInstanceState()");
 	    uiHelper.onSaveInstanceState(outState);
 	}
 	
@@ -279,14 +281,14 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		})
 		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) {// dismiss menu
-               Const.setFullScreen(GameActivity.this);
+               Screen.setFullScreen(GameActivity.this);
                playMusic(true);
            }
 		})
 		.setOnCancelListener(new DialogInterface.OnCancelListener() {
 			@Override
 			public void onCancel(DialogInterface arg0) {
-				Const.setFullScreen(GameActivity.this);
+				Screen.setFullScreen(GameActivity.this);
 	            playMusic(true);
 			}
 		})
@@ -380,7 +382,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		uiHelper.onActivityResult(requestCode, resultCode, intent, new FacebookDialog.Callback() {
 	        @Override
 	        public void onError(FacebookDialog.PendingCall pendingCall, Exception error, Bundle data) {
-	            Const.e(GameActivity.class.getSimpleName(), String.format("Error: %s", error.toString()));
+	            Log.e(GameActivity.class.getSimpleName(), String.format("Error: %s", error.toString()));
 				GameStatsSync.revealAchievement(getApiClient(), R.string.achievement_sharing_is_good);
 	        }
 
@@ -391,7 +393,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	        	boolean didCancel = FacebookDialog.getNativeDialogDidComplete(data);
 	        	String completionGesture = FacebookDialog.getNativeDialogCompletionGesture(data);
 	        	String postId = FacebookDialog.getNativeDialogPostId(data);
-				Const.d(GameActivity.class.getSimpleName(),"onFbShare didCancel="+didCancel+
+				Log.d(GameActivity.class.getSimpleName(),"onFbShare didCancel="+didCancel+
 						",completionGesture="+completionGesture+", postID="+postId);
 	        }
 	    });
@@ -400,7 +402,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		if(requestCode == Const.RC_SHARE) {
 			if(resultCode == RESULT_OK) {
 				GameStatsSync.unlockAchievement(getApiClient(), R.string.achievement_sharing_is_good);
-				Const.d(GameActivity.class.getSimpleName(),"onGoogleShare Successful");
+				Log.d(GameActivity.class.getSimpleName(),"onGoogleShare Successful");
 			}
 			else
 				GameStatsSync.revealAchievement(getApiClient(), R.string.achievement_sharing_is_good);
@@ -437,7 +439,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 					p_subscribeForPush= true;
 			}
 			
-			Const.v(GameActivity.class.getSimpleName(), "onSignInSucceeded tracking player properties");
+			Log.v(GameActivity.class.getSimpleName(), "onSignInSucceeded tracking player properties");
 			//track the player info
 	    	Tracking.shared().onPlayerIdUpdated(player.getPlayerId());
     		Tracking.shared().setPlayerProperty("$name", player.getDisplayName());
@@ -477,7 +479,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		            	mPlayerName = sb.toString();
 		            }
 		        }
-		        Const.d(GameActivity.class.getSimpleName(),"User: "+mPlayerName);
+		        Log.d(GameActivity.class.getSimpleName(),"User: "+mPlayerName);
 			}
 		}
         return mPlayerName;
@@ -486,7 +488,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	/** Try to launch the Google+ share dialog*/
    @SuppressLint("InlinedApi")
 public boolean onGoogleShareRequested(String text){
-	   Const.d(GameActivity.class.getSimpleName(),"Launch the Google+ share.");
+	   Log.d(GameActivity.class.getSimpleName(),"Launch the Google+ share.");
 	   if (isSignedIn()) {        	
 		   Intent shareIntent = new com.google.android.gms.plus.PlusShare.Builder(this)
 	          .setType("text/plain")
@@ -545,20 +547,20 @@ public boolean onGoogleShareRequested(String text){
 		                    final String postId = values.getString("post_id");
 		                    if (postId != null) {
 		                    	//Posted correctly
-		                    	Const.d(GameActivity.class.getSimpleName(),"onShare Successful thru webDialog");
+		                    	Log.d(GameActivity.class.getSimpleName(),"onShare Successful thru webDialog");
 		        				GameStatsSync.unlockAchievement(getApiClient(), R.string.achievement_sharing_is_good);
 		                    } else {
 		                        // User clicked the Cancel button
-		                    	Const.d(GameActivity.class.getSimpleName(),"onShare Cancelled thru webDialog");
+		                    	Log.d(GameActivity.class.getSimpleName(),"onShare Cancelled thru webDialog");
 		        				GameStatsSync.revealAchievement(getApiClient(), R.string.achievement_sharing_is_good);
 		                    }
 		                } else if (error instanceof FacebookOperationCanceledException) {
 		                    // User clicked the "x" button
-	                    	Const.d(GameActivity.class.getSimpleName(),"onShare clicked X from webDialog");
+	                    	Log.d(GameActivity.class.getSimpleName(),"onShare clicked X from webDialog");
 		    				GameStatsSync.revealAchievement(getApiClient(), R.string.achievement_sharing_is_good);
 		                } else {
 		                    // Generic, ex: network error
-	                    	Const.d(GameActivity.class.getSimpleName(),"onShare error on webDialog: "+error.getStackTrace());
+	                    	Log.d(GameActivity.class.getSimpleName(),"onShare error on webDialog: "+error.getStackTrace());
 		    				GameStatsSync.revealAchievement(getApiClient(), R.string.achievement_sharing_is_good);
 		                }
 		            }
@@ -636,7 +638,7 @@ public boolean onGoogleShareRequested(String text){
    public void onSignInButtonClicked() {
 	   if(isSignedIn()||getApiClient().isConnecting()||getApiClient().isConnected())
 		   return;
-	   Const.d(GameActivity.class.getSimpleName(),"onSignInButtonClicked()");
+	   Log.d(GameActivity.class.getSimpleName(),"onSignInButtonClicked()");
 	   mPlayerName = null;
        beginUserInitiatedSignIn();
    }

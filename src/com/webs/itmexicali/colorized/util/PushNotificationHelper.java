@@ -45,7 +45,7 @@ public class PushNotificationHelper {
 		   String regId = sp.getString(REG_ID, null);
 		   
 		   if(regId == null){
-		        Const.v(this.getClass().getSimpleName(), "Registro GCM no encontrado.");
+		        Log.v(this.getClass().getSimpleName(), "Registro GCM no encontrado.");
 		        return null;
 		   }
 		    
@@ -58,21 +58,21 @@ public class PushNotificationHelper {
 			    expirationDate = sdf.format(new Date(expirationTime));
 		    }
 		    
-		    Const.v(TAG, "Registro GCM encontrado (usuario="+registeredUser+
+		    Log.v(TAG, "Registro GCM encontrado (usuario="+registeredUser+
 		    		", version="+registeredVersion+", expira="+expirationDate+")");
 		    
 		    int currentVersion = Const.getVersionCode();
 		    
 		    if (registeredVersion < currentVersion){
-		    	Const.v(TAG, "Registro de version anterior de la aplicación.");
+		    	Log.v(TAG, "Registro de version anterior de la aplicación.");
 		        return null;
 		    }
 		    else if (System.currentTimeMillis() > expirationTime) {
-		    	Const.v(TAG, "Registro GCM expirado.");
+		    	Log.v(TAG, "Registro GCM expirado.");
 		        return null;
 		    }
 		    else if (!m_userId.toString().equals(registeredUser)) {
-		    	Const.v(TAG, "Registro con diferente nombre de usuario.");
+		    	Log.v(TAG, "Registro con diferente nombre de usuario.");
 		        return null;
 		    }
 		    
@@ -121,11 +121,11 @@ public class PushNotificationHelper {
 		try {
 			ServerCom request = ServerCom.shared();
 			String response = request.getResponse(request.openConnection(ServerCom.Method.POST, SERVER_URL, properties));
-			Const.i(TAG, "Response from server saving id: "+response);
+			Log.i(TAG, "Response from server saving id: "+response);
 			saved = response.equals("Registration: 1");
 			ProgNPrefs.getIns().getSharedPrefsEditor().putBoolean(SAVED_ONLINE, saved).commit();
 		} catch (Exception e) {
-			Const.e(TAG, "Error sending registration id to local server: ");
+			Log.e(TAG, "Error sending registration id to local server: ");
 			e.printStackTrace();
 		}
 		return saved;
@@ -142,7 +142,7 @@ public class PushNotificationHelper {
                
                //Register in GCM servers
                String regId = m_gcm.register(SENDER_ID);
-               Const.v(TAG, "Registered in GCM: registration_id=" + regId);
+               Log.v(TAG, "Registered in GCM: registration_id=" + regId);
 
                //Send register id to our server
                boolean registered = sendIdToServer(params[0], regId);
@@ -152,7 +152,7 @@ public class PushNotificationHelper {
             	   setRegistrationId(params[0], regId);
                }
            } catch (IOException ex) {
-        	   Const.v(TAG, "Error registering in GCM:" + ex.getMessage());
+        	   Log.v(TAG, "Error registering in GCM:" + ex.getMessage());
            }
            
            return msg;

@@ -10,6 +10,7 @@ import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.Screen;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 import com.webs.itmexicali.colorized.util.Tracking;
 
@@ -61,7 +62,7 @@ public class GameState extends BaseState implements GameBoardListener{
 	
 	GameState(statesIDs id){
 		super(id);
-		//Const.v("GameState","Constructor");
+		//Log.v("GameState","Constructor");
 		
 		movesTextPaint = new TextPaint(); // WHITE for TEXT
 		movesTextPaint.setColor(Color.WHITE);
@@ -408,7 +409,7 @@ public class GameState extends BaseState implements GameBoardListener{
 						if(!mRectFs[0].contains((int)event.getX(i),(int)event.getY(i)))
 							return true;
 					}
-					Const.d(GameState.class.getSimpleName(),"CHEATS OPENED");
+					Log.d(GameState.class.getSimpleName(),"CHEATS OPENED");
 					showGamOver(true);
 					//
 				} else if(pointerCount == 3 && mRectFs[0] != null){				
@@ -423,7 +424,7 @@ public class GameState extends BaseState implements GameBoardListener{
 					}});
 					solver.setPriority(Thread.MAX_PRIORITY);
 					solver.start();
-					Const.d(GameState.class.getSimpleName(),"SOLVING BOARD");					
+					Log.d(GameState.class.getSimpleName(),"SOLVING BOARD");					
 				}
 			}
 			break;
@@ -487,19 +488,19 @@ public class GameState extends BaseState implements GameBoardListener{
 				.setMessage(R.string.saved_game_confirmation)
 				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) { 
-		        	   Const.setFullScreen(GameActivity.instance);
+		        	   Screen.setFullScreen(GameActivity.instance);
 		           }
 				})
 				.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
 		        	   restartBoard(true);
-		        	   Const.setFullScreen(GameActivity.instance);
+		        	   Screen.setFullScreen(GameActivity.instance);
 		           }
 				})
 				.setOnCancelListener(new DialogInterface.OnCancelListener() {
 					@Override
 					public void onCancel(DialogInterface arg0) {
-			        	Const.setFullScreen(GameActivity.instance);
+			        	Screen.setFullScreen(GameActivity.instance);
 					}
 				})
 				.create()
@@ -518,18 +519,18 @@ public class GameState extends BaseState implements GameBoardListener{
 				.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
 		        	   restartBoard(true);        	   
-		        	   Const.setFullScreen(GameActivity.instance);   
+		        	   Screen.setFullScreen(GameActivity.instance);   
 		           }
 				})
 				.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {// dismiss menu
-		        	   Const.setFullScreen(GameActivity.instance);
+		        	   Screen.setFullScreen(GameActivity.instance);
 		           }
 				})
 				.setOnCancelListener(new DialogInterface.OnCancelListener() {
 					@Override
 					public void onCancel(DialogInterface arg0) {
-			        	Const.setFullScreen(GameActivity.instance);
+			        	Screen.setFullScreen(GameActivity.instance);
 					}
 				})
 				.create()

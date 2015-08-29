@@ -37,13 +37,13 @@ public class TutoState extends BaseState{
 	
 	@Override
 	public void onPopped() {
-		//Const.d(TutoState.class.getSimpleName(),"onPopped");	
+		//Log.d(TutoState.class.getSimpleName(),"onPopped");	
 		pGame = null;
 	}	
 
 	@Override
 	public void onPushed() {
-		//Const.d(TutoState.class.getSimpleName(),"onPushed");
+		//Log.d(TutoState.class.getSimpleName(),"onPushed");
 		BaseState bs = StateMachine.getIns().getPrevioustState();
 		if(! (bs instanceof GameState))
 			StateMachine.getIns().popState();
@@ -64,7 +64,7 @@ public class TutoState extends BaseState{
 	}
 	
 	public void resize(float width, float height){
-		//Const.v("TutoState","canvas size: "+width+"x"+height);
+		//Log.v("TutoState","canvas size: "+width+"x"+height);
 		pGame.resize(width, height);
 
 		float boardPixels = pGame.mRectFs[0].width()/Const.BOARD_SIZES[ProgNPrefs.getIns().getDifficulty()];
@@ -166,7 +166,7 @@ public class TutoState extends BaseState{
 	
 
 	private void saveTutorialFinish(){
-		//Const.i(TutoState.class.getSimpleName(),"tutorial FInished");
+		//Log.i(TutoState.class.getSimpleName(),"tutorial FInished");
 		ProgNPrefs.getIns().setTutorialCompleted(true);
 	}
 
@@ -191,7 +191,7 @@ public class TutoState extends BaseState{
 					GameActivity.instance.onTutorialFinished();
 					StateMachine.getIns().popState(); break;
 			}
-			//Const.d(TutoState.class.getSimpleName(),"mState: "+mInnerState);
+			//Log.d(TutoState.class.getSimpleName(),"mState: "+mInnerState);
 		}
 		return true;
 	}

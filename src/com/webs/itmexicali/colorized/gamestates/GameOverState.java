@@ -204,7 +204,7 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 
 	@Override
 	public void onPushed() {
-		//Const.d(TutoState.class.getSimpleName(),"onPushed");
+		//Log.d(TutoState.class.getSimpleName(),"onPushed");
 		GameActivity.instance.playMusic(false);
 		
 		BaseState bs = StateMachine.getIns().getPrevioustState();
@@ -235,7 +235,7 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 	}
 	
 	public void resize(float width, float height){
-		//Const.v("GameOverState","canvas size: "+width+"x"+height);
+		//Log.v("GameOverState","canvas size: "+width+"x"+height);
 		pButtons.repositionDButton(0, 8.5f*width/16, 31*height/48, 14.5f*width/16, 36*height/48); //ok
 		pButtons.repositionDButton(1, 1.5f*width/16, 31*height/48, 7.5f*width/16, 36*height/48); // no
 		

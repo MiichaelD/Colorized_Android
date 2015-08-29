@@ -210,7 +210,7 @@ public class ProgNPrefs {
 	/** set play music preference
 	 * @param play whether the music will be played or not*/
 	public void setPlayMusic(boolean play){
-		Const.i(ProgNPrefs.class.getSimpleName(),"set music: "+play);
+		Log.i(ProgNPrefs.class.getSimpleName(),"set music: "+play);
 		playMusic = play;
 		spEdit.putBoolean(mContext.getString(R.string.key_music), play);
 		spEdit.commit();
@@ -235,7 +235,7 @@ public class ProgNPrefs {
 	/** set play music preference
 	 * @param play whether the music will be played or not*/
 	public void setPlaySFX(boolean play){
-		Const.i(ProgNPrefs.class.getSimpleName(),"set SFX: "+play);
+		Log.i(ProgNPrefs.class.getSimpleName(),"set SFX: "+play);
 		playSFX = play;
 		spEdit.putBoolean(mContext.getString(R.string.key_sfx), play);
 		spEdit.commit();
@@ -259,7 +259,7 @@ public class ProgNPrefs {
 	/** set notifications preference to enable/disable
 	 * @param play whether the music will be played or not*/
 	public void setShowNotifications(boolean show){
-		Const.i(ProgNPrefs.class.getSimpleName(),"Notifications enabled: "+show);
+		Log.i(ProgNPrefs.class.getSimpleName(),"Notifications enabled: "+show);
 		showNotifs = show;
 		spEdit.putBoolean(mContext.getString(R.string.key_notifications), showNotifs);
 		spEdit.commit();
@@ -317,13 +317,13 @@ public class ProgNPrefs {
 		String lastBoard = sp.getString(mContext.getString(R.string.key_last_new_board), null);
 		
 		//if the gameState contains spaces, it is not encrypted
-		Const.i(this.getClass().getSimpleName(),"last board to check: "+lastBoard);
+		Log.i(this.getClass().getSimpleName(),"last board to check: "+lastBoard);
 		try{
 			lastBoard = new String(MCrypt.getIns().decrypt(Const.HexStringToByte(lastBoard)));
-			Const.i(this.getClass().getSimpleName(),"last board decrypted: "+lastBoard);
+			Log.i(this.getClass().getSimpleName(),"last board decrypted: "+lastBoard);
 			if(lastBoard.startsWith(MCrypt.AES_PREF)){
 				lastBoard = lastBoard.substring(4);
-				Const.i(this.getClass().getSimpleName(),"gameState: "+lastBoard);
+				Log.i(this.getClass().getSimpleName(),"gameState: "+lastBoard);
 			}
 		}catch(NullPointerException npe){
 			lastBoard = null;

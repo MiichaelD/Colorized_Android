@@ -87,7 +87,7 @@ public class Notifier {
 	    am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), sender);
 
 		SharedPreferences.Editor spe = ProgNPrefs.getIns().getSharedPrefsEditor();
-		Const.v("Notifier", "We just Scheduled notif: "+NOTIFICATION_ID);
+		Log.v("Notifier", "We just Scheduled notif: "+NOTIFICATION_ID);
 		spe.putInt(NOTIF_KEY, NOTIFICATION_ID);
 		spe.commit();
 	}
@@ -111,7 +111,7 @@ public class Notifier {
 	    Class<? extends Activity> activityClass = null;
 	    
 	    if (message == null || message.isEmpty()){
-	    	Const.e(Notifier.class.getSimpleName(),"Message is null, cancelling sending notification.");
+	    	Log.e(Notifier.class.getSimpleName(),"Message is null, cancelling sending notification.");
 	    	return;
 	    }
 	    if(title == null || title.isEmpty()){
@@ -129,7 +129,7 @@ public class Notifier {
 				activityClass = Class.forName(targetActivity).asSubclass(Activity.class);
 		} catch (ClassNotFoundException e) { }
 		
-		Const.v("Notifier", "Starting notification: "+notifId);
+		Log.v("Notifier", "Starting notification: "+notifId);
 		long t0 = System.currentTimeMillis();
 		
 		int notifFlags = NotificationCompat.DEFAULT_LIGHTS |  NotificationCompat.FLAG_AUTO_CANCEL | NotificationCompat.FLAG_ONLY_ALERT_ONCE;
@@ -172,7 +172,7 @@ public class Notifier {
 		//send the notification
 		mNotifMan.notify(notifId, notif);
 		saveNotifId();
-		Const.v(this.getClass().getSimpleName(), "finihed in: "+(System.currentTimeMillis()-t0));
+		Log.v(this.getClass().getSimpleName(), "finihed in: "+(System.currentTimeMillis()-t0));
 	}
 	
 	
@@ -189,7 +189,7 @@ public class Notifier {
 	    	try {
 	    		PendingIntent sender = PendingIntent.getBroadcast(mContext, ind, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 	    		am.cancel(sender);
-	    		Const.v("Notifier", "Cancelling pending notification: "+ind);
+	    		Log.v("Notifier", "Cancelling pending notification: "+ind);
 	    	} catch (Exception e) { }
 	    }
 
@@ -197,7 +197,7 @@ public class Notifier {
 	    if (mNotifMan!=null) 
 	    	mNotifMan.cancelAll();
 
-		Const.v("Notifier", "Clearing notifs already in the drawer and resetting counter to 0");
+		Log.v("Notifier", "Clearing notifs already in the drawer and resetting counter to 0");
 		NOTIFICATION_ID = NO_NOTIF;
 		
 		SharedPreferences.Editor spe = ProgNPrefs.getIns().getSharedPrefsEditor();

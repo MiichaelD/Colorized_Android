@@ -1,6 +1,6 @@
 package com.webs.itmexicali.colorized;
 
-import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.Screen;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -21,7 +21,7 @@ public class SplashScreen extends Activity {
 		super.onCreate(savedInstanceState);
 
 		//run on FullScreen with no Action and Navigation Bars
-		Const.setFullScreen(this);
+		Screen.setFullScreen(this);
 
 		setContentView(R.layout.splash_screen);
 		

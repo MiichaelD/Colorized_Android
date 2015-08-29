@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.Log;
 import com.webs.itmexicali.colorized.util.Notifier;
 
 public class GcmIntentService extends IntentService{
@@ -24,14 +24,14 @@ public class GcmIntentService extends IntentService{
 		String messageType = gcm.getMessageType(intent);
 		Bundle extras = intent.getExtras();
 
-        Const.i(TAG, "Action: "+intent.getAction());
-        Const.i(TAG, "Data: "+intent.getDataString());
-        Const.i(TAG, "message Type: (gcm)="+messageType+"  (intent)="+intent.getType());
+        Log.i(TAG, "Action: "+intent.getAction());
+        Log.i(TAG, "Data: "+intent.getDataString());
+        Log.i(TAG, "message Type: (gcm)="+messageType+"  (intent)="+intent.getType());
         if (!extras.isEmpty()){        	
         	Iterator<String> keyIterator = extras.keySet().iterator();
         	while(keyIterator.hasNext()){
         		String key = keyIterator.next();
-        		Const.v(TAG, "key: "+key+"="+extras.get(key).toString());
+        		Log.v(TAG, "key: "+key+"="+extras.get(key).toString());
         	}
         	
 
@@ -40,7 +40,7 @@ public class GcmIntentService extends IntentService{
         	} 
         	
         	String origin = extras.getString("origin");
-    		Const.i(TAG, "Origin: "+origin);
+    		Log.i(TAG, "Origin: "+origin);
     		
         	if (origin.equals("colorized") && GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)){
         		Bundle bundle = new Bundle();
@@ -67,7 +67,7 @@ public class GcmIntentService extends IntentService{
         		
         		if (when != null){
         			Date d = new Date(Long.parseLong(when)*1000);
-            		Const.i(TAG, "time: "+when+": "+d.toString());
+            		Log.i(TAG, "time: "+when+": "+d.toString());
             		bundle.putString(Notifier.WHEN, when);
         		}
 
