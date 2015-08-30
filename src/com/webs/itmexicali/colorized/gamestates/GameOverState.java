@@ -1,12 +1,12 @@
 package com.webs.itmexicali.colorized.gamestates;
 
 import com.webs.itmexicali.colorized.gamestates.GameState.GameFinishedListener;
+import com.webs.itmexicali.colorized.util.BitmapLoader;
 
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.GameView;
 import com.webs.itmexicali.colorized.R;
 import com.webs.itmexicali.colorized.board.Constants;
-import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
 import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.drawcomps.DrawText;

@@ -104,7 +104,7 @@ public class PushNotificationHelper {
     		}.start();
 	}
 	
-	private boolean sendIdToServer(String user, String gcmId){
+	protected boolean sendIdToServer(String user, String gcmId){
 		boolean saved = false;
 		final String URL = "http://skeleton.byethost13.com", URI = "/colorflooded/index.php", SERVER_URL = URL+URI;
 		HashMap<String,String> properties = new HashMap<String,String>();
@@ -130,6 +130,7 @@ public class PushNotificationHelper {
 		}
 		return saved;
 	}
+	
 	private class RegisterToGcmTask extends AsyncTask<String,Integer,String> {
 		@Override
 		protected String doInBackground(String... params){

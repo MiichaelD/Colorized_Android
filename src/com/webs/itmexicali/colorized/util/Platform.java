@@ -110,8 +110,8 @@ public class Platform {
 	
 	/**Get telephone network carrier
      * http://stackoverflow.com/questions/3838602/how-to-find-out-carriers-name-in-android */
-    public static String getCarrier(final Context appContext) {
-        TelephonyManager manager = (TelephonyManager) appContext.getSystemService(Context.TELEPHONY_SERVICE);
+    public static String getCarrier() {
+        TelephonyManager manager = (TelephonyManager) m_context.getSystemService(Context.TELEPHONY_SERVICE);
         String carrier = manager == null ? null : manager.getNetworkOperatorName();
         return carrier;
     }
@@ -140,9 +140,9 @@ public class Platform {
     
     /**Get WiFi info if any is active 
      * @return info contained in WifiInfo or null if no active connection is present*/
-    public static String getWifiInfo(final Context appContext) {
+    public static String getWifiInfo() {
         try {
-            WifiManager wifiManager = (WifiManager) appContext.getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiManager = (WifiManager) m_context.getSystemService(Context.WIFI_SERVICE);
             WifiInfo wifiInfo = wifiManager.getConnectionInfo();
             return wifiInfo.toString();
         } catch (SecurityException ise) { ise.printStackTrace(); }

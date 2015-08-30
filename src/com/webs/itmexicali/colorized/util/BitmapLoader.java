@@ -1,7 +1,6 @@
-package com.webs.itmexicali.colorized.drawcomps;
+package com.webs.itmexicali.colorized.util;
 
 import com.webs.itmexicali.colorized.R;
-import com.webs.itmexicali.colorized.util.ServerCom;
 
 import java.io.InputStream;
 import java.util.HashMap;

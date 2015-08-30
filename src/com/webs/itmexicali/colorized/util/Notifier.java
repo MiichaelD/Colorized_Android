@@ -14,10 +14,8 @@ import android.media.RingtoneManager;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
-import com.webs.itmexicali.colorized.AlarmReceiver;
 import com.webs.itmexicali.colorized.GameActivity;
 import com.webs.itmexicali.colorized.R;
-import com.webs.itmexicali.colorized.drawcomps.BitmapLoader;
 
 public class Notifier {
 	
