@@ -47,13 +47,12 @@ public class LocationHelper {
             }
 
             newLocation.setTime(System.currentTimeMillis());
-            m_lastLoc.set(newLocation);
-            m_valid = true;
-            
             if (newLocation.hasAccuracy() && newLocation.getAccuracy() < MIN_ACCURACY){
             	stopRequestingUpdates();
             }
             
+            m_lastLoc.set(newLocation);
+            m_valid = true;
             Log.v(TAG, "onLocationChanged for provider: "+m_provider);
         }
 
@@ -78,6 +77,7 @@ public class LocationHelper {
         
         private void stopRequestingUpdates(){
             try {
+            	Log.v(TAG, m_provider+ ": StopRequestingUpdates because we have reached the minimum accuracy threshold");
                 LocationHelper.this.m_locMan.removeUpdates(LocationListener.this);
             } catch (Exception ex) { ex.printStackTrace(); }
         }
@@ -106,7 +106,7 @@ public class LocationHelper {
         	for (String provider : m_locProviders){
 	            try {
 	            	if (m_locMan.isProviderEnabled(provider)){
-	            		m_locMan.requestLocationUpdates(provider, MIN_TIME_BETWEEN_UPDATES, MIN_DISTANCE_BETWEEN_UPDATES, this.mLocationListeners[providerIndex]);
+	            		m_locMan.requestLocationUpdates(provider, MIN_TIME_BETWEEN_UPDATES, MIN_DISTANCE_BETWEEN_UPDATES, mLocationListeners[providerIndex]);
 	            	}
 	            } catch (java.lang.SecurityException ex) {
 	            	Log.e(TAG, "SecurityException when subscribing to provider: "+provider+", error:" + ex.getMessage());
@@ -119,11 +119,12 @@ public class LocationHelper {
 
     /** Stop requesting updates from providers we subscribed to*/
     public void stopLocationReceiving() {
-        if (this.m_locMan != null) {
+        if (m_locMan != null) {
             for (int i = 0; i < this.mLocationListeners.length; i++) {
                 try {
-                    this.m_locMan.removeUpdates(mLocationListeners[i]);
-                } catch (Exception ex) { }
+                	Log.v(TAG, m_locProviders[i]+": StopRequestingUpdates because max time has passed");
+                    m_locMan.removeUpdates(mLocationListeners[i]);
+                } catch (Exception ex) {ex.printStackTrace(); }
             }
         }
     }
@@ -142,8 +143,7 @@ public class LocationHelper {
         return loc;
     }
     
-    /** Iterate thru location providers to find the last known location.
-     * This is */
+    /** Iterate thru location providers to find the last known location.*/
     public Location getLastKnownLocation(){
     	for(String provider : m_locProviders){
     		Location loc = m_locMan.getLastKnownLocation(provider);
