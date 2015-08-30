@@ -61,7 +61,7 @@ public class PushNotificationHelper {
 		    Log.v(TAG, "Registro GCM encontrado (usuario="+registeredUser+
 		    		", version="+registeredVersion+", expira="+expirationDate+")");
 		    
-		    int currentVersion = Const.getVersionCode();
+		    int currentVersion = Platform.getVersionCode();
 		    
 		    if (registeredVersion < currentVersion){
 		    	Log.v(TAG, "Registro de version anterior de la aplicación.");
@@ -82,7 +82,7 @@ public class PushNotificationHelper {
 		}
 
 	private void setRegistrationId(String user, String regId){
-	    int appVersion = Const.getVersionCode();
+	    int appVersion = Platform.getVersionCode();
 		SharedPreferences.Editor spe = ProgNPrefs.getIns().getSharedPrefsEditor();
 	    
 	    spe.putString(USER, user);

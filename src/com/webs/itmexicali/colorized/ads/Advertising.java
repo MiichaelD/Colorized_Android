@@ -34,9 +34,7 @@ public abstract class Advertising {
 		case Advertising.ADS_ADMOB:
 		default:
 			return new AdMob(activity);
-				
 		}
-		
 	}
 	
 	

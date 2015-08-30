@@ -28,6 +28,7 @@ import com.webs.itmexicali.colorized.gamestates.GameState;
 import com.webs.itmexicali.colorized.gamestates.GameState.GameFinishedListener;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
 import com.webs.itmexicali.colorized.board.Constants;
+import com.webs.itmexicali.colorized.util.Platform;
 import com.webs.itmexicali.colorized.util.Const;
 import com.webs.itmexicali.colorized.util.Log;
 import com.webs.itmexicali.colorized.util.Screen;
@@ -39,6 +40,11 @@ import com.webs.itmexicali.colorized.util.Tracking;
 
 public class GameActivity extends BaseGameActivity implements GameFinishedListener, SurfaceListener{
 	
+
+    /** Request codes we use when invoking an external activity*/
+    private static final int RC_UNUSED = 5001, RC_SHARE=742;//, RC_RESOLVE = 50007;
+	
+	//ads handler
 	private Advertising pAds = null;    
 	
 	//facebook sharing helper
@@ -79,9 +85,9 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
 	    //keep current version and locale on tracking info
-	    Const.updateVersionInfo(this);
-	    Tracking.shared().updateVersion(Const.getVersionName(), Const.getVersionCode());
-	    Tracking.shared().updateLocale(Const.getLocale(this));
+	    Platform.init(this);
+	    Tracking.shared().updateVersion(Platform.getVersionName(), Platform.getVersionCode());
+	    Tracking.shared().updateLocale(Platform.getLocale());
                 
 		// INCREMENT THE APP OPENED COUNTER if onCreate has no savedState ONLY
 		// AFTER FINISHING THE FIRST GAME since app launch
@@ -400,7 +406,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 	    });
 		
 	
-		if(requestCode == Const.RC_SHARE) {
+		if(requestCode == RC_SHARE) {
 			if(resultCode == RESULT_OK) {
 				GameStatsSync.unlockAchievement(getApiClient(), R.string.achievement_sharing_is_good);
 				Log.d(GameActivity.class.getSimpleName(),"onGoogleShare Successful");
@@ -499,7 +505,7 @@ public boolean onGoogleShareRequested(String text){
 
 		   //with this flag, we ensure that when we open again our app, it doesn't show the sharing intent screen
 		   shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
-	       startActivityForResult(shareIntent, Const.RC_SHARE);
+	       startActivityForResult(shareIntent, RC_SHARE);
 	       Tracking.shared().onShare("Google");
            return true;
        } else {
@@ -578,7 +584,7 @@ public boolean onGoogleShareRequested(String text){
 	public boolean onShowAchievementsRequested() {
         if (isSignedIn()) {
 			Tracking.shared().track("Achievements", null);
-        	startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), Const.RC_UNUSED);
+        	startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), RC_UNUSED);
         	return true;
         } else {
         	if(isGAPPSavailable())
@@ -595,7 +601,7 @@ public boolean onGoogleShareRequested(String text){
     public boolean onShowLeaderboardsRequested() {
     	if (isSignedIn()) {
 			Tracking.shared().track("Leaderboards", null);
-        	startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(getApiClient()), Const.RC_UNUSED);
+        	startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(getApiClient()), RC_UNUSED);
             return true;
         } else {
         	if(isGAPPSavailable())
