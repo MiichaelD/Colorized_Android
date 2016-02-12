@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gamehelper_sign_in_failed">Fallo al iniciar sesión. Por favor verifique su conexión a internet de nuevo.</string>
+    <string name="gamehelper_app_misconfigured">La aplicación no esta configurada correctamente. Verifica que el nombre de paquete y el certificado de firmas concuerden con el ID de cliente creado en la consola de desarrollador. También, Si la aplicación aún no ha sido publicada, verifica que la cuenta que intentas utilizar este registrada como cuenta de provador. Mira los logs para mas información</string>
+    <string name="gamehelper_license_failed">Fallo verificación de licencia.</string>
+    <string name="gamehelper_unknown_error">Error desconocido.</string>
+</resources>

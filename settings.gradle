@@ -1,0 +1,4 @@
+include ':baseGameUtils'
+include ':facebookSDK'
+include ':mixpanelandroid'
+include ':colorized_Android'
