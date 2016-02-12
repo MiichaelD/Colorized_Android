@@ -26,8 +26,9 @@ dependencies {
     compile project(':facebookSDK')
     compile project(':baseGameUtils')
     compile project(':mixpanelandroid')
-    compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'com.google.android.gms:play-services:+'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+//    compile 'com.google.android.gms:play-services:+'
+    compile 'com.google.android.gms:play-services:7.8.0'
     compile files('libs/Communication.jar')
     compile files('libs/LeonidsLib.jar')
     compile files('libs/ProtectedInt.jar')
