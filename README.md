@@ -1,6 +1,4 @@
 Colorized_Android
 =================
 
-Simple Android game in which you have to fill all the board with the same color conquering small squares starting from the upper left corner
-
-https://github.com/MiichaelD/Colorized_Android/releases/latest
+Simple Android game in which you have to fill all the board with the same color conquering small squares starting from the upper left corner.
