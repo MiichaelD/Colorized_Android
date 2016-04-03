@@ -10,7 +10,7 @@
     <string name="restart_game_confirmation">Reiniciar tablero?</string>
     <string name="saved_game_confirmation">Quieres continuar el tablero anterior?</string>
     
-    <string name="achievement_unlock">Logro desbloqueado!\nInicia sesión para obtener mas información.</string>
+    <string name="achievement_unlocked">Logro desbloqueado!\nInicia sesión para obtener mas información.</string>
     <string name="your_progress_will_be_uploaded">Tu progreso existente será sincronizado.</string>
     
     <string name="achievements_not_available">Por favor inicie sesión para ver sus logros.</string>
