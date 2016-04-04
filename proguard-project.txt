@@ -122,3 +122,10 @@
 -keepattributes SetJavaScriptEnabled
 -keepattributes JavascriptInterface
 -keepattributes InlinedApi
+
+# Remove debug logs
+#-assumenosideeffects class com.webs.itmexicali.colorized.util.Log{
+#  public static *** v(...); #verbose
+#  public static *** d(...); #debug
+#  public static *** i(...); #info
+#}

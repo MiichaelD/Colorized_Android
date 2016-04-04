@@ -10,7 +10,7 @@ import com.webs.itmexicali.colorized.BuildConfig;
 public class Const {
 
 	//Debug variable
-	public final static boolean D = BuildConfig.DEBUG;
+	public final static boolean D = false;//BuildConfig.DEBUG;
 	public final static boolean CHEATS = D ;
 	
 	//Tag for debugging
