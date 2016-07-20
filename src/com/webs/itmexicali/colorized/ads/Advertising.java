@@ -15,9 +15,8 @@ public abstract class Advertising {
     	ADVIEW_AD_UNIT_ID 		= "ca-app-pub-4741238402050454/6518301004",
     	INTERSTITIAL_AD_UNIT_ID = "ca-app-pub-4741238402050454/7995034204" ;
     
-    public static final String
-    	APPID 	=	"236182",
-    	APIKEY	=	"1409523218201390512";
+    public static final String APIKEY = "1409523218201390512";
+    public static int APPID = 236182;
 
     public final static int ADS_ADMOB = 0, ADS_AIRPUSH_BUNDLE = 1, ADS_AIRPUSH_STANDARD = 2;
 	

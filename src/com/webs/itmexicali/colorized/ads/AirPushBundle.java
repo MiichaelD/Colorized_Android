@@ -25,10 +25,10 @@ public class AirPushBundle extends Advertising{
 	@Override
 	public void initAds() {
 		
-		AirPushView = new com.xsqhbao.bipppts201390.AdView(
-				pAct, com.xsqhbao.bipppts201390.AdView.BANNER_TYPE_IN_APP_AD,
-				com.xsqhbao.bipppts201390.AdView.PLACEMENT_TYPE_INLINE, false, false, 
-				com.xsqhbao.bipppts201390.AdView.ANIMATION_TYPE_LEFT_TO_RIGHT);
+//		AirPushView = new com.xsqhbao.bipppts201390.AdView(
+//				pAct, com.xsqhbao.bipppts201390.AdView.BANNER_TYPE_IN_APP_AD,
+//				com.xsqhbao.bipppts201390.AdView.PLACEMENT_TYPE_INLINE, false, false, 
+//				com.xsqhbao.bipppts201390.AdView.ANIMATION_TYPE_LEFT_TO_RIGHT);
 		
 		/**Initializing Bundle SDK 
 		 * @param Activity * @param AdListener * @param caching*/
