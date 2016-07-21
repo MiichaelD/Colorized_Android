@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\res\\merged\\androidTest\\debug\\raw\\gtm_analytics",
+        "source": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-analytics\\7.8.0\\res\\raw\\gtm_analytics"
+    },
+    {
+        "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\androidTest\\debug\\raw\\gtm_analytics",
+        "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-analytics\\7.8.0\\res\\raw\\gtm_analytics"
+    }
+]

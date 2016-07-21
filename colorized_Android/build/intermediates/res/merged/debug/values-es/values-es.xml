@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string msgid="4600421777120114993" name="abc_action_bar_home_description">"Ir a la pantalla de inicio"</string>
+    <string msgid="1397052879051804371" name="abc_action_bar_home_description_format">"%1$s, %2$s"</string>
+    <string msgid="6623331958280229229" name="abc_action_bar_home_subtitle_description_format">"%1$s, %2$s, %3$s"</string>
+    <string msgid="1594238315039666878" name="abc_action_bar_up_description">"Desplazarse hacia arriba"</string>
+    <string msgid="3588849162933574182" name="abc_action_menu_overflow_description">"Más opciones"</string>
+    <string msgid="4076576682505996667" name="abc_action_mode_done">"Listo"</string>
+    <string msgid="7468859129482906941" name="abc_activity_chooser_view_see_all">"Ver todo"</string>
+    <string msgid="2031811694353399454" name="abc_activitychooserview_choose_application">"Seleccionar una aplicación"</string>
+    <string msgid="121134116657445385" name="abc_capital_off">"NO"</string>
+    <string msgid="3405795526292276155" name="abc_capital_on">"SÍ"</string>
+    <string msgid="7723749260725869598" name="abc_search_hint">"Buscar…"</string>
+    <string msgid="3691816814315814921" name="abc_searchview_description_clear">"Borrar consulta"</string>
+    <string msgid="2550479030709304392" name="abc_searchview_description_query">"Consulta"</string>
+    <string msgid="8264924765203268293" name="abc_searchview_description_search">"Buscar"</string>
+    <string msgid="8928215447528550784" name="abc_searchview_description_submit">"Enviar consulta"</string>
+    <string msgid="893419373245838918" name="abc_searchview_description_voice">"Búsqueda por voz"</string>
+    <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Compartir con"</string>
+    <string msgid="7165123711973476752" name="abc_shareactionprovider_share_with_application">"Compartir con %s"</string>
+    <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"Contraer"</string>
+    <string name="about_button">Información</string>
+    <string name="about_designers">Diseñadores.</string>
+    <string name="about_developer">Desarrollador Android.</string>
+    <string name="about_sound">Sonidos.</string>
+    <string name="about_sound_values">"Sonidos de www.freesound.org:\n'Nodens (Field Song)' por axtoncrolley\n'saddertrombones.mp3' por-nc NotR\n'cheer 4.wav' por-nc timtube.\n\nMás detalles en\nwww.itmexicali.webs.com/colorized"</string>
+    <string name="about_sound_values_1">"Sonidos de www.freesound.org:"</string>
+    <string name="about_sound_values_2">"'Nodens (Field Song)' por axtoncrolley,"</string>
+    <string name="about_sound_values_3">"'saddertrombones.mp3' por-nc NotR,"</string>
+    <string name="about_sound_values_4">"'cheer 4.wav' por-nc timtube."</string>
+    <string name="about_sound_values_5">Más detalles en</string>
+    <string name="about_sound_values_6">"www.itmexicali.webs.com/colorized"</string>
+    <string name="about_sound_values_min">Sonidos de www.freesound.org:\nMas detalles en www.itmexicali.webs.com/colorized</string>
+    <string name="about_version">Versión.</string>
+    <string name="achiev_button">Logros</string>
+    <string name="achievement_unlocked">Logro desbloqueado!\nInicia sesión para obtener mas información.</string>
+    <string name="achievements_not_available">Por favor inicie sesión para ver sus logros.</string>
+    <string name="app_name">Invasión de Color</string>
+    <string name="cancel">Cancelar</string>
+    <string name="com_facebook_choose_friends">Elige Amigos</string>
+    <string name="com_facebook_dialogloginactivity_ok_button">Aceptar</string>
+    <string name="com_facebook_internet_permission_error_message">WebView inicio de sesión requiere permiso INTERNET</string>
+    <string name="com_facebook_internet_permission_error_title">Error de AndroidManifest</string>
+    <string name="com_facebook_loading">Cargando</string>
+    <string name="com_facebook_loginview_cancel_action">Cancelar</string>
+    <string name="com_facebook_loginview_log_in_button">Iniciar sesión con Facebook</string>
+    <string name="com_facebook_loginview_log_out_action">Cerrar sesión</string>
+    <string name="com_facebook_loginview_log_out_button">Cerrar sesión</string>
+    <string name="com_facebook_loginview_logged_in_as">Sesión iniciada como: %1$s</string>
+    <string name="com_facebook_loginview_logged_in_using_facebook">Sesión iniciada con Facebook</string>
+    <string name="com_facebook_logo_content_description">Logo de Facebook</string>
+    <string name="com_facebook_nearby">Cercano</string>
+    <string name="com_facebook_picker_done_button_text">Aceptar</string>
+    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
+    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d estuvieron aquí</string>
+    <string name="com_facebook_placepicker_subtitle_were_here_only_format">es:%1$,d estuvieron aquí</string>
+    <string name="com_facebook_requesterror_password_changed">Su contraseña de Facebook ha cambiado, por favor vuelva a conectar la aplicación con Facebook.</string>
+    <string name="com_facebook_requesterror_permissions">Una conexión de aplicación con Facebook falló debido a permisos insuficientes, por favor, conceda los permisos de aplicaciones para realizar la operación.</string>
+    <string name="com_facebook_requesterror_reconnect">Se produjo un error al conectar con Facebook, por favor vuelva a conectar la aplicación con Facebook.</string>
+    <string name="com_facebook_requesterror_relogin">La aplicación no se conecta con Facebook, inicie sesión y volver a conectar esta aplicación.</string>
+    <string name="com_facebook_requesterror_web_login">Por favor, iniciar sesión a través https://www.facebook.com o https://m.facebook.com para volver a activar la aplicación para conectar con Facebook.</string>
+    <string name="com_facebook_usersettingsfragment_log_in_button">Iniciar sesión…</string>
+    <string name="com_facebook_usersettingsfragment_logged_in">Sesión iniciada</string>
+    <string name="com_facebook_usersettingsfragment_not_logged_in">No has iniciado sesión</string>
+    <string name="com_mixpanel_android_close">Cerrar</string>
+    <string name="com_mixpanel_android_done">Hecho</string>
+    <string name="com_mixpanel_android_exit">Salir</string>
+    <string name="com_mixpanel_android_logo">By Mixpanel</string>
+    <string name="com_mixpanel_android_next">Siguiente pregunta</string>
+    <string name="com_mixpanel_android_no_thanks">No, gracias</string>
+    <string name="com_mixpanel_android_notification_image">Imagen no mostrada</string>
+    <string name="com_mixpanel_android_previous">Pregunta anterior</string>
+    <string name="com_mixpanel_android_sure">Claro</string>
+    <string name="com_mixpanel_android_survey_prompt_dialog_message">¿Podrías contestar una breve encuesta?</string>
+    <string name="com_mixpanel_android_survey_prompt_dialog_title">Nos gustaría saber tu opinión</string>
+    <string msgid="6428604800157361567" name="common_android_wear_notification_needs_update_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> necesita que la aplicación Android Wear se actualice."</string>
+    <string msgid="2453027084525739603" name="common_android_wear_update_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> no se ejecutará hasta que no actualices la aplicación Android Wear."</string>
+    <string msgid="1366439133145190222" name="common_android_wear_update_title">"Actualizar Android Wear"</string>
+    <string msgid="6534628256897874213" name="common_google_play_services_api_unavailable_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> necesita uno o varios servicios de Google Play que no están disponibles en este momento. Ponte en contacto con el desarrollador para obtener ayuda."</string>
+    <string msgid="4181637455539816337" name="common_google_play_services_enable_button">"Habilitar servicios de Google Play"</string>
+    <string msgid="4896236883690196080" name="common_google_play_services_enable_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> no funcionará hasta que no habilites los servicios de Google Play."</string>
+    <string msgid="529078775174559253" name="common_google_play_services_enable_title">"Habilitar servicios de Google Play"</string>
+    <string msgid="2443362625939284971" name="common_google_play_services_error_notification_requested_by_msg">"Solicitada por <ns1:g id="APP_NAME">%1$s</ns1:g>"</string>
+    <string msgid="8515591849428043265" name="common_google_play_services_install_button">"Descargar servicios de Google Play"</string>
+    <string msgid="8836325110837822534" name="common_google_play_services_install_text_phone">"<ns1:g id="APP_NAME">%1$s</ns1:g> no se ejecutará si los servicios de Google Play no están instalados en tu teléfono."</string>
+    <string msgid="542176290824754127" name="common_google_play_services_install_text_tablet">"<ns1:g id="APP_NAME">%1$s</ns1:g> no se ejecutará si los servicios de Google Play no están instalados en tu tablet."</string>
+    <string msgid="26645092511305524" name="common_google_play_services_install_title">"Descargar servicios de Google Play"</string>
+    <string msgid="4983316348021735578" name="common_google_play_services_invalid_account_text">"La cuenta especificada no existe en este dispositivo. Selecciona otra cuenta."</string>
+    <string msgid="1066672360770936753" name="common_google_play_services_invalid_account_title">"Cuenta no válida"</string>
+    <string msgid="2583358409598976717" name="common_google_play_services_needs_enabling_title">"Una aplicación requiere que se habiliten los servicios de Google Play."</string>
+    <string msgid="9038847255613537209" name="common_google_play_services_network_error_text">"Se necesita una conexión de datos para establecer conexión con los servicios de Google Play."</string>
+    <string msgid="3827284619958211114" name="common_google_play_services_network_error_title">"Error de red"</string>
+    <string msgid="1388129345631079938" name="common_google_play_services_notification_needs_update_title">"Una aplicación requiere una actualización de servicios de Google Play."</string>
+    <string msgid="1852570676146674985" name="common_google_play_services_notification_ticker">"Error de servicios de Google Play"</string>
+    <string msgid="5194079840165204725" name="common_google_play_services_sign_in_failed_text">"Error al iniciar sesión en la cuenta especificada. Selecciona otra cuenta."</string>
+    <string msgid="8164948898147532159" name="common_google_play_services_sign_in_failed_title">"Error al iniciar sesión"</string>
+    <string msgid="4762332809710093730" name="common_google_play_services_unknown_issue">"Error desconocido relacionado con los servicios de Google Play"</string>
+    <string msgid="7682982632307307938" name="common_google_play_services_unsupported_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> se basa en los servicios de Google Play, pero no son compatibles con tu dispositivo. Ponte en contacto con el fabricante para obtener asistencia."</string>
+    <string msgid="6334768798839376943" name="common_google_play_services_unsupported_title">"Servicios de Google Play"</string>
+    <string msgid="8932944190611227642" name="common_google_play_services_update_button">"Actualizar"</string>
+    <string msgid="5709479369299147668" name="common_google_play_services_update_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> no se ejecutará hasta que no actualices los servicios de Google Play."</string>
+    <string msgid="6006316683626838685" name="common_google_play_services_update_title">"Actualizar servicios de Google Play"</string>
+    <string msgid="2201289642219771610" name="common_google_play_services_updating_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> no se ejecutará hasta que finalice la actualización en curso de los servicios de Google Play."</string>
+    <string msgid="815008177440683245" name="common_google_play_services_updating_title">"Actualización servicios Play en curso"</string>
+    <string msgid="411506735369601515" name="common_open_on_phone">"Abrir en teléfono"</string>
+    <string msgid="9071884888741449141" name="common_signin_button_text">"Iniciar sesión"</string>
+    <string msgid="2429381841831957106" name="common_signin_button_text_long">"Iniciar sesión con Google"</string>
+    <string name="exit_confirmation">Salir?</string>
+    <string name="game_over_lose_desc">Te quedaste sin movimientos.\n\nJugar de nuevo?</string>
+    <string name="game_over_lose_title">Juego Terminado</string>
+    <string name="game_over_share_btn">Compartir: </string>
+    <string name="game_over_share_txt">Conquisté un tablero <ns1:g id="brd_size">%1$s</ns1:g> en <ns1:g id="brd_movs">%2$d</ns1:g> movimientos!\n\nTú también juega #InvasiónDeColor ( #ColorFlooded ) en tu dispositivo android.</string>
+    <string name="game_over_win_desc">Terminaste la partida con  
+        <ns1:g id="integer_formating">%1$d</ns1:g> movimientos.\n\nJugar de nuevo?</string>
+    <string name="game_over_win_title">Felicidades!</string>
+    <string name="gamehelper_app_misconfigured">La aplicación no esta configurada correctamente. Verifica que el nombre de paquete y el certificado de firmas concuerden con el ID de cliente creado en la consola de desarrollador. También, Si la aplicación aún no ha sido publicada, verifica que la cuenta que intentas utilizar este registrada como cuenta de provador. Mira los logs para mas información</string>
+    <string name="gamehelper_license_failed">Fallo verificación de licencia.</string>
+    <string name="gamehelper_sign_in_failed">Fallo al iniciar sesión. Por favor verifique su conexión a internet de nuevo.</string>
+    <string name="gamehelper_unknown_error">Error desconocido.</string>
+    <string name="greeting_player">Hola, <ns1:g id="name">%1$s</ns1:g></string>
+    <string name="leader_button">Leaderboards</string>
+    <string name="leaderboards_not_available">Por favor inicie sesión para ver los leaderboards.</string>
+    <string name="moves_txt">Movimientos: <ns1:g id="mov_form">%1$d</ns1:g>/<ns1:g id="mov_lim">%2$d</ns1:g></string>
+    <string msgid="4271159405637008602" name="mr_media_route_button_content_description">"Salida multimedia"</string>
+    <string msgid="7553005460920830010" name="mr_media_route_chooser_searching">"Buscando dispositivos…"</string>
+    <string msgid="7106830097177242655" name="mr_media_route_chooser_title">"Conectar a dispositivo"</string>
+    <string msgid="109793632378378069" name="mr_media_route_controller_disconnect">"Desconectar"</string>
+    <string msgid="5441529851481176817" name="mr_system_route_name">"Sistema"</string>
+    <string msgid="7498112907524977311" name="mr_user_route_category_name">"Dispositivos"</string>
+    <string name="music_button">Música</string>
+    <string name="notif_msg_need_you">Hay un tablero esperando que termines de invadirlo completamente</string>
+    <string name="notif_title_need_you">Algo requiere de tu ayuda</string>
+    <string name="notifications_button">Notificaciones</string>
+    <string name="options_button">Opciones</string>
+    <string name="options_casual_mode">Modo Casual</string>
+    <string name="options_difficulty">Tamaño de tablero: </string>
+    <string name="options_easy">Chico</string>
+    <string name="options_easy_descriptive">Chico (<ns1:g id="easy_size">12x12</ns1:g>)</string>
+    <string name="options_game_mode">Modo de Juego: </string>
+    <string name="options_hard">Grande</string>
+    <string name="options_hard_descriptive">Grande (<ns1:g id="hard_size">24x24</ns1:g>)</string>
+    <string name="options_med">Mediano</string>
+    <string name="options_med_descriptive">Mediano (<ns1:g id="med_size">18x18</ns1:g>)</string>
+    <string name="options_size_all">Todos los tamaños</string>
+    <string name="options_step_mode">Modo Reto</string>
+    <string name="percentGamesWon">Juegos Ganados: <ns1:g id="games_won">%1$.2f%%</ns1:g>.</string>
+    <string name="play_button">Jugar</string>
+    <string name="restart_game_confirmation">Reiniciar tablero?</string>
+    <string name="saved_game_confirmation">Quieres continuar el tablero anterior?</string>
+    <string name="share_not_available">Por favor inicie sesión para compartir con sus amigos.</string>
+    <string name="stats_button">Estadísticas</string>
+    <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">"+999"</string>
+    <string name="totalGamesPlayed">Juegos completados: %1$d.</string>
+    <string name="totalGamesWon">Juegos Ganados: %1$d.</string>
+    <string name="tuto0">Toca para avanzar.</string>
+    <string name="tuto1">Llena el tablero de un solo color.</string>
+    <string name="tuto2">Empiezas desde la esquina superior izquierda.</string>
+    <string name="tuto3">Cambia de color desde seleccionador.</string>
+    <string name="tuto4">Hasta que el tablero se llene de uno solo.</string>
+    <string name="tuto5">Hazlo antes de quedarte sin movimientos.</string>
+    <string name="tuto6">Crees poder lograrlo?\n\nINTENTALO!!</string>
+    <string name="tuto_exit">Presiona ATRAS de nuevo para salir del tutorial o toca la pantalla para continuar.</string>
+    <string name="tutorial_button">Tutorial</string>
+    <string name="wallet_buy_button_place_holder">Comprar con Google</string>
+    <string name="your_progress_will_be_uploaded">Tu progreso existente será sincronizado.</string>
+</resources>

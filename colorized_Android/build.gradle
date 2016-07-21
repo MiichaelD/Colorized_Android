@@ -2,17 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "24.0.0"
 
     defaultConfig {
         applicationId "com.webs.itmexicali.colorized"
         minSdkVersion 9
-        targetSdkVersion 22
-
-        // Enabling multidex support.
-        multiDexEnabled true
+        targetSdkVersion 23
     }
-
 
     buildTypes {
         release {
@@ -23,15 +19,16 @@ android {
 }
 
 dependencies {
+    compile project(':mixpanelandroid')
     compile project(':facebookSDK')
     compile project(':baseGameUtils')
-    compile project(':mixpanelandroid')
+//    compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:appcompat-v7:23.1.1'
 //    compile 'com.google.android.gms:play-services:+'
     compile 'com.google.android.gms:play-services:7.8.0'
+    compile files('libs/com-xsqhbao-bipppts201390.jar')
     compile files('libs/Communication.jar')
     compile files('libs/LeonidsLib.jar')
     compile files('libs/ProtectedInt.jar')
-    compile files('libs/com-xsqhbao-bipppts201390.jar')
     compile 'com.android.support:multidex:1.0.0'
 }

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ProtectedInt">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/colorized_Android/libs/ProtectedInt.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,50 @@
+[
+    {
+        "outputFile": "D:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\res\\merged\\debug\\values-xhdpi-v4\\values-xhdpi-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 63,
+                    "endOffset": 114
+                },
+                "from": {
+                    "file": "D:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android\\facebookSDK\\unspecified\\res\\values-xhdpi-v4\\values-xhdpi-v4.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 63,
+                        "endOffset": 114
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\res\\merged\\debug\\values-xhdpi-v4\\values-xhdpi-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 63,
+                    "endOffset": 114
+                },
+                "from": {
+                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-xhdpi-v4\\values-xhdpi-v4.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 63,
+                        "endOffset": 114
+                    }
+                }
+            }
+        ]
+    }
+]

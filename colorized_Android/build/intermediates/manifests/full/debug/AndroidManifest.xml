@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.webs.itmexicali.colorized"
+    android:versionCode="36"
+    android:versionName="1.1.16" >
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="23" />
+
+    <uses-feature
+        android:name="android.hardware.touchscreen.multitouch.distinct"
+        android:required="false" />
+
+    <!-- AdMob Implementation START -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- AdMob Implementation END -->
+
+
+    <!-- OpenTracking Implementation START -->
+    <!-- uses-permission android:name="android.permission.INTERNET"/ -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- OpenTracking Implementation END -->
+
+
+    <!-- PUSH Notif Implementation START -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission
+        android:name="com.webs.itmexicali.colorized.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.webs.itmexicali.colorized.permission.C2D_MESSAGE" />
+    <!-- PUSH Notif Implementation END -->
+
+
+    <!-- AirPush Implementation START -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+
+    <meta-data
+        android:name="unityplayer.ForwardNativeEventsToDalvik"
+        android:value="true" />
+    <!--
+ AirPush Bundle
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS" />
+	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    -->
+    <!-- AirPush Implementation END -->
+    <application
+        android:name="com.webs.itmexicali.colorized.GameApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+        <!-- Facebook share START -->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/fb_app_id" />
+        <!-- Facebook share END -->
+
+
+        <!-- AdMob Implementation START -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
+        <!-- AdMob Implementation END -->
+
+
+        <!-- AirPush Implementation START -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.xsqhbao.bipppts201390.APPID"
+            android:value="236182" />
+        <meta-data
+            android:name="com.xsqhbao.bipppts201390.APIKEY"
+            android:value="android*1409523218201390512" />
+        <!--
+        AirPush Bundle
+		<activity android:exported="false" android:name="com.xsqhbao.bipppts201390.AdActivity"
+        -->
+        <!-- AirPush STD -->
+        <activity
+            android:name="com.xsqhbao.bipppts201390.AdActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent" />
+        <activity
+            android:name="com.xsqhbao.bipppts201390.BrowserActivity"
+            android:configChanges="orientation|screenSize" />
+        <!--
+        AirPush Bundle
+		<activity android:name="com.xsqhbao.bipppts201390.VActivity"
+        -->
+        <!--
+        AirPush STD
+		<activity android:name="com.xsqhbao.bipppts201390.VDActivity"
+			android:configChanges="orientation|screenSize" android:screenOrientation="portrait"
+		    android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+		</activity>
+        -->
+        <!--
+        AirPush Bundle
+		 <service android:name="com.xsqhbao.bipppts201390.LService" android:exported="false"></service>
+		 <receiver android:name="com.xsqhbao.bipppts201390.BootReceiver" android:exported="true">
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+			</intent-filter>
+		</receiver>
+        -->
+        <!-- AirPush Implementation END -->
+
+
+        <!-- Google Games Services -->
+        <meta-data
+            android:name="com.google.android.gms.games.APP_ID"
+            android:value="@string/app_id" />
+        <!--
+        THIS IS COMMENTED BECAUSE IS ALREADY USED FOR AdMob ADS IMPLEMENTATION
+        < meta-data android:name="com.google.android.gms.version"
+                   android:value="@integer/google_play_services_version"/>
+        -->
+        <!-- Google Games Services -->
+
+        <activity
+            android:name="com.webs.itmexicali.colorized.GameActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
+        <activity
+            android:name="com.webs.itmexicali.colorized.SplashScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullscreenTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Alarm Notif Implementation START -->
+        <receiver
+            android:name="com.webs.itmexicali.colorized.util.AlarmReceiver"
+            android:process=":remote" />
+        <!-- Alarm Notif Implementation END -->
+
+
+        <!-- PUSH Notif Implementation START -->
+        <receiver
+            android:name="com.webs.itmexicali.colorized.GcmReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.webs.itmexicali.colorized" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.webs.itmexicali.colorized.GcmIntentService" />
+        <!-- PUSH Notif Implementation END -->
+
+
+        <!-- MIXPANEL TRACKING OPTIONAL FEATURES Implementation START -->
+        <!--
+             to support 2.2 (Froyo) and older devices, your application should allow fallback
+             to HTTP if modern HTTPS certificates aren't supported.
+        -->
+        <meta-data
+            android:name="com.mixpanel.android.MPConfig.DisableFallback"
+            android:value="false" />
+
+        <!--
+        The Mixpanel library will automatically attempt to show available surveys or in
+             app notifications every time a new Activity is displayed. To disable this behavior,
+             add the following line. The default value for this option is set to true.
+        <meta-data android:name="com.mixpanel.android.MPConfig.AutoShowMixpanelUpdates"
+               android:value="false" />
+        -->
+
+
+        <!--
+             If you wish to test receiving surveys or notifications multiple times, the following option
+             will prevent tracking that a survey or notification has been displayed to Mixpanel.
+             This will allow you to tweak your surveys or in app notifications without having to create
+             a new one each time.
+        -->
+        <meta-data
+            android:name="com.mixpanel.android.MPConfig.TestMode"
+            android:value="false" />
+
+        <!--
+             This will enable various debugging messages that shows communication between the Mixpanel
+             Android library and the Mixpanel API servers, which are useful for seeing when track requests
+             go out and when surveys and notifications are received.
+        -->
+        <meta-data
+            android:name="com.mixpanel.android.MPConfig.EnableDebugLogging"
+            android:value="false" />
+
+        <!--
+             This activity allows your application to show Mixpanel surveys and takeover in app notifications.
+             If you only wish to show mini in app notifications, you do not need to declare this Activity.
+             You may also specify a different theme to better fit the look and feel of your application.
+        -->
+        <activity android:name="com.mixpanel.android.surveys.SurveyActivity" />
+
+        <!-- This receiver will allow your application to register for and receive Mixpanel push notifications -->
+        <receiver
+            android:name="com.mixpanel.android.mpmetrics.GCMReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.mixpanel.example.hello" />
+            </intent-filter>
+        </receiver>
+
+        <!-- This receiver will allow your application to record referrer parameters as super properties automatically -->
+        <receiver
+            android:name="com.mixpanel.android.mpmetrics.InstallReferrerReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+        <!-- MIXPANEL TRACKING OPTIONAL FEATURES Implementation END -->
+
+        <activity
+            android:name="com.google.android.gms.ads.purchase.InAppPurchaseActivity"
+            android:theme="@style/Theme.IAPTheme" />
+    </application>
+
+</manifest>

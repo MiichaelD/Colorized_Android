@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Communication">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/colorized_Android/libs/Communication.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\res\\merged\\debug\\raw\\gtm_analytics",
+        "source": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-analytics\\7.8.0\\res\\raw\\gtm_analytics"
+    },
+    {
+        "merged": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\res\\merged\\debug\\raw\\gtm_analytics",
+        "source": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-analytics\\7.8.0\\res\\raw\\gtm_analytics"
+    }
+]
