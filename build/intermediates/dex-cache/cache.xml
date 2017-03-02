@@ -10,6 +10,24 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.1.1_0717526ccbbe167bad004aa8bdb7dd3a64b0b90d\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="77a9dcb5f8b1dba36aacaa9c150eb0942dbea158">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-fitness-7.8.0_c767f53130158f76337041c059f460dcf0ef1048.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\multidex\1.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6666dd525c3da197e7d07f4f23ef5fc7881a697b">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.android.support-multidex-1.0.0_bbb8f9db8b2e140dc326bf34867488e41c694774.jar" />
+    </item>
+    <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.8.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -37,12 +55,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\jars\classes.jar"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.8.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.0"
-        sha1="c0c912d58c9468b1f9d9769c8975afdf2c85d681">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-base-7.8.0_87219891350fe7559ff3490cb15f5da78d1b6a4b.jar" />
+        revision="25.0.2"
+        sha1="4a135d56554069e5d0ff80e3220e887e57146ee5">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-location-7.8.0_6ff65be644086dc1759d620fc1721f0ed5da643b.jar" />
     </item>
     <item
         is-multidex="true"
@@ -54,13 +72,40 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\2\ProtectedInt_a4d8b2b14a0e3a7e42f1869f55e183c682a87dff\classes.dex" />
     </item>
     <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\libs\Communication.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ee97c879ba8c291e1db295f1de604fdd23557da7">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\2\Communication_2a8e62f260f33d475546a2191cf4fc62385696cd\classes.dex" />
+    </item>
+    <item
         is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.8.0\jars\classes.jar"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.8.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.0"
-        sha1="6e85edfc9b5346d216e50ccef1f8e825504144a3">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-panorama-7.8.0_29a3e1de1a5570df5aa039f728c01d1ceb5df32c.jar" />
+        revision="25.0.2"
+        sha1="98137c4d12c50923f5809852b1ef4d1c4e162081">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-appinvite-7.8.0_a9888b2db10584aa558addac1737f1eaa5d9905e.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="adebe28e0c0c05d34a3bfd76f3275bf4d8ff87b6">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-nearby-7.8.0_b78b0cd03858ffcb37136498ec2a75e698de8485\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c2ac04c5b232f6f0658ee4f1c13be09cd76406e2">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-wallet-7.8.0_b8b20c366237cc16dca7ee3d72e663bfd5355ef3.jar" />
     </item>
     <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.8.0\jars\classes.jar"
@@ -80,21 +125,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.8.0\jars\classes.jar"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.0"
-        sha1="0124ce31248c0e8acfa2b28283c6d1a4d76e73d2">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-analytics-7.8.0_2ce03fb9cecad3a721fe8face7eae947a81ce06c.jar" />
+        revision="25.0.2"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.android.support-support-v4-23.4.0_21dd5681038def44c3c165fce27f9050ffdf2d74.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.0"
-        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.android.support-appcompat-v7-23.1.1_0717526ccbbe167bad004aa8bdb7dd3a64b0b90d.jar" />
+        revision="25.0.2"
+        sha1="cb6fab7a71fa9ec1f483d44c5fca65ab469d8aca">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-maps-7.8.0_2ff0032b1c9d0b45788b0f28f021243c5a2e580a.jar" />
     </item>
     <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\jars\classes.jar"
@@ -103,6 +148,15 @@
         revision="24.0.0"
         sha1="c0c912d58c9468b1f9d9769c8975afdf2c85d681">
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-7.8.0_87219891350fe7559ff3490cb15f5da78d1b6a4b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1ff30fa49c07a08c3035d7218a3efebf5680d522">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-7.8.0_47666f3fe98b51627651f19565d0c412b261cc21\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -121,6 +175,15 @@
         revision="24.0.0"
         sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-22.2.0_700691d7425d64f265bfdd01ccd717a672b98376\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="edea92852b40eee716e910af8dad9eeaa58fb0e1">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appstate-7.8.0_a97fe61ce74f96ac36dcae6478d1e924fb8f6220\classes.dex" />
     </item>
     <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.8.0\jars\classes.jar"
@@ -148,15 +211,6 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-games-7.8.0_dbcae6d3a255e5e29ad9c499bb94b93e3a472cbb\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\internal_impl-22.2.0_700691d7425d64f265bfdd01ccd717a672b98376.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="C:\Users\micha\.gradle\caches\modules-2\files-2.1\com.plattysoft.leonids\LeonidsLib\1.3.1\465bff5ee3634af14128a1341a20cee246e4b1c1\LeonidsLib-1.3.1.jar"
         jumboMode="true"
@@ -175,21 +229,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.8.0\jars\classes.jar"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.8.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.0"
-        sha1="42a1ee578b62fd1bd28b3307a679dc9ba0791587">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-drive-7.8.0_ee855eb572b0fd7f9a5892b1b66c4ef3f5afa166.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.android.support-mediarouter-v7-22.2.0_2b285976094ae3d9ebd90d194d2d2ea3bb911f11.jar" />
+        revision="25.0.2"
+        sha1="166e458ee3b5fb5fcff0f936df3f3a788e6c54f3">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-safetynet-7.8.0_2f5cee1fd99caab004b80fa0123b20585a122027.jar" />
     </item>
     <item
         is-multidex="true"
@@ -202,21 +247,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.8.0\jars\classes.jar"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.8.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.0"
-        sha1="130b32ed466fa0f63efd4c7d6250ccd2ed506790">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-cast-7.8.0_3fb7237bc20cbd4d91cbf152561e95933a4d3393.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="edea92852b40eee716e910af8dad9eeaa58fb0e1">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-appstate-7.8.0_a97fe61ce74f96ac36dcae6478d1e924fb8f6220.jar" />
+        revision="25.0.2"
+        sha1="c5cafb324568d954780abb858c25db7ce675ab3c">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-wearable-7.8.0_d42700aa921de491fead18efcc355eb5de8c23cb.jar" />
     </item>
     <item
         is-multidex="true"
@@ -237,13 +273,13 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_25922ae2435165d9232221eb80af9978426558d4\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.8.0\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
-        revision="24.0.0"
-        sha1="1ff30fa49c07a08c3035d7218a3efebf5680d522">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-ads-7.8.0_47666f3fe98b51627651f19565d0c412b261cc21.jar" />
+        revision="25.0.2"
+        sha1="98137c4d12c50923f5809852b1ef4d1c4e162081">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appinvite-7.8.0_a9888b2db10584aa558addac1737f1eaa5d9905e\classes.dex" />
     </item>
     <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\libs\ProtectedInt.jar"
@@ -279,6 +315,42 @@
     </item>
     <item
         is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c0c912d58c9468b1f9d9769c8975afdf2c85d681">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-7.8.0_87219891350fe7559ff3490cb15f5da78d1b6a4b\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\internal_impl-23.4.0_25922ae2435165d9232221eb80af9978426558d4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="adebe28e0c0c05d34a3bfd76f3275bf4d8ff87b6">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-nearby-7.8.0_b78b0cd03858ffcb37136498ec2a75e698de8485.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="77a9dcb5f8b1dba36aacaa9c150eb0942dbea158">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-fitness-7.8.0_c767f53130158f76337041c059f460dcf0ef1048\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -294,6 +366,15 @@
         revision="24.0.0"
         sha1="4a135d56554069e5d0ff80e3220e887e57146ee5">
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-7.8.0_6ff65be644086dc1759d620fc1721f0ed5da643b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\multidex\1.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6666dd525c3da197e7d07f4f23ef5fc7881a697b">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-multidex-1.0.0_bbb8f9db8b2e140dc326bf34867488e41c694774\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -314,6 +395,24 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-panorama-7.8.0_29a3e1de1a5570df5aa039f728c01d1ceb5df32c\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="C:\Dev\android-sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\support-annotations-23.4.0_d46a1465175efcb8f6078bed8512cfbcc84b180f.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_21dd5681038def44c3c165fce27f9050ffdf2d74\classes.dex" />
+    </item>
+    <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\7.8.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -322,13 +421,22 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-vision-7.8.0_9ac606dac064c746d45280d84c4e725266b70eea\classes.dex" />
     </item>
     <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c2ac04c5b232f6f0658ee4f1c13be09cd76406e2">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wallet-7.8.0_b8b20c366237cc16dca7ee3d72e663bfd5355ef3\classes.dex" />
+    </item>
+    <item
         is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\libs\ProtectedInt.jar"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\Colorized_Android\baseGameUtils\unspecified\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.0"
-        sha1="9d3a8d4c5fe4ff4d94f4e50b8f311a1b573a158c">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\ProtectedInt_a4d8b2b14a0e3a7e42f1869f55e183c682a87dff.jar" />
+        revision="25.0.2"
+        sha1="26cbf7a7ee5e9474e95c7a6e8b94be6e6076dc90">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\Colorized_Android-baseGameUtils-unspecified_3d2618ddeaf792bf75c4d06cacdb9f6868d17c35.jar" />
     </item>
     <item
         is-multidex="true"
@@ -340,24 +448,6 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.1.1_0717526ccbbe167bad004aa8bdb7dd3a64b0b90d\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="b99f0b78bbcb76b915bc6529a83b65d4d46990dd">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-vision-7.8.0_9ac606dac064c746d45280d84c4e725266b70eea.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\libs\Communication.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="ee97c879ba8c291e1db295f1de604fdd23557da7">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\Communication_2a8e62f260f33d475546a2191cf4fc62385696cd.jar" />
-    </item>
-    <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.8.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -367,30 +457,30 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.8.0\jars\classes.jar"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.8.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.0"
-        sha1="166e458ee3b5fb5fcff0f936df3f3a788e6c54f3">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-safetynet-7.8.0_2f5cee1fd99caab004b80fa0123b20585a122027.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\libs\com-xsqhbao-bipppts201390.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.0"
-        sha1="2ecaf891dc202cf8b4b752e68eeadcb4f383542e">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\2\com-xsqhbao-bipppts201390_c372345e5103a9238f7e12e1c316516b1548889f\classes.dex" />
+        revision="25.0.2"
+        sha1="e23ea11124bb700eeddd4ab7aa848c615f493850">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-appindexing-7.8.0_3a8bc5391c53df372f810761ca31ccf4b6509be5.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\micha\.gradle\caches\modules-2\files-2.1\com.plattysoft.leonids\LeonidsLib\1.3.1\465bff5ee3634af14128a1341a20cee246e4b1c1\LeonidsLib-1.3.1.jar"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\Colorized_Android\facebookSDK\unspecified\jars\libs\bolts-android-1.1.2.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.0"
-        sha1="465bff5ee3634af14128a1341a20cee246e4b1c1">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\LeonidsLib-1.3.1_7410beee9f4c872edd3caaa7e47962f1677f1173.jar" />
+        revision="25.0.2"
+        sha1="d7b469c3daeb365261419cebcc3d8ef2ad31b00e">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\bolts-android-1.1.2_cf1eb873af55519834dd3c154b00d5e7bcdde2bb.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c5cafb324568d954780abb858c25db7ce675ab3c">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wearable-7.8.0_d42700aa921de491fead18efcc355eb5de8c23cb\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -402,6 +492,15 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-drive-7.8.0_ee855eb572b0fd7f9a5892b1b66c4ef3f5afa166\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c756d14e99d39471e99013a1e8fd2f3813ed42bf">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-gcm-7.8.0_799bca93495a36cf3984a3efef00e10065418166.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.8.0\jars\classes.jar"
         jumboMode="true"
@@ -409,15 +508,6 @@
         revision="24.0.0"
         sha1="e23ea11124bb700eeddd4ab7aa848c615f493850">
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appindexing-7.8.0_3a8bc5391c53df372f810761ca31ccf4b6509be5\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="d11330ea68c0d964d30d5caed1f27e6b1488b189">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-identity-7.8.0_d423cb9e922ee85ffebf8ffbc76b89525472d39f.jar" />
     </item>
     <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.8.0\jars\classes.jar"
@@ -428,13 +518,22 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-safetynet-7.8.0_2f5cee1fd99caab004b80fa0123b20585a122027\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\Colorized_Android\facebookSDK\unspecified\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.8.0\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
-        revision="24.0.0"
-        sha1="fcaf75a20455e6583497a6dbacbfaf9552f0bedd">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\Colorized_Android-facebookSDK-unspecified_43f6ea4c60af43c1af6d7cd276ad8d1d67d72c44.jar" />
+        revision="25.0.2"
+        sha1="0124ce31248c0e8acfa2b28283c6d1a4d76e73d2">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-analytics-7.8.0_2ce03fb9cecad3a721fe8face7eae947a81ce06c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a401aa122001712a66a6340055bac760f3d8be88">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_a3d9830f5d7c5fc075afee799b92bca77d5a690d\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -455,12 +554,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.8.0\jars\classes.jar"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.8.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.0"
-        sha1="2491ae1b2a848af1f4f0c795f3117c1bd6a1989f">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-plus-7.8.0_8df6cba18ed2603b39d6e2c12c6f0b0890736994.jar" />
+        revision="25.0.2"
+        sha1="2e24e5f1b11170163028277de63f709e42525db4">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-games-7.8.0_dbcae6d3a255e5e29ad9c499bb94b93e3a472cbb.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-22.2.0_700691d7425d64f265bfdd01ccd717a672b98376\classes.dex" />
     </item>
     <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\libs\Communication.jar"
@@ -479,6 +587,42 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-7.8.0_2ff0032b1c9d0b45788b0f28f021243c5a2e580a\classes.dex" />
     </item>
     <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="130b32ed466fa0f63efd4c7d6250ccd2ed506790">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-cast-7.8.0_3fb7237bc20cbd4d91cbf152561e95933a4d3393\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.android.support-appcompat-v7-23.1.1_0717526ccbbe167bad004aa8bdb7dd3a64b0b90d.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_25922ae2435165d9232221eb80af9978426558d4\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6e85edfc9b5346d216e50ccef1f8e825504144a3">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-panorama-7.8.0_29a3e1de1a5570df5aa039f728c01d1ceb5df32c.jar" />
+    </item>
+    <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\multidex\1.0.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -488,48 +632,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.8.0\jars\classes.jar"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.8.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.0"
-        sha1="4a135d56554069e5d0ff80e3220e887e57146ee5">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-location-7.8.0_6ff65be644086dc1759d620fc1721f0ed5da643b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="c2ac04c5b232f6f0658ee4f1c13be09cd76406e2">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-wallet-7.8.0_b8b20c366237cc16dca7ee3d72e663bfd5355ef3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="cb6fab7a71fa9ec1f483d44c5fca65ab469d8aca">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-maps-7.8.0_2ff0032b1c9d0b45788b0f28f021243c5a2e580a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.android.support-support-v4-23.4.0_21dd5681038def44c3c165fce27f9050ffdf2d74.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="c756d14e99d39471e99013a1e8fd2f3813ed42bf">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-gcm-7.8.0_799bca93495a36cf3984a3efef00e10065418166.jar" />
+        revision="25.0.2"
+        sha1="2491ae1b2a848af1f4f0c795f3117c1bd6a1989f">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-plus-7.8.0_8df6cba18ed2603b39d6e2c12c6f0b0890736994.jar" />
     </item>
     <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.8.0\jars\classes.jar"
@@ -540,13 +648,13 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-fitness-7.8.0_c767f53130158f76337041c059f460dcf0ef1048\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\multidex\1.0.0\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.8.0\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
-        revision="24.0.0"
-        sha1="6666dd525c3da197e7d07f4f23ef5fc7881a697b">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.android.support-multidex-1.0.0_bbb8f9db8b2e140dc326bf34867488e41c694774.jar" />
+        revision="25.0.2"
+        sha1="e23ea11124bb700eeddd4ab7aa848c615f493850">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appindexing-7.8.0_3a8bc5391c53df372f810761ca31ccf4b6509be5\classes.dex" />
     </item>
     <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
@@ -557,12 +665,13 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_a3d9830f5d7c5fc075afee799b92bca77d5a690d\classes.dex" />
     </item>
     <item
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\libs\com-xsqhbao-bipppts201390.jar"
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\libs\ProtectedInt.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.0"
-        sha1="2ecaf891dc202cf8b4b752e68eeadcb4f383542e">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\2\com-xsqhbao-bipppts201390_c372345e5103a9238f7e12e1c316516b1548889f\classes.dex" />
+        revision="25.0.2"
+        sha1="9d3a8d4c5fe4ff4d94f4e50b8f311a1b573a158c">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\2\ProtectedInt_a4d8b2b14a0e3a7e42f1869f55e183c682a87dff\classes.dex" />
     </item>
     <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.8.0\jars\classes.jar"
@@ -573,6 +682,15 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appinvite-7.8.0_a9888b2db10584aa558addac1737f1eaa5d9905e\classes.dex" />
     </item>
     <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\Colorized_Android\facebookSDK\unspecified\jars\libs\bolts-android-1.1.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7b469c3daeb365261419cebcc3d8ef2ad31b00e">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\8\bolts-android-1.1.2_cf1eb873af55519834dd3c154b00d5e7bcdde2bb\classes.dex" />
+    </item>
+    <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.8.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -581,13 +699,13 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-7.8.0_6ff65be644086dc1759d620fc1721f0ed5da643b\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.8.0\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\micha\.gradle\caches\modules-2\files-2.1\com.plattysoft.leonids\LeonidsLib\1.3.1\465bff5ee3634af14128a1341a20cee246e4b1c1\LeonidsLib-1.3.1.jar"
+        jumboMode="true"
         optimize="true"
-        revision="24.0.0"
-        sha1="c5cafb324568d954780abb858c25db7ce675ab3c">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-wearable-7.8.0_d42700aa921de491fead18efcc355eb5de8c23cb.jar" />
+        revision="25.0.2"
+        sha1="465bff5ee3634af14128a1341a20cee246e4b1c1">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\LeonidsLib-1.3.1_7410beee9f4c872edd3caaa7e47962f1677f1173\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -599,12 +717,30 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-safetynet-7.8.0_2f5cee1fd99caab004b80fa0123b20585a122027\classes.dex" />
     </item>
     <item
+        is-multidex="true"
+        jar="C:\Dev\android-sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_d46a1465175efcb8f6078bed8512cfbcc84b180f\classes.dex" />
+    </item>
+    <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.8.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.0"
         sha1="c756d14e99d39471e99013a1e8fd2f3813ed42bf">
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gcm-7.8.0_799bca93495a36cf3984a3efef00e10065418166\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-mediarouter-v7-22.2.0_2b285976094ae3d9ebd90d194d2d2ea3bb911f11\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -616,24 +752,6 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appinvite-7.8.0_a9888b2db10584aa558addac1737f1eaa5d9905e\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.8.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="e23ea11124bb700eeddd4ab7aa848c615f493850">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-appindexing-7.8.0_3a8bc5391c53df372f810761ca31ccf4b6509be5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\libs\com-xsqhbao-bipppts201390.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="2ecaf891dc202cf8b4b752e68eeadcb4f383542e">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com-xsqhbao-bipppts201390_c372345e5103a9238f7e12e1c316516b1548889f.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\libs\Communication.jar"
         jumboMode="true"
@@ -641,6 +759,15 @@
         revision="24.0.0"
         sha1="ee97c879ba8c291e1db295f1de604fdd23557da7">
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\2\Communication_2a8e62f260f33d475546a2191cf4fc62385696cd\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0124ce31248c0e8acfa2b28283c6d1a4d76e73d2">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-analytics-7.8.0_2ce03fb9cecad3a721fe8face7eae947a81ce06c.jar" />
     </item>
     <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.8.0\jars\classes.jar"
@@ -651,6 +778,51 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wallet-7.8.0_b8b20c366237cc16dca7ee3d72e663bfd5355ef3\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="130b32ed466fa0f63efd4c7d6250ccd2ed506790">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-cast-7.8.0_3fb7237bc20cbd4d91cbf152561e95933a4d3393.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="42a1ee578b62fd1bd28b3307a679dc9ba0791587">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-drive-7.8.0_ee855eb572b0fd7f9a5892b1b66c4ef3f5afa166.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d11330ea68c0d964d30d5caed1f27e6b1488b189">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-identity-7.8.0_d423cb9e922ee85ffebf8ffbc76b89525472d39f\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\internal_impl-22.2.0_700691d7425d64f265bfdd01ccd717a672b98376.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2e24e5f1b11170163028277de63f709e42525db4">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-games-7.8.0_dbcae6d3a255e5e29ad9c499bb94b93e3a472cbb\classes.dex" />
+    </item>
+    <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.8.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -659,13 +831,22 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appindexing-7.8.0_3a8bc5391c53df372f810761ca31ccf4b6509be5\classes.dex" />
     </item>
     <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c756d14e99d39471e99013a1e8fd2f3813ed42bf">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gcm-7.8.0_799bca93495a36cf3984a3efef00e10065418166\classes.dex" />
+    </item>
+    <item
         is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.8.0\jars\classes.jar"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\7.8.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.0"
-        sha1="77a9dcb5f8b1dba36aacaa9c150eb0942dbea158">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-fitness-7.8.0_c767f53130158f76337041c059f460dcf0ef1048.jar" />
+        revision="25.0.2"
+        sha1="b99f0b78bbcb76b915bc6529a83b65d4d46990dd">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-vision-7.8.0_9ac606dac064c746d45280d84c4e725266b70eea.jar" />
     </item>
     <item
         is-multidex="true"
@@ -675,15 +856,6 @@
         revision="24.0.0"
         sha1="adebe28e0c0c05d34a3bfd76f3275bf4d8ff87b6">
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-nearby-7.8.0_b78b0cd03858ffcb37136498ec2a75e698de8485\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\Colorized_Android\mixpanelandroid\unspecified\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="64e9f282b1f3637f3a1655bb1a4d08d721748cc1">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\Colorized_Android-mixpanelandroid-unspecified_ed408b0a524481a8d28198fbcebd2a05d997d892.jar" />
     </item>
     <item
         is-multidex="true"
@@ -712,13 +884,40 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_25922ae2435165d9232221eb80af9978426558d4\classes.dex" />
     </item>
     <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.1.1_0717526ccbbe167bad004aa8bdb7dd3a64b0b90d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2491ae1b2a848af1f4f0c795f3117c1bd6a1989f">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-plus-7.8.0_8df6cba18ed2603b39d6e2c12c6f0b0890736994\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a135d56554069e5d0ff80e3220e887e57146ee5">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-7.8.0_6ff65be644086dc1759d620fc1721f0ed5da643b\classes.dex" />
+    </item>
+    <item
         is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\Colorized_Android\facebookSDK\unspecified\jars\libs\bolts-android-1.1.2.jar"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\libs\Communication.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.0"
-        sha1="d7b469c3daeb365261419cebcc3d8ef2ad31b00e">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\bolts-android-1.1.2_cf1eb873af55519834dd3c154b00d5e7bcdde2bb.jar" />
+        revision="25.0.2"
+        sha1="ee97c879ba8c291e1db295f1de604fdd23557da7">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\Communication_2a8e62f260f33d475546a2191cf4fc62385696cd.jar" />
     </item>
     <item
         is-multidex="true"
@@ -730,15 +929,6 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_21dd5681038def44c3c165fce27f9050ffdf2d74\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\Colorized_Android\baseGameUtils\unspecified\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="26cbf7a7ee5e9474e95c7a6e8b94be6e6076dc90">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\Colorized_Android-baseGameUtils-unspecified_3d2618ddeaf792bf75c4d06cacdb9f6868d17c35.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\jars\classes.jar"
         jumboMode="true"
@@ -748,21 +938,21 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-7.8.0_87219891350fe7559ff3490cb15f5da78d1b6a4b\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Dev\android-sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\support-annotations-23.4.0_d46a1465175efcb8f6078bed8512cfbcc84b180f.jar" />
-    </item>
-    <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.8.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.0"
         sha1="adebe28e0c0c05d34a3bfd76f3275bf4d8ff87b6">
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-nearby-7.8.0_b78b0cd03858ffcb37136498ec2a75e698de8485\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\micha\.gradle\caches\modules-2\files-2.1\com.plattysoft.leonids\LeonidsLib\1.3.1\465bff5ee3634af14128a1341a20cee246e4b1c1\LeonidsLib-1.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="465bff5ee3634af14128a1341a20cee246e4b1c1">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\LeonidsLib-1.3.1_7410beee9f4c872edd3caaa7e47962f1677f1173.jar" />
     </item>
     <item
         is-multidex="true"
@@ -783,6 +973,33 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-multidex-1.0.0_bbb8f9db8b2e140dc326bf34867488e41c694774\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\Colorized_Android\mixpanelandroid\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="64e9f282b1f3637f3a1655bb1a4d08d721748cc1">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\Colorized_Android-mixpanelandroid-unspecified_ed408b0a524481a8d28198fbcebd2a05d997d892.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="edea92852b40eee716e910af8dad9eeaa58fb0e1">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-appstate-7.8.0_a97fe61ce74f96ac36dcae6478d1e924fb8f6220.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cb6fab7a71fa9ec1f483d44c5fca65ab469d8aca">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-7.8.0_2ff0032b1c9d0b45788b0f28f021243c5a2e580a\classes.dex" />
+    </item>
+    <item
         is-multidex="true"
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.8.0\jars\classes.jar"
         jumboMode="true"
@@ -790,6 +1007,15 @@
         revision="24.0.0"
         sha1="c5cafb324568d954780abb858c25db7ce675ab3c">
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wearable-7.8.0_d42700aa921de491fead18efcc355eb5de8c23cb\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.8.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1ff30fa49c07a08c3035d7218a3efebf5680d522">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-ads-7.8.0_47666f3fe98b51627651f19565d0c412b261cc21.jar" />
     </item>
     <item
         is-multidex="true"
@@ -809,6 +1035,15 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-analytics-7.8.0_2ce03fb9cecad3a721fe8face7eae947a81ce06c\classes.dex" />
     </item>
     <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="18b14fd52eb8fca014f66021499bbbdaf0852e80">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_5088c90a4cf47a63ba0d61be0b48ea85273d692d\classes.dex" />
+    </item>
+    <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.8.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -818,12 +1053,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.8.0\jars\classes.jar"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.0"
-        sha1="2e24e5f1b11170163028277de63f709e42525db4">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-games-7.8.0_dbcae6d3a255e5e29ad9c499bb94b93e3a472cbb.jar" />
+        revision="25.0.2"
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.android.support-mediarouter-v7-22.2.0_2b285976094ae3d9ebd90d194d2d2ea3bb911f11.jar" />
     </item>
     <item
         is-multidex="true"
@@ -833,6 +1068,15 @@
         revision="24.0.0"
         sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-mediarouter-v7-22.2.0_2b285976094ae3d9ebd90d194d2d2ea3bb911f11\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\libs\ProtectedInt.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9d3a8d4c5fe4ff4d94f4e50b8f311a1b573a158c">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\ProtectedInt_a4d8b2b14a0e3a7e42f1869f55e183c682a87dff.jar" />
     </item>
     <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
@@ -852,13 +1096,22 @@
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-cast-7.8.0_3fb7237bc20cbd4d91cbf152561e95933a4d3393\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.8.0\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.8.0\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
-        revision="24.0.0"
-        sha1="adebe28e0c0c05d34a3bfd76f3275bf4d8ff87b6">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-nearby-7.8.0_b78b0cd03858ffcb37136498ec2a75e698de8485.jar" />
+        revision="25.0.2"
+        sha1="166e458ee3b5fb5fcff0f936df3f3a788e6c54f3">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-safetynet-7.8.0_2f5cee1fd99caab004b80fa0123b20585a122027\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="42a1ee578b62fd1bd28b3307a679dc9ba0791587">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-drive-7.8.0_ee855eb572b0fd7f9a5892b1b66c4ef3f5afa166\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -879,12 +1132,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.8.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.0"
-        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\internal_impl-23.4.0_25922ae2435165d9232221eb80af9978426558d4.jar" />
+        revision="25.0.2"
+        sha1="d11330ea68c0d964d30d5caed1f27e6b1488b189">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-identity-7.8.0_d423cb9e922ee85ffebf8ffbc76b89525472d39f.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b99f0b78bbcb76b915bc6529a83b65d4d46990dd">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-vision-7.8.0_9ac606dac064c746d45280d84c4e725266b70eea\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -897,12 +1159,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.8.0\jars\classes.jar"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.0"
-        sha1="98137c4d12c50923f5809852b1ef4d1c4e162081">
-        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-appinvite-7.8.0_a9888b2db10584aa558addac1737f1eaa5d9905e.jar" />
+        revision="25.0.2"
+        sha1="c0c912d58c9468b1f9d9769c8975afdf2c85d681">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-base-7.8.0_87219891350fe7559ff3490cb15f5da78d1b6a4b.jar" />
     </item>
     <item
         jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\Colorized_Android\facebookSDK\unspecified\jars\libs\bolts-android-1.1.2.jar"
@@ -919,6 +1181,24 @@
         revision="24.0.0"
         sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
         <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_21dd5681038def44c3c165fce27f9050ffdf2d74\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\Colorized_Android\facebookSDK\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fcaf75a20455e6583497a6dbacbfaf9552f0bedd">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\pre-dexed\release\Colorized_Android-facebookSDK-unspecified_43f6ea4c60af43c1af6d7cd276ad8d1d67d72c44.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6e85edfc9b5346d216e50ccef1f8e825504144a3">
+        <dex dex="D:\Dev\Android\Colorized_Android\colorized_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-panorama-7.8.0_29a3e1de1a5570df5aa039f728c01d1ceb5df32c\classes.dex" />
     </item>
 
 </items>

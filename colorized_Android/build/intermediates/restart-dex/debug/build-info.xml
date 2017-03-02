@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="x86_64,x86"
-    api-level="25"
-    density="560dpi"
+    abi="arm64-v8a,armeabi-v7a,armeabi"
+    api-level="24"
+    density="xxhdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="2411664854859852"
+    timestamp="2688844218031802"
     token="-4336239951538370936"
-    verifier="COLD_SWAP_REQUESTED" >
+    verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="2531" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="9969" />
     <task
         name="verifier"
-        duration="0" />
+        duration="56418" />
+
+    <artifact
+        location="D:\Dev\Android\Colorized_Android\colorized_Android\build\outputs\apk\colorized_Android-debug.apk"
+        type="MAIN" />
 
     <build
-        timestamp="2308071926660740"
+        timestamp="2688844218031802"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="D:\Dev\Android\Colorized_Android\colorized_Android\build\outputs\apk\colorized_Android-debug.apk"
             type="MAIN" />
     </build>
-    <build
-        timestamp="2411664854859852"
-        verifier="COLD_SWAP_REQUESTED" />
 
 </instant-run>

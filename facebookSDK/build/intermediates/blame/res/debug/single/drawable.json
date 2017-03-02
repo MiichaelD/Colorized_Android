@@ -4,12 +4,12 @@
         "source": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\src\\main\\res\\drawable\\com_facebook_picker_item_background.xml"
     },
     {
-        "merged": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\build\\intermediates\\res\\merged\\debug\\drawable\\com_facebook_list_divider.9.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\src\\main\\res\\drawable\\com_facebook_list_divider.9.png"
-    },
-    {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\build\\intermediates\\res\\merged\\debug\\drawable\\com_facebook_inverse_icon.png",
         "source": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\src\\main\\res\\drawable\\com_facebook_inverse_icon.png"
+    },
+    {
+        "merged": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\build\\intermediates\\res\\merged\\debug\\drawable\\com_facebook_list_divider.9.png",
+        "source": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\src\\main\\res\\drawable\\com_facebook_list_divider.9.png"
     },
     {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\build\\intermediates\\res\\merged\\debug\\drawable\\com_facebook_profile_default_icon.png",

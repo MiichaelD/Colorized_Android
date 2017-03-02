@@ -1,4 +1,4 @@
-#Sat Feb 25 12:34:21 PST 2017
+#Wed Mar 01 22:16:59 PST 2017
 base.0=D\:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_a3d9830f5d7c5fc075afee799b92bca77d5a690d
 renamed.1=classes2.dex
 renamed.0=classes.dex

@@ -56,12 +56,12 @@
         "source": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\drawable-xxhdpi\\common_signin_btn_icon_disabled_focus_dark.9.png"
     },
     {
-        "merged": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi\\common_signin_btn_text_focus_light.9.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\drawable-xxhdpi\\common_signin_btn_text_focus_light.9.png"
-    },
-    {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi\\ic_cast_on_light.png",
         "source": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\drawable-xxhdpi\\ic_cast_on_light.png"
+    },
+    {
+        "merged": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi\\common_signin_btn_text_focus_light.9.png",
+        "source": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\drawable-xxhdpi\\common_signin_btn_text_focus_light.9.png"
     },
     {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi\\ic_media_route_off_mono_dark.png",
@@ -84,12 +84,12 @@
         "source": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable-xxhdpi\\abc_btn_rating_star_on_mtrl_alpha.png"
     },
     {
-        "merged": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi\\ic_cast_disabled_light.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\drawable-xxhdpi\\ic_cast_disabled_light.png"
-    },
-    {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi\\common_full_open_on_phone.png",
         "source": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\drawable-xxhdpi\\common_full_open_on_phone.png"
+    },
+    {
+        "merged": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi\\ic_cast_disabled_light.png",
+        "source": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\drawable-xxhdpi\\ic_cast_disabled_light.png"
     },
     {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi\\abc_spinner_mtrl_am_alpha.9.png",

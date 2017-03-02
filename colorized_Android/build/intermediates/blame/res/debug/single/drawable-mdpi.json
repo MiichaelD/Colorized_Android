@@ -268,12 +268,12 @@
         "source": "D:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\drawable-mdpi\\common_signin_btn_icon_focus_dark.9.png"
     },
     {
-        "merged": "D:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_scrubber_control_off_mtrl_alpha.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable-mdpi\\abc_scrubber_control_off_mtrl_alpha.png"
-    },
-    {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\common_signin_btn_text_disabled_light.9.png",
         "source": "D:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\drawable-mdpi\\common_signin_btn_text_disabled_light.9.png"
+    },
+    {
+        "merged": "D:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\abc_scrubber_control_off_mtrl_alpha.png",
+        "source": "D:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable-mdpi\\abc_scrubber_control_off_mtrl_alpha.png"
     },
     {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\common_signin_btn_icon_normal_light.9.png",

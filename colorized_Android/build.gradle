@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "24.0.0"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         applicationId "com.webs.itmexicali.colorized"
         minSdkVersion 9
-        targetSdkVersion 23
+        targetSdkVersion 25
     }
 
     buildTypes {

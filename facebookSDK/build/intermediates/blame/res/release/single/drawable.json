@@ -8,12 +8,12 @@
         "source": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\src\\main\\res\\drawable\\com_facebook_picker_list_selector_disabled.9.png"
     },
     {
-        "merged": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\build\\intermediates\\res\\merged\\release\\drawable\\com_facebook_button_grey_pressed.9.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\src\\main\\res\\drawable\\com_facebook_button_grey_pressed.9.png"
-    },
-    {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\build\\intermediates\\res\\merged\\release\\drawable\\com_facebook_button_check_off.png",
         "source": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\src\\main\\res\\drawable\\com_facebook_button_check_off.png"
+    },
+    {
+        "merged": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\build\\intermediates\\res\\merged\\release\\drawable\\com_facebook_button_grey_pressed.9.png",
+        "source": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\src\\main\\res\\drawable\\com_facebook_button_grey_pressed.9.png"
     },
     {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\build\\intermediates\\res\\merged\\release\\drawable\\com_facebook_profile_picture_blank_portrait.png",

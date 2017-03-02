@@ -40,12 +40,12 @@
         "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\src\\main\\res\\drawable-hdpi\\com_mixpanel_android_ic_phone.png"
     },
     {
-        "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\com_mixpanel_android_arrowright_faded.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\src\\main\\res\\drawable-hdpi\\com_mixpanel_android_arrowright_faded.png"
-    },
-    {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_btn_radio_to_on_mtrl_000.png",
         "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable-hdpi\\abc_btn_radio_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\com_mixpanel_android_arrowright_faded.png",
+        "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\src\\main\\res\\drawable-hdpi\\com_mixpanel_android_arrowright_faded.png"
     },
     {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\com_mixpanel_android_logo.png",
@@ -60,16 +60,16 @@
         "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\src\\main\\res\\drawable-hdpi\\com_mixpanel_android_ic_gear.png"
     },
     {
-        "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\common_signin_btn_icon_disabled_light.9.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\drawable-hdpi\\common_signin_btn_icon_disabled_light.9.png"
+        "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\com_mixpanel_android_arrowleft_faded.png",
+        "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\src\\main\\res\\drawable-hdpi\\com_mixpanel_android_arrowleft_faded.png"
     },
     {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\com_mixpanel_android_ic_bell.png",
         "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\src\\main\\res\\drawable-hdpi\\com_mixpanel_android_ic_bell.png"
     },
     {
-        "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\com_mixpanel_android_arrowleft_faded.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\src\\main\\res\\drawable-hdpi\\com_mixpanel_android_arrowleft_faded.png"
+        "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\common_signin_btn_icon_disabled_light.9.png",
+        "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\drawable-hdpi\\common_signin_btn_icon_disabled_light.9.png"
     },
     {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_ic_commit_search_api_mtrl_alpha.png",
@@ -112,12 +112,12 @@
         "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable-hdpi\\abc_ic_voice_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable-hdpi\\abc_ic_menu_copy_mtrl_am_alpha.png"
-    },
-    {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ic_pause_light.png",
         "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\drawable-hdpi\\ic_pause_light.png"
+    },
+    {
+        "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable-hdpi\\abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\abc_ic_menu_moreoverflow_mtrl_alpha.png",
