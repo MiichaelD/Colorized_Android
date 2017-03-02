@@ -19,6 +19,7 @@ import android.graphics.Paint.Align;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.Layout.Alignment;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import com.plattysoft.leonids.ParticleSystem;
@@ -85,7 +86,6 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 			@Override public void onActionPerformed() {
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
-				
 				GameActivity.instance.onGoogleShareRequested(pShareText);
 			}
 		});
@@ -95,7 +95,6 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 			@Override public void onActionPerformed() {
 				//play sound
 				GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
-				
 				GameActivity.instance.onFbShareRequested(pShareText,null);
 			}
 		});
@@ -212,25 +211,27 @@ public class GameOverState extends BaseState implements GameFinishedListener {
 			StateMachine.getIns().popState();
 		pGame = (GameState)bs;
 		
-		pTitle = StateMachine.mContext.getString(
-				pWin?R.string.game_over_win_title:R.string.game_over_lose_title);
+		pTitle = StateMachine.mContext.getString(pWin?R.string.game_over_win_title:R.string.game_over_lose_title);
 		
 		pDescription = pWin? 
-				String.format(StateMachine.mContext.getString(R.string.game_over_win_desc),pMovesCount) :
-				StateMachine.mContext.getString(R.string.game_over_lose_desc);
+				String.format(StateMachine.mContext.getString(R.string.game_over_win_desc),pMovesCount)
+				: StateMachine.mContext.getString(R.string.game_over_lose_desc);
 				
 		if(pWin){
-			
-			effect = new ParticleSystem(GameActivity.instance, 20, R.drawable.star, 3000)		
-			.setSpeedByComponentsRange(-0.25f, 0.25f, -0.7f, -0.2f)
-			.setAcceleration(0.000005f, 90)
-			.setInitialRotationRange(0, 360)
-			.setRotationSpeed(220)
-			.setFadeOut(2000)
-			.addModifier(new ScaleModifier(0f, 1f, 0, 1500));
-			//.oneShot(GameView.getIns(), 12);
-			effect.oneShot(GameActivity.instance.getBannerView(), 30);
-			
+            try {
+                ParticleSystem effect = new ParticleSystem(GameActivity.instance, 20, R.drawable.star, 3000)
+                        .setSpeedByComponentsRange(-0.25f, 0.25f, -0.7f, -0.2f)
+                        .setAcceleration(0.000005f, 90)
+                        .setInitialRotationRange(0, 360)
+                        .setRotationSpeed(220)
+                        .setFadeOut(2000)
+                        .addModifier(new ScaleModifier(0f, 1f, 0, 1500));
+                //.oneShot(GameView.getIns(), 12);
+                effect.oneShot(GameActivity.instance.getBannerView(), 30);
+            }catch (Exception e){
+                Log.e(GameOverState.class.getSimpleName(),e.getMessage());
+                e.printStackTrace();
+            }
 		}
 	}
 	

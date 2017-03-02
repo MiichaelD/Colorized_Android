@@ -6,7 +6,7 @@ import android.view.View;
 public abstract class Advertising {
 	
 	//ADS Constants	
-	public final static boolean SHOW_ADS = true;
+	public final static boolean SHOW_ADS = false;
 	
 	public final static int GAMEOVERS_TO_INTERSTITIAL = 3;
 	

@@ -78,7 +78,8 @@ public class AirPushStandard extends Advertising{
 		try {
 			airMain.showCachedAd(AdType.smartwall);
 		} catch (Exception e) {
-			Log.w(this.getClass().getSimpleName(),"showInterstitial(): Interstitial not showing Cached");
+			Log.w(this.getClass().getSimpleName(),
+					"showInterstitial(): Interstitial not showing Cached");
 			loadInterstitial();
 			e.printStackTrace();
 		}

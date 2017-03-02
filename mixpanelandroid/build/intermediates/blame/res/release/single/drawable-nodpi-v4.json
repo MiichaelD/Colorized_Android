@@ -1,23 +1,11 @@
 [
     {
-        "merged": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-nodpi-v4\\com_mixpanel_android_rounded_bottom.9.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\src\\main\\res\\drawable-nodpi\\com_mixpanel_android_rounded_bottom.9.png"
-    },
-    {
-        "merged": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-nodpi-v4\\com_mixpanel_android_square.9.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\src\\main\\res\\drawable-nodpi\\com_mixpanel_android_square.9.png"
-    },
-    {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-nodpi-v4\\com_mixpanel_android_rounded_bottom_selected.9.png",
         "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\src\\main\\res\\drawable-nodpi\\com_mixpanel_android_rounded_bottom_selected.9.png"
     },
     {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-nodpi-v4\\com_mixpanel_android_square.9.png",
         "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\src\\main\\res\\drawable-nodpi\\com_mixpanel_android_square.9.png"
-    },
-    {
-        "merged": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-nodpi-v4\\com_mixpanel_android_square_selected.9.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\src\\main\\res\\drawable-nodpi\\com_mixpanel_android_square_selected.9.png"
     },
     {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-nodpi-v4\\com_mixpanel_android_rounded_top_selected.9.png",
@@ -28,24 +16,8 @@
         "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\src\\main\\res\\drawable-nodpi\\com_mixpanel_android_rounded_top.9.png"
     },
     {
-        "merged": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-nodpi-v4\\com_mixpanel_android_rounded_top.9.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\src\\main\\res\\drawable-nodpi\\com_mixpanel_android_rounded_top.9.png"
-    },
-    {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-nodpi-v4\\com_mixpanel_android_square_selected.9.png",
         "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\src\\main\\res\\drawable-nodpi\\com_mixpanel_android_square_selected.9.png"
-    },
-    {
-        "merged": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-nodpi-v4\\com_mixpanel_android_rounded_top_selected.9.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\src\\main\\res\\drawable-nodpi\\com_mixpanel_android_rounded_top_selected.9.png"
-    },
-    {
-        "merged": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-nodpi-v4\\com_mixpanel_android_close.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\src\\main\\res\\drawable-nodpi\\com_mixpanel_android_close.png"
-    },
-    {
-        "merged": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-nodpi-v4\\com_mixpanel_android_rounded_bottom_selected.9.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\src\\main\\res\\drawable-nodpi\\com_mixpanel_android_rounded_bottom_selected.9.png"
     },
     {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\drawable-nodpi-v4\\com_mixpanel_android_rounded_bottom.9.png",

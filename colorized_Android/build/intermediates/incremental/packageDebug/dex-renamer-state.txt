@@ -1,0 +1,7 @@
+#Sat Feb 25 12:34:21 PST 2017
+base.0=D\:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_a3d9830f5d7c5fc075afee799b92bca77d5a690d
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=D\:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_5088c90a4cf47a63ba0d61be0b48ea85273d692d\\classes.dex
+base.1=D\:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_5088c90a4cf47a63ba0d61be0b48ea85273d692d
+file.0=D\:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_a3d9830f5d7c5fc075afee799b92bca77d5a690d\\classes.dex

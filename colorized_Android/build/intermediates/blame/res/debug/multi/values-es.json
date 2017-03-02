@@ -1,3091 +1,6 @@
 [
     {
-        "outputFile": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\res\\merged\\debug\\values-es\\values-es.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 105,
-                    "endColumn": 116,
-                    "endOffset": 217
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 229,
-                        "endColumn": 116,
-                        "endOffset": 341
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 222,
-                    "endColumn": 107,
-                    "endOffset": 325
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 346,
-                        "endColumn": 107,
-                        "endOffset": 449
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 330,
-                    "endColumn": 122,
-                    "endOffset": 448
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 454,
-                        "endColumn": 122,
-                        "endOffset": 572
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 453,
-                    "endColumn": 112,
-                    "endOffset": 561
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 577,
-                        "endColumn": 112,
-                        "endOffset": 685
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 6,
-                    "startColumn": 4,
-                    "startOffset": 566,
-                    "endColumn": 107,
-                    "endOffset": 669
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 690,
-                        "endColumn": 107,
-                        "endOffset": 793
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 7,
-                    "startColumn": 4,
-                    "startOffset": 674,
-                    "endColumn": 84,
-                    "endOffset": 754
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 798,
-                        "endColumn": 84,
-                        "endOffset": 878
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 8,
-                    "startColumn": 4,
-                    "startOffset": 759,
-                    "endColumn": 100,
-                    "endOffset": 855
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 883,
-                        "endColumn": 100,
-                        "endOffset": 979
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 860,
-                    "endColumn": 127,
-                    "endOffset": 983
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 984,
-                        "endColumn": 127,
-                        "endOffset": 1107
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 10,
-                    "startColumn": 4,
-                    "startOffset": 988,
-                    "endColumn": 75,
-                    "endOffset": 1059
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1112,
-                        "endColumn": 75,
-                        "endOffset": 1183
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 11,
-                    "startColumn": 4,
-                    "startOffset": 1064,
-                    "endColumn": 75,
-                    "endOffset": 1135
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1188,
-                        "endColumn": 75,
-                        "endOffset": 1259
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 12,
-                    "startColumn": 4,
-                    "startOffset": 1140,
-                    "endColumn": 81,
-                    "endOffset": 1217
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 1264,
-                        "endColumn": 81,
-                        "endOffset": 1341
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 13,
-                    "startColumn": 4,
-                    "startOffset": 1222,
-                    "endColumn": 106,
-                    "endOffset": 1324
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 1346,
-                        "endColumn": 106,
-                        "endOffset": 1448
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 14,
-                    "startColumn": 4,
-                    "startOffset": 1329,
-                    "endColumn": 99,
-                    "endOffset": 1424
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 1453,
-                        "endColumn": 99,
-                        "endOffset": 1548
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 15,
-                    "startColumn": 4,
-                    "startOffset": 1429,
-                    "endColumn": 98,
-                    "endOffset": 1523
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 17,
-                        "startColumn": 4,
-                        "startOffset": 1553,
-                        "endColumn": 98,
-                        "endOffset": 1647
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 16,
-                    "startColumn": 4,
-                    "startOffset": 1528,
-                    "endColumn": 107,
-                    "endOffset": 1631
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 18,
-                        "startColumn": 4,
-                        "startOffset": 1652,
-                        "endColumn": 107,
-                        "endOffset": 1755
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 17,
-                    "startColumn": 4,
-                    "startOffset": 1636,
-                    "endColumn": 106,
-                    "endOffset": 1738
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 19,
-                        "startColumn": 4,
-                        "startOffset": 1760,
-                        "endColumn": 106,
-                        "endOffset": 1862
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 18,
-                    "startColumn": 4,
-                    "startOffset": 1743,
-                    "endColumn": 106,
-                    "endOffset": 1845
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 20,
-                        "startColumn": 4,
-                        "startOffset": 1867,
-                        "endColumn": 106,
-                        "endOffset": 1969
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 19,
-                    "startColumn": 4,
-                    "startOffset": 1850,
-                    "endColumn": 121,
-                    "endOffset": 1967
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 21,
-                        "startColumn": 4,
-                        "startOffset": 1974,
-                        "endColumn": 121,
-                        "endOffset": 2091
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 20,
-                    "startColumn": 4,
-                    "startOffset": 1972,
-                    "endColumn": 99,
-                    "endOffset": 2067
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 22,
-                        "startColumn": 4,
-                        "startOffset": 2096,
-                        "endColumn": 99,
-                        "endOffset": 2191
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 21,
-                    "startColumn": 4,
-                    "startOffset": 2072,
-                    "endColumn": 52,
-                    "endOffset": 2120
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 34,
-                        "startColumn": 4,
-                        "startOffset": 2092,
-                        "endColumn": 52,
-                        "endOffset": 2140
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 22,
-                    "startColumn": 4,
-                    "startOffset": 2125,
-                    "endColumn": 56,
-                    "endOffset": 2177
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 73,
-                        "startColumn": 4,
-                        "startOffset": 4310,
-                        "endColumn": 56,
-                        "endOffset": 4362
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 23,
-                    "startColumn": 4,
-                    "startOffset": 2182,
-                    "endColumn": 66,
-                    "endOffset": 2244
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 72,
-                        "startColumn": 4,
-                        "startOffset": 4243,
-                        "endColumn": 66,
-                        "endOffset": 4305
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 24,
-                    "startColumn": 4,
-                    "startOffset": 2249,
-                    "endColumn": 48,
-                    "endOffset": 2293
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 75,
-                        "startColumn": 4,
-                        "startOffset": 4418,
-                        "endColumn": 48,
-                        "endOffset": 4462
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 25,
-                    "startColumn": 4,
-                    "startOffset": 2298,
-                    "endColumn": 238,
-                    "endOffset": 2532
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 76,
-                        "startColumn": 4,
-                        "startOffset": 4467,
-                        "endColumn": 238,
-                        "endOffset": 4701
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 26,
-                    "startColumn": 4,
-                    "startOffset": 2537,
-                    "endColumn": 80,
-                    "endOffset": 2613
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 78,
-                        "startColumn": 4,
-                        "startOffset": 4838,
-                        "endColumn": 80,
-                        "endOffset": 4914
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 27,
-                    "startColumn": 4,
-                    "startOffset": 2618,
-                    "endColumn": 90,
-                    "endOffset": 2704
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 79,
-                        "startColumn": 4,
-                        "startOffset": 4919,
-                        "endColumn": 90,
-                        "endOffset": 5005
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 28,
-                    "startColumn": 4,
-                    "startOffset": 2709,
-                    "endColumn": 85,
-                    "endOffset": 2790
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 80,
-                        "startColumn": 4,
-                        "startOffset": 5010,
-                        "endColumn": 85,
-                        "endOffset": 5091
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 29,
-                    "startColumn": 4,
-                    "startOffset": 2795,
-                    "endColumn": 80,
-                    "endOffset": 2871
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 81,
-                        "startColumn": 4,
-                        "startOffset": 5096,
-                        "endColumn": 80,
-                        "endOffset": 5172
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 30,
-                    "startColumn": 4,
-                    "startOffset": 2876,
-                    "endColumn": 64,
-                    "endOffset": 2936
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 82,
-                        "startColumn": 4,
-                        "startOffset": 5177,
-                        "endColumn": 64,
-                        "endOffset": 5237
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 31,
-                    "startColumn": 4,
-                    "startOffset": 2941,
-                    "endColumn": 84,
-                    "endOffset": 3021
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 83,
-                        "startColumn": 4,
-                        "startOffset": 5242,
-                        "endColumn": 84,
-                        "endOffset": 5322
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 32,
-                    "startColumn": 4,
-                    "startOffset": 3026,
-                    "endColumn": 131,
-                    "endOffset": 3153
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 77,
-                        "startColumn": 4,
-                        "startOffset": 4706,
-                        "endColumn": 131,
-                        "endOffset": 4833
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 33,
-                    "startColumn": 4,
-                    "startOffset": 3158,
-                    "endColumn": 50,
-                    "endOffset": 3204
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 74,
-                        "startColumn": 4,
-                        "startOffset": 4367,
-                        "endColumn": 50,
-                        "endOffset": 4413
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 34,
-                    "startColumn": 4,
-                    "startOffset": 3209,
-                    "endColumn": 48,
-                    "endOffset": 3253
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 32,
-                        "startColumn": 4,
-                        "startOffset": 1995,
-                        "endColumn": 48,
-                        "endOffset": 2039
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 35,
-                    "startColumn": 4,
-                    "startOffset": 3258,
-                    "endColumn": 113,
-                    "endOffset": 3367
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 549,
-                        "endColumn": 113,
-                        "endOffset": 658
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 36,
-                    "startColumn": 4,
-                    "startOffset": 3372,
-                    "endColumn": 99,
-                    "endOffset": 3467
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 768,
-                        "endColumn": 99,
-                        "endOffset": 863
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 37,
-                    "startColumn": 4,
-                    "startOffset": 3472,
-                    "endColumn": 54,
-                    "endOffset": 3522
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 108,
-                        "endColumn": 54,
-                        "endOffset": 158
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 38,
-                    "startColumn": 4,
-                    "startOffset": 3527,
-                    "endColumn": 43,
-                    "endOffset": 3566
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 247,
-                        "endColumn": 43,
-                        "endOffset": 286
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 39,
-                    "startColumn": 4,
-                    "startOffset": 3571,
-                    "endColumn": 68,
-                    "endOffset": 3635
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 68,
-                        "endOffset": 119
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 40,
-                    "startColumn": 4,
-                    "startOffset": 3640,
-                    "endColumn": 78,
-                    "endOffset": 3714
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 124,
-                        "endColumn": 78,
-                        "endOffset": 198
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 41,
-                    "startColumn": 4,
-                    "startOffset": 3719,
-                    "endColumn": 125,
-                    "endOffset": 3840
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 203,
-                        "endColumn": 125,
-                        "endOffset": 324
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 42,
-                    "startColumn": 4,
-                    "startOffset": 3845,
-                    "endColumn": 97,
-                    "endOffset": 3938
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 329,
-                        "endColumn": 97,
-                        "endOffset": 422
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 43,
-                    "startColumn": 4,
-                    "startOffset": 3943,
-                    "endColumn": 57,
-                    "endOffset": 3996
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 427,
-                        "endColumn": 57,
-                        "endOffset": 480
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 44,
-                    "startColumn": 4,
-                    "startOffset": 4001,
-                    "endColumn": 73,
-                    "endOffset": 4070
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 485,
-                        "endColumn": 73,
-                        "endOffset": 554
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 45,
-                    "startColumn": 4,
-                    "startOffset": 4075,
-                    "endColumn": 92,
-                    "endOffset": 4163
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 559,
-                        "endColumn": 92,
-                        "endOffset": 647
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 46,
-                    "startColumn": 4,
-                    "startOffset": 4168,
-                    "endColumn": 79,
-                    "endOffset": 4243
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 652,
-                        "endColumn": 79,
-                        "endOffset": 727
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 47,
-                    "startColumn": 4,
-                    "startOffset": 4248,
-                    "endColumn": 79,
-                    "endOffset": 4323
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 732,
-                        "endColumn": 79,
-                        "endOffset": 807
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 48,
-                    "startColumn": 4,
-                    "startOffset": 4328,
-                    "endColumn": 90,
-                    "endOffset": 4414
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 812,
-                        "endColumn": 90,
-                        "endOffset": 898
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 49,
-                    "startColumn": 4,
-                    "startOffset": 4419,
-                    "endColumn": 104,
-                    "endOffset": 4519
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 903,
-                        "endColumn": 104,
-                        "endOffset": 1003
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 50,
-                    "startColumn": 4,
-                    "startOffset": 4524,
-                    "endColumn": 82,
-                    "endOffset": 4602
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1008,
-                        "endColumn": 82,
-                        "endOffset": 1086
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 51,
-                    "startColumn": 4,
-                    "startOffset": 4607,
-                    "endColumn": 55,
-                    "endOffset": 4658
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 1091,
-                        "endColumn": 55,
-                        "endOffset": 1142
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 52,
-                    "startColumn": 4,
-                    "startOffset": 4663,
-                    "endColumn": 72,
-                    "endOffset": 4731
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 1147,
-                        "endColumn": 72,
-                        "endOffset": 1215
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 53,
-                    "startColumn": 4,
-                    "startOffset": 4736,
-                    "endColumn": 87,
-                    "endOffset": 4819
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 1220,
-                        "endColumn": 87,
-                        "endOffset": 1303
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 54,
-                    "startColumn": 4,
-                    "startOffset": 4824,
-                    "endColumn": 97,
-                    "endOffset": 4917
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 17,
-                        "startColumn": 4,
-                        "startOffset": 1308,
-                        "endColumn": 97,
-                        "endOffset": 1401
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 55,
-                    "startColumn": 4,
-                    "startOffset": 4922,
-                    "endColumn": 108,
-                    "endOffset": 5026
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 18,
-                        "startColumn": 4,
-                        "startOffset": 1406,
-                        "endColumn": 108,
-                        "endOffset": 1510
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 56,
-                    "startColumn": 4,
-                    "startOffset": 5031,
-                    "endColumn": 165,
-                    "endOffset": 5192
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 19,
-                        "startColumn": 4,
-                        "startOffset": 1515,
-                        "endColumn": 165,
-                        "endOffset": 1676
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 57,
-                    "startColumn": 4,
-                    "startOffset": 5197,
-                    "endColumn": 220,
-                    "endOffset": 5413
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 20,
-                        "startColumn": 4,
-                        "startOffset": 1681,
-                        "endColumn": 220,
-                        "endOffset": 1897
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 58,
-                    "startColumn": 4,
-                    "startOffset": 5418,
-                    "endColumn": 165,
-                    "endOffset": 5579
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 21,
-                        "startColumn": 4,
-                        "startOffset": 1902,
-                        "endColumn": 165,
-                        "endOffset": 2063
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 59,
-                    "startColumn": 4,
-                    "startOffset": 5584,
-                    "endColumn": 154,
-                    "endOffset": 5734
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 22,
-                        "startColumn": 4,
-                        "startOffset": 2068,
-                        "endColumn": 154,
-                        "endOffset": 2218
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 60,
-                    "startColumn": 4,
-                    "startOffset": 5739,
-                    "endColumn": 212,
-                    "endOffset": 5947
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 23,
-                        "startColumn": 4,
-                        "startOffset": 2223,
-                        "endColumn": 212,
-                        "endOffset": 2431
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 61,
-                    "startColumn": 4,
-                    "startOffset": 5952,
-                    "endColumn": 91,
-                    "endOffset": 6039
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 24,
-                        "startColumn": 4,
-                        "startOffset": 2436,
-                        "endColumn": 91,
-                        "endOffset": 2523
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 62,
-                    "startColumn": 4,
-                    "startOffset": 6044,
-                    "endColumn": 87,
-                    "endOffset": 6127
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 25,
-                        "startColumn": 4,
-                        "startOffset": 2528,
-                        "endColumn": 87,
-                        "endOffset": 2611
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 63,
-                    "startColumn": 4,
-                    "startOffset": 6132,
-                    "endColumn": 98,
-                    "endOffset": 6226
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\facebookSDK\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 26,
-                        "startColumn": 4,
-                        "startOffset": 2616,
-                        "endColumn": 98,
-                        "endOffset": 2710
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 64,
-                    "startColumn": 4,
-                    "startOffset": 6231,
-                    "endColumn": 61,
-                    "endOffset": 6288
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\mixpanelandroid\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 61,
-                        "endOffset": 112
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 65,
-                    "startColumn": 4,
-                    "startOffset": 6293,
-                    "endColumn": 59,
-                    "endOffset": 6348
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\mixpanelandroid\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 117,
-                        "endColumn": 59,
-                        "endOffset": 172
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 66,
-                    "startColumn": 4,
-                    "startOffset": 6353,
-                    "endColumn": 59,
-                    "endOffset": 6408
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\mixpanelandroid\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 177,
-                        "endColumn": 59,
-                        "endOffset": 232
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 67,
-                    "startColumn": 4,
-                    "startOffset": 6413,
-                    "endColumn": 65,
-                    "endOffset": 6474
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\mixpanelandroid\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 237,
-                        "endColumn": 65,
-                        "endOffset": 298
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 68,
-                    "startColumn": 4,
-                    "startOffset": 6479,
-                    "endColumn": 72,
-                    "endOffset": 6547
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\mixpanelandroid\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 303,
-                        "endColumn": 72,
-                        "endOffset": 371
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 69,
-                    "startColumn": 4,
-                    "startOffset": 6552,
-                    "endColumn": 70,
-                    "endOffset": 6618
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\mixpanelandroid\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 376,
-                        "endColumn": 70,
-                        "endOffset": 442
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 70,
-                    "startColumn": 4,
-                    "startOffset": 6623,
-                    "endColumn": 86,
-                    "endOffset": 6705
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\mixpanelandroid\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 447,
-                        "endColumn": 86,
-                        "endOffset": 529
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 71,
-                    "startColumn": 4,
-                    "startOffset": 6710,
-                    "endColumn": 75,
-                    "endOffset": 6781
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\mixpanelandroid\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 534,
-                        "endColumn": 75,
-                        "endOffset": 605
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 72,
-                    "startColumn": 4,
-                    "startOffset": 6786,
-                    "endColumn": 59,
-                    "endOffset": 6841
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\mixpanelandroid\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 610,
-                        "endColumn": 59,
-                        "endOffset": 665
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 73,
-                    "startColumn": 4,
-                    "startOffset": 6846,
-                    "endColumn": 116,
-                    "endOffset": 6958
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\mixpanelandroid\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 670,
-                        "endColumn": 116,
-                        "endOffset": 782
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 74,
-                    "startColumn": 4,
-                    "startOffset": 6963,
-                    "endColumn": 105,
-                    "endOffset": 7064
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\mixpanelandroid\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 787,
-                        "endColumn": 105,
-                        "endOffset": 888
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 75,
-                    "startColumn": 4,
-                    "startOffset": 7069,
-                    "endColumn": 196,
-                    "endOffset": 7261
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 499,
-                        "endColumn": 200,
-                        "endOffset": 695
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 76,
-                    "startColumn": 4,
-                    "startOffset": 7266,
-                    "endColumn": 191,
-                    "endOffset": 7453
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 18,
-                        "startColumn": 4,
-                        "startOffset": 2701,
-                        "endColumn": 195,
-                        "endOffset": 2892
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 77,
-                    "startColumn": 4,
-                    "startOffset": 7458,
-                    "endColumn": 114,
-                    "endOffset": 7568
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 2380,
-                        "endColumn": 114,
-                        "endOffset": 2490
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 78,
-                    "startColumn": 4,
-                    "startOffset": 7573,
-                    "endColumn": 288,
-                    "endOffset": 7857
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 32,
-                        "startColumn": 4,
-                        "startOffset": 4894,
-                        "endColumn": 292,
-                        "endOffset": 5182
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 79,
-                    "startColumn": 4,
-                    "startOffset": 7862,
-                    "endColumn": 134,
-                    "endOffset": 7992
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 2110,
-                        "endColumn": 134,
-                        "endOffset": 2240
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 80,
-                    "startColumn": 4,
-                    "startOffset": 7997,
-                    "endColumn": 198,
-                    "endOffset": 8191
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1907,
-                        "endColumn": 202,
-                        "endOffset": 2105
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 81,
-                    "startColumn": 4,
-                    "startOffset": 8196,
-                    "endColumn": 132,
-                    "endOffset": 8324
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1774,
-                        "endColumn": 132,
-                        "endOffset": 1902
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 82,
-                    "startColumn": 4,
-                    "startOffset": 8329,
-                    "endColumn": 170,
-                    "endOffset": 8495
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 878,
-                        "endColumn": 174,
-                        "endOffset": 1048
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 83,
-                    "startColumn": 4,
-                    "startOffset": 8500,
-                    "endColumn": 135,
-                    "endOffset": 8631
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 1638,
-                        "endColumn": 135,
-                        "endOffset": 1769
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 84,
-                    "startColumn": 4,
-                    "startOffset": 8636,
-                    "endColumn": 222,
-                    "endOffset": 8854
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 1186,
-                        "endColumn": 226,
-                        "endOffset": 1408
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 85,
-                    "startColumn": 4,
-                    "startOffset": 8859,
-                    "endColumn": 220,
-                    "endOffset": 9075
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 1413,
-                        "endColumn": 224,
-                        "endOffset": 1633
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 86,
-                    "startColumn": 4,
-                    "startOffset": 9080,
-                    "endColumn": 132,
-                    "endOffset": 9208
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 1053,
-                        "endColumn": 132,
-                        "endOffset": 1181
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 87,
-                    "startColumn": 4,
-                    "startOffset": 9213,
-                    "endColumn": 184,
-                    "endOffset": 9393
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 24,
-                        "startColumn": 4,
-                        "startOffset": 3709,
-                        "endColumn": 184,
-                        "endOffset": 3889
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 88,
-                    "startColumn": 4,
-                    "startOffset": 9398,
-                    "endColumn": 124,
-                    "endOffset": 9518
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 23,
-                        "startColumn": 4,
-                        "startOffset": 3584,
-                        "endColumn": 124,
-                        "endOffset": 3704
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 89,
-                    "startColumn": 4,
-                    "startOffset": 9523,
-                    "endColumn": 177,
-                    "endOffset": 9696
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 700,
-                        "endColumn": 177,
-                        "endOffset": 873
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 90,
-                    "startColumn": 4,
-                    "startOffset": 9701,
-                    "endColumn": 197,
-                    "endOffset": 9894
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 22,
-                        "startColumn": 4,
-                        "startOffset": 3386,
-                        "endColumn": 197,
-                        "endOffset": 3579
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 91,
-                    "startColumn": 4,
-                    "startOffset": 9899,
-                    "endColumn": 118,
-                    "endOffset": 10013
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 21,
-                        "startColumn": 4,
-                        "startOffset": 3267,
-                        "endColumn": 118,
-                        "endOffset": 3381
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 92,
-                    "startColumn": 4,
-                    "startOffset": 10018,
-                    "endColumn": 188,
-                    "endOffset": 10202
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 310,
-                        "endColumn": 188,
-                        "endOffset": 494
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 93,
-                    "startColumn": 4,
-                    "startOffset": 10207,
-                    "endColumn": 139,
-                    "endOffset": 10342
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 170,
-                        "endColumn": 139,
-                        "endOffset": 305
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 94,
-                    "startColumn": 4,
-                    "startOffset": 10347,
-                    "endColumn": 180,
-                    "endOffset": 10523
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 34,
-                        "startColumn": 4,
-                        "startOffset": 5318,
-                        "endColumn": 180,
-                        "endOffset": 5494
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 95,
-                    "startColumn": 4,
-                    "startOffset": 10528,
-                    "endColumn": 130,
-                    "endOffset": 10654
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 33,
-                        "startColumn": 4,
-                        "startOffset": 5187,
-                        "endColumn": 130,
-                        "endOffset": 5313
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 96,
-                    "startColumn": 4,
-                    "startOffset": 10659,
-                    "endColumn": 162,
-                    "endOffset": 10817
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 25,
-                        "startColumn": 4,
-                        "startOffset": 3894,
-                        "endColumn": 162,
-                        "endOffset": 4052
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 97,
-                    "startColumn": 4,
-                    "startOffset": 10822,
-                    "endColumn": 282,
-                    "endOffset": 11100
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 27,
-                        "startColumn": 4,
-                        "startOffset": 4186,
-                        "endColumn": 286,
-                        "endOffset": 4468
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 98,
-                    "startColumn": 4,
-                    "startOffset": 11105,
-                    "endColumn": 128,
-                    "endOffset": 11229
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 26,
-                        "startColumn": 4,
-                        "startOffset": 4057,
-                        "endColumn": 128,
-                        "endOffset": 4181
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 99,
-                    "startColumn": 4,
-                    "startOffset": 11234,
-                    "endColumn": 110,
-                    "endOffset": 11340
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 28,
-                        "startColumn": 4,
-                        "startOffset": 4473,
-                        "endColumn": 110,
-                        "endOffset": 4579
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 100,
-                    "startColumn": 4,
-                    "startOffset": 11345,
-                    "endColumn": 201,
-                    "endOffset": 11542
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 17,
-                        "startColumn": 4,
-                        "startOffset": 2495,
-                        "endColumn": 205,
-                        "endOffset": 2696
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 101,
-                    "startColumn": 4,
-                    "startOffset": 11547,
-                    "endColumn": 134,
-                    "endOffset": 11677
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 2245,
-                        "endColumn": 134,
-                        "endOffset": 2375
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 102,
-                    "startColumn": 4,
-                    "startOffset": 11682,
-                    "endColumn": 227,
-                    "endOffset": 11905
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 20,
-                        "startColumn": 4,
-                        "startOffset": 3035,
-                        "endColumn": 231,
-                        "endOffset": 3262
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 103,
-                    "startColumn": 4,
-                    "startOffset": 11910,
-                    "endColumn": 137,
-                    "endOffset": 12043
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 19,
-                        "startColumn": 4,
-                        "startOffset": 2897,
-                        "endColumn": 137,
-                        "endOffset": 3030
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 104,
-                    "startColumn": 4,
-                    "startOffset": 12048,
-                    "endColumn": 95,
-                    "endOffset": 12139
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 31,
-                        "startColumn": 4,
-                        "startOffset": 4798,
-                        "endColumn": 95,
-                        "endOffset": 4889
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 105,
-                    "startColumn": 4,
-                    "startOffset": 12144,
-                    "endColumn": 98,
-                    "endOffset": 12238
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 29,
-                        "startColumn": 4,
-                        "startOffset": 4584,
-                        "endColumn": 98,
-                        "endOffset": 4678
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 106,
-                    "startColumn": 4,
-                    "startOffset": 12243,
-                    "endColumn": 114,
-                    "endOffset": 12353
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-es\\common_strings.xml",
-                    "position": {
-                        "startLine": 30,
-                        "startColumn": 4,
-                        "startOffset": 4683,
-                        "endColumn": 114,
-                        "endOffset": 4793
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 107,
-                    "startColumn": 4,
-                    "startOffset": 12358,
-                    "endColumn": 52,
-                    "endOffset": 12406
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 327,
-                        "endColumn": 52,
-                        "endOffset": 375
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 108,
-                    "startColumn": 4,
-                    "startOffset": 12411,
-                    "endColumn": 95,
-                    "endOffset": 12502
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 23,
-                        "startColumn": 4,
-                        "startOffset": 1484,
-                        "endColumn": 95,
-                        "endOffset": 1575
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 109,
-                    "startColumn": 4,
-                    "startOffset": 12507,
-                    "endColumn": 64,
-                    "endOffset": 12567
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 22,
-                        "startColumn": 4,
-                        "startOffset": 1419,
-                        "endColumn": 64,
-                        "endOffset": 1479
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 110,
-                    "startColumn": 4,
-                    "startOffset": 12572,
-                    "endColumn": 59,
-                    "endOffset": 12627
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 20,
-                        "startColumn": 4,
-                        "startOffset": 1116,
-                        "endColumn": 59,
-                        "endOffset": 1171
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 111,
-                    "startColumn": 4,
-                    "startOffset": 12632,
-                    "endColumn": 234,
-                    "endOffset": 12862
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 21,
-                        "startColumn": 4,
-                        "startOffset": 1176,
-                        "endColumn": 242,
-                        "endOffset": 1414
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 112,
-                    "startColumn": 4,
-                    "startOffset": 12867,
-                    "endLine": 113,
-                    "endColumn": 91,
-                    "endOffset": 13020
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 25,
-                        "startColumn": 4,
-                        "startOffset": 1641,
-                        "endLine": 26,
-                        "endColumn": 95,
-                        "endOffset": 1798
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 114,
-                    "startColumn": 4,
-                    "startOffset": 13025,
-                    "endColumn": 60,
-                    "endOffset": 13081
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 24,
-                        "startColumn": 4,
-                        "startOffset": 1580,
-                        "endColumn": 60,
-                        "endOffset": 1636
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 115,
-                    "startColumn": 4,
-                    "startOffset": 13086,
-                    "endColumn": 410,
-                    "endOffset": 13492
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\baseGameUtils\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 410,
-                        "endOffset": 461
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 116,
-                    "startColumn": 4,
-                    "startOffset": 13497,
-                    "endColumn": 85,
-                    "endOffset": 13578
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\baseGameUtils\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 466,
-                        "endColumn": 85,
-                        "endOffset": 547
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 117,
-                    "startColumn": 4,
-                    "startOffset": 13583,
-                    "endColumn": 131,
-                    "endOffset": 13710
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\baseGameUtils\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 552,
-                        "endColumn": 131,
-                        "endOffset": 679
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 118,
-                    "startColumn": 4,
-                    "startOffset": 13715,
-                    "endColumn": 71,
-                    "endOffset": 13782
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\Colorized_Android1\\baseGameUtils\\unspecified\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 684,
-                        "endColumn": 71,
-                        "endOffset": 751
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 119,
-                    "startColumn": 4,
-                    "startOffset": 13787,
-                    "endColumn": 79,
-                    "endOffset": 13862
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 163,
-                        "endColumn": 83,
-                        "endOffset": 242
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 120,
-                    "startColumn": 4,
-                    "startOffset": 13867,
-                    "endColumn": 54,
-                    "endOffset": 13917
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 31,
-                        "startColumn": 4,
-                        "startOffset": 1940,
-                        "endColumn": 54,
-                        "endOffset": 1990
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 121,
-                    "startColumn": 4,
-                    "startOffset": 13922,
-                    "endColumn": 105,
-                    "endOffset": 14023
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 868,
-                        "endColumn": 105,
-                        "endOffset": 969
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 122,
-                    "startColumn": 4,
-                    "startOffset": 14028,
-                    "endColumn": 117,
-                    "endOffset": 14141
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 40,
-                        "startColumn": 4,
-                        "startOffset": 2350,
-                        "endColumn": 125,
-                        "endOffset": 2471
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 123,
-                    "startColumn": 4,
-                    "startOffset": 14146,
-                    "endColumn": 117,
-                    "endOffset": 14259
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 293,
-                        "endColumn": 117,
-                        "endOffset": 406
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 124,
-                    "startColumn": 4,
-                    "startOffset": 14264,
-                    "endColumn": 113,
-                    "endOffset": 14373
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 411,
-                        "endColumn": 113,
-                        "endOffset": 520
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 125,
-                    "startColumn": 4,
-                    "startOffset": 14378,
-                    "endColumn": 109,
-                    "endOffset": 14483
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 525,
-                        "endColumn": 109,
-                        "endOffset": 630
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 126,
-                    "startColumn": 4,
-                    "startOffset": 14488,
-                    "endColumn": 105,
-                    "endOffset": 14589
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 635,
-                        "endColumn": 105,
-                        "endOffset": 736
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 127,
-                    "startColumn": 4,
-                    "startOffset": 14594,
-                    "endColumn": 86,
-                    "endOffset": 14676
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 741,
-                        "endColumn": 86,
-                        "endOffset": 823
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 128,
-                    "startColumn": 4,
-                    "startOffset": 14681,
-                    "endColumn": 98,
-                    "endOffset": 14775
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 828,
-                        "endColumn": 98,
-                        "endOffset": 922
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 129,
-                    "startColumn": 4,
-                    "startOffset": 14780,
-                    "endColumn": 47,
-                    "endOffset": 14823
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 33,
-                        "startColumn": 4,
-                        "startOffset": 2044,
-                        "endColumn": 47,
-                        "endOffset": 2087
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 130,
-                    "startColumn": 4,
-                    "startOffset": 14828,
-                    "endColumn": 111,
-                    "endOffset": 14935
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 87,
-                        "startColumn": 4,
-                        "startOffset": 5447,
-                        "endColumn": 111,
-                        "endOffset": 5554
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 131,
-                    "startColumn": 4,
-                    "startOffset": 14940,
-                    "endColumn": 74,
-                    "endOffset": 15010
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 86,
-                        "startColumn": 4,
-                        "startOffset": 5372,
-                        "endColumn": 74,
-                        "endOffset": 5442
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 132,
-                    "startColumn": 4,
-                    "startOffset": 15015,
-                    "endColumn": 63,
-                    "endOffset": 15074
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 35,
-                        "startColumn": 4,
-                        "startOffset": 2145,
-                        "endColumn": 63,
-                        "endOffset": 2204
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 133,
-                    "startColumn": 4,
-                    "startOffset": 15079,
-                    "endColumn": 51,
-                    "endOffset": 15126
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 36,
-                        "startColumn": 4,
-                        "startOffset": 2209,
-                        "endColumn": 51,
-                        "endOffset": 2256
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 134,
-                    "startColumn": 4,
-                    "startOffset": 15131,
-                    "endColumn": 59,
-                    "endOffset": 15186
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 53,
-                        "startColumn": 4,
-                        "startOffset": 3208,
-                        "endColumn": 59,
-                        "endOffset": 3263
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 135,
-                    "startColumn": 4,
-                    "startOffset": 15191,
-                    "endColumn": 66,
-                    "endOffset": 15253
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 43,
-                        "startColumn": 4,
-                        "startOffset": 2513,
-                        "endColumn": 66,
-                        "endOffset": 2575
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 136,
-                    "startColumn": 4,
-                    "startOffset": 15258,
-                    "endColumn": 46,
-                    "endOffset": 15300
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 47,
-                        "startColumn": 4,
-                        "startOffset": 2884,
-                        "endColumn": 46,
-                        "endOffset": 2926
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 137,
-                    "startColumn": 4,
-                    "startOffset": 15305,
-                    "endColumn": 96,
-                    "endOffset": 15397
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 44,
-                        "startColumn": 4,
-                        "startOffset": 2580,
-                        "endColumn": 100,
-                        "endOffset": 2676
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 138,
-                    "startColumn": 4,
-                    "startOffset": 15402,
-                    "endColumn": 61,
-                    "endOffset": 15459
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 51,
-                        "startColumn": 4,
-                        "startOffset": 3090,
-                        "endColumn": 61,
-                        "endOffset": 3147
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 139,
-                    "startColumn": 4,
-                    "startOffset": 15464,
-                    "endColumn": 47,
-                    "endOffset": 15507
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 49,
-                        "startColumn": 4,
-                        "startOffset": 2979,
-                        "endColumn": 47,
-                        "endOffset": 3022
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 140,
-                    "startColumn": 4,
-                    "startOffset": 15512,
-                    "endColumn": 97,
-                    "endOffset": 15605
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 46,
-                        "startColumn": 4,
-                        "startOffset": 2782,
-                        "endColumn": 101,
-                        "endOffset": 2879
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 141,
-                    "startColumn": 4,
-                    "startOffset": 15610,
-                    "endColumn": 47,
-                    "endOffset": 15653
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 48,
-                        "startColumn": 4,
-                        "startOffset": 2931,
-                        "endColumn": 47,
-                        "endOffset": 2974
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 142,
-                    "startColumn": 4,
-                    "startOffset": 15658,
-                    "endColumn": 96,
-                    "endOffset": 15750
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 45,
-                        "startColumn": 4,
-                        "startOffset": 2681,
-                        "endColumn": 100,
-                        "endOffset": 2777
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 143,
-                    "startColumn": 4,
-                    "startOffset": 15755,
-                    "endColumn": 62,
-                    "endOffset": 15813
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 50,
-                        "startColumn": 4,
-                        "startOffset": 3027,
-                        "endColumn": 62,
-                        "endOffset": 3085
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 144,
-                    "startColumn": 4,
-                    "startOffset": 15818,
-                    "endColumn": 55,
-                    "endOffset": 15869
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 52,
-                        "startColumn": 4,
-                        "startOffset": 3152,
-                        "endColumn": 55,
-                        "endOffset": 3203
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 145,
-                    "startColumn": 4,
-                    "startOffset": 15874,
-                    "endColumn": 99,
-                    "endOffset": 15969
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 58,
-                        "startColumn": 4,
-                        "startOffset": 3440,
-                        "endColumn": 103,
-                        "endOffset": 3539
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 146,
-                    "startColumn": 4,
-                    "startOffset": 15974,
-                    "endColumn": 45,
-                    "endOffset": 16015
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 29,
-                        "startColumn": 4,
-                        "startOffset": 1841,
-                        "endColumn": 45,
-                        "endOffset": 1882
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 147,
-                    "startColumn": 4,
-                    "startOffset": 16020,
-                    "endColumn": 72,
-                    "endOffset": 16088
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 380,
-                        "endColumn": 72,
-                        "endOffset": 448
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 148,
-                    "startColumn": 4,
-                    "startOffset": 16093,
-                    "endColumn": 90,
-                    "endOffset": 16179
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 453,
-                        "endColumn": 90,
-                        "endOffset": 539
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 149,
-                    "startColumn": 4,
-                    "startOffset": 16184,
-                    "endColumn": 102,
-                    "endOffset": 16282
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 17,
-                        "startColumn": 4,
-                        "startOffset": 974,
-                        "endColumn": 102,
-                        "endOffset": 1072
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 150,
-                    "startColumn": 4,
-                    "startOffset": 16287,
-                    "endColumn": 53,
-                    "endOffset": 16336
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 37,
-                        "startColumn": 4,
-                        "startOffset": 2261,
-                        "endColumn": 53,
-                        "endOffset": 2310
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 151,
-                    "startColumn": 4,
-                    "startOffset": 16341,
-                    "endColumn": 100,
-                    "endOffset": 16437
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-es\\values-es.xml",
-                    "position": {
-                        "startLine": 23,
-                        "startColumn": 4,
-                        "startOffset": 2196,
-                        "endColumn": 100,
-                        "endOffset": 2292
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 152,
-                    "startColumn": 4,
-                    "startOffset": 16442,
-                    "endColumn": 70,
-                    "endOffset": 16508
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 56,
-                        "startColumn": 4,
-                        "startOffset": 3305,
-                        "endColumn": 70,
-                        "endOffset": 3371
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 153,
-                    "startColumn": 4,
-                    "startOffset": 16513,
-                    "endColumn": 63,
-                    "endOffset": 16572
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 57,
-                        "startColumn": 4,
-                        "startOffset": 3376,
-                        "endColumn": 63,
-                        "endOffset": 3435
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 154,
-                    "startColumn": 4,
-                    "startOffset": 16577,
-                    "endColumn": 52,
-                    "endOffset": 16625
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 62,
-                        "startColumn": 4,
-                        "startOffset": 3598,
-                        "endColumn": 52,
-                        "endOffset": 3646
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 155,
-                    "startColumn": 4,
-                    "startOffset": 16630,
-                    "endColumn": 68,
-                    "endOffset": 16694
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 63,
-                        "startColumn": 4,
-                        "startOffset": 3651,
-                        "endColumn": 68,
-                        "endOffset": 3715
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 156,
-                    "startColumn": 4,
-                    "startOffset": 16699,
-                    "endColumn": 79,
-                    "endOffset": 16774
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 64,
-                        "startColumn": 4,
-                        "startOffset": 3720,
-                        "endColumn": 79,
-                        "endOffset": 3795
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 157,
-                    "startColumn": 4,
-                    "startOffset": 16779,
-                    "endColumn": 70,
-                    "endOffset": 16845
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 65,
-                        "startColumn": 4,
-                        "startOffset": 3800,
-                        "endColumn": 70,
-                        "endOffset": 3866
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 158,
-                    "startColumn": 4,
-                    "startOffset": 16850,
-                    "endColumn": 76,
-                    "endOffset": 16922
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 66,
-                        "startColumn": 4,
-                        "startOffset": 3871,
-                        "endColumn": 76,
-                        "endOffset": 3943
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 159,
-                    "startColumn": 4,
-                    "startOffset": 16927,
-                    "endColumn": 74,
-                    "endOffset": 16997
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 67,
-                        "startColumn": 4,
-                        "startOffset": 3948,
-                        "endColumn": 74,
-                        "endOffset": 4018
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 160,
-                    "startColumn": 4,
-                    "startOffset": 17002,
-                    "endColumn": 70,
-                    "endOffset": 17068
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 68,
-                        "startColumn": 4,
-                        "startOffset": 4023,
-                        "endColumn": 70,
-                        "endOffset": 4089
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 161,
-                    "startColumn": 4,
-                    "startOffset": 17073,
-                    "endColumn": 120,
-                    "endOffset": 17189
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 69,
-                        "startColumn": 4,
-                        "startOffset": 4094,
-                        "endColumn": 120,
-                        "endOffset": 4210
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 162,
-                    "startColumn": 4,
-                    "startOffset": 17194,
-                    "endColumn": 52,
-                    "endOffset": 17242
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 30,
-                        "startColumn": 4,
-                        "startOffset": 1887,
-                        "endColumn": 52,
-                        "endOffset": 1935
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 163,
-                    "startColumn": 4,
-                    "startOffset": 17247,
-                    "endColumn": 77,
-                    "endOffset": 17320
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-wallet\\7.8.0\\res\\values-es\\wallet_strings.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 2,
-                        "startOffset": 105,
-                        "endColumn": 75,
-                        "endOffset": 178
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 164,
-                    "startColumn": 4,
-                    "startOffset": 17325,
-                    "endColumn": 99,
-                    "endOffset": 17420
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\values-es\\strings.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 663,
-                        "endColumn": 99,
-                        "endOffset": 758
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "D:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\res\\merged\\debug\\values-es\\values-es.xml",
+        "outputFile": "D:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-es\\values-es.xml",
         "map": [
             {
                 "to": {
@@ -3461,9 +376,9 @@
                     "position": {
                         "startLine": 34,
                         "startColumn": 4,
-                        "startOffset": 2092,
+                        "startOffset": 2126,
                         "endColumn": 52,
-                        "endOffset": 2140
+                        "endOffset": 2174
                     }
                 }
             },
@@ -3480,9 +395,9 @@
                     "position": {
                         "startLine": 73,
                         "startColumn": 4,
-                        "startOffset": 4310,
+                        "startOffset": 4383,
                         "endColumn": 56,
-                        "endOffset": 4362
+                        "endOffset": 4435
                     }
                 }
             },
@@ -3499,9 +414,9 @@
                     "position": {
                         "startLine": 72,
                         "startColumn": 4,
-                        "startOffset": 4243,
+                        "startOffset": 4315,
                         "endColumn": 66,
-                        "endOffset": 4305
+                        "endOffset": 4377
                     }
                 }
             },
@@ -3518,9 +433,9 @@
                     "position": {
                         "startLine": 75,
                         "startColumn": 4,
-                        "startOffset": 4418,
+                        "startOffset": 4493,
                         "endColumn": 48,
-                        "endOffset": 4462
+                        "endOffset": 4537
                     }
                 }
             },
@@ -3537,9 +452,9 @@
                     "position": {
                         "startLine": 76,
                         "startColumn": 4,
-                        "startOffset": 4467,
+                        "startOffset": 4543,
                         "endColumn": 238,
-                        "endOffset": 4701
+                        "endOffset": 4777
                     }
                 }
             },
@@ -3556,9 +471,9 @@
                     "position": {
                         "startLine": 78,
                         "startColumn": 4,
-                        "startOffset": 4838,
+                        "startOffset": 4916,
                         "endColumn": 80,
-                        "endOffset": 4914
+                        "endOffset": 4992
                     }
                 }
             },
@@ -3575,9 +490,9 @@
                     "position": {
                         "startLine": 79,
                         "startColumn": 4,
-                        "startOffset": 4919,
+                        "startOffset": 4998,
                         "endColumn": 90,
-                        "endOffset": 5005
+                        "endOffset": 5084
                     }
                 }
             },
@@ -3594,9 +509,9 @@
                     "position": {
                         "startLine": 80,
                         "startColumn": 4,
-                        "startOffset": 5010,
+                        "startOffset": 5090,
                         "endColumn": 85,
-                        "endOffset": 5091
+                        "endOffset": 5171
                     }
                 }
             },
@@ -3613,9 +528,9 @@
                     "position": {
                         "startLine": 81,
                         "startColumn": 4,
-                        "startOffset": 5096,
+                        "startOffset": 5177,
                         "endColumn": 80,
-                        "endOffset": 5172
+                        "endOffset": 5253
                     }
                 }
             },
@@ -3632,9 +547,9 @@
                     "position": {
                         "startLine": 82,
                         "startColumn": 4,
-                        "startOffset": 5177,
+                        "startOffset": 5259,
                         "endColumn": 64,
-                        "endOffset": 5237
+                        "endOffset": 5319
                     }
                 }
             },
@@ -3651,9 +566,9 @@
                     "position": {
                         "startLine": 83,
                         "startColumn": 4,
-                        "startOffset": 5242,
+                        "startOffset": 5325,
                         "endColumn": 84,
-                        "endOffset": 5322
+                        "endOffset": 5405
                     }
                 }
             },
@@ -3670,9 +585,9 @@
                     "position": {
                         "startLine": 77,
                         "startColumn": 4,
-                        "startOffset": 4706,
+                        "startOffset": 4783,
                         "endColumn": 131,
-                        "endOffset": 4833
+                        "endOffset": 4910
                     }
                 }
             },
@@ -3689,9 +604,9 @@
                     "position": {
                         "startLine": 74,
                         "startColumn": 4,
-                        "startOffset": 4367,
+                        "startOffset": 4441,
                         "endColumn": 50,
-                        "endOffset": 4413
+                        "endOffset": 4487
                     }
                 }
             },
@@ -3708,9 +623,9 @@
                     "position": {
                         "startLine": 32,
                         "startColumn": 4,
-                        "startOffset": 1995,
+                        "startOffset": 2027,
                         "endColumn": 48,
-                        "endOffset": 2039
+                        "endOffset": 2071
                     }
                 }
             },
@@ -3727,9 +642,9 @@
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
-                        "startOffset": 549,
+                        "startOffset": 561,
                         "endColumn": 113,
-                        "endOffset": 658
+                        "endOffset": 670
                     }
                 }
             },
@@ -3746,9 +661,9 @@
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
-                        "startOffset": 768,
+                        "startOffset": 783,
                         "endColumn": 99,
-                        "endOffset": 863
+                        "endOffset": 878
                     }
                 }
             },
@@ -3765,9 +680,9 @@
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
-                        "startOffset": 108,
+                        "startOffset": 111,
                         "endColumn": 54,
-                        "endOffset": 158
+                        "endOffset": 161
                     }
                 }
             },
@@ -3784,9 +699,9 @@
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
-                        "startOffset": 247,
+                        "startOffset": 252,
                         "endColumn": 43,
-                        "endOffset": 286
+                        "endOffset": 291
                     }
                 }
             },
@@ -5095,9 +2010,9 @@
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
-                        "startOffset": 327,
+                        "startOffset": 335,
                         "endColumn": 52,
-                        "endOffset": 375
+                        "endOffset": 383
                     }
                 }
             },
@@ -5114,9 +2029,9 @@
                     "position": {
                         "startLine": 23,
                         "startColumn": 4,
-                        "startOffset": 1484,
+                        "startOffset": 1507,
                         "endColumn": 95,
-                        "endOffset": 1575
+                        "endOffset": 1598
                     }
                 }
             },
@@ -5133,9 +2048,9 @@
                     "position": {
                         "startLine": 22,
                         "startColumn": 4,
-                        "startOffset": 1419,
+                        "startOffset": 1441,
                         "endColumn": 64,
-                        "endOffset": 1479
+                        "endOffset": 1501
                     }
                 }
             },
@@ -5152,9 +2067,9 @@
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
-                        "startOffset": 1116,
+                        "startOffset": 1136,
                         "endColumn": 59,
-                        "endOffset": 1171
+                        "endOffset": 1191
                     }
                 }
             },
@@ -5171,9 +2086,9 @@
                     "position": {
                         "startLine": 21,
                         "startColumn": 4,
-                        "startOffset": 1176,
+                        "startOffset": 1197,
                         "endColumn": 242,
-                        "endOffset": 1414
+                        "endOffset": 1435
                     }
                 }
             },
@@ -5191,10 +2106,10 @@
                     "position": {
                         "startLine": 25,
                         "startColumn": 4,
-                        "startOffset": 1641,
+                        "startOffset": 1666,
                         "endLine": 26,
                         "endColumn": 95,
-                        "endOffset": 1798
+                        "endOffset": 1824
                     }
                 }
             },
@@ -5211,9 +2126,9 @@
                     "position": {
                         "startLine": 24,
                         "startColumn": 4,
-                        "startOffset": 1580,
+                        "startOffset": 1604,
                         "endColumn": 60,
-                        "endOffset": 1636
+                        "endOffset": 1660
                     }
                 }
             },
@@ -5306,9 +2221,9 @@
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 163,
+                        "startOffset": 167,
                         "endColumn": 83,
-                        "endOffset": 242
+                        "endOffset": 246
                     }
                 }
             },
@@ -5325,9 +2240,9 @@
                     "position": {
                         "startLine": 31,
                         "startColumn": 4,
-                        "startOffset": 1940,
+                        "startOffset": 1971,
                         "endColumn": 54,
-                        "endOffset": 1990
+                        "endOffset": 2021
                     }
                 }
             },
@@ -5344,9 +2259,9 @@
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
-                        "startOffset": 868,
+                        "startOffset": 884,
                         "endColumn": 105,
-                        "endOffset": 969
+                        "endOffset": 985
                     }
                 }
             },
@@ -5363,9 +2278,9 @@
                     "position": {
                         "startLine": 40,
                         "startColumn": 4,
-                        "startOffset": 2350,
+                        "startOffset": 2390,
                         "endColumn": 125,
-                        "endOffset": 2471
+                        "endOffset": 2511
                     }
                 }
             },
@@ -5496,9 +2411,9 @@
                     "position": {
                         "startLine": 33,
                         "startColumn": 4,
-                        "startOffset": 2044,
+                        "startOffset": 2077,
                         "endColumn": 47,
-                        "endOffset": 2087
+                        "endOffset": 2120
                     }
                 }
             },
@@ -5515,9 +2430,9 @@
                     "position": {
                         "startLine": 87,
                         "startColumn": 4,
-                        "startOffset": 5447,
+                        "startOffset": 5534,
                         "endColumn": 111,
-                        "endOffset": 5554
+                        "endOffset": 5641
                     }
                 }
             },
@@ -5534,9 +2449,9 @@
                     "position": {
                         "startLine": 86,
                         "startColumn": 4,
-                        "startOffset": 5372,
+                        "startOffset": 5458,
                         "endColumn": 74,
-                        "endOffset": 5442
+                        "endOffset": 5528
                     }
                 }
             },
@@ -5553,9 +2468,9 @@
                     "position": {
                         "startLine": 35,
                         "startColumn": 4,
-                        "startOffset": 2145,
+                        "startOffset": 2180,
                         "endColumn": 63,
-                        "endOffset": 2204
+                        "endOffset": 2239
                     }
                 }
             },
@@ -5572,9 +2487,9 @@
                     "position": {
                         "startLine": 36,
                         "startColumn": 4,
-                        "startOffset": 2209,
+                        "startOffset": 2245,
                         "endColumn": 51,
-                        "endOffset": 2256
+                        "endOffset": 2292
                     }
                 }
             },
@@ -5591,9 +2506,9 @@
                     "position": {
                         "startLine": 53,
                         "startColumn": 4,
-                        "startOffset": 3208,
+                        "startOffset": 3261,
                         "endColumn": 59,
-                        "endOffset": 3263
+                        "endOffset": 3316
                     }
                 }
             },
@@ -5610,9 +2525,9 @@
                     "position": {
                         "startLine": 43,
                         "startColumn": 4,
-                        "startOffset": 2513,
+                        "startOffset": 2556,
                         "endColumn": 66,
-                        "endOffset": 2575
+                        "endOffset": 2618
                     }
                 }
             },
@@ -5629,9 +2544,9 @@
                     "position": {
                         "startLine": 47,
                         "startColumn": 4,
-                        "startOffset": 2884,
+                        "startOffset": 2931,
                         "endColumn": 46,
-                        "endOffset": 2926
+                        "endOffset": 2973
                     }
                 }
             },
@@ -5648,9 +2563,9 @@
                     "position": {
                         "startLine": 44,
                         "startColumn": 4,
-                        "startOffset": 2580,
+                        "startOffset": 2624,
                         "endColumn": 100,
-                        "endOffset": 2676
+                        "endOffset": 2720
                     }
                 }
             },
@@ -5667,9 +2582,9 @@
                     "position": {
                         "startLine": 51,
                         "startColumn": 4,
-                        "startOffset": 3090,
+                        "startOffset": 3141,
                         "endColumn": 61,
-                        "endOffset": 3147
+                        "endOffset": 3198
                     }
                 }
             },
@@ -5686,9 +2601,9 @@
                     "position": {
                         "startLine": 49,
                         "startColumn": 4,
-                        "startOffset": 2979,
+                        "startOffset": 3028,
                         "endColumn": 47,
-                        "endOffset": 3022
+                        "endOffset": 3071
                     }
                 }
             },
@@ -5705,9 +2620,9 @@
                     "position": {
                         "startLine": 46,
                         "startColumn": 4,
-                        "startOffset": 2782,
+                        "startOffset": 2828,
                         "endColumn": 101,
-                        "endOffset": 2879
+                        "endOffset": 2925
                     }
                 }
             },
@@ -5724,9 +2639,9 @@
                     "position": {
                         "startLine": 48,
                         "startColumn": 4,
-                        "startOffset": 2931,
+                        "startOffset": 2979,
                         "endColumn": 47,
-                        "endOffset": 2974
+                        "endOffset": 3022
                     }
                 }
             },
@@ -5743,9 +2658,9 @@
                     "position": {
                         "startLine": 45,
                         "startColumn": 4,
-                        "startOffset": 2681,
+                        "startOffset": 2726,
                         "endColumn": 100,
-                        "endOffset": 2777
+                        "endOffset": 2822
                     }
                 }
             },
@@ -5762,9 +2677,9 @@
                     "position": {
                         "startLine": 50,
                         "startColumn": 4,
-                        "startOffset": 3027,
+                        "startOffset": 3077,
                         "endColumn": 62,
-                        "endOffset": 3085
+                        "endOffset": 3135
                     }
                 }
             },
@@ -5781,9 +2696,9 @@
                     "position": {
                         "startLine": 52,
                         "startColumn": 4,
-                        "startOffset": 3152,
+                        "startOffset": 3204,
                         "endColumn": 55,
-                        "endOffset": 3203
+                        "endOffset": 3255
                     }
                 }
             },
@@ -5800,9 +2715,9 @@
                     "position": {
                         "startLine": 58,
                         "startColumn": 4,
-                        "startOffset": 3440,
+                        "startOffset": 3498,
                         "endColumn": 103,
-                        "endOffset": 3539
+                        "endOffset": 3597
                     }
                 }
             },
@@ -5819,9 +2734,9 @@
                     "position": {
                         "startLine": 29,
                         "startColumn": 4,
-                        "startOffset": 1841,
+                        "startOffset": 1870,
                         "endColumn": 45,
-                        "endOffset": 1882
+                        "endOffset": 1911
                     }
                 }
             },
@@ -5838,9 +2753,9 @@
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
-                        "startOffset": 380,
+                        "startOffset": 389,
                         "endColumn": 72,
-                        "endOffset": 448
+                        "endOffset": 457
                     }
                 }
             },
@@ -5857,9 +2772,9 @@
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
-                        "startOffset": 453,
+                        "startOffset": 463,
                         "endColumn": 90,
-                        "endOffset": 539
+                        "endOffset": 549
                     }
                 }
             },
@@ -5876,9 +2791,9 @@
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
-                        "startOffset": 974,
+                        "startOffset": 991,
                         "endColumn": 102,
-                        "endOffset": 1072
+                        "endOffset": 1089
                     }
                 }
             },
@@ -5895,9 +2810,9 @@
                     "position": {
                         "startLine": 37,
                         "startColumn": 4,
-                        "startOffset": 2261,
+                        "startOffset": 2298,
                         "endColumn": 53,
-                        "endOffset": 2310
+                        "endOffset": 2347
                     }
                 }
             },
@@ -5933,9 +2848,9 @@
                     "position": {
                         "startLine": 56,
                         "startColumn": 4,
-                        "startOffset": 3305,
+                        "startOffset": 3361,
                         "endColumn": 70,
-                        "endOffset": 3371
+                        "endOffset": 3427
                     }
                 }
             },
@@ -5952,9 +2867,9 @@
                     "position": {
                         "startLine": 57,
                         "startColumn": 4,
-                        "startOffset": 3376,
+                        "startOffset": 3433,
                         "endColumn": 63,
-                        "endOffset": 3435
+                        "endOffset": 3492
                     }
                 }
             },
@@ -5971,9 +2886,9 @@
                     "position": {
                         "startLine": 62,
                         "startColumn": 4,
-                        "startOffset": 3598,
+                        "startOffset": 3660,
                         "endColumn": 52,
-                        "endOffset": 3646
+                        "endOffset": 3708
                     }
                 }
             },
@@ -5990,9 +2905,9 @@
                     "position": {
                         "startLine": 63,
                         "startColumn": 4,
-                        "startOffset": 3651,
+                        "startOffset": 3714,
                         "endColumn": 68,
-                        "endOffset": 3715
+                        "endOffset": 3778
                     }
                 }
             },
@@ -6009,9 +2924,9 @@
                     "position": {
                         "startLine": 64,
                         "startColumn": 4,
-                        "startOffset": 3720,
+                        "startOffset": 3784,
                         "endColumn": 79,
-                        "endOffset": 3795
+                        "endOffset": 3859
                     }
                 }
             },
@@ -6028,9 +2943,9 @@
                     "position": {
                         "startLine": 65,
                         "startColumn": 4,
-                        "startOffset": 3800,
+                        "startOffset": 3865,
                         "endColumn": 70,
-                        "endOffset": 3866
+                        "endOffset": 3931
                     }
                 }
             },
@@ -6047,9 +2962,9 @@
                     "position": {
                         "startLine": 66,
                         "startColumn": 4,
-                        "startOffset": 3871,
+                        "startOffset": 3937,
                         "endColumn": 76,
-                        "endOffset": 3943
+                        "endOffset": 4009
                     }
                 }
             },
@@ -6066,9 +2981,9 @@
                     "position": {
                         "startLine": 67,
                         "startColumn": 4,
-                        "startOffset": 3948,
+                        "startOffset": 4015,
                         "endColumn": 74,
-                        "endOffset": 4018
+                        "endOffset": 4085
                     }
                 }
             },
@@ -6085,9 +3000,9 @@
                     "position": {
                         "startLine": 68,
                         "startColumn": 4,
-                        "startOffset": 4023,
+                        "startOffset": 4091,
                         "endColumn": 70,
-                        "endOffset": 4089
+                        "endOffset": 4157
                     }
                 }
             },
@@ -6104,9 +3019,9 @@
                     "position": {
                         "startLine": 69,
                         "startColumn": 4,
-                        "startOffset": 4094,
+                        "startOffset": 4163,
                         "endColumn": 120,
-                        "endOffset": 4210
+                        "endOffset": 4279
                     }
                 }
             },
@@ -6123,9 +3038,9 @@
                     "position": {
                         "startLine": 30,
                         "startColumn": 4,
-                        "startOffset": 1887,
+                        "startOffset": 1917,
                         "endColumn": 52,
-                        "endOffset": 1935
+                        "endOffset": 1965
                     }
                 }
             },
@@ -6161,9 +3076,9 @@
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
-                        "startOffset": 663,
+                        "startOffset": 676,
                         "endColumn": 99,
-                        "endOffset": 758
+                        "endOffset": 771
                     }
                 }
             }

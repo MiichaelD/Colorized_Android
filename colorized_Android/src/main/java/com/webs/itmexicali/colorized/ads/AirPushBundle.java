@@ -16,8 +16,9 @@ public class AirPushBundle extends Advertising{
 
 	//AirPush Ads Bundle
     //private com.xsqhbao.bipppts201390.MA air;
-    private com.xsqhbao.bipppts201390.AdView AirPushView;
-	
+//    private com.xsqhbao.bipppts201390.AdView AirPushView;
+	private View AirPushView;
+
 	public AirPushBundle(Activity ctx) {
 		super(ctx);
 	}

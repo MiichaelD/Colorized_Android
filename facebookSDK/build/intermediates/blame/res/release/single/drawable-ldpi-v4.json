@@ -1,9 +1,5 @@
 [
     {
-        "merged": "D:\\Dev\\Android\\Colorized_Android1\\facebookSDK\\build\\intermediates\\res\\merged\\release\\drawable-ldpi-v4\\com_facebook_close.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android1\\facebookSDK\\src\\main\\res\\drawable-ldpi\\com_facebook_close.png"
-    },
-    {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\build\\intermediates\\res\\merged\\release\\drawable-ldpi-v4\\com_facebook_close.png",
         "source": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\src\\main\\res\\drawable-ldpi\\com_facebook_close.png"
     }

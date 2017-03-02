@@ -1,9 +1,5 @@
 [
     {
-        "merged": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\layout-land\\com_mixpanel_android_activity_notification_full.xml",
-        "source": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\src\\main\\res\\layout-land\\com_mixpanel_android_activity_notification_full.xml"
-    },
-    {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\release\\layout-land\\com_mixpanel_android_activity_notification_full.xml",
         "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\src\\main\\res\\layout-land\\com_mixpanel_android_activity_notification_full.xml"
     }
