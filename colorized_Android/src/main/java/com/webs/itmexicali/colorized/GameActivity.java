@@ -213,9 +213,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		
 		Tracking.shared().onResume(this);
 	}
-	
-	
-	
+
 	@Override
 	public void onPause(){
 		super.onPause();
@@ -223,11 +221,11 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		
 		if(pAds != null)
 			pAds.onPause();
-		
+
 		uiHelper.onPause();
-		
+
 		playMusic(false);		
-		
+
 		// uploads the file containing the logged events. The onPause method is
         // guaranteed to be called in the life cycle of an Android App, so we
         // are guaranteed the events log file are uploaded

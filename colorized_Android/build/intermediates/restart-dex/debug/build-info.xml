@@ -5,33 +5,32 @@
     density="xxhdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="2688844218031802"
+    timestamp="3026600402106864"
     token="-4336239951538370936"
-    verifier="FULL_BUILD_REQUESTED" >
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="2531" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="9969" />
+        duration="0" />
     <task
         name="verifier"
-        duration="56418" />
-
-    <artifact
-        location="D:\Dev\Android\Colorized_Android\colorized_Android\build\outputs\apk\colorized_Android-debug.apk"
-        type="MAIN" />
+        duration="0" />
 
     <build
-        timestamp="2688844218031802"
+        timestamp="3026512649281185"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="D:\Dev\Android\Colorized_Android\colorized_Android\build\outputs\apk\colorized_Android-debug.apk"
             type="MAIN" />
     </build>
+    <build
+        timestamp="3026600402106864"
+        verifier="COLD_SWAP_REQUESTED" />
 
 </instant-run>
