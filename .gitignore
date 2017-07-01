@@ -3,11 +3,16 @@
 *.iml
 .gradle
 /local.properties
+local.properties
 /.idea/workspace.xml
+.idea/workspace.xml
 /.idea/libraries
+.idea/libraries
 .DS_Store
 /build
+build
 /captures
+captures
 .externalNativeBuild
 
 
@@ -53,8 +58,11 @@ obj/
 
 # Optional - for older project format
 /*/out
+*/out
 /*/*/build
+*/*/build
 /*/*/production
+*/*/production
 *.iws
 *.ipr
 *~
