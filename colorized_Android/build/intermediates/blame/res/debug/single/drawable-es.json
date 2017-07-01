@@ -1,17 +1,5 @@
 [
     {
-        "merged": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\res\\merged\\debug\\drawable-es\\app_icon.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\drawable-es\\app_icon.png"
-    },
-    {
-        "merged": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\res\\merged\\debug\\drawable-es\\white_signin_medium_base_44dp.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\drawable-es\\white_signin_medium_base_44dp.png"
-    },
-    {
-        "merged": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\build\\intermediates\\res\\merged\\debug\\drawable-es\\white_signin_medium_press_44dp.png",
-        "source": "D:\\Dev\\Android\\Colorized_Android1\\colorized_Android\\src\\main\\res\\drawable-es\\white_signin_medium_press_44dp.png"
-    },
-    {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\colorized_Android\\build\\intermediates\\res\\merged\\debug\\drawable-es\\app_icon.png",
         "source": "D:\\Dev\\Android\\Colorized_Android\\colorized_Android\\src\\main\\res\\drawable-es\\app_icon.png"
     },

@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-el\\values-el.xml",
+        "outputFile": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-el\\values-el.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 218
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\cd59b8aa758079c7ec2b81384e8d4e6258746aec\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 329
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\cd59b8aa758079c7ec2b81384e8d4e6258746aec\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -49,7 +49,7 @@
                     "endOffset": 446
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\cd59b8aa758079c7ec2b81384e8d4e6258746aec\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -68,7 +68,7 @@
                     "endOffset": 531
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\cd59b8aa758079c7ec2b81384e8d4e6258746aec\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -87,7 +87,7 @@
                     "endOffset": 636
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\cd59b8aa758079c7ec2b81384e8d4e6258746aec\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -106,7 +106,7 @@
                     "endOffset": 762
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\cd59b8aa758079c7ec2b81384e8d4e6258746aec\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
@@ -125,7 +125,7 @@
                     "endOffset": 873
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\cd59b8aa758079c7ec2b81384e8d4e6258746aec\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -144,7 +144,7 @@
                     "endOffset": 983
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\cd59b8aa758079c7ec2b81384e8d4e6258746aec\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -163,7 +163,7 @@
                     "endOffset": 1085
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\cd59b8aa758079c7ec2b81384e8d4e6258746aec\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
@@ -182,7 +182,7 @@
                     "endOffset": 1196
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\cd59b8aa758079c7ec2b81384e8d4e6258746aec\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
@@ -201,7 +201,7 @@
                     "endOffset": 1305
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\cd59b8aa758079c7ec2b81384e8d4e6258746aec\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -220,7 +220,7 @@
                     "endOffset": 1413
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\cd59b8aa758079c7ec2b81384e8d4e6258746aec\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
@@ -239,7 +239,7 @@
                     "endOffset": 1536
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\cd59b8aa758079c7ec2b81384e8d4e6258746aec\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
@@ -258,7 +258,7 @@
                     "endOffset": 1740
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -277,7 +277,7 @@
                     "endOffset": 1940
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
@@ -296,7 +296,7 @@
                     "endOffset": 2054
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
@@ -315,7 +315,7 @@
                     "endOffset": 2348
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 32,
                         "startColumn": 4,
@@ -334,7 +334,7 @@
                     "endOffset": 2479
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -353,7 +353,7 @@
                     "endOffset": 2697
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
@@ -372,7 +372,7 @@
                     "endOffset": 2830
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
@@ -391,7 +391,7 @@
                     "endOffset": 3021
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -410,7 +410,7 @@
                     "endOffset": 3149
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -429,7 +429,7 @@
                     "endOffset": 3389
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
@@ -448,7 +448,7 @@
                     "endOffset": 3627
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -467,7 +467,7 @@
                     "endOffset": 3752
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -486,7 +486,7 @@
                     "endOffset": 3958
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 24,
                         "startColumn": 4,
@@ -505,7 +505,7 @@
                     "endOffset": 4089
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 23,
                         "startColumn": 4,
@@ -524,7 +524,7 @@
                     "endOffset": 4261
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -543,7 +543,7 @@
                     "endOffset": 4443
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 22,
                         "startColumn": 4,
@@ -562,7 +562,7 @@
                     "endOffset": 4564
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 21,
                         "startColumn": 4,
@@ -581,7 +581,7 @@
                     "endOffset": 4744
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -600,7 +600,7 @@
                     "endOffset": 4879
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -619,7 +619,7 @@
                     "endOffset": 5076
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 34,
                         "startColumn": 4,
@@ -638,7 +638,7 @@
                     "endOffset": 5201
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 33,
                         "startColumn": 4,
@@ -657,7 +657,7 @@
                     "endOffset": 5348
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 25,
                         "startColumn": 4,
@@ -676,7 +676,7 @@
                     "endOffset": 5630
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 27,
                         "startColumn": 4,
@@ -695,7 +695,7 @@
                     "endOffset": 5756
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 26,
                         "startColumn": 4,
@@ -714,7 +714,7 @@
                     "endOffset": 5866
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 28,
                         "startColumn": 4,
@@ -733,7 +733,7 @@
                     "endOffset": 6067
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
@@ -752,7 +752,7 @@
                     "endOffset": 6198
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
@@ -771,7 +771,7 @@
                     "endOffset": 6435
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
@@ -790,7 +790,7 @@
                     "endOffset": 6571
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
@@ -809,7 +809,7 @@
                     "endOffset": 6670
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 31,
                         "startColumn": 4,
@@ -828,7 +828,7 @@
                     "endOffset": 6762
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 29,
                         "startColumn": 4,
@@ -847,7 +847,7 @@
                     "endOffset": 6873
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-el\\common_strings.xml",
                     "position": {
                         "startLine": 30,
                         "startColumn": 4,
@@ -866,7 +866,7 @@
                     "endOffset": 6986
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\3fec370fbaec082a5450b5ba8c86c09a5ace94c8\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -885,7 +885,7 @@
                     "endOffset": 7097
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\3fec370fbaec082a5450b5ba8c86c09a5ace94c8\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -904,7 +904,7 @@
                     "endOffset": 7206
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\3fec370fbaec082a5450b5ba8c86c09a5ace94c8\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -923,7 +923,7 @@
                     "endOffset": 7311
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\3fec370fbaec082a5450b5ba8c86c09a5ace94c8\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -942,7 +942,7 @@
                     "endOffset": 7398
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\3fec370fbaec082a5450b5ba8c86c09a5ace94c8\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -961,981 +961,7 @@
                     "endOffset": 7493
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 818,
-                        "endColumn": 94,
-                        "endOffset": 908
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-el\\values-el.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 105,
-                    "endColumn": 117,
-                    "endOffset": 218
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 291,
-                        "endColumn": 117,
-                        "endOffset": 404
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 223,
-                    "endColumn": 110,
-                    "endOffset": 329
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 409,
-                        "endColumn": 110,
-                        "endOffset": 515
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 334,
-                    "endColumn": 116,
-                    "endOffset": 446
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 520,
-                        "endColumn": 116,
-                        "endOffset": 632
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 451,
-                    "endColumn": 84,
-                    "endOffset": 531
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 637,
-                        "endColumn": 84,
-                        "endOffset": 717
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 6,
-                    "startColumn": 4,
-                    "startOffset": 536,
-                    "endColumn": 104,
-                    "endOffset": 636
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 722,
-                        "endColumn": 104,
-                        "endOffset": 822
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 7,
-                    "startColumn": 4,
-                    "startOffset": 641,
-                    "endColumn": 125,
-                    "endOffset": 762
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 827,
-                        "endColumn": 125,
-                        "endOffset": 948
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 8,
-                    "startColumn": 4,
-                    "startOffset": 767,
-                    "endColumn": 110,
-                    "endOffset": 873
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 953,
-                        "endColumn": 110,
-                        "endOffset": 1059
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 878,
-                    "endColumn": 109,
-                    "endOffset": 983
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 1064,
-                        "endColumn": 109,
-                        "endOffset": 1169
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 10,
-                    "startColumn": 4,
-                    "startOffset": 988,
-                    "endColumn": 101,
-                    "endOffset": 1085
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1174,
-                        "endColumn": 101,
-                        "endOffset": 1271
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 11,
-                    "startColumn": 4,
-                    "startOffset": 1090,
-                    "endColumn": 110,
-                    "endOffset": 1196
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1276,
-                        "endColumn": 110,
-                        "endOffset": 1382
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 12,
-                    "startColumn": 4,
-                    "startOffset": 1201,
-                    "endColumn": 108,
-                    "endOffset": 1305
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 1387,
-                        "endColumn": 108,
-                        "endOffset": 1491
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 13,
-                    "startColumn": 4,
-                    "startOffset": 1310,
-                    "endColumn": 107,
-                    "endOffset": 1413
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 1496,
-                        "endColumn": 107,
-                        "endOffset": 1599
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 14,
-                    "startColumn": 4,
-                    "startOffset": 1418,
-                    "endColumn": 122,
-                    "endOffset": 1536
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 1604,
-                        "endColumn": 122,
-                        "endOffset": 1722
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 15,
-                    "startColumn": 4,
-                    "startOffset": 1541,
-                    "endColumn": 203,
-                    "endOffset": 1740
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 485,
-                        "endColumn": 207,
-                        "endOffset": 688
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 16,
-                    "startColumn": 4,
-                    "startOffset": 1745,
-                    "endColumn": 199,
-                    "endOffset": 1940
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 18,
-                        "startColumn": 4,
-                        "startOffset": 2735,
-                        "endColumn": 203,
-                        "endOffset": 2934
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 17,
-                    "startColumn": 4,
-                    "startOffset": 1945,
-                    "endColumn": 113,
-                    "endOffset": 2054
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 2416,
-                        "endColumn": 113,
-                        "endOffset": 2525
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 18,
-                    "startColumn": 4,
-                    "startOffset": 2059,
-                    "endColumn": 293,
-                    "endOffset": 2348
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 32,
-                        "startColumn": 4,
-                        "startOffset": 4927,
-                        "endColumn": 297,
-                        "endOffset": 5220
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 19,
-                    "startColumn": 4,
-                    "startOffset": 2353,
-                    "endColumn": 130,
-                    "endOffset": 2479
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 2154,
-                        "endColumn": 130,
-                        "endOffset": 2280
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 20,
-                    "startColumn": 4,
-                    "startOffset": 2484,
-                    "endColumn": 217,
-                    "endOffset": 2697
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1932,
-                        "endColumn": 221,
-                        "endOffset": 2149
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 21,
-                    "startColumn": 4,
-                    "startOffset": 2702,
-                    "endColumn": 132,
-                    "endOffset": 2830
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1799,
-                        "endColumn": 132,
-                        "endOffset": 1927
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 22,
-                    "startColumn": 4,
-                    "startOffset": 2835,
-                    "endColumn": 190,
-                    "endOffset": 3021
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 865,
-                        "endColumn": 194,
-                        "endOffset": 1055
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 23,
-                    "startColumn": 4,
-                    "startOffset": 3026,
-                    "endColumn": 127,
-                    "endOffset": 3149
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 1671,
-                        "endColumn": 127,
-                        "endOffset": 1794
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 24,
-                    "startColumn": 4,
-                    "startOffset": 3154,
-                    "endColumn": 239,
-                    "endOffset": 3389
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 1185,
-                        "endColumn": 243,
-                        "endOffset": 1424
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 25,
-                    "startColumn": 4,
-                    "startOffset": 3394,
-                    "endColumn": 237,
-                    "endOffset": 3627
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 1429,
-                        "endColumn": 241,
-                        "endOffset": 1666
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 26,
-                    "startColumn": 4,
-                    "startOffset": 3632,
-                    "endColumn": 124,
-                    "endOffset": 3752
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 1060,
-                        "endColumn": 124,
-                        "endOffset": 1180
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 27,
-                    "startColumn": 4,
-                    "startOffset": 3757,
-                    "endColumn": 205,
-                    "endOffset": 3958
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 24,
-                        "startColumn": 4,
-                        "startOffset": 3750,
-                        "endColumn": 205,
-                        "endOffset": 3951
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 28,
-                    "startColumn": 4,
-                    "startOffset": 3963,
-                    "endColumn": 130,
-                    "endOffset": 4089
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 23,
-                        "startColumn": 4,
-                        "startOffset": 3619,
-                        "endColumn": 130,
-                        "endOffset": 3745
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 29,
-                    "startColumn": 4,
-                    "startOffset": 4094,
-                    "endColumn": 171,
-                    "endOffset": 4261
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 693,
-                        "endColumn": 171,
-                        "endOffset": 860
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 30,
-                    "startColumn": 4,
-                    "startOffset": 4266,
-                    "endColumn": 181,
-                    "endOffset": 4443
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 22,
-                        "startColumn": 4,
-                        "startOffset": 3437,
-                        "endColumn": 181,
-                        "endOffset": 3614
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 31,
-                    "startColumn": 4,
-                    "startOffset": 4448,
-                    "endColumn": 120,
-                    "endOffset": 4564
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 21,
-                        "startColumn": 4,
-                        "startOffset": 3316,
-                        "endColumn": 120,
-                        "endOffset": 3432
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 32,
-                    "startColumn": 4,
-                    "startOffset": 4569,
-                    "endColumn": 179,
-                    "endOffset": 4744
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 305,
-                        "endColumn": 179,
-                        "endOffset": 480
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 33,
-                    "startColumn": 4,
-                    "startOffset": 4749,
-                    "endColumn": 134,
-                    "endOffset": 4879
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 170,
-                        "endColumn": 134,
-                        "endOffset": 300
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 34,
-                    "startColumn": 4,
-                    "startOffset": 4884,
-                    "endColumn": 196,
-                    "endOffset": 5076
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 34,
-                        "startColumn": 4,
-                        "startOffset": 5350,
-                        "endColumn": 196,
-                        "endOffset": 5542
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 35,
-                    "startColumn": 4,
-                    "startOffset": 5081,
-                    "endColumn": 124,
-                    "endOffset": 5201
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 33,
-                        "startColumn": 4,
-                        "startOffset": 5225,
-                        "endColumn": 124,
-                        "endOffset": 5345
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 36,
-                    "startColumn": 4,
-                    "startOffset": 5206,
-                    "endColumn": 146,
-                    "endOffset": 5348
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 25,
-                        "startColumn": 4,
-                        "startOffset": 3956,
-                        "endColumn": 146,
-                        "endOffset": 4098
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 37,
-                    "startColumn": 4,
-                    "startOffset": 5353,
-                    "endColumn": 281,
-                    "endOffset": 5630
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 27,
-                        "startColumn": 4,
-                        "startOffset": 4229,
-                        "endColumn": 285,
-                        "endOffset": 4510
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 38,
-                    "startColumn": 4,
-                    "startOffset": 5635,
-                    "endColumn": 125,
-                    "endOffset": 5756
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 26,
-                        "startColumn": 4,
-                        "startOffset": 4103,
-                        "endColumn": 125,
-                        "endOffset": 4224
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 39,
-                    "startColumn": 4,
-                    "startOffset": 5761,
-                    "endColumn": 109,
-                    "endOffset": 5866
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 28,
-                        "startColumn": 4,
-                        "startOffset": 4515,
-                        "endColumn": 109,
-                        "endOffset": 4620
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 40,
-                    "startColumn": 4,
-                    "startOffset": 5871,
-                    "endColumn": 200,
-                    "endOffset": 6067
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 17,
-                        "startColumn": 4,
-                        "startOffset": 2530,
-                        "endColumn": 204,
-                        "endOffset": 2730
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 41,
-                    "startColumn": 4,
-                    "startOffset": 6072,
-                    "endColumn": 130,
-                    "endOffset": 6198
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 2285,
-                        "endColumn": 130,
-                        "endOffset": 2411
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 42,
-                    "startColumn": 4,
-                    "startOffset": 6203,
-                    "endColumn": 236,
-                    "endOffset": 6435
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 20,
-                        "startColumn": 4,
-                        "startOffset": 3075,
-                        "endColumn": 240,
-                        "endOffset": 3311
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 43,
-                    "startColumn": 4,
-                    "startOffset": 6440,
-                    "endColumn": 135,
-                    "endOffset": 6571
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 19,
-                        "startColumn": 4,
-                        "startOffset": 2939,
-                        "endColumn": 135,
-                        "endOffset": 3070
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 44,
-                    "startColumn": 4,
-                    "startOffset": 6576,
-                    "endColumn": 98,
-                    "endOffset": 6670
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 31,
-                        "startColumn": 4,
-                        "startOffset": 4828,
-                        "endColumn": 98,
-                        "endOffset": 4922
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 45,
-                    "startColumn": 4,
-                    "startOffset": 6675,
-                    "endColumn": 91,
-                    "endOffset": 6762
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 29,
-                        "startColumn": 4,
-                        "startOffset": 4625,
-                        "endColumn": 91,
-                        "endOffset": 4712
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 46,
-                    "startColumn": 4,
-                    "startOffset": 6767,
-                    "endColumn": 110,
-                    "endOffset": 6873
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-el\\common_strings.xml",
-                    "position": {
-                        "startLine": 30,
-                        "startColumn": 4,
-                        "startOffset": 4717,
-                        "endColumn": 110,
-                        "endOffset": 4823
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 47,
-                    "startColumn": 4,
-                    "startOffset": 6878,
-                    "endColumn": 112,
-                    "endOffset": 6986
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 293,
-                        "endColumn": 112,
-                        "endOffset": 401
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 48,
-                    "startColumn": 4,
-                    "startOffset": 6991,
-                    "endColumn": 110,
-                    "endOffset": 7097
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 406,
-                        "endColumn": 110,
-                        "endOffset": 512
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 49,
-                    "startColumn": 4,
-                    "startOffset": 7102,
-                    "endColumn": 108,
-                    "endOffset": 7206
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 517,
-                        "endColumn": 108,
-                        "endOffset": 621
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 50,
-                    "startColumn": 4,
-                    "startOffset": 7211,
-                    "endColumn": 104,
-                    "endOffset": 7311
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 626,
-                        "endColumn": 104,
-                        "endOffset": 726
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 51,
-                    "startColumn": 4,
-                    "startOffset": 7316,
-                    "endColumn": 86,
-                    "endOffset": 7398
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-el\\values-el.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 731,
-                        "endColumn": 86,
-                        "endOffset": 813
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 52,
-                    "startColumn": 4,
-                    "startOffset": 7403,
-                    "endColumn": 94,
-                    "endOffset": 7493
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-el\\values-el.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\3fec370fbaec082a5450b5ba8c86c09a5ace94c8\\output\\res\\values-el\\values-el.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,

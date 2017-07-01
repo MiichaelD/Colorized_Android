@@ -1,18 +1,10 @@
 [
     {
-        "merged": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
-        "source": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
-    },
-    {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
-        "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
-    },
-    {
-        "merged": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
-        "source": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+        "source": "C:\\Android\\.android\\build-cache\\cd59b8aa758079c7ec2b81384e8d4e6258746aec\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
     },
     {
         "merged": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
-        "source": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+        "source": "C:\\Android\\.android\\build-cache\\cd59b8aa758079c7ec2b81384e8d4e6258746aec\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
     }
 ]

@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-hi\\values-hi.xml",
+        "outputFile": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-hi\\values-hi.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 217
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 325
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -49,7 +49,7 @@
                     "endOffset": 448
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -68,7 +68,7 @@
                     "endOffset": 553
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -87,7 +87,7 @@
                     "endOffset": 660
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -106,7 +106,7 @@
                     "endOffset": 745
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
@@ -125,7 +125,7 @@
                     "endOffset": 847
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -144,7 +144,7 @@
                     "endOffset": 969
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -163,7 +163,7 @@
                     "endOffset": 1046
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
@@ -182,7 +182,7 @@
                     "endOffset": 1124
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
@@ -201,7 +201,7 @@
                     "endOffset": 1214
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -220,7 +220,7 @@
                     "endOffset": 1323
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
@@ -239,7 +239,7 @@
                     "endOffset": 1425
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
@@ -258,7 +258,7 @@
                     "endOffset": 1523
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
@@ -277,7 +277,7 @@
                     "endOffset": 1633
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
@@ -296,7 +296,7 @@
                     "endOffset": 1733
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
@@ -315,7 +315,7 @@
                     "endOffset": 1848
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
@@ -334,7 +334,7 @@
                     "endOffset": 1973
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 21,
                         "startColumn": 4,
@@ -353,7 +353,7 @@
                     "endOffset": 2079
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 22,
                         "startColumn": 4,
@@ -372,7 +372,7 @@
                     "endOffset": 2276
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -391,7 +391,7 @@
                     "endOffset": 2486
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
@@ -410,7 +410,7 @@
                     "endOffset": 2601
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
@@ -429,7 +429,7 @@
                     "endOffset": 2869
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 32,
                         "startColumn": 4,
@@ -448,7 +448,7 @@
                     "endOffset": 2999
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -467,7 +467,7 @@
                     "endOffset": 3202
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
@@ -486,7 +486,7 @@
                     "endOffset": 3330
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
@@ -505,7 +505,7 @@
                     "endOffset": 3505
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -524,7 +524,7 @@
                     "endOffset": 3630
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -543,7 +543,7 @@
                     "endOffset": 3844
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
@@ -562,7 +562,7 @@
                     "endOffset": 4060
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -581,7 +581,7 @@
                     "endOffset": 4182
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -600,7 +600,7 @@
                     "endOffset": 4360
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 24,
                         "startColumn": 4,
@@ -619,7 +619,7 @@
                     "endOffset": 4480
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 23,
                         "startColumn": 4,
@@ -638,7 +638,7 @@
                     "endOffset": 4654
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -657,7 +657,7 @@
                     "endOffset": 4829
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 22,
                         "startColumn": 4,
@@ -676,7 +676,7 @@
                     "endOffset": 4950
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 21,
                         "startColumn": 4,
@@ -695,7 +695,7 @@
                     "endOffset": 5135
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -714,7 +714,7 @@
                     "endOffset": 5267
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -733,7 +733,7 @@
                     "endOffset": 5446
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 34,
                         "startColumn": 4,
@@ -752,7 +752,7 @@
                     "endOffset": 5574
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 33,
                         "startColumn": 4,
@@ -771,7 +771,7 @@
                     "endOffset": 5715
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 25,
                         "startColumn": 4,
@@ -790,7 +790,7 @@
                     "endOffset": 5966
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 27,
                         "startColumn": 4,
@@ -809,7 +809,7 @@
                     "endOffset": 6089
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 26,
                         "startColumn": 4,
@@ -828,7 +828,7 @@
                     "endOffset": 6205
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 28,
                         "startColumn": 4,
@@ -847,7 +847,7 @@
                     "endOffset": 6402
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
@@ -866,7 +866,7 @@
                     "endOffset": 6534
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
@@ -885,7 +885,7 @@
                     "endOffset": 6742
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
@@ -904,7 +904,7 @@
                     "endOffset": 6878
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
@@ -923,7 +923,7 @@
                     "endOffset": 6970
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 31,
                         "startColumn": 4,
@@ -942,7 +942,7 @@
                     "endOffset": 7066
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 29,
                         "startColumn": 4,
@@ -961,7 +961,7 @@
                     "endOffset": 7177
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\795f248e95d3613a63d5423a9c4d13560435c10a\\output\\res\\values-hi\\common_strings.xml",
                     "position": {
                         "startLine": 30,
                         "startColumn": 4,
@@ -980,7 +980,7 @@
                     "endOffset": 7291
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\3fec370fbaec082a5450b5ba8c86c09a5ace94c8\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -999,7 +999,7 @@
                     "endOffset": 7408
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\3fec370fbaec082a5450b5ba8c86c09a5ace94c8\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -1018,7 +1018,7 @@
                     "endOffset": 7516
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\3fec370fbaec082a5450b5ba8c86c09a5ace94c8\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -1037,7 +1037,7 @@
                     "endOffset": 7626
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\3fec370fbaec082a5450b5ba8c86c09a5ace94c8\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -1056,7 +1056,7 @@
                     "endOffset": 7712
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\3fec370fbaec082a5450b5ba8c86c09a5ace94c8\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -1075,7 +1075,7 @@
                     "endOffset": 7804
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\3fec370fbaec082a5450b5ba8c86c09a5ace94c8\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
@@ -1094,1114 +1094,7 @@
                     "endOffset": 7905
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 23,
-                        "startColumn": 4,
-                        "startOffset": 2208,
-                        "endColumn": 100,
-                        "endOffset": 2304
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-hi\\values-hi.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 105,
-                    "endColumn": 116,
-                    "endOffset": 217
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 229,
-                        "endColumn": 116,
-                        "endOffset": 341
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 222,
-                    "endColumn": 107,
-                    "endOffset": 325
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 346,
-                        "endColumn": 107,
-                        "endOffset": 449
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 330,
-                    "endColumn": 122,
-                    "endOffset": 448
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 454,
-                        "endColumn": 122,
-                        "endOffset": 572
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 453,
-                    "endColumn": 104,
-                    "endOffset": 553
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 577,
-                        "endColumn": 104,
-                        "endOffset": 677
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 6,
-                    "startColumn": 4,
-                    "startOffset": 558,
-                    "endColumn": 106,
-                    "endOffset": 660
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 682,
-                        "endColumn": 106,
-                        "endOffset": 784
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 7,
-                    "startColumn": 4,
-                    "startOffset": 665,
-                    "endColumn": 84,
-                    "endOffset": 745
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 789,
-                        "endColumn": 84,
-                        "endOffset": 869
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 8,
-                    "startColumn": 4,
-                    "startOffset": 750,
-                    "endColumn": 101,
-                    "endOffset": 847
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 874,
-                        "endColumn": 101,
-                        "endOffset": 971
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 9,
-                    "startColumn": 4,
-                    "startOffset": 852,
-                    "endColumn": 121,
-                    "endOffset": 969
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 976,
-                        "endColumn": 121,
-                        "endOffset": 1093
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 10,
-                    "startColumn": 4,
-                    "startOffset": 974,
-                    "endColumn": 76,
-                    "endOffset": 1046
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1098,
-                        "endColumn": 76,
-                        "endOffset": 1170
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 11,
-                    "startColumn": 4,
-                    "startOffset": 1051,
-                    "endColumn": 77,
-                    "endOffset": 1124
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1175,
-                        "endColumn": 77,
-                        "endOffset": 1248
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 12,
-                    "startColumn": 4,
-                    "startOffset": 1129,
-                    "endColumn": 89,
-                    "endOffset": 1214
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 1253,
-                        "endColumn": 89,
-                        "endOffset": 1338
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 13,
-                    "startColumn": 4,
-                    "startOffset": 1219,
-                    "endColumn": 108,
-                    "endOffset": 1323
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 1343,
-                        "endColumn": 108,
-                        "endOffset": 1447
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 14,
-                    "startColumn": 4,
-                    "startOffset": 1328,
-                    "endColumn": 101,
-                    "endOffset": 1425
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 1452,
-                        "endColumn": 101,
-                        "endOffset": 1549
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 15,
-                    "startColumn": 4,
-                    "startOffset": 1430,
-                    "endColumn": 97,
-                    "endOffset": 1523
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 17,
-                        "startColumn": 4,
-                        "startOffset": 1554,
-                        "endColumn": 97,
-                        "endOffset": 1647
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 16,
-                    "startColumn": 4,
-                    "startOffset": 1528,
-                    "endColumn": 109,
-                    "endOffset": 1633
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 18,
-                        "startColumn": 4,
-                        "startOffset": 1652,
-                        "endColumn": 109,
-                        "endOffset": 1757
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 17,
-                    "startColumn": 4,
-                    "startOffset": 1638,
-                    "endColumn": 99,
-                    "endOffset": 1733
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 19,
-                        "startColumn": 4,
-                        "startOffset": 1762,
-                        "endColumn": 99,
-                        "endOffset": 1857
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 18,
-                    "startColumn": 4,
-                    "startOffset": 1738,
-                    "endColumn": 114,
-                    "endOffset": 1848
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 20,
-                        "startColumn": 4,
-                        "startOffset": 1862,
-                        "endColumn": 114,
-                        "endOffset": 1972
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 19,
-                    "startColumn": 4,
-                    "startOffset": 1853,
-                    "endColumn": 124,
-                    "endOffset": 1973
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 21,
-                        "startColumn": 4,
-                        "startOffset": 1977,
-                        "endColumn": 124,
-                        "endOffset": 2097
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 20,
-                    "startColumn": 4,
-                    "startOffset": 1978,
-                    "endColumn": 105,
-                    "endOffset": 2079
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 22,
-                        "startColumn": 4,
-                        "startOffset": 2102,
-                        "endColumn": 105,
-                        "endOffset": 2203
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 21,
-                    "startColumn": 4,
-                    "startOffset": 2084,
-                    "endColumn": 196,
-                    "endOffset": 2276
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 487,
-                        "endColumn": 200,
-                        "endOffset": 683
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 22,
-                    "startColumn": 4,
-                    "startOffset": 2281,
-                    "endColumn": 209,
-                    "endOffset": 2486
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 18,
-                        "startColumn": 4,
-                        "startOffset": 2639,
-                        "endColumn": 213,
-                        "endOffset": 2848
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 23,
-                    "startColumn": 4,
-                    "startOffset": 2491,
-                    "endColumn": 114,
-                    "endOffset": 2601
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 16,
-                        "startColumn": 4,
-                        "startOffset": 2323,
-                        "endColumn": 114,
-                        "endOffset": 2433
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 24,
-                    "startColumn": 4,
-                    "startOffset": 2606,
-                    "endColumn": 267,
-                    "endOffset": 2869
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 32,
-                        "startColumn": 4,
-                        "startOffset": 4729,
-                        "endColumn": 271,
-                        "endOffset": 4996
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 25,
-                    "startColumn": 4,
-                    "startOffset": 2874,
-                    "endColumn": 129,
-                    "endOffset": 2999
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 14,
-                        "startColumn": 4,
-                        "startOffset": 2061,
-                        "endColumn": 129,
-                        "endOffset": 2186
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 26,
-                    "startColumn": 4,
-                    "startOffset": 3004,
-                    "endColumn": 202,
-                    "endOffset": 3202
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 13,
-                        "startColumn": 4,
-                        "startOffset": 1854,
-                        "endColumn": 206,
-                        "endOffset": 2056
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 27,
-                    "startColumn": 4,
-                    "startOffset": 3207,
-                    "endColumn": 127,
-                    "endOffset": 3330
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 12,
-                        "startColumn": 4,
-                        "startOffset": 1726,
-                        "endColumn": 127,
-                        "endOffset": 1849
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 28,
-                    "startColumn": 4,
-                    "startOffset": 3335,
-                    "endColumn": 174,
-                    "endOffset": 3505
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 862,
-                        "endColumn": 178,
-                        "endOffset": 1036
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 29,
-                    "startColumn": 4,
-                    "startOffset": 3510,
-                    "endColumn": 124,
-                    "endOffset": 3630
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 1601,
-                        "endColumn": 124,
-                        "endOffset": 1721
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 30,
-                    "startColumn": 4,
-                    "startOffset": 3635,
-                    "endColumn": 213,
-                    "endOffset": 3844
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 1163,
-                        "endColumn": 217,
-                        "endOffset": 1376
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 31,
-                    "startColumn": 4,
-                    "startOffset": 3849,
-                    "endColumn": 215,
-                    "endOffset": 4060
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 10,
-                        "startColumn": 4,
-                        "startOffset": 1381,
-                        "endColumn": 219,
-                        "endOffset": 1596
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 32,
-                    "startColumn": 4,
-                    "startOffset": 4065,
-                    "endColumn": 121,
-                    "endOffset": 4182
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 1041,
-                        "endColumn": 121,
-                        "endOffset": 1158
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 33,
-                    "startColumn": 4,
-                    "startOffset": 4187,
-                    "endColumn": 177,
-                    "endOffset": 4360
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 24,
-                        "startColumn": 4,
-                        "startOffset": 3617,
-                        "endColumn": 177,
-                        "endOffset": 3790
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 34,
-                    "startColumn": 4,
-                    "startOffset": 4365,
-                    "endColumn": 119,
-                    "endOffset": 4480
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 23,
-                        "startColumn": 4,
-                        "startOffset": 3497,
-                        "endColumn": 119,
-                        "endOffset": 3612
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 35,
-                    "startColumn": 4,
-                    "startOffset": 4485,
-                    "endColumn": 173,
-                    "endOffset": 4654
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 688,
-                        "endColumn": 173,
-                        "endOffset": 857
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 36,
-                    "startColumn": 4,
-                    "startOffset": 4659,
-                    "endColumn": 174,
-                    "endOffset": 4829
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 22,
-                        "startColumn": 4,
-                        "startOffset": 3322,
-                        "endColumn": 174,
-                        "endOffset": 3492
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 37,
-                    "startColumn": 4,
-                    "startOffset": 4834,
-                    "endColumn": 120,
-                    "endOffset": 4950
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 21,
-                        "startColumn": 4,
-                        "startOffset": 3201,
-                        "endColumn": 120,
-                        "endOffset": 3317
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 38,
-                    "startColumn": 4,
-                    "startOffset": 4955,
-                    "endColumn": 184,
-                    "endOffset": 5135
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 302,
-                        "endColumn": 184,
-                        "endOffset": 482
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 39,
-                    "startColumn": 4,
-                    "startOffset": 5140,
-                    "endColumn": 131,
-                    "endOffset": 5267
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 170,
-                        "endColumn": 131,
-                        "endOffset": 297
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 40,
-                    "startColumn": 4,
-                    "startOffset": 5272,
-                    "endColumn": 178,
-                    "endOffset": 5446
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 34,
-                        "startColumn": 4,
-                        "startOffset": 5129,
-                        "endColumn": 178,
-                        "endOffset": 5303
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 41,
-                    "startColumn": 4,
-                    "startOffset": 5451,
-                    "endColumn": 127,
-                    "endOffset": 5574
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 33,
-                        "startColumn": 4,
-                        "startOffset": 5001,
-                        "endColumn": 127,
-                        "endOffset": 5124
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 42,
-                    "startColumn": 4,
-                    "startOffset": 5579,
-                    "endColumn": 140,
-                    "endOffset": 5715
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 25,
-                        "startColumn": 4,
-                        "startOffset": 3795,
-                        "endColumn": 140,
-                        "endOffset": 3931
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 43,
-                    "startColumn": 4,
-                    "startOffset": 5720,
-                    "endColumn": 250,
-                    "endOffset": 5966
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 27,
-                        "startColumn": 4,
-                        "startOffset": 4059,
-                        "endColumn": 254,
-                        "endOffset": 4309
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 44,
-                    "startColumn": 4,
-                    "startOffset": 5971,
-                    "endColumn": 122,
-                    "endOffset": 6089
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 26,
-                        "startColumn": 4,
-                        "startOffset": 3936,
-                        "endColumn": 122,
-                        "endOffset": 4054
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 45,
-                    "startColumn": 4,
-                    "startOffset": 6094,
-                    "endColumn": 115,
-                    "endOffset": 6205
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 28,
-                        "startColumn": 4,
-                        "startOffset": 4314,
-                        "endColumn": 115,
-                        "endOffset": 4425
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 46,
-                    "startColumn": 4,
-                    "startOffset": 6210,
-                    "endColumn": 196,
-                    "endOffset": 6402
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 17,
-                        "startColumn": 4,
-                        "startOffset": 2438,
-                        "endColumn": 200,
-                        "endOffset": 2634
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 47,
-                    "startColumn": 4,
-                    "startOffset": 6407,
-                    "endColumn": 131,
-                    "endOffset": 6534
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 15,
-                        "startColumn": 4,
-                        "startOffset": 2191,
-                        "endColumn": 131,
-                        "endOffset": 2318
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 48,
-                    "startColumn": 4,
-                    "startOffset": 6539,
-                    "endColumn": 207,
-                    "endOffset": 6742
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 20,
-                        "startColumn": 4,
-                        "startOffset": 2989,
-                        "endColumn": 211,
-                        "endOffset": 3196
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 49,
-                    "startColumn": 4,
-                    "startOffset": 6747,
-                    "endColumn": 135,
-                    "endOffset": 6878
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 19,
-                        "startColumn": 4,
-                        "startOffset": 2853,
-                        "endColumn": 135,
-                        "endOffset": 2984
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 50,
-                    "startColumn": 4,
-                    "startOffset": 6883,
-                    "endColumn": 91,
-                    "endOffset": 6970
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 31,
-                        "startColumn": 4,
-                        "startOffset": 4637,
-                        "endColumn": 91,
-                        "endOffset": 4724
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 51,
-                    "startColumn": 4,
-                    "startOffset": 6975,
-                    "endColumn": 95,
-                    "endOffset": 7066
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 29,
-                        "startColumn": 4,
-                        "startOffset": 4430,
-                        "endColumn": 95,
-                        "endOffset": 4521
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 52,
-                    "startColumn": 4,
-                    "startOffset": 7071,
-                    "endColumn": 110,
-                    "endOffset": 7177
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\7.8.0\\res\\values-hi\\common_strings.xml",
-                    "position": {
-                        "startLine": 30,
-                        "startColumn": 4,
-                        "startOffset": 4526,
-                        "endColumn": 110,
-                        "endOffset": 4632
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 53,
-                    "startColumn": 4,
-                    "startOffset": 7182,
-                    "endColumn": 113,
-                    "endOffset": 7291
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 293,
-                        "endColumn": 113,
-                        "endOffset": 402
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 54,
-                    "startColumn": 4,
-                    "startOffset": 7296,
-                    "endColumn": 116,
-                    "endOffset": 7408
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 407,
-                        "endColumn": 116,
-                        "endOffset": 519
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 55,
-                    "startColumn": 4,
-                    "startOffset": 7413,
-                    "endColumn": 107,
-                    "endOffset": 7516
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 6,
-                        "startColumn": 4,
-                        "startOffset": 524,
-                        "endColumn": 107,
-                        "endOffset": 627
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 56,
-                    "startColumn": 4,
-                    "startOffset": 7521,
-                    "endColumn": 109,
-                    "endOffset": 7626
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 632,
-                        "endColumn": 109,
-                        "endOffset": 737
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 57,
-                    "startColumn": 4,
-                    "startOffset": 7631,
-                    "endColumn": 85,
-                    "endOffset": 7712
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 742,
-                        "endColumn": 85,
-                        "endOffset": 823
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 58,
-                    "startColumn": 4,
-                    "startOffset": 7717,
-                    "endColumn": 91,
-                    "endOffset": 7804
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\values-hi\\values-hi.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 828,
-                        "endColumn": 91,
-                        "endOffset": 915
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 59,
-                    "startColumn": 4,
-                    "startOffset": 7809,
-                    "endColumn": 100,
-                    "endOffset": 7905
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hi\\values-hi.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-hi\\values-hi.xml",
                     "position": {
                         "startLine": 23,
                         "startColumn": 4,

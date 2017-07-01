@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\res\\merged\\debug\\values-w500dp-v13\\values-w500dp-v13.xml",
+        "outputFile": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w500dp-v13\\values-w500dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,31 +11,7 @@
                     "endOffset": 105
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-w500dp\\values-w500dp.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 232,
-                        "endColumn": 54,
-                        "endOffset": 282
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\res\\merged\\debug\\values-w500dp-v13\\values-w500dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 54,
-                    "endOffset": 105
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\baseGameUtils\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-w500dp\\values-w500dp.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\89e946fe91d3d9fc0516c813abed7e146fcece95\\output\\res\\values-w500dp\\values-w500dp.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,

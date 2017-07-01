@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-w500dp-v13\\values-w500dp-v13.xml",
+        "outputFile": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-w500dp-v13\\values-w500dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,31 +11,7 @@
                     "endOffset": 105
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android1\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-w500dp\\values-w500dp.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 294,
-                        "endColumn": 54,
-                        "endOffset": 344
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-w500dp-v13\\values-w500dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 54,
-                    "endOffset": 105
-                },
-                "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\mixpanelandroid\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-w500dp\\values-w500dp.xml",
+                    "file": "C:\\Android\\.android\\build-cache\\cd59b8aa758079c7ec2b81384e8d4e6258746aec\\output\\res\\values-w500dp\\values-w500dp.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
