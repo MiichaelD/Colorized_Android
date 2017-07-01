@@ -11,7 +11,7 @@
                     "endOffset": 114
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\build\\intermediates\\bundles\\default\\res\\values-mdpi-v4\\values-mdpi-v4.xml",
+                    "file": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\build\\intermediates\\bundles\\debug\\res\\values-mdpi-v4\\values-mdpi-v4.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

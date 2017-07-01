@@ -1,6 +1,41 @@
 -- Merging decision tree log ---
 manifest
 ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:2:1-200:12
+INJECTED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:2:1-200:12
+INJECTED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:2:1-200:12
+INJECTED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:2:1-200:12
+MERGED from [:mixpanelandroid] D:\Dev\Android\Colorized_Android\mixpanelandroid\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-125:12
+MERGED from [:facebookSDK] D:\Dev\Android\Colorized_Android\facebookSDK\build\intermediates\manifests\full\debug\AndroidManifest.xml:17:1-26:12
+MERGED from [:baseGameUtils] D:\Dev\Android\Colorized_Android\baseGameUtils\build\intermediates\manifests\full\debug\AndroidManifest.xml:17:1-33:12
+MERGED from [com.google.android.gms:play-services:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-7.8.0.aar\0e8c37e789c9d32c5d07de83fdb68395\AndroidManifest.xml:16:1-20:12
+MERGED from [com.google.android.gms:play-services-cast:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-cast-7.8.0.aar\93c44d248899bf19e556d98973e8cc9c\AndroidManifest.xml:16:1-20:12
+MERGED from [com.android.support:mediarouter-v7:22.2.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\mediarouter-v7-22.2.0.aar\e71d2808cacf696a3980fc3aa5581184\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.1.1.aar\3247c16619c611ce3c73225b21ded796\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:multidex:1.0.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\multidex-1.0.0.aar\6ede2d628755d2f0cf48c9d1e769954f\AndroidManifest.xml:16:1-19:12
+MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-ads-7.8.0.aar\5ed69f2d9c81ccc5a7a86b0b9ba929ea\AndroidManifest.xml:16:1-33:12
+MERGED from [com.google.android.gms:play-services-analytics:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-analytics-7.8.0.aar\4de5405eb6bb58737e8b757ffc76e915\AndroidManifest.xml:16:1-25:12
+MERGED from [com.google.android.gms:play-services-appindexing:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-appindexing-7.8.0.aar\99490735f266528112ea20c413e9ad29\AndroidManifest.xml:16:1-20:12
+MERGED from [com.google.android.gms:play-services-appinvite:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-appinvite-7.8.0.aar\462f9d0438c1fd75c58a65957a4b916c\AndroidManifest.xml:16:1-21:12
+MERGED from [com.google.android.gms:play-services-appstate:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-appstate-7.8.0.aar\44b678ed79e1479f1cc0981b47592c07\AndroidManifest.xml:16:1-20:12
+MERGED from [com.google.android.gms:play-services-games:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-games-7.8.0.aar\2076916816ca412ccc65f1994240cd92\AndroidManifest.xml:16:1-20:12
+MERGED from [com.google.android.gms:play-services-drive:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-drive-7.8.0.aar\b6cab87dce5292c6fa963546604b1fed\AndroidManifest.xml:16:1-20:12
+MERGED from [com.google.android.gms:play-services-fitness:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-fitness-7.8.0.aar\e0ca19dd84aae9526b5eb1769e523822\AndroidManifest.xml:16:1-20:12
+MERGED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-gcm-7.8.0.aar\199961235c29fe0ad5487b27c2535fe6\AndroidManifest.xml:16:1-25:12
+MERGED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-wallet-7.8.0.aar\30f2d2fdce7d117856f3c7bc873f41e5\AndroidManifest.xml:16:1-24:12
+MERGED from [com.google.android.gms:play-services-identity:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-identity-7.8.0.aar\755b72f02ee39fa90ca0f78de95ffb6a\AndroidManifest.xml:16:1-20:12
+MERGED from [com.google.android.gms:play-services-location:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-location-7.8.0.aar\04efb7d271e6d64bfd701f075f2f8502\AndroidManifest.xml:16:1-20:12
+MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-maps-7.8.0.aar\5472a98f063cc73de9cbf6cb170bd409\AndroidManifest.xml:16:1-29:12
+MERGED from [com.google.android.gms:play-services-nearby:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-nearby-7.8.0.aar\f95278e62b1d8a10458677f925eba04c\AndroidManifest.xml:16:1-21:12
+MERGED from [com.google.android.gms:play-services-panorama:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-panorama-7.8.0.aar\d8503f2e781906f6648e80708a17baad\AndroidManifest.xml:16:1-20:12
+MERGED from [com.google.android.gms:play-services-plus:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-plus-7.8.0.aar\03c32af11f9fd5e0b1878670f07ee228\AndroidManifest.xml:16:1-20:12
+MERGED from [com.google.android.gms:play-services-safetynet:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-safetynet-7.8.0.aar\d76488f5e573f0f404e51405c9e2c9c8\AndroidManifest.xml:16:1-20:12
+MERGED from [com.google.android.gms:play-services-vision:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-vision-7.8.0.aar\79dd1e64b0f567814975ae1f4857a8f3\AndroidManifest.xml:2:1-6:12
+MERGED from [com.google.android.gms:play-services-wearable:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-wearable-7.8.0.aar\124840db2b023dda28a96222a768046f\AndroidManifest.xml:16:1-20:12
+MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-base-7.8.0.aar\759ff75452e910606bf31056a0aa40c4\AndroidManifest.xml:16:1-26:12
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\support-v4-23.4.0.aar\de01eeeccd4034905284237244f1945f\AndroidManifest.xml:17:1-24:12
+INJECTED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:2:1-200:12
+INJECTED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:2:1-200:12
+INJECTED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:2:1-200:12
 	package
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:3:5-44
 		INJECTED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml
@@ -9,43 +44,76 @@ ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidMa
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:5:5-33
 		INJECTED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml
 		INJECTED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:2:11-69
 	android:versionCode
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:4:5-29
 		INJECTED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml
 		INJECTED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml
-	xmlns:android
-		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:2:11-69
 uses-sdk
 ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:7:5-73
-MERGED from [Colorized_Android:mixpanelandroid:unspecified] D:\Dev\Android\Colorized_Android\mixpanelandroid\build\intermediates\bundles\default\AndroidManifest.xml:11:5-13:41
-MERGED from [Colorized_Android:facebookSDK:unspecified] D:\Dev\Android\Colorized_Android\facebookSDK\build\intermediates\bundles\default\AndroidManifest.xml:20:5-22:40
-MERGED from [Colorized_Android:baseGameUtils:unspecified] D:\Dev\Android\Colorized_Android\baseGameUtils\build\intermediates\bundles\default\AndroidManifest.xml:22:5-24:41
-MERGED from [com.google.android.gms:play-services:7.8.0] C:\Android\.android\build-cache\37b0f29d6585bd337793fb71274ca4b6621ec474\output\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Android\.android\build-cache\ae05d03091e518fa823caed2f9966bbb0d6d7a8d\output\AndroidManifest.xml:23:5-42
-MERGED from [com.google.android.gms:play-services-analytics:7.8.0] C:\Android\.android\build-cache\b7e47f7684211739a0dcf113f136c4b529665903\output\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-appindexing:7.8.0] C:\Android\.android\build-cache\b3d1e5deba10413d96adaf8d85c8103e3f575b3a\output\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-appinvite:7.8.0] C:\Android\.android\build-cache\2b2da0d8c7ace22b0e5b34f4f41d34dda6fe6933\output\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-appstate:7.8.0] C:\Android\.android\build-cache\2f85187307f8ea48dfbb6d383531a6a47b0fdf93\output\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-cast:7.8.0] C:\Android\.android\build-cache\c517f76cf936e43df610c8e31b4dca43463ed82b\output\AndroidManifest.xml:18:5-42
-MERGED from [com.android.support:mediarouter-v7:22.2.0] C:\Android\.android\build-cache\3fec370fbaec082a5450b5ba8c86c09a5ace94c8\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Android\.android\build-cache\89e946fe91d3d9fc0516c813abed7e146fcece95\output\AndroidManifest.xml:20:5-43
-MERGED from [com.google.android.gms:play-services-fitness:7.8.0] C:\Android\.android\build-cache\7f1988e73bebbfa5c17dcb1da4dd8c22112ea3cf\output\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-games:7.8.0] C:\Android\.android\build-cache\58842e852d16cc389bc8db14cd0352eefa4f0e1d\output\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-drive:7.8.0] C:\Android\.android\build-cache\9590b3b0b67e8dbfdb2e4f333633e21d1b4decb2\output\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Android\.android\build-cache\38c7d220b98aaa9dd1d01af8cb71369ad8416e5f\output\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-location:7.8.0] C:\Android\.android\build-cache\8aa463bebf942292294ad82996ba9db228309faf\output\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-nearby:7.8.0] C:\Android\.android\build-cache\c2ec270747f0d14b4d38c211de0d3818fc2b5db8\output\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-panorama:7.8.0] C:\Android\.android\build-cache\3ca4c77fa5288cd80cb362dbc5db86d12925d496\output\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-plus:7.8.0] C:\Android\.android\build-cache\f7094f86118410fd57f5680d9d7609087ed0e651\output\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-safetynet:7.8.0] C:\Android\.android\build-cache\957271473e9df7dbf1eeca66b960c649f87d6948\output\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-vision:7.8.0] C:\Android\.android\build-cache\b08a0ed8b1995cb2ed88278e1f2c6220e9b3b747\output\AndroidManifest.xml:4:5-42
-MERGED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Android\.android\build-cache\e94b867a1265ceaba7e1b304c8e1a04483b3125c\output\AndroidManifest.xml:19:5-42
-MERGED from [com.google.android.gms:play-services-identity:7.8.0] C:\Android\.android\build-cache\9e9124a847f6a1ef49bc09b98700ecae0753288a\output\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Android\.android\build-cache\03674119087b191d4fdc78de7fc0cbd4d5dc9c54\output\AndroidManifest.xml:27:5-42
-MERGED from [com.google.android.gms:play-services-wearable:7.8.0] C:\Android\.android\build-cache\18b94216b401d23226a74bd41da4e873f38cc91d\output\AndroidManifest.xml:18:5-42
-MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Android\.android\build-cache\795f248e95d3613a63d5423a9c4d13560435c10a\output\AndroidManifest.xml:18:5-42
-MERGED from [com.android.support:support-v4:23.4.0] C:\Android\.android\build-cache\d8bbea4ab68d2d36438765402113e631c13b8126\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:multidex:1.0.0] C:\Android\.android\build-cache\3364c17440f4c5cdaf1c09f80057138ebf5011ab\output\AndroidManifest.xml:18:5-42
+INJECTED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:7:5-73
+INJECTED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:7:5-73
+MERGED from [:mixpanelandroid] D:\Dev\Android\Colorized_Android\mixpanelandroid\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-13:41
+MERGED from [:mixpanelandroid] D:\Dev\Android\Colorized_Android\mixpanelandroid\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-13:41
+MERGED from [:facebookSDK] D:\Dev\Android\Colorized_Android\facebookSDK\build\intermediates\manifests\full\debug\AndroidManifest.xml:20:5-22:40
+MERGED from [:facebookSDK] D:\Dev\Android\Colorized_Android\facebookSDK\build\intermediates\manifests\full\debug\AndroidManifest.xml:20:5-22:40
+MERGED from [:baseGameUtils] D:\Dev\Android\Colorized_Android\baseGameUtils\build\intermediates\manifests\full\debug\AndroidManifest.xml:22:5-24:41
+MERGED from [:baseGameUtils] D:\Dev\Android\Colorized_Android\baseGameUtils\build\intermediates\manifests\full\debug\AndroidManifest.xml:22:5-24:41
+MERGED from [com.google.android.gms:play-services:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-7.8.0.aar\0e8c37e789c9d32c5d07de83fdb68395\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-7.8.0.aar\0e8c37e789c9d32c5d07de83fdb68395\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-cast:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-cast-7.8.0.aar\93c44d248899bf19e556d98973e8cc9c\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-cast:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-cast-7.8.0.aar\93c44d248899bf19e556d98973e8cc9c\AndroidManifest.xml:18:5-42
+MERGED from [com.android.support:mediarouter-v7:22.2.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\mediarouter-v7-22.2.0.aar\e71d2808cacf696a3980fc3aa5581184\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:mediarouter-v7:22.2.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\mediarouter-v7-22.2.0.aar\e71d2808cacf696a3980fc3aa5581184\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.1.1.aar\3247c16619c611ce3c73225b21ded796\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.1.1.aar\3247c16619c611ce3c73225b21ded796\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:multidex:1.0.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\multidex-1.0.0.aar\6ede2d628755d2f0cf48c9d1e769954f\AndroidManifest.xml:18:5-42
+MERGED from [com.android.support:multidex:1.0.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\multidex-1.0.0.aar\6ede2d628755d2f0cf48c9d1e769954f\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-ads-7.8.0.aar\5ed69f2d9c81ccc5a7a86b0b9ba929ea\AndroidManifest.xml:23:5-42
+MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-ads-7.8.0.aar\5ed69f2d9c81ccc5a7a86b0b9ba929ea\AndroidManifest.xml:23:5-42
+MERGED from [com.google.android.gms:play-services-analytics:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-analytics-7.8.0.aar\4de5405eb6bb58737e8b757ffc76e915\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-analytics:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-analytics-7.8.0.aar\4de5405eb6bb58737e8b757ffc76e915\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-appindexing:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-appindexing-7.8.0.aar\99490735f266528112ea20c413e9ad29\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-appindexing:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-appindexing-7.8.0.aar\99490735f266528112ea20c413e9ad29\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-appinvite:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-appinvite-7.8.0.aar\462f9d0438c1fd75c58a65957a4b916c\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-appinvite:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-appinvite-7.8.0.aar\462f9d0438c1fd75c58a65957a4b916c\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-appstate:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-appstate-7.8.0.aar\44b678ed79e1479f1cc0981b47592c07\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-appstate:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-appstate-7.8.0.aar\44b678ed79e1479f1cc0981b47592c07\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-games:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-games-7.8.0.aar\2076916816ca412ccc65f1994240cd92\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-games:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-games-7.8.0.aar\2076916816ca412ccc65f1994240cd92\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-drive:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-drive-7.8.0.aar\b6cab87dce5292c6fa963546604b1fed\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-drive:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-drive-7.8.0.aar\b6cab87dce5292c6fa963546604b1fed\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-fitness:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-fitness-7.8.0.aar\e0ca19dd84aae9526b5eb1769e523822\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-fitness:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-fitness-7.8.0.aar\e0ca19dd84aae9526b5eb1769e523822\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-gcm-7.8.0.aar\199961235c29fe0ad5487b27c2535fe6\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-gcm-7.8.0.aar\199961235c29fe0ad5487b27c2535fe6\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-wallet-7.8.0.aar\30f2d2fdce7d117856f3c7bc873f41e5\AndroidManifest.xml:19:5-42
+MERGED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-wallet-7.8.0.aar\30f2d2fdce7d117856f3c7bc873f41e5\AndroidManifest.xml:19:5-42
+MERGED from [com.google.android.gms:play-services-identity:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-identity-7.8.0.aar\755b72f02ee39fa90ca0f78de95ffb6a\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-identity:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-identity-7.8.0.aar\755b72f02ee39fa90ca0f78de95ffb6a\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-location:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-location-7.8.0.aar\04efb7d271e6d64bfd701f075f2f8502\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-location:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-location-7.8.0.aar\04efb7d271e6d64bfd701f075f2f8502\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-maps-7.8.0.aar\5472a98f063cc73de9cbf6cb170bd409\AndroidManifest.xml:27:5-42
+MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-maps-7.8.0.aar\5472a98f063cc73de9cbf6cb170bd409\AndroidManifest.xml:27:5-42
+MERGED from [com.google.android.gms:play-services-nearby:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-nearby-7.8.0.aar\f95278e62b1d8a10458677f925eba04c\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-nearby:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-nearby-7.8.0.aar\f95278e62b1d8a10458677f925eba04c\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-panorama:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-panorama-7.8.0.aar\d8503f2e781906f6648e80708a17baad\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-panorama:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-panorama-7.8.0.aar\d8503f2e781906f6648e80708a17baad\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-plus:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-plus-7.8.0.aar\03c32af11f9fd5e0b1878670f07ee228\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-plus:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-plus-7.8.0.aar\03c32af11f9fd5e0b1878670f07ee228\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-safetynet:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-safetynet-7.8.0.aar\d76488f5e573f0f404e51405c9e2c9c8\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-safetynet:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-safetynet-7.8.0.aar\d76488f5e573f0f404e51405c9e2c9c8\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-vision:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-vision-7.8.0.aar\79dd1e64b0f567814975ae1f4857a8f3\AndroidManifest.xml:4:5-42
+MERGED from [com.google.android.gms:play-services-vision:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-vision-7.8.0.aar\79dd1e64b0f567814975ae1f4857a8f3\AndroidManifest.xml:4:5-42
+MERGED from [com.google.android.gms:play-services-wearable:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-wearable-7.8.0.aar\124840db2b023dda28a96222a768046f\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-wearable:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-wearable-7.8.0.aar\124840db2b023dda28a96222a768046f\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-base-7.8.0.aar\759ff75452e910606bf31056a0aa40c4\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-base-7.8.0.aar\759ff75452e910606bf31056a0aa40c4\AndroidManifest.xml:18:5-42
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\support-v4-23.4.0.aar\de01eeeccd4034905284237244f1945f\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\support-v4-23.4.0.aar\de01eeeccd4034905284237244f1945f\AndroidManifest.xml:20:5-43
+INJECTED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:7:5-73
+INJECTED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:7:5-73
 	android:targetSdkVersion
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:7:41-70
 		INJECTED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml
@@ -62,21 +130,32 @@ ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidMa
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:8:19-82
 uses-permission#android.permission.INTERNET
 ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:12:5-66
-MERGED from [Colorized_Android:mixpanelandroid:unspecified] D:\Dev\Android\Colorized_Android\mixpanelandroid\build\intermediates\bundles\default\AndroidManifest.xml:16:5-67
-MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Android\.android\build-cache\ae05d03091e518fa823caed2f9966bbb0d6d7a8d\output\AndroidManifest.xml:20:5-66
-MERGED from [com.google.android.gms:play-services-analytics:7.8.0] C:\Android\.android\build-cache\b7e47f7684211739a0dcf113f136c4b529665903\output\AndroidManifest.xml:21:5-67
-MERGED from [com.google.android.gms:play-services-appinvite:7.8.0] C:\Android\.android\build-cache\2b2da0d8c7ace22b0e5b34f4f41d34dda6fe6933\output\AndroidManifest.xml:19:5-67
-MERGED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Android\.android\build-cache\38c7d220b98aaa9dd1d01af8cb71369ad8416e5f\output\AndroidManifest.xml:22:5-67
-MERGED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Android\.android\build-cache\e94b867a1265ceaba7e1b304c8e1a04483b3125c\output\AndroidManifest.xml:20:5-66
-MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Android\.android\build-cache\03674119087b191d4fdc78de7fc0cbd4d5dc9c54\output\AndroidManifest.xml:21:5-66
+MERGED from [:mixpanelandroid] D:\Dev\Android\Colorized_Android\mixpanelandroid\build\intermediates\manifests\full\debug\AndroidManifest.xml:16:5-67
+MERGED from [:mixpanelandroid] D:\Dev\Android\Colorized_Android\mixpanelandroid\build\intermediates\manifests\full\debug\AndroidManifest.xml:16:5-67
+MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-ads-7.8.0.aar\5ed69f2d9c81ccc5a7a86b0b9ba929ea\AndroidManifest.xml:20:5-66
+MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-ads-7.8.0.aar\5ed69f2d9c81ccc5a7a86b0b9ba929ea\AndroidManifest.xml:20:5-66
+MERGED from [com.google.android.gms:play-services-analytics:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-analytics-7.8.0.aar\4de5405eb6bb58737e8b757ffc76e915\AndroidManifest.xml:21:5-67
+MERGED from [com.google.android.gms:play-services-analytics:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-analytics-7.8.0.aar\4de5405eb6bb58737e8b757ffc76e915\AndroidManifest.xml:21:5-67
+MERGED from [com.google.android.gms:play-services-appinvite:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-appinvite-7.8.0.aar\462f9d0438c1fd75c58a65957a4b916c\AndroidManifest.xml:19:5-67
+MERGED from [com.google.android.gms:play-services-appinvite:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-appinvite-7.8.0.aar\462f9d0438c1fd75c58a65957a4b916c\AndroidManifest.xml:19:5-67
+MERGED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-gcm-7.8.0.aar\199961235c29fe0ad5487b27c2535fe6\AndroidManifest.xml:22:5-67
+MERGED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-gcm-7.8.0.aar\199961235c29fe0ad5487b27c2535fe6\AndroidManifest.xml:22:5-67
+MERGED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-wallet-7.8.0.aar\30f2d2fdce7d117856f3c7bc873f41e5\AndroidManifest.xml:20:5-66
+MERGED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-wallet-7.8.0.aar\30f2d2fdce7d117856f3c7bc873f41e5\AndroidManifest.xml:20:5-66
+MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-maps-7.8.0.aar\5472a98f063cc73de9cbf6cb170bd409\AndroidManifest.xml:21:5-66
+MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-maps-7.8.0.aar\5472a98f063cc73de9cbf6cb170bd409\AndroidManifest.xml:21:5-66
 	android:name
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:12:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:13:4-77
-MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Android\.android\build-cache\ae05d03091e518fa823caed2f9966bbb0d6d7a8d\output\AndroidManifest.xml:21:5-78
-MERGED from [com.google.android.gms:play-services-analytics:7.8.0] C:\Android\.android\build-cache\b7e47f7684211739a0dcf113f136c4b529665903\output\AndroidManifest.xml:22:5-79
-MERGED from [com.google.android.gms:play-services-nearby:7.8.0] C:\Android\.android\build-cache\c2ec270747f0d14b4d38c211de0d3818fc2b5db8\output\AndroidManifest.xml:19:5-79
-MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Android\.android\build-cache\03674119087b191d4fdc78de7fc0cbd4d5dc9c54\output\AndroidManifest.xml:20:5-78
+MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-ads-7.8.0.aar\5ed69f2d9c81ccc5a7a86b0b9ba929ea\AndroidManifest.xml:21:5-78
+MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-ads-7.8.0.aar\5ed69f2d9c81ccc5a7a86b0b9ba929ea\AndroidManifest.xml:21:5-78
+MERGED from [com.google.android.gms:play-services-analytics:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-analytics-7.8.0.aar\4de5405eb6bb58737e8b757ffc76e915\AndroidManifest.xml:22:5-79
+MERGED from [com.google.android.gms:play-services-analytics:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-analytics-7.8.0.aar\4de5405eb6bb58737e8b757ffc76e915\AndroidManifest.xml:22:5-79
+MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-maps-7.8.0.aar\5472a98f063cc73de9cbf6cb170bd409\AndroidManifest.xml:20:5-78
+MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-maps-7.8.0.aar\5472a98f063cc73de9cbf6cb170bd409\AndroidManifest.xml:20:5-78
+MERGED from [com.google.android.gms:play-services-nearby:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-nearby-7.8.0.aar\f95278e62b1d8a10458677f925eba04c\AndroidManifest.xml:19:5-79
+MERGED from [com.google.android.gms:play-services-nearby:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-nearby-7.8.0.aar\f95278e62b1d8a10458677f925eba04c\AndroidManifest.xml:19:5-79
 	android:name
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:13:21-75
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
@@ -89,7 +168,8 @@ ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidMa
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:23:19-62
 uses-permission#com.google.android.c2dm.permission.RECEIVE
 ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:24:2-79
-MERGED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Android\.android\build-cache\38c7d220b98aaa9dd1d01af8cb71369ad8416e5f\output\AndroidManifest.xml:21:5-82
+MERGED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-gcm-7.8.0.aar\199961235c29fe0ad5487b27c2535fe6\AndroidManifest.xml:21:5-82
+MERGED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-gcm-7.8.0.aar\199961235c29fe0ad5487b27c2535fe6\AndroidManifest.xml:21:5-82
 	android:name
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:24:19-76
 permission#com.webs.itmexicali.colorized.permission.C2D_MESSAGE
@@ -104,44 +184,72 @@ ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidMa
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:26:19-86
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
 ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:32:2-78
-MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Android\.android\build-cache\03674119087b191d4fdc78de7fc0cbd4d5dc9c54\output\AndroidManifest.xml:22:5-80
+MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-maps-7.8.0.aar\5472a98f063cc73de9cbf6cb170bd409\AndroidManifest.xml:22:5-80
+MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-maps-7.8.0.aar\5472a98f063cc73de9cbf6cb170bd409\AndroidManifest.xml:22:5-80
 	android:name
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:32:19-75
 application
 ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:44:5-198:19
-MERGED from [Colorized_Android:mixpanelandroid:unspecified] D:\Dev\Android\Colorized_Android\mixpanelandroid\build\intermediates\bundles\default\AndroidManifest.xml:43:5-123:19
-MERGED from [Colorized_Android:facebookSDK:unspecified] D:\Dev\Android\Colorized_Android\facebookSDK\build\intermediates\bundles\default\AndroidManifest.xml:24:5-20
-MERGED from [Colorized_Android:baseGameUtils:unspecified] D:\Dev\Android\Colorized_Android\baseGameUtils\build\intermediates\bundles\default\AndroidManifest.xml:30:5-31:19
-MERGED from [com.google.android.gms:play-services:7.8.0] C:\Android\.android\build-cache\37b0f29d6585bd337793fb71274ca4b6621ec474\output\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Android\.android\build-cache\ae05d03091e518fa823caed2f9966bbb0d6d7a8d\output\AndroidManifest.xml:24:5-32:19
-MERGED from [com.google.android.gms:play-services-analytics:7.8.0] C:\Android\.android\build-cache\b7e47f7684211739a0dcf113f136c4b529665903\output\AndroidManifest.xml:24:5-20
-MERGED from [com.google.android.gms:play-services-appindexing:7.8.0] C:\Android\.android\build-cache\b3d1e5deba10413d96adaf8d85c8103e3f575b3a\output\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-appinvite:7.8.0] C:\Android\.android\build-cache\2b2da0d8c7ace22b0e5b34f4f41d34dda6fe6933\output\AndroidManifest.xml:20:5-20
-MERGED from [com.google.android.gms:play-services-appstate:7.8.0] C:\Android\.android\build-cache\2f85187307f8ea48dfbb6d383531a6a47b0fdf93\output\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-cast:7.8.0] C:\Android\.android\build-cache\c517f76cf936e43df610c8e31b4dca43463ed82b\output\AndroidManifest.xml:19:5-20
-MERGED from [com.android.support:mediarouter-v7:22.2.0] C:\Android\.android\build-cache\3fec370fbaec082a5450b5ba8c86c09a5ace94c8\output\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Android\.android\build-cache\89e946fe91d3d9fc0516c813abed7e146fcece95\output\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-fitness:7.8.0] C:\Android\.android\build-cache\7f1988e73bebbfa5c17dcb1da4dd8c22112ea3cf\output\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-games:7.8.0] C:\Android\.android\build-cache\58842e852d16cc389bc8db14cd0352eefa4f0e1d\output\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-drive:7.8.0] C:\Android\.android\build-cache\9590b3b0b67e8dbfdb2e4f333633e21d1b4decb2\output\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Android\.android\build-cache\38c7d220b98aaa9dd1d01af8cb71369ad8416e5f\output\AndroidManifest.xml:24:5-20
-MERGED from [com.google.android.gms:play-services-location:7.8.0] C:\Android\.android\build-cache\8aa463bebf942292294ad82996ba9db228309faf\output\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-nearby:7.8.0] C:\Android\.android\build-cache\c2ec270747f0d14b4d38c211de0d3818fc2b5db8\output\AndroidManifest.xml:20:5-20
-MERGED from [com.google.android.gms:play-services-panorama:7.8.0] C:\Android\.android\build-cache\3ca4c77fa5288cd80cb362dbc5db86d12925d496\output\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-plus:7.8.0] C:\Android\.android\build-cache\f7094f86118410fd57f5680d9d7609087ed0e651\output\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-safetynet:7.8.0] C:\Android\.android\build-cache\957271473e9df7dbf1eeca66b960c649f87d6948\output\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-vision:7.8.0] C:\Android\.android\build-cache\b08a0ed8b1995cb2ed88278e1f2c6220e9b3b747\output\AndroidManifest.xml:5:5-20
-MERGED from [com.google.android.gms:play-services-identity:7.8.0] C:\Android\.android\build-cache\9e9124a847f6a1ef49bc09b98700ecae0753288a\output\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Android\.android\build-cache\03674119087b191d4fdc78de7fc0cbd4d5dc9c54\output\AndroidManifest.xml:28:5-20
-MERGED from [com.google.android.gms:play-services-wearable:7.8.0] C:\Android\.android\build-cache\18b94216b401d23226a74bd41da4e873f38cc91d\output\AndroidManifest.xml:19:5-20
-MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Android\.android\build-cache\795f248e95d3613a63d5423a9c4d13560435c10a\output\AndroidManifest.xml:20:5-24:19
-MERGED from [com.android.support:support-v4:23.4.0] C:\Android\.android\build-cache\d8bbea4ab68d2d36438765402113e631c13b8126\output\AndroidManifest.xml:22:5-20
+MERGED from [:mixpanelandroid] D:\Dev\Android\Colorized_Android\mixpanelandroid\build\intermediates\manifests\full\debug\AndroidManifest.xml:43:5-123:19
+MERGED from [:mixpanelandroid] D:\Dev\Android\Colorized_Android\mixpanelandroid\build\intermediates\manifests\full\debug\AndroidManifest.xml:43:5-123:19
+MERGED from [:facebookSDK] D:\Dev\Android\Colorized_Android\facebookSDK\build\intermediates\manifests\full\debug\AndroidManifest.xml:24:5-20
+MERGED from [:facebookSDK] D:\Dev\Android\Colorized_Android\facebookSDK\build\intermediates\manifests\full\debug\AndroidManifest.xml:24:5-20
+MERGED from [:baseGameUtils] D:\Dev\Android\Colorized_Android\baseGameUtils\build\intermediates\manifests\full\debug\AndroidManifest.xml:30:5-31:19
+MERGED from [:baseGameUtils] D:\Dev\Android\Colorized_Android\baseGameUtils\build\intermediates\manifests\full\debug\AndroidManifest.xml:30:5-31:19
+MERGED from [com.google.android.gms:play-services:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-7.8.0.aar\0e8c37e789c9d32c5d07de83fdb68395\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-7.8.0.aar\0e8c37e789c9d32c5d07de83fdb68395\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-cast:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-cast-7.8.0.aar\93c44d248899bf19e556d98973e8cc9c\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-cast:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-cast-7.8.0.aar\93c44d248899bf19e556d98973e8cc9c\AndroidManifest.xml:19:5-20
+MERGED from [com.android.support:mediarouter-v7:22.2.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\mediarouter-v7-22.2.0.aar\e71d2808cacf696a3980fc3aa5581184\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:mediarouter-v7:22.2.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\mediarouter-v7-22.2.0.aar\e71d2808cacf696a3980fc3aa5581184\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.1.1.aar\3247c16619c611ce3c73225b21ded796\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.1.1.aar\3247c16619c611ce3c73225b21ded796\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-ads-7.8.0.aar\5ed69f2d9c81ccc5a7a86b0b9ba929ea\AndroidManifest.xml:24:5-32:19
+MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-ads-7.8.0.aar\5ed69f2d9c81ccc5a7a86b0b9ba929ea\AndroidManifest.xml:24:5-32:19
+MERGED from [com.google.android.gms:play-services-analytics:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-analytics-7.8.0.aar\4de5405eb6bb58737e8b757ffc76e915\AndroidManifest.xml:24:5-20
+MERGED from [com.google.android.gms:play-services-analytics:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-analytics-7.8.0.aar\4de5405eb6bb58737e8b757ffc76e915\AndroidManifest.xml:24:5-20
+MERGED from [com.google.android.gms:play-services-appindexing:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-appindexing-7.8.0.aar\99490735f266528112ea20c413e9ad29\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-appindexing:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-appindexing-7.8.0.aar\99490735f266528112ea20c413e9ad29\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-appinvite:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-appinvite-7.8.0.aar\462f9d0438c1fd75c58a65957a4b916c\AndroidManifest.xml:20:5-20
+MERGED from [com.google.android.gms:play-services-appinvite:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-appinvite-7.8.0.aar\462f9d0438c1fd75c58a65957a4b916c\AndroidManifest.xml:20:5-20
+MERGED from [com.google.android.gms:play-services-appstate:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-appstate-7.8.0.aar\44b678ed79e1479f1cc0981b47592c07\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-appstate:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-appstate-7.8.0.aar\44b678ed79e1479f1cc0981b47592c07\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-games:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-games-7.8.0.aar\2076916816ca412ccc65f1994240cd92\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-games:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-games-7.8.0.aar\2076916816ca412ccc65f1994240cd92\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-drive:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-drive-7.8.0.aar\b6cab87dce5292c6fa963546604b1fed\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-drive:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-drive-7.8.0.aar\b6cab87dce5292c6fa963546604b1fed\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-fitness:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-fitness-7.8.0.aar\e0ca19dd84aae9526b5eb1769e523822\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-fitness:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-fitness-7.8.0.aar\e0ca19dd84aae9526b5eb1769e523822\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-gcm-7.8.0.aar\199961235c29fe0ad5487b27c2535fe6\AndroidManifest.xml:24:5-20
+MERGED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-gcm-7.8.0.aar\199961235c29fe0ad5487b27c2535fe6\AndroidManifest.xml:24:5-20
+MERGED from [com.google.android.gms:play-services-identity:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-identity-7.8.0.aar\755b72f02ee39fa90ca0f78de95ffb6a\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-identity:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-identity-7.8.0.aar\755b72f02ee39fa90ca0f78de95ffb6a\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-location:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-location-7.8.0.aar\04efb7d271e6d64bfd701f075f2f8502\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-location:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-location-7.8.0.aar\04efb7d271e6d64bfd701f075f2f8502\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-maps-7.8.0.aar\5472a98f063cc73de9cbf6cb170bd409\AndroidManifest.xml:28:5-20
+MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-maps-7.8.0.aar\5472a98f063cc73de9cbf6cb170bd409\AndroidManifest.xml:28:5-20
+MERGED from [com.google.android.gms:play-services-nearby:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-nearby-7.8.0.aar\f95278e62b1d8a10458677f925eba04c\AndroidManifest.xml:20:5-20
+MERGED from [com.google.android.gms:play-services-nearby:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-nearby-7.8.0.aar\f95278e62b1d8a10458677f925eba04c\AndroidManifest.xml:20:5-20
+MERGED from [com.google.android.gms:play-services-panorama:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-panorama-7.8.0.aar\d8503f2e781906f6648e80708a17baad\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-panorama:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-panorama-7.8.0.aar\d8503f2e781906f6648e80708a17baad\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-plus:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-plus-7.8.0.aar\03c32af11f9fd5e0b1878670f07ee228\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-plus:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-plus-7.8.0.aar\03c32af11f9fd5e0b1878670f07ee228\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-safetynet:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-safetynet-7.8.0.aar\d76488f5e573f0f404e51405c9e2c9c8\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-safetynet:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-safetynet-7.8.0.aar\d76488f5e573f0f404e51405c9e2c9c8\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-vision:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-vision-7.8.0.aar\79dd1e64b0f567814975ae1f4857a8f3\AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-vision:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-vision-7.8.0.aar\79dd1e64b0f567814975ae1f4857a8f3\AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-wearable:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-wearable-7.8.0.aar\124840db2b023dda28a96222a768046f\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-wearable:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-wearable-7.8.0.aar\124840db2b023dda28a96222a768046f\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-base-7.8.0.aar\759ff75452e910606bf31056a0aa40c4\AndroidManifest.xml:20:5-24:19
+MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-base-7.8.0.aar\759ff75452e910606bf31056a0aa40c4\AndroidManifest.xml:20:5-24:19
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\support-v4-23.4.0.aar\de01eeeccd4034905284237244f1945f\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\support-v4-23.4.0.aar\de01eeeccd4034905284237244f1945f\AndroidManifest.xml:22:5-20
 	android:label
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:48:9-41
-	android:allowBackup
-		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:46:9-35
 	android:icon
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:47:9-42
+	android:allowBackup
+		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:46:9-35
 	android:theme
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:49:9-40
 	android:name
@@ -154,14 +262,16 @@ ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidMa
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:52:20-65
 meta-data#com.google.android.gms.version
 ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:56:9-57:71
-MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Android\.android\build-cache\795f248e95d3613a63d5423a9c4d13560435c10a\output\AndroidManifest.xml:21:9-23:69
+MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-base-7.8.0.aar\759ff75452e910606bf31056a0aa40c4\AndroidManifest.xml:21:9-23:69
+MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-base-7.8.0.aar\759ff75452e910606bf31056a0aa40c4\AndroidManifest.xml:21:9-23:69
 	android:value
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:57:16-69
 	android:name
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:56:20-65
 activity#com.google.android.gms.ads.AdActivity
 ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:58:9-60:121
-MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Android\.android\build-cache\ae05d03091e518fa823caed2f9966bbb0d6d7a8d\output\AndroidManifest.xml:26:9-29:64
+MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-ads-7.8.0.aar\5ed69f2d9c81ccc5a7a86b0b9ba929ea\AndroidManifest.xml:26:9-29:64
+MERGED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-ads-7.8.0.aar\5ed69f2d9c81ccc5a7a86b0b9ba929ea\AndroidManifest.xml:26:9-29:64
 	android:configChanges
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:60:10-119
 	android:theme
@@ -313,30 +423,30 @@ ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidMa
 	android:name
 		ADDED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:193:25-76
 meta-data#unityplayer.ForwardNativeEventsToDalvik
-ADDED from [Colorized_Android:baseGameUtils:unspecified] D:\Dev\Android\Colorized_Android\baseGameUtils\build\intermediates\bundles\default\AndroidManifest.xml:26:5-28:32
+ADDED from [:baseGameUtils] D:\Dev\Android\Colorized_Android\baseGameUtils\build\intermediates\manifests\full\debug\AndroidManifest.xml:26:5-28:32
 	android:value
-		ADDED from [Colorized_Android:baseGameUtils:unspecified] D:\Dev\Android\Colorized_Android\baseGameUtils\build\intermediates\bundles\default\AndroidManifest.xml:28:9-29
+		ADDED from [:baseGameUtils] D:\Dev\Android\Colorized_Android\baseGameUtils\build\intermediates\manifests\full\debug\AndroidManifest.xml:28:9-29
 	android:name
-		ADDED from [Colorized_Android:baseGameUtils:unspecified] D:\Dev\Android\Colorized_Android\baseGameUtils\build\intermediates\bundles\default\AndroidManifest.xml:27:9-63
+		ADDED from [:baseGameUtils] D:\Dev\Android\Colorized_Android\baseGameUtils\build\intermediates\manifests\full\debug\AndroidManifest.xml:27:9-63
 activity#com.google.android.gms.ads.purchase.InAppPurchaseActivity
-ADDED from [com.google.android.gms:play-services-ads:7.8.0] C:\Android\.android\build-cache\ae05d03091e518fa823caed2f9966bbb0d6d7a8d\output\AndroidManifest.xml:30:9-31:52
+ADDED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-ads-7.8.0.aar\5ed69f2d9c81ccc5a7a86b0b9ba929ea\AndroidManifest.xml:30:9-31:52
 	android:theme
-		ADDED from [com.google.android.gms:play-services-ads:7.8.0] C:\Android\.android\build-cache\ae05d03091e518fa823caed2f9966bbb0d6d7a8d\output\AndroidManifest.xml:31:13-50
+		ADDED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-ads-7.8.0.aar\5ed69f2d9c81ccc5a7a86b0b9ba929ea\AndroidManifest.xml:31:13-50
 	android:name
-		ADDED from [com.google.android.gms:play-services-ads:7.8.0] C:\Android\.android\build-cache\ae05d03091e518fa823caed2f9966bbb0d6d7a8d\output\AndroidManifest.xml:30:19-91
+		ADDED from [com.google.android.gms:play-services-ads:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-ads-7.8.0.aar\5ed69f2d9c81ccc5a7a86b0b9ba929ea\AndroidManifest.xml:30:19-91
 uses-permission#android.permission.GET_ACCOUNTS
-ADDED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Android\.android\build-cache\e94b867a1265ceaba7e1b304c8e1a04483b3125c\output\AndroidManifest.xml:21:5-70
+ADDED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-wallet-7.8.0.aar\30f2d2fdce7d117856f3c7bc873f41e5\AndroidManifest.xml:21:5-70
 	android:name
-		ADDED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Android\.android\build-cache\e94b867a1265ceaba7e1b304c8e1a04483b3125c\output\AndroidManifest.xml:21:22-68
+		ADDED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-wallet-7.8.0.aar\30f2d2fdce7d117856f3c7bc873f41e5\AndroidManifest.xml:21:22-68
 uses-permission#android.permission.USE_CREDENTIALS
-ADDED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Android\.android\build-cache\e94b867a1265ceaba7e1b304c8e1a04483b3125c\output\AndroidManifest.xml:22:5-73
+ADDED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-wallet-7.8.0.aar\30f2d2fdce7d117856f3c7bc873f41e5\AndroidManifest.xml:22:5-73
 	android:name
-		ADDED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Android\.android\build-cache\e94b867a1265ceaba7e1b304c8e1a04483b3125c\output\AndroidManifest.xml:22:22-71
+		ADDED from [com.google.android.gms:play-services-wallet:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-wallet-7.8.0.aar\30f2d2fdce7d117856f3c7bc873f41e5\AndroidManifest.xml:22:22-71
 uses-feature#0x00020000
-ADDED from [com.google.android.gms:play-services-maps:7.8.0] C:\Android\.android\build-cache\03674119087b191d4fdc78de7fc0cbd4d5dc9c54\output\AndroidManifest.xml:23:5-25:33
+ADDED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-maps-7.8.0.aar\5472a98f063cc73de9cbf6cb170bd409\AndroidManifest.xml:23:5-25:33
 	android:glEsVersion
-		ADDED from [com.google.android.gms:play-services-maps:7.8.0] C:\Android\.android\build-cache\03674119087b191d4fdc78de7fc0cbd4d5dc9c54\output\AndroidManifest.xml:24:8-40
+		ADDED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-maps-7.8.0.aar\5472a98f063cc73de9cbf6cb170bd409\AndroidManifest.xml:24:8-40
 	android:required
-		ADDED from [com.google.android.gms:play-services-maps:7.8.0] C:\Android\.android\build-cache\03674119087b191d4fdc78de7fc0cbd4d5dc9c54\output\AndroidManifest.xml:25:8-31
+		ADDED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\micha\.gradle\caches\transforms-1\files-1.1\play-services-maps-7.8.0.aar\5472a98f063cc73de9cbf6cb170bd409\AndroidManifest.xml:25:8-31
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
 IMPLIED from D:\Dev\Android\Colorized_Android\colorized_Android\src\main\AndroidManifest.xml:2:1-200:12 reason: com.google.android.gms.maps requested WRITE_EXTERNAL_STORAGE

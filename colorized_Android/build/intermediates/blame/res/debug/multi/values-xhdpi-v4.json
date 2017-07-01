@@ -11,7 +11,7 @@
                     "endOffset": 114
                 },
                 "from": {
-                    "file": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\build\\intermediates\\bundles\\default\\res\\values-xhdpi-v4\\values-xhdpi-v4.xml",
+                    "file": "D:\\Dev\\Android\\Colorized_Android\\facebookSDK\\build\\intermediates\\bundles\\debug\\res\\values-xhdpi-v4\\values-xhdpi-v4.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
