@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('C:/Users/micha/.android/debug.keystore')
+            storePassword 'android'
+        }
+    }
+    compileSdkVersion 26
+    buildToolsVersion '26.0.0'
+    defaultConfig {
+        applicationId "com.webs.itmexicali.colorized"
+        minSdkVersion 9
+        targetSdkVersion 23
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.debug
+        }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+    dexOptions {
+    }
+    lintOptions {
+//        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile project(':mixpanelandroid')
+    compile project(':facebookSDK')
+    compile project(':baseGameUtils')
+    //    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    //    compile 'com.google.android.gms:play-services:+'
+    compile 'com.google.android.gms:play-services:7.8.0'
+    compile files('libs/com-xsqhbao-bipppts201390.jar')
+    compile files('libs/Communication.jar')
+    compile files('libs/LeonidsLib.jar')
+    compile files('libs/ProtectedInt.jar')
+    compile 'com.android.support:multidex:1.0.0'
+}

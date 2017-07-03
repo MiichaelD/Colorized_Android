@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Google Play game services IDs.
+Save this file as res/values/games-ids.xml in your project.
+-->
+<resources>
+  <string translatable="false" name="app_id">920688942654</string>
+  <string translatable="false" name="achievement_feeling_lucky">CgkIvrzZ6uUaEAIQAQ</string>
+  <string translatable="false" name="achievement_where_is_the_challenge">CgkIvrzZ6uUaEAIQAg</string>
+  <string translatable="false" name="achievement_777">CgkIvrzZ6uUaEAIQHg</string>
+  <string translatable="false" name="achievement_9_win_streak">CgkIvrzZ6uUaEAIQHw</string>
+  <string translatable="false" name="achievement_it_is_not_that_hard">CgkIvrzZ6uUaEAIQAw</string>
+  <string translatable="false" name="achievement_bored">CgkIvrzZ6uUaEAIQBA</string>
+  <string translatable="false" name="achievement_really_bored">CgkIvrzZ6uUaEAIQBQ</string>
+  <string translatable="false" name="achievement_a_lot_of_free_time">CgkIvrzZ6uUaEAIQBg</string>
+  <string translatable="false" name="achievement_not_just_anybody">CgkIvrzZ6uUaEAIQDA</string>
+  <string translatable="false" name="achievement_this_is_my_game">CgkIvrzZ6uUaEAIQHA</string>
+  <string translatable="false" name="achievement_loyal_to_colors">CgkIvrzZ6uUaEAIQDQ</string>
+  <string translatable="false" name="achievement_getting_used_to_it">CgkIvrzZ6uUaEAIQDg</string>
+  
+  <string translatable="false" name="achievement_small_amateur">CgkIvrzZ6uUaEAIQDw</string>
+  <string translatable="false" name="achievement_small_apprentice">CgkIvrzZ6uUaEAIQIA</string>
+  <string translatable="false" name="achievement_small_teacher">CgkIvrzZ6uUaEAIQIw</string>
+  <string translatable="false" name="achievement_small_pro">CgkIvrzZ6uUaEAIQEg</string>
+  <string translatable="false" name="achievement_small_champion">CgkIvrzZ6uUaEAIQFQ</string>
+  
+  <string translatable="false" name="achievement_amateur">CgkIvrzZ6uUaEAIQEA</string>
+  <string translatable="false" name="achievement_apprentice">CgkIvrzZ6uUaEAIQIQ</string>
+  <string translatable="false" name="achievement_teacher">CgkIvrzZ6uUaEAIQJA</string>
+  <string translatable="false" name="achievement_pro">CgkIvrzZ6uUaEAIQEw</string>
+  <string translatable="false" name="achievement_champion">CgkIvrzZ6uUaEAIQFg</string>
+  
+  <string translatable="false" name="achievement_big_amateur">CgkIvrzZ6uUaEAIQEQ</string>
+  <string translatable="false" name="achievement_big_apprentice">CgkIvrzZ6uUaEAIQIg</string>
+  <string translatable="false" name="achievement_big_teacher">CgkIvrzZ6uUaEAIQJQ</string>
+  <string translatable="false" name="achievement_big_pro">CgkIvrzZ6uUaEAIQFA</string>
+  <string translatable="false" name="achievement_big_champion">CgkIvrzZ6uUaEAIQFw</string>
+  
+  <string translatable="false" name="achievement_now_i_get_it">CgkIvrzZ6uUaEAIQGA</string>
+  <string translatable="false" name="achievement_premature">CgkIvrzZ6uUaEAIQGQ</string>
+  <string translatable="false" name="achievement_that_was_easy">CgkIvrzZ6uUaEAIQGg</string>
+  <string translatable="false" name="achievement_big_flood">CgkIvrzZ6uUaEAIQGw</string>
+  <string translatable="false" name="achievement_sharing_is_good">CgkIvrzZ6uUaEAIQJg</string>
+  
+  <string translatable="false" name="leaderboard_all_board_sizes">CgkIvrzZ6uUaEAIQCg</string>
+  <string translatable="false" name="leaderboard_small_board">CgkIvrzZ6uUaEAIQBw</string>
+  <string translatable="false" name="leaderboard_medium_board">CgkIvrzZ6uUaEAIQCA</string>
+  <string translatable="false" name="leaderboard_large_board">CgkIvrzZ6uUaEAIQCQ</string>
+</resources>

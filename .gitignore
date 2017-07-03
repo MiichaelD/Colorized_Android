@@ -58,8 +58,6 @@ build/
 #NDK
 obj/
 
-
-
 # Optional - for older project format
 /*/out
 */out
