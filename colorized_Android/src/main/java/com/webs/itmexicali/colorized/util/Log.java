@@ -26,9 +26,7 @@ public class Log {
      * Lower levels will give more details but will also clutter up the LogCat
      * output.
      */
-    private static  LogLevel m_logLevel = LogLevel.kDebug;
-    
-    public static final String TAG = "Log";
+    private static  LogLevel m_logLevel = LogLevel.kVerbose;
     
     /** In case we want to change the logging level at runtime
      * @param level the new log level to be used*/

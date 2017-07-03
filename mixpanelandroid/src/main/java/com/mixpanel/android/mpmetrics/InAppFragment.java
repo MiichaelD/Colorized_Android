@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.AnimatorRes;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
@@ -237,7 +238,8 @@ public class InAppFragment extends Fragment {
             // setCustomAnimations works on a per transaction level, so the animations set
             // when this fragment was created do not apply
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.setCustomAnimations(0, R.anim.com_mixpanel_android_slide_down).remove(this).commit();
+            @AnimatorRes int animatorRes = R.anim.com_mixpanel_android_slide_down;
+            transaction.setCustomAnimations(0, animatorRes).remove(this).commit();
             UpdateDisplayState.releaseDisplayState(mDisplayStateId);
             mCleanedUp = true;
         }

@@ -11,6 +11,7 @@ import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.board.Constants;
 import com.webs.itmexicali.colorized.util.BitmapLoader;
 import com.webs.itmexicali.colorized.util.Const;
+import com.webs.itmexicali.colorized.util.Log;
 import com.webs.itmexicali.colorized.util.Screen;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 import com.webs.itmexicali.colorized.util.Tracking;
@@ -26,7 +27,6 @@ import android.graphics.RectF;
 import android.graphics.Bitmap.Config;
 import android.graphics.Paint.Align;
 import android.text.TextPaint;
-import android.util.Log;
 import android.view.MotionEvent;
 
 public class GameState extends BaseState implements GameBoardListener{

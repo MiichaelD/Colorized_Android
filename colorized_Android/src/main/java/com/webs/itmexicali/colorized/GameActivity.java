@@ -131,7 +131,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 		
 		/* Now the ads object is just created once, not destroying it and loading it if 
 		 * it already exists, to change dad, remove the pAds == null validation from next
-		 * if clause*/		
+		 * if clause*/
 		if(Advertising.SHOW_ADS && pAds == null){
 			LinearLayout layout = (LinearLayout) findViewById(R.id.LayMain);
 			

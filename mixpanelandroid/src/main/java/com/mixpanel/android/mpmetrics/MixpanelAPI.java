@@ -15,6 +15,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.AnimatorRes;
 import android.util.Log;
 
 import com.mixpanel.android.R;
@@ -1899,7 +1900,8 @@ public class MixpanelAPI {
                                     Log.v(LOGTAG, "Attempting to show mini notification.");
                                 }
                                 final FragmentTransaction transaction = parent.getFragmentManager().beginTransaction();
-                                transaction.setCustomAnimations(0, R.anim.com_mixpanel_android_slide_down);
+                                @AnimatorRes int animatorResource = R.anim.com_mixpanel_android_slide_down;
+                                transaction.setCustomAnimations(0, animatorResource);
                                 transaction.add(android.R.id.content, inapp);
 
                                 try {
