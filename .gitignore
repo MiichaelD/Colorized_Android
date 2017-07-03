@@ -1,9 +1,7 @@
-
 # Project specific.
-facebookSDK/build/
-colorized_Android/build/
-baseGameUtils/build/
-mixpanelandroid/build/
+*/build/
+*/debug/
+*/release/
 mixpanelandroid/src/main/resources/
 
 # Since Android Studio 2.2
