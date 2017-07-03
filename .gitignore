@@ -3,6 +3,8 @@
 facebookSDK/build/
 colorized_Android/build/
 baseGameUtils/build/
+mixpanelandroid/build/
+mixpanelandroid/src/main/resources/
 
 # Since Android Studio 2.2
 *.iml
