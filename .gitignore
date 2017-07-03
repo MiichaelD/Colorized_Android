@@ -1,3 +1,7 @@
+# Project specific.
+facebookSDK/build/
+colorized_Android/build/
+baseGameUtils/build/
 
 # Since Android Studio 2.2
 *.iml
