@@ -13,40 +13,38 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-  
-  <!-- RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/lib/com.google.android.gms.ads"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/RelLay"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"-->
 
-	<LinearLayout
-	    xmlns:android="http://schemas.android.com/apk/res/android"
-	    xmlns:ads="http://schemas.android.com/apk/lib/com.google.android.gms.ads"
-	    xmlns:tools="http://schemas.android.com/tools"
-	    android:id="@+id/LayMain"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:layout_gravity="center" 
-	    android:orientation="vertical">
-	    
-		<com.webs.itmexicali.colorized.GameView
-		    android:id="@+id/gameView" 
-		    android:layout_width="match_parent"
-		  	android:layout_height="0dp"
-		  	android:layout_weight="1"
-		  	android:contentDescription="@+string/app_name"
-		  	/>
-		<!--  
-		<com.webs.itmexicali.colorized.GameView
-		    android:id="@+id/gameView" 
-		    android:layout_width="match_parent"
-		  	android:layout_height="550dp"
-		  	android:layout<RelativeLayoutweight="1"
-		  	android:contentDescription="@+string/app_name"-->
-	
-	</LinearLayout>
-<!-- /RelativeLayout -->
+<!-- RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:ads="http://schemas.android.com/apk/lib/com.google.android.gms.ads"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/RelLay"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"-->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LayMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+  <com.webs.itmexicali.colorized.GameView
+      android:id="@+id/gameView"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:contentDescription="@+string/app_name"
+      />
+  <!--
+  <com.webs.itmexicali.colorized.GameView
+      android:id="@+id/gameView"
+      android:layout_width="match_parent"
+      android:layout_height="550dp"
+      android:layout<RelativeLayoutweight="1"
+      android:contentDescription="@+string/app_name"-->
+
+</LinearLayout>
+    <!-- /RelativeLayout -->
 

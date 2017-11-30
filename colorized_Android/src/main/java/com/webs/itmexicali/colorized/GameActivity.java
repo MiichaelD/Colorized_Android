@@ -23,19 +23,19 @@ import com.google.android.gms.games.Player;
 import com.google.example.games.basegameutils.BaseGameActivity;
 import com.webs.itmexicali.colorized.GameView.SurfaceListener;
 import com.webs.itmexicali.colorized.ads.Advertising;
+import com.webs.itmexicali.colorized.board.Constants;
 import com.webs.itmexicali.colorized.gamestates.BaseState;
 import com.webs.itmexicali.colorized.gamestates.GameState;
 import com.webs.itmexicali.colorized.gamestates.GameState.GameFinishedListener;
 import com.webs.itmexicali.colorized.gamestates.StateMachine;
-import com.webs.itmexicali.colorized.board.Constants;
-import com.webs.itmexicali.colorized.util.Platform;
 import com.webs.itmexicali.colorized.util.Const;
-import com.webs.itmexicali.colorized.util.Log;
-import com.webs.itmexicali.colorized.util.Screen;
 import com.webs.itmexicali.colorized.util.GameStatsSync;
+import com.webs.itmexicali.colorized.util.Log;
 import com.webs.itmexicali.colorized.util.Notifier;
+import com.webs.itmexicali.colorized.util.Platform;
 import com.webs.itmexicali.colorized.util.ProgNPrefs;
 import com.webs.itmexicali.colorized.util.PushNotificationHelper;
+import com.webs.itmexicali.colorized.util.Screen;
 import com.webs.itmexicali.colorized.util.Tracking;
 
 public class GameActivity extends BaseGameActivity implements GameFinishedListener, SurfaceListener {
@@ -45,41 +45,28 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
    * Request codes we use when invoking an external activity
    */
   private static final int RC_UNUSED = 5001, RC_SHARE = 742;//, RC_RESOLVE = 50007;
-
-  //ads handler
-  private Advertising pAds = null;
-
-  //facebook sharing helper
-  private UiLifecycleHelper uiHelper;
-
-  // true if the game finished is the first one since the app being launched
-  private boolean firstGameFinished = true;
-
   /**
    * This activity instance, to access its members from other classes
    */
   public static GameActivity instance; //TODO: make it private and refactor everywhere using direct access to it
-
-  public static GameActivity getActivity() {
-    return instance;
-  }
-
+  //ads handler
+  private Advertising pAds = null;
+  //facebook sharing helper
+  private UiLifecycleHelper uiHelper;
+  // true if the game finished is the first one since the app being launched
+  private boolean firstGameFinished = true;
   /**
    * Media player to play sounds of user interactions & background music.
    */
   private MediaPlayer soundPlayer = null, musicPlayer = null;
-
-  //private SoundType previousSound = SoundType.NONE;
-  public static enum SoundType {
-    NONE, TOUCH, WIN, LOSE
-  }
+  private String mPlayerName = null;
+  private boolean p_subscribeForPush = false;
 
   ;
 
-  private String mPlayerName = null;
-
-  private boolean p_subscribeForPush = false;
-
+  public static GameActivity getActivity() {
+    return instance;
+  }
 
   @SuppressLint({"InlinedApi", "NewApi"})
   @Override
@@ -135,19 +122,18 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     }
   }
 
-
   /**
    * Load ads if they are enabled, depending on the ads service using load
    * the corresponding one AirPush or AdMob
    */
   private void initAds() {
 
-		/* Now the ads object is just created once, not destroying it and loading it if 
-		 * it already exists, to change dad, remove the pAds == null validation from next
+		/* Now the ads object is just created once, not destroying it and loading it if
+     * it already exists, to change dad, remove the pAds == null validation from next
 		 * if clause*/
     if (Advertising.SHOW_ADS && pAds == null) {
       LinearLayout layout = (LinearLayout) findViewById(R.id.LayMain);
-			
+
 			/* If we want to create a new banner, destroy and remove current if it exists*/
       if (pAds != null && pAds.getBanner() != null) {
         layout.removeView(pAds.getBanner());
@@ -159,7 +145,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 
       pAds = Advertising.instantiate(this);
       pAds.getBanner().setLayoutParams(params);
-			
+
 			/* When the game_Screen.xml root tag used to be RelativeLayout, the ad was just
 	         OVER the GameView, now the ad shares the screen size with GameView
 	        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
@@ -179,7 +165,6 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     return pAds.getBanner();
   }
 
-
   /**
    * Load Interstitial ads, some ads-services like airPush
    * needs to call SmartWallAds before showing them
@@ -190,7 +175,6 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
       pAds.loadInterstitial();
   }
 
-
   /**
    * Invoke displayInterstitial() when you are ready to display an interstitial.
    */
@@ -199,7 +183,6 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     if (pAds != null)
       pAds.showInterstitial();
   }
-
 
   @Override
   public void onStart() {
@@ -228,7 +211,6 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 
     Tracking.shared().onResume(this);
   }
-
 
   @Override
   public void onPause() {
@@ -275,7 +257,6 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     Log.v(GameActivity.class.getSimpleName(), "onSaveInstanceState()");
     uiHelper.onSaveInstanceState(outState);
   }
-
 
   private void scheduleReminderNotifForSavedGame() {
     if (ProgNPrefs.getIns().isGameSaved()) {
@@ -446,9 +427,6 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
         GameStatsSync.revealAchievement(getApiClient(), R.string.achievement_sharing_is_good);
     }
   }
-	
-	/*------------------------ LEADERBOARDS and ACHIEVEMENTS METHODS ----------------------------------*/
-
 
   @Override
   public void onSignInFailed() {
@@ -456,6 +434,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     updateCurrentState();
     mPlayerName = null;
   }
+	
+	/*------------------------ LEADERBOARDS and ACHIEVEMENTS METHODS ----------------------------------*/
 
   @Override
   public void onSignInSucceeded() {
@@ -698,7 +678,6 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     beginUserInitiatedSignIn();
   }
 
-
   /**
    * Start sign-out flow by user interaction
    */
@@ -713,5 +692,10 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
   private void updateCurrentState() {
     if (StateMachine.getIns().getCurrentState() != null)
       StateMachine.getIns().getCurrentState().onFocus();
+  }
+
+  //private SoundType previousSound = SoundType.NONE;
+  public static enum SoundType {
+    NONE, TOUCH, WIN, LOSE
   }
 }

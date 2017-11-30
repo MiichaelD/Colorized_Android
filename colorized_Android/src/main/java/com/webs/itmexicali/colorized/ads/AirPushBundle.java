@@ -5,34 +5,36 @@ import android.view.View;
 
 import com.webs.itmexicali.colorized.util.Log;
 
-/** Advertising by AirPush - Bundle edition 
- * 
+/**
+ * Advertising by AirPush - Bundle edition
+ * <p>
  * http://manage.airpush.com/docs/index.php?title=Bundle_SDK_1.0_Documentation
- * 
+ * <p>
  * NOTE: to use this ads, you should uncomment some lines of code in
- * AirPushBundle class and the AndroidManifest file (THE PROPER MODIFICATIONS 
- * OF MANIFEST ARE AVAILABLE AT THE END OF THIS CLASS)*/
-public class AirPushBundle extends Advertising{
+ * AirPushBundle class and the AndroidManifest file (THE PROPER MODIFICATIONS
+ * OF MANIFEST ARE AVAILABLE AT THE END OF THIS CLASS)
+ */
+public class AirPushBundle extends Advertising {
 
-	//AirPush Ads Bundle
-    //private com.xsqhbao.bipppts201390.MA air;
-    private com.xsqhbao.bipppts201390.AdView AirPushView;
-	
-	public AirPushBundle(Activity ctx) {
-		super(ctx);
-	}
+  //AirPush Ads Bundle
+  //private com.xsqhbao.bipppts201390.MA air;
+  private com.xsqhbao.bipppts201390.AdView AirPushView;
 
-	@Override
-	public void initAds() {
-		
+  public AirPushBundle(Activity ctx) {
+    super(ctx);
+  }
+
+  @Override
+  public void initAds() {
+
 //		AirPushView = new com.xsqhbao.bipppts201390.AdView(
 //				pAct, com.xsqhbao.bipppts201390.AdView.BANNER_TYPE_IN_APP_AD,
 //				com.xsqhbao.bipppts201390.AdView.PLACEMENT_TYPE_INLINE, false, false, 
 //				com.xsqhbao.bipppts201390.AdView.ANIMATION_TYPE_LEFT_TO_RIGHT);
-		
-		/**Initializing Bundle SDK 
-		 * @param Activity * @param AdListener * @param caching*/
-		/*
+
+    /**Initializing Bundle SDK
+     * @param Activity * @param AdListener * @param caching*/
+    /*
 		air = new com.xsqhbao.bipppts201390.MA(pAct, 
 				new com.xsqhbao.bipppts201390.AdListener(){
 			@Override
@@ -63,41 +65,41 @@ public class AirPushBundle extends Advertising{
 		},
 		true);
 		*/
-		 
-		//Caching Smartwall Ad. 
-		loadInterstitial();
-				
-		
-	}
 
-	@Override
-	public View getBanner() {
-		return AirPushView;
-	}
+    //Caching Smartwall Ad.
+    loadInterstitial();
 
-	@Override
-	public void destroyBanner() {
-		if(AirPushView != null){// remove the existing
-        	AirPushView = null;
-        }
-	}
 
-	@Override
-	public void loadInterstitial() {
-		//Caching Smartwall Ad for future use
-		//air.callSmartWallAd();
-	}
+  }
 
-	@Override
-	public void showInterstitial() {
-		try {
-			//air.showCachedAd(pAct, com.xsqhbao.bipppts201390.AdListener.AdType.smartwall);
-		} catch (Exception e) {
-			Log.w(AirPushBundle.class.getSimpleName(),"Interstitial not showing Cached");
-			//air.callSmartWallAd();
-			e.printStackTrace();
-		}
-	}
+  @Override
+  public View getBanner() {
+    return AirPushView;
+  }
+
+  @Override
+  public void destroyBanner() {
+    if (AirPushView != null) {// remove the existing
+      AirPushView = null;
+    }
+  }
+
+  @Override
+  public void loadInterstitial() {
+    //Caching Smartwall Ad for future use
+    //air.callSmartWallAd();
+  }
+
+  @Override
+  public void showInterstitial() {
+    try {
+      //air.showCachedAd(pAct, com.xsqhbao.bipppts201390.AdListener.AdType.smartwall);
+    } catch (Exception e) {
+      Log.w(AirPushBundle.class.getSimpleName(), "Interstitial not showing Cached");
+      //air.callSmartWallAd();
+      e.printStackTrace();
+    }
+  }
 }
 
 /* **MANIFEST MODIFICATIONS:**

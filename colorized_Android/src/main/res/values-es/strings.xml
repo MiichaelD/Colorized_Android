@@ -1,89 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="app_name">Invasión de Color</string>
-    <string name="greeting_player">Hola, <xliff:g id="name">%1$s</xliff:g></string>
-    <string name="cancel">Cancelar</string>
-    
-    <!-- Dialogs messages !-->
-    <string name="exit_confirmation">Salir?</string>
-    <string name="restart_game_confirmation">Reiniciar tablero?</string>
-    <string name="saved_game_confirmation">Quieres continuar el tablero anterior?</string>
-    
-    <string name="achievement_unlocked">Logro desbloqueado!\nInicia sesión para obtener mas información.</string>
-    <string name="your_progress_will_be_uploaded">Tu progreso existente será sincronizado.</string>
-    
-    <string name="achievements_not_available">Por favor inicie sesión para ver sus logros.</string>
-    <string name="leaderboards_not_available">Por favor inicie sesión para ver los leaderboards.</string>
-    <string name="share_not_available">Por favor inicie sesión para compartir con sus amigos.</string>
-    
-    <!-- GameOver State Texts -->
-    <string name="game_over_share_btn">Compartir: </string>
-    <string name="game_over_share_txt">Conquisté un tablero <xliff:g id="brd_size">%1$s</xliff:g> en <xliff:g id="brd_movs">%2$d</xliff:g> movimientos!\n\nTú también juega #InvasiónDeColor ( #ColorFlooded ) en tu dispositivo android.</string>
-    <string name="game_over_lose_title">Juego Terminado</string>
-    <string name="game_over_lose_desc">Te quedaste sin movimientos.\n\nJugar de nuevo?</string>
-    <string name="game_over_win_title">Felicidades!</string>
-    <string name="game_over_win_desc">Terminaste la partida con  
+  <string name="app_name">Invasión de Color</string>
+  <string name="greeting_player">Hola, <xliff:g id="name">%1$s</xliff:g></string>
+  <string name="cancel">Cancelar</string>
+
+  <!-- Dialogs messages !-->
+  <string name="exit_confirmation">Salir?</string>
+  <string name="restart_game_confirmation">Reiniciar tablero?</string>
+  <string name="saved_game_confirmation">Quieres continuar el tablero anterior?</string>
+
+  <string name="achievement_unlocked">Logro desbloqueado!\nInicia sesión para obtener mas información.</string>
+  <string name="your_progress_will_be_uploaded">Tu progreso existente será sincronizado.</string>
+
+  <string name="achievements_not_available">Por favor inicie sesión para ver sus logros.</string>
+  <string name="leaderboards_not_available">Por favor inicie sesión para ver los leaderboards.</string>
+  <string name="share_not_available">Por favor inicie sesión para compartir con sus amigos.</string>
+
+  <!-- GameOver State Texts -->
+  <string name="game_over_share_btn">Compartir: </string>
+  <string name="game_over_share_txt">Conquisté un tablero <xliff:g id="brd_size">%1$s</xliff:g> en <xliff:g id="brd_movs">%2$d</xliff:g> movimientos!\n\nTú también juega #InvasiónDeColor ( #ColorFlooded ) en tu dispositivo android.</string>
+  <string name="game_over_lose_title">Juego Terminado</string>
+  <string name="game_over_lose_desc">Te quedaste sin movimientos.\n\nJugar de nuevo?</string>
+  <string name="game_over_win_title">Felicidades!</string>
+  <string name="game_over_win_desc">Terminaste la partida con
         <xliff:g id="integer_formating">%1$d</xliff:g> movimientos.\n\nJugar de nuevo?</string>
-    
-    <!-- Main State Buttons !-->
-    <string name="play_button">Jugar</string>
-    <string name="tutorial_button">Tutorial</string>
-    <string name="leader_button">Leaderboards</string>
-    <string name="achiev_button">Logros</string>
-    <string name="music_button">Música</string>
-    <string name="about_button">Información</string>
-    <string name="notifications_button">Notificaciones</string>
-    <string name="options_button">Opciones</string>
-    <string name="stats_button">Estadísticas</string>
-    
-    <!-- Game State Texts -->
-    <string name="moves_txt">Movimientos: <xliff:g id="mov_form">%1$d</xliff:g>/<xliff:g id="mov_lim">%2$d</xliff:g></string>
-    
-    <!-- Option State Texts -->
-    <string name="options_difficulty">Tamaño de tablero: </string>
-    <string name="options_easy_descriptive">Chico (<xliff:g id="easy_size">12x12</xliff:g>)</string>
-    <string name="options_med_descriptive">Mediano (<xliff:g id="med_size">18x18</xliff:g>)</string>
-    <string name="options_hard_descriptive">Grande (<xliff:g id="hard_size">24x24</xliff:g>)</string>
-    <string name="options_easy">Chico</string>
-    <string name="options_med">Mediano</string>
-    <string name="options_hard">Grande</string>
-    <string name="options_size_all">Todos los tamaños</string>
-    <string name="options_game_mode">Modo de Juego: </string>
-    <string name="options_step_mode">Modo Reto</string>
-    <string name="options_casual_mode">Modo Casual</string>
-    
-    <!-- Leaderboard texts !-->
-    <string name="totalGamesPlayed">Juegos completados: %1$d.</string>
-    <string name="totalGamesWon">Juegos Ganados: %1$d.</string>
-    <string name="percentGamesWon">Juegos Ganados: <xliff:g id="games_won">%1$.2f%%</xliff:g>.</string>
-    
-    
-    <!-- Tutorial Instruction Messages !-->
-    <string name="tuto0">Toca para avanzar.</string>
-    <string name="tuto1">Llena el tablero de un solo color.</string>
-    <string name="tuto2">Empiezas desde la esquina superior izquierda.</string>
-    <string name="tuto3">Cambia de color desde seleccionador.</string>
-    <string name="tuto4">Hasta que el tablero se llene de uno solo.</string>
-    <string name="tuto5">Hazlo antes de quedarte sin movimientos.</string>
-    <string name="tuto6">Crees poder lograrlo?\n\nINTENTALO!!</string>
-    <string name="tuto_exit">Presiona ATRAS de nuevo para salir del tutorial o toca la pantalla para continuar.</string>
-    
-	<!-- About Texts !-->
-    <string name="about_developer">Desarrollador Android.</string>
-    <string name="about_designers">Diseñadores.</string>
-    <string name="about_version">Versión.</string>
-    <string name="about_sound">Sonidos.</string>
-    <string name="about_sound_values">"Sonidos de www.freesound.org:\n'Nodens (Field Song)' por axtoncrolley\n'saddertrombones.mp3' por-nc NotR\n'cheer 4.wav' por-nc timtube.\n\nMás detalles en\nwww.itmexicali.webs.com/colorized"</string>
-    <string name="about_sound_values_min">Sonidos de www.freesound.org:\nMas detalles en www.itmexicali.webs.com/colorized</string>
-    <string name="about_sound_values_1">"Sonidos de www.freesound.org:"</string>
-    <string name="about_sound_values_2">"'Nodens (Field Song)' por axtoncrolley,"</string>
-    <string name="about_sound_values_3">"'saddertrombones.mp3' por-nc NotR,"</string>
-    <string name="about_sound_values_4">"'cheer 4.wav' por-nc timtube."</string>
-    <string name="about_sound_values_5">Más detalles en</string>
-    <string name="about_sound_values_6">"www.itmexicali.webs.com/colorized"</string>
-    
-    <!-- Local notifications Texts !-->
-    <string name="notif_title_need_you">Algo requiere de tu ayuda</string>
-    <string name="notif_msg_need_you">Hay un tablero esperando que termines de invadirlo completamente</string>
+
+  <!-- Main State Buttons !-->
+  <string name="play_button">Jugar</string>
+  <string name="tutorial_button">Tutorial</string>
+  <string name="leader_button">Leaderboards</string>
+  <string name="achiev_button">Logros</string>
+  <string name="music_button">Música</string>
+  <string name="about_button">Información</string>
+  <string name="notifications_button">Notificaciones</string>
+  <string name="options_button">Opciones</string>
+  <string name="stats_button">Estadísticas</string>
+
+  <!-- Game State Texts -->
+  <string name="moves_txt">Movimientos: <xliff:g id="mov_form">%1$d</xliff:g>/<xliff:g id="mov_lim">%2$d</xliff:g></string>
+
+  <!-- Option State Texts -->
+  <string name="options_difficulty">Tamaño de tablero: </string>
+  <string name="options_easy_descriptive">Chico (<xliff:g id="easy_size">12x12</xliff:g>)</string>
+  <string name="options_med_descriptive">Mediano (<xliff:g id="med_size">18x18</xliff:g>)</string>
+  <string name="options_hard_descriptive">Grande (<xliff:g id="hard_size">24x24</xliff:g>)</string>
+  <string name="options_easy">Chico</string>
+  <string name="options_med">Mediano</string>
+  <string name="options_hard">Grande</string>
+  <string name="options_size_all">Todos los tamaños</string>
+  <string name="options_game_mode">Modo de Juego: </string>
+  <string name="options_step_mode">Modo Reto</string>
+  <string name="options_casual_mode">Modo Casual</string>
+
+  <!-- Leaderboard texts !-->
+  <string name="totalGamesPlayed">Juegos completados: %1$d.</string>
+  <string name="totalGamesWon">Juegos Ganados: %1$d.</string>
+  <string name="percentGamesWon">Juegos Ganados: <xliff:g id="games_won">%1$.2f%%</xliff:g>.</string>
+
+
+  <!-- Tutorial Instruction Messages !-->
+  <string name="tuto0">Toca para avanzar.</string>
+  <string name="tuto1">Llena el tablero de un solo color.</string>
+  <string name="tuto2">Empiezas desde la esquina superior izquierda.</string>
+  <string name="tuto3">Cambia de color desde seleccionador.</string>
+  <string name="tuto4">Hasta que el tablero se llene de uno solo.</string>
+  <string name="tuto5">Hazlo antes de quedarte sin movimientos.</string>
+  <string name="tuto6">Crees poder lograrlo?\n\nINTENTALO!!</string>
+  <string name="tuto_exit">Presiona ATRAS de nuevo para salir del tutorial o toca la pantalla para continuar.</string>
+
+  <!-- About Texts !-->
+  <string name="about_developer">Desarrollador Android.</string>
+  <string name="about_designers">Diseñadores.</string>
+  <string name="about_version">Versión.</string>
+  <string name="about_sound">Sonidos.</string>
+  <string name="about_sound_values">"Sonidos de www.freesound.org:\n'Nodens (Field Song)' por axtoncrolley\n'saddertrombones.mp3' por-nc NotR\n'cheer 4.wav' por-nc timtube.\n\nMás detalles en\nwww.itmexicali.webs.com/colorized"</string>
+  <string name="about_sound_values_min">Sonidos de www.freesound.org:\nMas detalles en www.itmexicali.webs.com/colorized</string>
+  <string name="about_sound_values_1">"Sonidos de www.freesound.org:"</string>
+  <string name="about_sound_values_2">"'Nodens (Field Song)' por axtoncrolley,"</string>
+  <string name="about_sound_values_3">"'saddertrombones.mp3' por-nc NotR,"</string>
+  <string name="about_sound_values_4">"'cheer 4.wav' por-nc timtube."</string>
+  <string name="about_sound_values_5">Más detalles en</string>
+  <string name="about_sound_values_6">"www.itmexicali.webs.com/colorized"</string>
+
+  <!-- Local notifications Texts !-->
+  <string name="notif_title_need_you">Algo requiere de tu ayuda</string>
+  <string name="notif_msg_need_you">Hay un tablero esperando que termines de invadirlo completamente</string>
 </resources>

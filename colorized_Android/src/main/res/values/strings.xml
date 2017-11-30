@@ -1,143 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="company_name" translatable="false">MD Games</string>
-    <string name="app_name">Color Flooded</string>
-    <string name="app_codename_no_space" translatable="false">colorized</string>
-    <string name="app_url" translatable="false">"https://play.google.com/store/apps/details?id=com.webs.itmexicali.colorized"</string>
-   
-    <!-- Google project ID - GCM Sender Id -->
-    <string name="gcm_sender_id" translatable="false">920688942654</string>
-    
-    <!-- FB APP ID -->
-    <string name="fb_app_id" translatable="false">544594058974778</string>
-    
-    <!-- MIXPANEL API TOKEN -->
-    <string name="mixpanel_api_token" translatable="false">76281048f6b2eee0d1d7ca25009fe1cb</string>
-    
-    <string name="greeting_player">Hello, <xliff:g id="name">%1$s</xliff:g></string>
-    <string name="ok" translatable="false">OK</string>
-    <string name="cancel">Cancel</string>
-    <string name="no" translatable="false">NO</string>
-    <string name="tutorial" translatable="false">TUTORIAL</string>
-    
-    <!-- Dialogs messages !-->
-    <string name="exit_confirmation">Quit?</string>
-    <string name="restart_game_confirmation">Restart board?</string>
-    <string name="saved_game_confirmation">Do you want to keep playing unfinished game?</string>
-    
-    <string name="achievement_unlocked">Achievement unlocked!\nSign in to get more info.</string>
-    <string name="your_progress_will_be_uploaded">Your existing progress will be uploaded shortly.</string>
-    
-    <string name="achievements_not_available">Please sign in to view achievements.</string>
-    <string name="leaderboards_not_available">Please sign in to view leaderboards.</string>
-    <string name="share_not_available">Please sign in to share with your friends.</string>
-    
-    <!-- GameOver State Texts -->
-    <string name="game_over_share_btn">Share on: </string>
-    <string name="game_over_share_txt">"I Color Flooded a <xliff:g id="brd_size">%1$s</xliff:g> board in <xliff:g id="brd_movs">%2$d</xliff:g> moves!\n\nIf you think you can do it too, play #ColorFlooded on your android device."</string>
-    <string name="game_over_lose_title">Game Over</string>
-    <string name="game_over_lose_desc">You ran out of moves.\n\nPlay again?</string>
-    <string name="game_over_win_title">Congrats!</string>
-    <string name="game_over_win_desc">You finished the game with 
+  <string name="company_name" translatable="false">MD Games</string>
+  <string name="app_name">Color Flooded</string>
+  <string name="app_codename_no_space" translatable="false">colorized</string>
+  <string name="app_url" translatable="false">"https://play.google.com/store/apps/details?id=com.webs.itmexicali.colorized"</string>
+
+  <!-- Google project ID - GCM Sender Id -->
+  <string name="gcm_sender_id" translatable="false">920688942654</string>
+
+  <!-- FB APP ID -->
+  <string name="fb_app_id" translatable="false">544594058974778</string>
+
+  <!-- MIXPANEL API TOKEN -->
+  <string name="mixpanel_api_token" translatable="false">76281048f6b2eee0d1d7ca25009fe1cb</string>
+
+  <string name="greeting_player">Hello, <xliff:g id="name">%1$s</xliff:g></string>
+  <string name="ok" translatable="false">OK</string>
+  <string name="cancel">Cancel</string>
+  <string name="no" translatable="false">NO</string>
+  <string name="tutorial" translatable="false">TUTORIAL</string>
+
+  <!-- Dialogs messages !-->
+  <string name="exit_confirmation">Quit?</string>
+  <string name="restart_game_confirmation">Restart board?</string>
+  <string name="saved_game_confirmation">Do you want to keep playing unfinished game?</string>
+
+  <string name="achievement_unlocked">Achievement unlocked!\nSign in to get more info.</string>
+  <string name="your_progress_will_be_uploaded">Your existing progress will be uploaded shortly.</string>
+
+  <string name="achievements_not_available">Please sign in to view achievements.</string>
+  <string name="leaderboards_not_available">Please sign in to view leaderboards.</string>
+  <string name="share_not_available">Please sign in to share with your friends.</string>
+
+  <!-- GameOver State Texts -->
+  <string name="game_over_share_btn">Share on: </string>
+  <string name="game_over_share_txt">"I Color Flooded a <xliff:g id="brd_size">%1$s</xliff:g> board in <xliff:g id="brd_movs">%2$d</xliff:g> moves!\n\nIf you think you can do it too, play #ColorFlooded on your android device."</string>
+  <string name="game_over_lose_title">Game Over</string>
+  <string name="game_over_lose_desc">You ran out of moves.\n\nPlay again?</string>
+  <string name="game_over_win_title">Congrats!</string>
+  <string name="game_over_win_desc">You finished the game with
         <xliff:g id="integer_formating">%1$d</xliff:g> moves.\n\nPlay again?</string>
-    
-    <!-- Main State Buttons !-->
-    <string name="play_button">Play</string>
-    <string name="tutorial_button">Tutorial</string>
-    <string name="leader_button">Leaderboards</string>
-    <string name="achiev_button">Achievements</string>
-    <string name="music_button">Music</string>
-    <string name="sfx_button" translatable="false">SFX</string>
-    <string name="notifications_button">Notifications</string>
-    <string name="about_button">About</string>    
-    <string name="options_button">Options</string>
-    <string name="stats_button">Statistics</string>
-    
-    <!-- Game State Texts -->
-    <string name="moves_txt">Moves: <xliff:g id="mov_form">%1$d</xliff:g>/<xliff:g id="mov_lim">%2$d</xliff:g></string>
-    
-    <!-- Option State Texts -->
-    <string name="options_difficulty">Board Size: </string>
-    <string name="options_easy_descriptive">Small (<xliff:g id="easy_size">12x12</xliff:g>)</string>
-    <string name="options_med_descriptive">Medium (<xliff:g id="med_size">18x18</xliff:g>)</string>
-    <string name="options_hard_descriptive">Large (<xliff:g id="hard_size">24x24</xliff:g>)</string>
-    <string name="options_easy">Small</string>
-    <string name="options_med">Medium</string>
-    <string name="options_hard">Large</string>
-    <string name="options_size_all">All board sizes</string>
-    <string name="options_game_mode">Game Mode: </string>
-    <string name="options_step_mode">Step Mode</string>
-    <string name="options_casual_mode">Casual Mode</string>
-    
-    
-    <!-- Tutorial Instruction Messages !-->
-    <string name="tuto0">Touch to advance.</string>
-    <string name="tuto1">Fill the board with just one color.</string>
-    <string name="tuto2">You start with the top-left corner tile.</string>
-    <string name="tuto3">Use the color picker to change to a new color.</string>
-    <string name="tuto4">Change until the board is filled with just one color.</string>
-    <string name="tuto5">Do it before run out of moves.</string>
-    <string name="tuto6">Do you think you can do it?\n\nTRY YOURSELF!!</string>
-    <string name="tuto_exit">Press BACK again to exit or touch to continue.</string>
-    
-    <!-- Leaderboard texts !-->
-    <string name="totalGamesPlayed">Games played: <xliff:g id="games_fin">%1$d</xliff:g>.</string>
-    <string name="totalGamesWon">Games won: <xliff:g id="games_won">%1$d</xliff:g>.</string>
-    <string name="percentGamesWon">Games won: <xliff:g id="games_won">%1$.2f%%</xliff:g>.</string>
-        
-    <!-- Settings Keys !-->
-    <string name="key_is_game_saved" translatable="false">key_is_game_saved</string>
-    <string name="key_tutorial_played" translatable="false">key_tutorial_played</string>
-    <string name="key_music" translatable="false">key_music</string>
-    <string name="key_notifications" translatable="false">key_notifications</string>
-    <string name="key_sfx" translatable="false">key_sfx</string>
-    <string name="key_board_size" translatable="false">key_board_size</string>
-    <string name="key_difficulty" translatable="false">"key_difficulty"</string>
-    <string name="key_game_mode" translatable="false">"key_game_mode"</string>
-    
-    <!-- USING KEY INDEX 0 -->
-    <string name="key_current_win_streak" translatable="false">"CBD414988171DF61260270FCFDA26BC8CB8B5F3651BFB8110C17E4B5941B74C3"</string>
-    <string name="key_board_saved" translatable="false">AABE3C791BFA94FD6DDEBDB880ED3D97</string>
-    <string name="key_last_new_board" translatable="false">2CEC454667D0B61D0910B6928B6DFBFF037CAE5A5514088151AA86B716506399</string>
-    
-    <!-- USING KEY INDEX 1 -->
-    <string name="key_times_finished" translatable="false">DA67CBBAE23B723933CAEB4B28C147B821C55BB37D1D5D0EB01FC657D7FF1914</string>
-    <string name="key_times_finished_0" translatable="false">DA67CBBAE23B723933CAEB4B28C147B83488235A12D098D429FCEBE9C36E7B86</string>
-    <string name="key_times_finished_1" translatable="false">DA67CBBAE23B723933CAEB4B28C147B8F29051181DC78881F23862140B3D032D</string>
-    <string name="key_times_finished_2" translatable="false">DA67CBBAE23B723933CAEB4B28C147B86560EB63B23679A48937B33A8C55387A</string>
-    
-    <!-- USING KEY INDEX 2 -->
-    <string name="key_times_won" translatable="false">A3A6757F375B4A4D45FF4839674D690E</string>
-    <string name="key_times_won_0" translatable="false">E6C9B020A3FA8A9DEDEF23FBBDC9B7C9</string>
-    <string name="key_times_won_1" translatable="false">C979BB86A07945C4153215FCF1784DAB</string>
-    <string name="key_times_won_2" translatable="false">14B4E62298743CB419099F2383D023C7</string>
-    
-    <!-- USING KEY INDEX 3 -->
-    <string name="key_times_app_opened" translatable="false">"A5EB5CE429CC11C776EC32032BBD85477C93CD985207E55BA69B9E8A2B81EFFD"</string>
-    
-    <!-- USING KEY INDEX 4 -->
-    <string name="key_best_win_streak" translatable="false">"651BF6F9C05C978AF0AC60A159D2864105BC49E02B4499F87F6130EE26B68391"</string>
-    
-	<!-- About Texts !-->
-    <string name="about_developer">Android Developer.</string>
-    <string name="about_designers">Designers.</string>
-    <string name="about_version">Version.</string>
-    <string name="about_sound">Sounds.</string>
-    <string name="about_sound_values">"Sounds from www.freesound.org:\n'Nodens (Field Song)' by axtoncrolley,\n'saddertrombones.mp3' by-nc NotR,\n'cheer 4.wav' by-nc timtube.\n\nMore details in\nwww.itmexicali.webs.com/colorized"</string>
-    <string name="about_sound_values_min">Sounds from www.freesound.org.\nMore details in www.itmexicali.webs.com/colorized</string>
-    <string name="about_sound_values_1">"Sounds from www.freesound.org:"</string>
-    <string name="about_sound_values_2">"'Nodens (Field Song)' by axtoncrolley,"</string>
-    <string name="about_sound_values_3">"'saddertrombones.mp3' by-nc NotR,"</string>
-    <string name="about_sound_values_4">"'cheer 4.wav' by-nc timtube."</string>
-    <string name="about_sound_values_5">More details in</string>
-    <string name="about_sound_values_6">"www.itmexicali.webs.com/colorized"</string>
-    
-    
-	<!-- Local notifications Texts !-->
-    <string name="notif_title_need_you">Something needs your help</string>
-    <string name="notif_msg_need_you">There\'s a board waiting for you to flood it completely</string>
-     
-    
+
+  <!-- Main State Buttons !-->
+  <string name="play_button">Play</string>
+  <string name="tutorial_button">Tutorial</string>
+  <string name="leader_button">Leaderboards</string>
+  <string name="achiev_button">Achievements</string>
+  <string name="music_button">Music</string>
+  <string name="sfx_button" translatable="false">SFX</string>
+  <string name="notifications_button">Notifications</string>
+  <string name="about_button">About</string>
+  <string name="options_button">Options</string>
+  <string name="stats_button">Statistics</string>
+
+  <!-- Game State Texts -->
+  <string name="moves_txt">Moves: <xliff:g id="mov_form">%1$d</xliff:g>/<xliff:g id="mov_lim">%2$d</xliff:g></string>
+
+  <!-- Option State Texts -->
+  <string name="options_difficulty">Board Size: </string>
+  <string name="options_easy_descriptive">Small (<xliff:g id="easy_size">12x12</xliff:g>)</string>
+  <string name="options_med_descriptive">Medium (<xliff:g id="med_size">18x18</xliff:g>)</string>
+  <string name="options_hard_descriptive">Large (<xliff:g id="hard_size">24x24</xliff:g>)</string>
+  <string name="options_easy">Small</string>
+  <string name="options_med">Medium</string>
+  <string name="options_hard">Large</string>
+  <string name="options_size_all">All board sizes</string>
+  <string name="options_game_mode">Game Mode: </string>
+  <string name="options_step_mode">Step Mode</string>
+  <string name="options_casual_mode">Casual Mode</string>
+
+
+  <!-- Tutorial Instruction Messages !-->
+  <string name="tuto0">Touch to advance.</string>
+  <string name="tuto1">Fill the board with just one color.</string>
+  <string name="tuto2">You start with the top-left corner tile.</string>
+  <string name="tuto3">Use the color picker to change to a new color.</string>
+  <string name="tuto4">Change until the board is filled with just one color.</string>
+  <string name="tuto5">Do it before run out of moves.</string>
+  <string name="tuto6">Do you think you can do it?\n\nTRY YOURSELF!!</string>
+  <string name="tuto_exit">Press BACK again to exit or touch to continue.</string>
+
+  <!-- Leaderboard texts !-->
+  <string name="totalGamesPlayed">Games played: <xliff:g id="games_fin">%1$d</xliff:g>.</string>
+  <string name="totalGamesWon">Games won: <xliff:g id="games_won">%1$d</xliff:g>.</string>
+  <string name="percentGamesWon">Games won: <xliff:g id="games_won">%1$.2f%%</xliff:g>.</string>
+
+  <!-- Settings Keys !-->
+  <string name="key_is_game_saved" translatable="false">key_is_game_saved</string>
+  <string name="key_tutorial_played" translatable="false">key_tutorial_played</string>
+  <string name="key_music" translatable="false">key_music</string>
+  <string name="key_notifications" translatable="false">key_notifications</string>
+  <string name="key_sfx" translatable="false">key_sfx</string>
+  <string name="key_board_size" translatable="false">key_board_size</string>
+  <string name="key_difficulty" translatable="false">"key_difficulty"</string>
+  <string name="key_game_mode" translatable="false">"key_game_mode"</string>
+
+  <!-- USING KEY INDEX 0 -->
+  <string name="key_current_win_streak" translatable="false">"CBD414988171DF61260270FCFDA26BC8CB8B5F3651BFB8110C17E4B5941B74C3"</string>
+  <string name="key_board_saved" translatable="false">AABE3C791BFA94FD6DDEBDB880ED3D97</string>
+  <string name="key_last_new_board" translatable="false">2CEC454667D0B61D0910B6928B6DFBFF037CAE5A5514088151AA86B716506399</string>
+
+  <!-- USING KEY INDEX 1 -->
+  <string name="key_times_finished" translatable="false">DA67CBBAE23B723933CAEB4B28C147B821C55BB37D1D5D0EB01FC657D7FF1914</string>
+  <string name="key_times_finished_0" translatable="false">DA67CBBAE23B723933CAEB4B28C147B83488235A12D098D429FCEBE9C36E7B86</string>
+  <string name="key_times_finished_1" translatable="false">DA67CBBAE23B723933CAEB4B28C147B8F29051181DC78881F23862140B3D032D</string>
+  <string name="key_times_finished_2" translatable="false">DA67CBBAE23B723933CAEB4B28C147B86560EB63B23679A48937B33A8C55387A</string>
+
+  <!-- USING KEY INDEX 2 -->
+  <string name="key_times_won" translatable="false">A3A6757F375B4A4D45FF4839674D690E</string>
+  <string name="key_times_won_0" translatable="false">E6C9B020A3FA8A9DEDEF23FBBDC9B7C9</string>
+  <string name="key_times_won_1" translatable="false">C979BB86A07945C4153215FCF1784DAB</string>
+  <string name="key_times_won_2" translatable="false">14B4E62298743CB419099F2383D023C7</string>
+
+  <!-- USING KEY INDEX 3 -->
+  <string name="key_times_app_opened" translatable="false">"A5EB5CE429CC11C776EC32032BBD85477C93CD985207E55BA69B9E8A2B81EFFD"</string>
+
+  <!-- USING KEY INDEX 4 -->
+  <string name="key_best_win_streak" translatable="false">"651BF6F9C05C978AF0AC60A159D2864105BC49E02B4499F87F6130EE26B68391"</string>
+
+  <!-- About Texts !-->
+  <string name="about_developer">Android Developer.</string>
+  <string name="about_designers">Designers.</string>
+  <string name="about_version">Version.</string>
+  <string name="about_sound">Sounds.</string>
+  <string name="about_sound_values">"Sounds from www.freesound.org:\n'Nodens (Field Song)' by axtoncrolley,\n'saddertrombones.mp3' by-nc NotR,\n'cheer 4.wav' by-nc timtube.\n\nMore details in\nwww.itmexicali.webs.com/colorized"</string>
+  <string name="about_sound_values_min">Sounds from www.freesound.org.\nMore details in www.itmexicali.webs.com/colorized</string>
+  <string name="about_sound_values_1">"Sounds from www.freesound.org:"</string>
+  <string name="about_sound_values_2">"'Nodens (Field Song)' by axtoncrolley,"</string>
+  <string name="about_sound_values_3">"'saddertrombones.mp3' by-nc NotR,"</string>
+  <string name="about_sound_values_4">"'cheer 4.wav' by-nc timtube."</string>
+  <string name="about_sound_values_5">More details in</string>
+  <string name="about_sound_values_6">"www.itmexicali.webs.com/colorized"</string>
+
+
+  <!-- Local notifications Texts !-->
+  <string name="notif_title_need_you">Something needs your help</string>
+  <string name="notif_msg_need_you">There\'s a board waiting for you to flood it completely</string>
+
 
 </resources>
