@@ -534,7 +534,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
    */
   public boolean onFbShareRequested(String text, String pictureURL) {
     if (pictureURL == null) {
-      pictureURL = "https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xpa1/v/t1.0-9/10603423_531397536990342_6991488415590407112_n.png?oh=b38087f27ad60743ff23cacaeb17d2db&oe=54CBB5A1&__gda__=1419341337_e67331aab67f68c2f25f631bd9b6b5fe";
+      pictureURL = "https://image.ibb.co/mYA2Rn/10603423_531397536990342_6991488415590407112_n.png";
     }
 
     if (FacebookDialog.canPresentShareDialog(getApplicationContext(),
