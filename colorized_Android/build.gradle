@@ -10,7 +10,7 @@ android {
     }
   }
   compileSdkVersion 27
-  buildToolsVersion '27.0.1'
+  buildToolsVersion '27.0.3'
   defaultConfig {
     applicationId "com.webs.itmexicali.colorized"
     minSdkVersion 9
@@ -37,17 +37,17 @@ android {
 }
 
 dependencies {
-  compile project(':mixpanelandroid')
-  compile project(':facebookSDK')
-  compile project(':baseGameUtils')
-  compile 'com.android.support:appcompat-v7:23.1.1'
+  implementation project(':mixpanelandroid')
+  implementation project(':facebookSDK')
+  implementation project(':baseGameUtils')
+  implementation 'com.android.support:appcompat-v7:23.1.1'
 //    compile 'com.android.support:appcompat-v7:+'
   //    compile 'com.google.android.gms:play-services:+'
 //    compile 'com.google.android.gms:play-services:7.8.0'
-  compile 'com.google.android.gms:play-services:7.8.0'
-  compile files('libs/com-xsqhbao-bipppts201390.jar')
-  compile files('libs/Communication.jar')
-  compile files('libs/LeonidsLib.jar')
-  compile files('libs/ProtectedInt.jar')
-  compile 'com.android.support:multidex:1.0.3'
+  implementation 'com.google.android.gms:play-services:7.8.0'
+  implementation files('libs/com-xsqhbao-bipppts201390.jar')
+  implementation files('libs/Communication.jar')
+  implementation files('libs/LeonidsLib.jar')
+  implementation files('libs/ProtectedInt.jar')
+  implementation 'com.android.support:multidex:1.0.3'
 }
