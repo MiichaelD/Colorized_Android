@@ -29,7 +29,7 @@ android {
   dexOptions {
   }
   lintOptions {
-//        checkReleaseBuilds false
+    // checkReleaseBuilds false
     // Or, if you prefer, you can continue to check for errors in release builds,
     // but continue the build even when errors are found:
     abortOnError false
@@ -41,9 +41,10 @@ dependencies {
   implementation project(':facebookSDK')
   implementation project(':baseGameUtils')
   implementation 'com.android.support:appcompat-v7:23.1.1'
-//    compile 'com.android.support:appcompat-v7:+'
-  //    compile 'com.google.android.gms:play-services:+'
-//    compile 'com.google.android.gms:play-services:7.8.0'
+  // implementation 'com.android.support:appcompat-v7:+'
+  // implementation 'com.google.android.gms:play-services:+'
+  // implementation 'com.google.android.gms:play-services:7.8.0'
+  // implementation 'com.google.android.gms:play-services:12.0.1'
   implementation 'com.google.android.gms:play-services:7.8.0'
   implementation files('libs/com-xsqhbao-bipppts201390.jar')
   implementation files('libs/Communication.jar')
