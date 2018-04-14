@@ -49,5 +49,5 @@ dependencies {
   compile files('libs/Communication.jar')
   compile files('libs/LeonidsLib.jar')
   compile files('libs/ProtectedInt.jar')
-  compile 'com.android.support:multidex:1.0.0'
+  compile 'com.android.support:multidex:1.0.3'
 }
