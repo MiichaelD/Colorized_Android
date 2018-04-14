@@ -12,8 +12,9 @@ import java.util.Map;
 public class Tracking {
 
   private static Tracking instance = null;
+  private MixpanelAPI m_mixpanel = null;
 
-  MixpanelAPI m_mixpanel = null;
+  private Tracking() { }
 
   public static Tracking shared() {
     if (instance == null)

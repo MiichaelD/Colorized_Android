@@ -6,6 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -40,29 +43,25 @@ import com.webs.itmexicali.colorized.util.Tracking;
 
 public class GameActivity extends BaseGameActivity implements GameFinishedListener, SurfaceListener {
 
+  /** This activity instance, to access its members from other classes. */
+  public static GameActivity instance; //TODO: make it private and refactor where needed.
 
-  /**
-   * Request codes we use when invoking an external activity
-   */
+  /** Request codes we use when invoking an external activity. */
   private static final int RC_UNUSED = 5001, RC_SHARE = 742;//, RC_RESOLVE = 50007;
-  /**
-   * This activity instance, to access its members from other classes
-   */
-  public static GameActivity instance; //TODO: make it private and refactor everywhere using direct access to it
-  //ads handler
-  private Advertising pAds = null;
-  //facebook sharing helper
-  private UiLifecycleHelper uiHelper;
-  // true if the game finished is the first one since the app being launched
-  private boolean firstGameFinished = true;
-  /**
-   * Media player to play sounds of user interactions & background music.
-   */
+
+  private static final String APP_PLAY_STORE_URL =
+      "https://play.google.com/store/apps/details?id=com.webs.itmexicali.colorized";
+  private Advertising pAds = null; // Ads handler.
+  private UiLifecycleHelper uiHelper; // Facebook sharing helper
+  private boolean firstGameFinished = true; // First finished game since the app being launched
+  /** Media player to play sounds of user interactions & background music. */
   private MediaPlayer soundPlayer = null, musicPlayer = null;
   private String mPlayerName = null;
   private boolean p_subscribeForPush = false;
 
-  ;
+  public enum SoundType {
+    NONE, TOUCH, WIN, LOSE
+  }
 
   public static GameActivity getActivity() {
     return instance;
@@ -76,14 +75,10 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     enableDebugLog(Const.D);
     instance = this;
 
-    //run on FullScreen with no Action and Navigation Bars
-    Screen.setFullScreen(this);
+    Screen.setFullScreen(this); // FullScreen with no Action and Navigation Bars
+    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); //Keep screen on
 
-    //Keep screen on
-    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-    //keep current version and locale on tracking info
-    Platform.init(this);
+    Platform.init(this);// Keep current version and locale on tracking info
     Tracking.shared().updateVersion(Platform.getVersionName(), Platform.getVersionCode());
     Tracking.shared().updateLocale(Platform.getLocale());
 
@@ -93,21 +88,16 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
       firstGameFinished = true;
     }
 
-    //Init StateMachine
-    if (!StateMachine.isSetUp())
-      StateMachine.setup(this);
-
-    //set the game screen
-    setContentView(R.layout.game_screen);
-
-    //set surface listener, to reposition Sign-In Button
+    if (!StateMachine.isSetUp()) {
+      StateMachine.setup(this); //Init StateMachine
+    }
+    setContentView(R.layout.game_screen); // Set the game screen
+    // Set surface listener to reposition Sign-In Button
     ((GameView) findViewById(R.id.gameView)).setSurfaceListener(this);
 
     uiHelper = new UiLifecycleHelper(this, null);
     uiHelper.onCreate(savedInstanceState);
-
     initAds();
-
     Notifier.getInstance(this).clearAll();
   }
 
@@ -158,7 +148,6 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
       // until the ad is loaded.
       layout.addView(pAds.getBanner());
     }
-
   }
 
   public View getBannerView() {
@@ -166,8 +155,8 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
   }
 
   /**
-   * Load Interstitial ads, some ads-services like airPush
-   * needs to call SmartWallAds before showing them
+   * Loads Interstitial ads, some ads-services like airPush needs to call SmartWallAds before
+   * showing them.
    */
   public void loadInterstitial() {
     Log.d(this.getLocalClassName(), "Loading interstitial");
@@ -175,9 +164,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
       pAds.loadInterstitial();
   }
 
-  /**
-   * Invoke displayInterstitial() when you are ready to display an interstitial.
-   */
+  /** Invokes displayInterstitial() when you are ready to display an interstitial. */
   public void displayInterstitial() {
     Log.d(this.getLocalClassName(), "Displaying interstitial");
     if (pAds != null)
@@ -196,20 +183,15 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
   public void onResume() {
     super.onResume();
     Log.v(GameActivity.class.getSimpleName(), "onResume()");
-    updateCurrentState(); // in case we sign-out from GPS Achievements/Leaderboards UI
-
-    //keep sticky full immersive screen in case we lost it
-    Screen.setFullScreen(this);
-
-    if (pAds != null)
-      pAds.onResume();
-
+    Tracking.shared().onResume(this);
+    updateCurrentState(); // In case user sign-out from GPS Achievements/Leaderboards UI
+    Screen.setFullScreen(this); // Keep sticky full immersive screen in case we lost it
+    playMusic(true);
     uiHelper.onResume();
 
-    //start Music playing
-    playMusic(true);
-
-    Tracking.shared().onResume(this);
+    if (pAds != null) {
+      pAds.onResume();
+    }
   }
 
   @Override
@@ -217,36 +199,30 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     super.onPause();
     Log.v(GameActivity.class.getSimpleName(), "onPause()");
 
-    if (pAds != null)
-      pAds.onPause();
-
-    uiHelper.onPause();
-
-    playMusic(false);
-
-    // uploads the file containing the logged events. The onPause method is
+    // Uploads the file containing the logged events. The onPause method is
     // guaranteed to be called in the life cycle of an Android App, so we
     // are guaranteed the events log file are uploaded
     Tracking.shared().onPause();
+    uiHelper.onPause();
+    playMusic(false);
+
+    if (pAds != null) {
+      pAds.onPause();
+    }
   }
 
   @Override
   public void onStop() {
-    //release resources of the media player and delete it
     Log.v(GameActivity.class.getSimpleName(), "onStop()");
-
     uiHelper.onStop();
-
     stopSound();
     stopMusicPlayer();
-
     super.onStop();
   }
 
   @Override
   public void onDestroy() {
     Log.v(GameActivity.class.getSimpleName(), "onDestroy()");
-
     uiHelper.onDestroy();
     super.onDestroy();
   }
@@ -258,7 +234,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     uiHelper.onSaveInstanceState(outState);
   }
 
-  private void scheduleReminderNotifForSavedGame() {
+  private void scheduleReminderNotificationForSavedGame() {
     if (ProgNPrefs.getIns().isGameSaved()) {
       Notifier notifier = Notifier.getInstance(GameActivity.instance);
       notifier.clearAll();
@@ -269,29 +245,27 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     }
   }
 
-  /**
-   * Display an exit confirmation dialog to prevent accidentally quitting the game
-   */
+  /** Displays an exit confirmation dialog to prevent accidentally quitting the game.  */
   public void showExitDialog() {
     //Use the Builder class for convenient dialog construction
     new AlertDialog.Builder(GameActivity.this)
         .setMessage(R.string.exit_confirmation)
         .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int id) { // Exit the game
-            scheduleReminderNotifForSavedGame();
+          public void onClick(DialogInterface unusedDialog, int unusedId) { // Exit the game
+            scheduleReminderNotificationForSavedGame();
             GameActivity.instance = null;
             GameActivity.this.finish();
           }
         })
         .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int id) {// dismiss menu
+          public void onClick(DialogInterface unusedDialog, int unusedId) { // dismiss menu
             Screen.setFullScreen(GameActivity.this);
             playMusic(true);
           }
         })
         .setOnCancelListener(new DialogInterface.OnCancelListener() {
           @Override
-          public void onCancel(DialogInterface arg0) {
+          public void onCancel(DialogInterface unusedDialog) {
             Screen.setFullScreen(GameActivity.this);
             playMusic(true);
           }
@@ -310,37 +284,32 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
   }
 
   /**
-   * Play sounds when user touch the controls
+   * Plays sound when user interacts with the UI.
    *
-   * @param SoundType to select type of sound to play
+   * @param soundType to select type of sound to play
    */
-  public void playSound(SoundType s) {
-    //if we have an instance of the player and the user wants to play sounds
-    if (ProgNPrefs.getIns().playSFX()) {
-      //if(s != previousSound){
-      //previousSound = s;
-
-      stopSound();
-
-      //get the new sound
-      switch (s) {
-        case TOUCH:
-          soundPlayer = MediaPlayer.create(this, R.raw.confirm);
-          break;
-        case WIN:
-          soundPlayer = MediaPlayer.create(this, R.raw.win);
-          break;
-        case LOSE:
-          soundPlayer = MediaPlayer.create(this, R.raw.lose);
-          break;
-        default:
-          break;
-      }
-      //}
-
-      soundPlayer.start();
+  public void playSound(SoundType soundType) {
+    if (!ProgNPrefs.getIns().playSFX()) {
+      return;
     }
 
+    stopSound();
+
+    switch (soundType) {
+      case TOUCH:
+        soundPlayer = MediaPlayer.create(this, R.raw.confirm);
+        break;
+      case WIN:
+        soundPlayer = MediaPlayer.create(this, R.raw.win);
+        break;
+      case LOSE:
+        soundPlayer = MediaPlayer.create(this, R.raw.lose);
+        break;
+      case NONE:
+      default:
+        break;
+    }
+    soundPlayer.start();
   }
 
   /**
@@ -353,8 +322,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
         soundPlayer.release();
         soundPlayer = null;
       }
-    } catch (IllegalStateException ise) {
-    }
+    } catch (IllegalStateException ise) { }
   }
 
   /**
@@ -390,8 +358,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
         musicPlayer.release();
         musicPlayer = null;
       }
-    } catch (IllegalStateException ise) {
-    }
+    } catch (IllegalStateException ise) { }
   }
 
   @Override
@@ -418,7 +385,6 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
       }
     });
 
-
     if (requestCode == RC_SHARE) {
       if (resultCode == RESULT_OK) {
         GameStatsSync.unlockAchievement(getApiClient(), R.string.achievement_sharing_is_good);
@@ -436,7 +402,6 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
   }
 	
 	/*------------------------ LEADERBOARDS and ACHIEVEMENTS METHODS ----------------------------------*/
-
   @Override
   public void onSignInSucceeded() {
     Player player = Games.Players.getCurrentPlayer(getApiClient());
@@ -469,8 +434,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
         Tracking.shared().setPlayerProperty("icon", player.getIconImageUrl());
       Tracking.shared().track("onSignIn", null);
     }
-
-    updateCurrentState(); //let main state grab the players name
+    updateCurrentState(); // Update state to display the player's name
 
     if (mActivityToShow == ACHIEVEMENTS_AFTER_SIGNIN) {
       onShowAchievementsRequested();
@@ -479,47 +443,47 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     }
   }
 
-  /**
-   * If signed in, return the player name, else return null
-   */
+  /** If signed in, Returns the player name if signed in, null otherwise. */
   public String getPlayerName() {
-    if (mPlayerName == null) {
-      final int maxNumOfNames = 3;
-      if (isSignedIn()) {
-        Player p = Games.Players.getCurrentPlayer(getApiClient());
-        if (p != null) {
-          mPlayerName = p.getDisplayName();
-          //show only 3 names
-          String[] names = mPlayerName.split(" ");
-          if (names.length > maxNumOfNames) {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < maxNumOfNames; ++i) {
-              sb.append(names[i]);
-            }
-            mPlayerName = sb.toString();
+    if (mPlayerName != null) {
+      return mPlayerName;
+    }
+
+    final int maxNumOfNames = 3;
+    if (isSignedIn()) {
+      Player player = Games.Players.getCurrentPlayer(getApiClient());
+      if (player != null) {
+        mPlayerName = player.getDisplayName();
+        String space = " ";
+        String[] names = mPlayerName.split(space);
+        if (names.length > maxNumOfNames) {
+          StringBuilder sb = new StringBuilder(names[0]);
+          for (int i = 1; i < maxNumOfNames; ++i) {
+            sb.append(space).append(names[i]);
           }
+          mPlayerName = sb.toString();
         }
-        Log.d(GameActivity.class.getSimpleName(), "User: " + mPlayerName);
       }
+      Log.d(GameActivity.class.getSimpleName(), "User: " + mPlayerName);
     }
     return mPlayerName;
   }
 
-  /**
-   * Try to launch the Google+ share dialog
-   */
-  @SuppressLint("InlinedApi")
+  /** Tries to launch the Google+ share dialog. */
   public boolean onGoogleShareRequested(String text) {
     Log.d(GameActivity.class.getSimpleName(), "Launch the Google+ share.");
     if (isSignedIn()) {
       Intent shareIntent = new com.google.android.gms.plus.PlusShare.Builder(this)
           .setType("text/plain")
           .setText(text)
-          .setContentUrl(Uri.parse("https://play.google.com/store/apps/details?id=com.webs.itmexicali.colorized"))
+          .setContentUrl(Uri.parse(APP_PLAY_STORE_URL))
           .getIntent();
 
-      //with this flag, we ensure that when we open again our app, it doesn't show the sharing intent screen
-      shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+      // This flag ensures that when we reopen the app, it doesn't show the sharing intent screen
+      shareIntent.addFlags(
+          VERSION.SDK_INT < VERSION_CODES.LOLLIPOP
+              ? Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET
+              : Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
       startActivityForResult(shareIntent, RC_SHARE);
       Tracking.shared().onShare("Google");
       return true;
@@ -529,9 +493,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     return false;
   }
 
-  /**
-   * Try to launch the Facebook share dialog
-   */
+  /** Tries to launch the Facebook share dialog. */
   public boolean onFbShareRequested(String text, String pictureURL) {
     if (pictureURL == null) {
       pictureURL = "https://image.ibb.co/mYA2Rn/10603423_531397536990342_6991488415590407112_n.png";
@@ -597,7 +559,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
   }
 
   /**
-   * Try to show Achievements activity, if not signed in, show message
+   * Tries to show Achievements activity, if not signed in, show message.
    *
    * @return true if Achievements were shown
    */
@@ -636,18 +598,14 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     return false;
   }
 
-  /**
-   * Once the tutorial is fully completed, push a new achievement to
-   * Google Games Services
-   */
+  /** Unlocks achievement on tutorial finishing. */
   public void onTutorialFinished() {
     //Achievement Finish the tutorial
     GameStatsSync.unlockAchievement(getApiClient(), R.string.achievement_now_i_get_it);
   }
 
   /**
-   * Once the game is over saved all the info locally and try
-   * to push it to Google Games Services
+   * Saves the finished game info the info locally and tries to push it to Google Games Services.
    */
   public void onGameOver(boolean win, int moves, int gameMode, int boardSize) {
     if (firstGameFinished) {
@@ -657,19 +615,17 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 
     ProgNPrefs.getIns().updateGameFinished(boardSize, gameMode, win);
 
-    //Each 2 games, show Interstitial.
+    // Show interstitial every 2 games.
     if ((ProgNPrefs.getIns().getGamesFinished(Constants.TOTAL_SIZES) % Advertising.GAMEOVERS_TO_INTERSTITIAL) == 0)
       GameActivity.instance.displayInterstitial();
     else
       GameActivity.instance.loadInterstitial();
 
-    //update achievs and leads.
+    // Update achievements and leaderboards.
     GameStatsSync.updateAchievementsAndLeaderboards(getApiClient(), win, moves, gameMode, boardSize);
   }
 
-  /**
-   * Start sign-in flow by user interaction
-   */
+  /** Starts sign-in flow by user interaction. */
   public void onSignInButtonClicked() {
     if (isSignedIn() || getApiClient().isConnecting() || getApiClient().isConnected())
       return;
@@ -678,24 +634,15 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     beginUserInitiatedSignIn();
   }
 
-  /**
-   * Start sign-out flow by user interaction
-   */
+  /** Starts sign-out flow by user interaction. */
   public void onSignOutButtonClicked() {
     signOut();
     mPlayerName = null;
   }
 
-  /**
-   * Update currently active state in the statestack
-   */
+  /** Updates currently active state in the statestack. */
   private void updateCurrentState() {
     if (StateMachine.getIns().getCurrentState() != null)
       StateMachine.getIns().getCurrentState().onFocus();
-  }
-
-  //private SoundType previousSound = SoundType.NONE;
-  public static enum SoundType {
-    NONE, TOUCH, WIN, LOSE
   }
 }
