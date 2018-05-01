@@ -126,8 +126,7 @@ public class Notifier {
     try {
       if (targetActivity != null)
         activityClass = Class.forName(targetActivity).asSubclass(Activity.class);
-    } catch (ClassNotFoundException e) {
-    }
+    } catch (ClassNotFoundException e) { }
 
     Log.v("Notifier", "Starting notification: " + notifId);
     long t0 = System.currentTimeMillis();

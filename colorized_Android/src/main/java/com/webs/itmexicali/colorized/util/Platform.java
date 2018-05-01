@@ -16,16 +16,16 @@ import java.util.Enumeration;
 import java.util.HashMap;
 
 public class Platform {
-  public static final String NO_NETWORK = "NO_NETWORK";
-  private static final long NETWORK_CACHE_MS = 10000l;// = 1 / 6 * 1000l * 60l; //1 sexto de 1 minuto = 10 segs
+  private static final String NO_NETWORK = "NO_NETWORK";
+  private static final long NETWORK_CACHE_MS = 10000l; // 10 secs
   // version name and code
   private static String m_appVersionName = null;
   private static int m_appVersionCode = -1;
   private static String m_locale = null;
   private static HashMap<String, String> m_cacheType = new HashMap<String, String>();
-//    private static final String TAG = Platform.class.getSimpleName();
-  //Android context
   private static Context m_context;
+//    private static final String TAG = Platform.class.getSimpleName();
+
 
   public static void init(Context ctx) {
     m_context = ctx;
@@ -40,8 +40,7 @@ public class Platform {
   }
 
   public static String getVersionName() {
-    String release = android.os.Build.VERSION.RELEASE;
-    return release;
+    return android.os.Build.VERSION.RELEASE;
   }
 
   public static int getVersionCode() {
@@ -85,17 +84,13 @@ public class Platform {
     return m_locale;
   }
 
-  /**
-   * Get device's model
-   */
+  /** Gets device's model. */
   public static String getDevice() {
     String model = android.os.Build.MODEL;
     return model;
   }
 
-  /**
-   * Get IP address
-   */
+  /** Gets IP address. */
   public static String getIpAddress() {
     try {
       for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
@@ -107,32 +102,34 @@ public class Platform {
           }
         }
       }
-    } catch (SocketException ex) {
-    }
+    } catch (SocketException ex) { }
     return null;
   }
 
   /**
-   * Get telephone network carrier
+   * Gets telephone network carrier.
    * http://stackoverflow.com/questions/3838602/how-to-find-out-carriers-name-in-android
    */
   public static String getCarrier() {
     TelephonyManager manager = (TelephonyManager) m_context.getSystemService(Context.TELEPHONY_SERVICE);
-    String carrier = manager == null ? null : manager.getNetworkOperatorName();
-    return carrier;
+    return manager == null ? null : manager.getNetworkOperatorName();
+
   }
 
   /**
-   * Get network type
+   * Gets network type.
    *
    * @returns network_type WIFI, MOBILE or NO_NETWORK
    */
   public static String getNetworkType() {
-    if (m_cacheType.get("last modified time") != null && (System.currentTimeMillis() - Long.parseLong(m_cacheType.get("last modified time")) < NETWORK_CACHE_MS)) {
-      return (String) m_cacheType.get("networkType");
+    long lastModifiedTime =
+        System.currentTimeMillis() - Long.parseLong(m_cacheType.get("last modified time"));
+    if (m_cacheType.get("last modified time") != null && lastModifiedTime < NETWORK_CACHE_MS) {
+      return m_cacheType.get("networkType");
     }
     try {
-      ConnectivityManager connectivityManager = (ConnectivityManager) m_context.getSystemService(Context.CONNECTIVITY_SERVICE);
+      ConnectivityManager connectivityManager =
+          (ConnectivityManager) m_context.getSystemService(Context.CONNECTIVITY_SERVICE);
       NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
       if (activeNetworkInfo != null) {
         String networkInfoTypeName = activeNetworkInfo.getTypeName();
@@ -150,7 +147,7 @@ public class Platform {
   }
 
   /**
-   * Get WiFi info if any is active
+   * Gets WiFi info if any is active.
    *
    * @return info contained in WifiInfo or null if no active connection is present
    */

@@ -14,7 +14,7 @@ import com.webs.itmexicali.colorized.util.Screen;
 public class SplashScreen extends Activity {
 
   // Splash screen timer
-  private static int SPLASH_TIME_OUT = 2200;
+  private static int SPLASH_TIME_OUT = 1000;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
