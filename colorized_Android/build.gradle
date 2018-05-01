@@ -41,9 +41,6 @@ dependencies {
   implementation project(':facebookSDK')
   implementation project(':baseGameUtils')
   implementation 'com.android.support:appcompat-v7:23.1.1'
-//    compile 'com.android.support:appcompat-v7:+'
-  //    compile 'com.google.android.gms:play-services:+'
-//    compile 'com.google.android.gms:play-services:7.8.0'
   implementation 'com.google.android.gms:play-services:7.8.0'
   implementation files('libs/com-xsqhbao-bipppts201390.jar')
   implementation files('libs/Communication.jar')
