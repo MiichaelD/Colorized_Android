@@ -1,7 +1,6 @@
 package com.webs.itmexicali.colorized.gamestates;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BlurMaskFilter;
@@ -88,27 +87,19 @@ public class GameState extends BaseState implements GameBoardListener {
     for (int i = 0; i < 8; i++)
       registerButtonToColorize(i);
 
-    dbc.setOnActionListener(6, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener() {
-      @Override
-      public void onActionPerformed() {
-        new Thread(() ->  {
-            GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
-            //OpenSettings;
-            StateMachine.getIns().pushState(BaseState.statesIDs.OPTION);
-          }
-        ).start();
+    dbc.setOnActionListener(6, DrawButtonContainer.RELEASE_EVENT, () -> new Thread(() ->  {
+        GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+        //OpenSettings;
+        StateMachine.getIns().pushState(statesIDs.OPTION);
       }
-    });
+    ).start());
 
-    dbc.setOnActionListener(7, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener() {
-      @Override
-      public void onActionPerformed() {
+    dbc.setOnActionListener(7, DrawButtonContainer.RELEASE_EVENT, () ->
         GameActivity.instance.runOnUiThread(() -> {
           GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
           showRestartDialog();
-        });
-      }
-    });
+        })
+    );
 
     formated_moves_str = GameActivity.instance.getString(R.string.moves_txt);
     formated_moves_str_casual = formated_moves_str.substring(0, formated_moves_str.length() - 5);
@@ -122,16 +113,12 @@ public class GameState extends BaseState implements GameBoardListener {
 
   /** Register each button to colorize certain color */
   private void registerButtonToColorize(final int i) {
-    dbc.setOnActionListener(i, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener() {
-      @Override
-      public void onActionPerformed() {
-        //only if it's a different color and game has not finished
-        if (mColorBoard != null && !mColorBoard.isCurrentColor(i) && mColorBoard.hasMovesRemaining()) {
-          //play sound
-          GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
-
-          new Thread(() -> mColorBoard.colorize(i)).start();
-        }
+    dbc.setOnActionListener(i, DrawButtonContainer.RELEASE_EVENT, () -> {
+      //only if it's a different color and game has not finished
+      if (mColorBoard != null && !mColorBoard.isCurrentColor(i) && mColorBoard.hasMovesRemaining()) {
+        //play sound
+        GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+        new Thread(() -> mColorBoard.colorize(i)).start();
       }
     });
   }
@@ -185,8 +172,6 @@ public class GameState extends BaseState implements GameBoardListener {
     if (mColorBoard == null) {
       restartBoard(true);
     }
-
-
     //}}).start();
   }
 

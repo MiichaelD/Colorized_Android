@@ -73,7 +73,7 @@ public final class Utility {
     public static final int DEFAULT_STREAM_BUFFER_SIZE = 8192;
 
     private static Map<String, FetchedAppSettings> fetchedAppSettings =
-            new ConcurrentHashMap<String, FetchedAppSettings>();
+            new ConcurrentHashMap<>();
 
   public static class FetchedAppSettings {
         private boolean supportsAttribution;
@@ -216,7 +216,7 @@ public final class Utility {
     public static Object getStringPropertyAsJSON(JSONObject jsonObject, String key, String nonJSONPropertyKey)
             throws JSONException {
         Object value = jsonObject.opt(key);
-        if (value != null && value instanceof String) {
+        if (value instanceof String) {
             JSONTokener tokener = new JSONTokener((String) value);
             value = tokener.nextValue();
         }
@@ -235,9 +235,7 @@ public final class Utility {
                 throw new FacebookException("Got an unexpected non-JSON object.");
             }
         }
-
         return value;
-
     }
 
     public static String readStreamToString(InputStream inputStream) throws IOException {
@@ -332,7 +330,6 @@ public final class Utility {
 
     // Note that this method makes a synchronous Graph API call, so should not be called from the main thread.
     public static FetchedAppSettings queryAppSettings(final String applicationId, final boolean forceRequery) {
-
         // Cache the last app checked results.
         if (!forceRequery && fetchedAppSettings.containsKey(applicationId)) {
             return fetchedAppSettings.get(applicationId);
@@ -353,7 +350,6 @@ public final class Utility {
                 );
 
         fetchedAppSettings.put(applicationId, result);
-
         return result;
     }
 
