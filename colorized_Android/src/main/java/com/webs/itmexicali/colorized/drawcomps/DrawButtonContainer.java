@@ -202,9 +202,7 @@ public class DrawButtonContainer {
     }
   }
 
-  /**
-   * Get the number of buttons that this container has
-   */
+  /** Get the number of buttons that this container has */
   public int getButtonsCount() {
     return num_buttons;
   }

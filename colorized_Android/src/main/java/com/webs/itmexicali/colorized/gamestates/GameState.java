@@ -19,7 +19,6 @@ import com.webs.itmexicali.colorized.board.BoardSolver;
 import com.webs.itmexicali.colorized.board.ColorBoard;
 import com.webs.itmexicali.colorized.board.Constants;
 import com.webs.itmexicali.colorized.board.GameBoardListener;
-import com.webs.itmexicali.colorized.drawcomps.DrawButton;
 import com.webs.itmexicali.colorized.drawcomps.DrawButtonContainer;
 import com.webs.itmexicali.colorized.util.BitmapLoader;
 import com.webs.itmexicali.colorized.util.Const;
@@ -135,7 +134,7 @@ public class GameState extends BaseState implements GameBoardListener {
   }
 
   /**
-   * Check that the tutorial has been completed, if not start it if the tutorial was completed,
+   * Checks that the tutorial has been completed, if not start it if the tutorial was completed,
    * check if there is a game saved.
    */
   private void checkTutoAndSavedGame() {
