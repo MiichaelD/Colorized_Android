@@ -43,7 +43,6 @@ android {
 
 dependencies {
   implementation project(':mixpanelandroid')
-  implementation project(':facebookSDK')
   implementation project(':baseGameUtils')
   implementation 'com.android.support:appcompat-v7:23.1.1'
   implementation 'com.google.android.gms:play-services:7.8.0'

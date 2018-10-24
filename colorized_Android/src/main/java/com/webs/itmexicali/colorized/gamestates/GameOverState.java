@@ -71,38 +71,22 @@ public class GameOverState extends BaseState implements GameFinishedListener {
     });
 
     //QUIT
-    pButtons.setOnActionListener(1, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener() {
-      @Override
-      public void onActionPerformed() {
-        //play sound
-        GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
-
-        quit();
-      }
+    pButtons.setOnActionListener(1, DrawButtonContainer.RELEASE_EVENT, () -> {
+      GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);  //play sound
+      quit();
     });
 
     //SHARE G+
-    pButtons.setOnActionListener(2, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener() {
-      @Override
-      public void onActionPerformed() {
-        //play sound
-        GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
-
-        GameActivity.instance.onGoogleShareRequested(pShareText);
-      }
+    pButtons.setOnActionListener(2, DrawButtonContainer.RELEASE_EVENT, () -> {
+      GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);  //play sound
+      GameActivity.instance.onGoogleShareRequested(pShareText);
     });
 
     //SHARE FB
-    pButtons.setOnActionListener(3, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener() {
-      @Override
-      public void onActionPerformed() {
-        //play sound
-        GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
-
-        GameActivity.instance.onFbShareRequested(pShareText, null);
-      }
-    });
-
+    // pButtons.setOnActionListener(3, DrawButtonContainer.RELEASE_EVENT, () -> {
+    //   GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);  //play sound
+    //   GameActivity.instance.onFbShareRequested(pShareText, null);
+    // });
 
     mPaints = new TextPaint[3];
 
@@ -174,6 +158,7 @@ public class GameOverState extends BaseState implements GameFinishedListener {
       pShareLabel.draw(canvas, MainState.roundness, whiteText);
     }
 
+    // G+ share
     if (mBitmaps[0] != null && mBitmaps[1] != null) {
       canvas.drawBitmap(pButtons.getDButton(2).isPressed() ?
               mBitmaps[1] : mBitmaps[0],
@@ -181,12 +166,13 @@ public class GameOverState extends BaseState implements GameFinishedListener {
           pButtons.getDButton(2).top, null);
     }
 
-    if (mBitmaps[2] != null && mBitmaps[3] != null) {
-      canvas.drawBitmap(pButtons.getDButton(3).isPressed() ?
-              mBitmaps[3] : mBitmaps[2],
-          pButtons.getDButton(3).left,
-          pButtons.getDButton(3).top, null);
-    }
+    // FB share
+    // if (mBitmaps[2] != null && mBitmaps[3] != null) {
+    //   canvas.drawBitmap(pButtons.getDButton(3).isPressed() ?
+    //           mBitmaps[3] : mBitmaps[2],
+    //       pButtons.getDButton(3).left,
+    //       pButtons.getDButton(3).top, null);
+    // }
 
     pButtons.drawButtonsAndText(0, 2, canvas, MainState.roundness,
         mPaints[1], mPaints[0], bgColorText, whiteText);
