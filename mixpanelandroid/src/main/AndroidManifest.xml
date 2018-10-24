@@ -5,12 +5,10 @@
          include this redundant versioning here. If you change
          minSdkVersion or targetSdkVersion here, you must also
          change the relevant properties in build.gradle -->
-    <uses-sdk android:minSdkVersion="9"
-              android:targetSdkVersion="26"/>
 
-    <!--
-      This permission is required to allow the application to send events and properties to Mixpanel.
-     -->
+  <!--
+    This permission is required to allow the application to send events and properties to Mixpanel.
+   -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!--
