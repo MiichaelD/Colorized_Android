@@ -30,7 +30,6 @@ import android.webkit.CookieSyncManager;
 import com.facebook.FacebookException;
 import com.facebook.Request;
 import com.facebook.Settings;
-import com.facebook.android.BuildConfig;
 import com.facebook.model.GraphObject;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,7 +52,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * any time.
  */
 public final class Utility {
-    static final String LOG_TAG = "FacebookSDK";
     private static final String HASH_ALGORITHM_MD5 = "MD5";
     private static final String HASH_ALGORITHM_SHA1 = "SHA-1";
     private static final String URL_SCHEME = "https";
@@ -118,7 +116,7 @@ public final class Utility {
             return ((subset == null) || (subset.size() == 0));
         }
 
-        HashSet<T> hash = new HashSet<T>(superset);
+        HashSet<T> hash = new HashSet<>(superset);
         for (T t : subset) {
             if (!hash.contains(t)) {
                 return false;
@@ -137,14 +135,6 @@ public final class Utility {
 
     public static <T> Collection<T> unmodifiableCollection(T... ts) {
         return Collections.unmodifiableCollection(Arrays.asList(ts));
-    }
-
-    public static <T> ArrayList<T> arrayList(T... ts) {
-        ArrayList<T> arrayList = new ArrayList<T>(ts.length);
-        for (T t : ts) {
-            arrayList.add(t);
-        }
-        return arrayList;
     }
 
     static String md5hash(String key) {
@@ -179,7 +169,7 @@ public final class Utility {
         StringBuilder builder = new StringBuilder();
         for (int b : digest) {
             builder.append(Integer.toHexString((b >> 4) & 0xf));
-            builder.append(Integer.toHexString((b >> 0) & 0xf));
+            builder.append(Integer.toHexString(b & 0xf));
         }
         return builder.toString();
     }
@@ -196,18 +186,6 @@ public final class Utility {
             }
         }
         return builder.build();
-    }
-
-    public static void putObjectInBundle(Bundle bundle, String key, Object value) {
-        if (value instanceof String) {
-            bundle.putString(key, (String) value);
-        } else if (value instanceof Parcelable) {
-            bundle.putParcelable(key, (Parcelable) value);
-        } else if (value instanceof byte[]) {
-            bundle.putByteArray(key, (byte[]) value);
-        } else {
-            throw new FacebookException("attempted to add unsupported type to Bundle");
-        }
     }
 
     public static void closeQuietly(Closeable closeable) {
@@ -232,24 +210,6 @@ public final class Utility {
         Settings.loadDefaultsFromMetadata(context);
 
         return Settings.getApplicationId();
-    }
-
-    static Map<String, Object> convertJSONObjectToHashMap(JSONObject jsonObject) {
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        JSONArray keys = jsonObject.names();
-        for (int i = 0; i < keys.length(); ++i) {
-            String key;
-            try {
-                key = keys.getString(i);
-                Object value = jsonObject.get(key);
-                if (value instanceof JSONObject) {
-                    value = convertJSONObjectToHashMap((JSONObject) value);
-                }
-                map.put(key, value);
-            } catch (JSONException e) {
-            }
-        }
-        return map;
     }
 
     // Returns either a JSONObject or JSONArray representation of the 'key' property of 'jsonObject'.
