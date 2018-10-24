@@ -31,6 +31,11 @@ import com.webs.itmexicali.colorized.util.Tracking;
 
 public class GameState extends BaseState implements GameBoardListener {
 
+  private final int[] paintColors = new int[]{
+      Color.RED, Color.rgb(0, 162, 232), Color.YELLOW, Color.rgb(163, 73, 164), Color.LTGRAY,
+      Color.rgb(21, 183, 46), Color.DKGRAY
+  };
+
   //UI components to be used to Draw text and shapes
   public TextPaint mPaints[];
   public Bitmap mBitmaps[];
@@ -39,16 +44,24 @@ public class GameState extends BaseState implements GameBoardListener {
   public float boardWidth, remainHeight, roundness;
   //the matrix of color
   public ColorBoard mColorBoard = null;
-  DrawButtonContainer dbc;
+  private DrawButtonContainer dbc;
+
   //font text size modifiers, this helps to change the Xfactor to texts
-  float ts0 = 1.0f;
+  private float ts0 = 1.0f;
   private boolean ignoreSavedGame = false, askToPlaySavedGame = true;
-  private String formated_moves_str = null, formated_moves_str_casual = null, moves_txt;
+  private String formated_moves_str = null, formated_moves_str_casual, moves_txt;
+
+  private void initPaint(int index) {
+    mPaints[index] = new TextPaint();
+    mPaints[index].setColor(paintColors[index]);
+    mPaints[index].setStyle(Paint.Style.FILL);
+    mPaints[index].setAntiAlias(true);
+
+  }
 
   GameState(statesIDs id) {
     super(id);
-    //Log.v("GameState","Constantsructor");
-
+    //Log.v("GameState","Constructor");
     movesTextPaint = new TextPaint(); // WHITE for TEXT
     movesTextPaint.setColor(Color.WHITE);
     movesTextPaint.setStyle(Paint.Style.FILL);
@@ -62,42 +75,9 @@ public class GameState extends BaseState implements GameBoardListener {
     darkBlurPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.NORMAL));
 
     mPaints = new TextPaint[7];
-
-    mPaints[0] = new TextPaint();//RED
-    mPaints[0].setColor(Color.RED);
-    mPaints[0].setStyle(Paint.Style.FILL);
-    mPaints[0].setAntiAlias(true);
-
-    mPaints[1] = new TextPaint();//BLUE
-    mPaints[1].setColor(Color.rgb(0, 162, 232));
-    mPaints[1].setStyle(Paint.Style.FILL);
-    //mPaints[1].setTextSize(GameView.mPortrait? width/14 : height/14);
-    mPaints[1].setAntiAlias(true);
-
-    mPaints[2] = new TextPaint();//YELLOW
-    mPaints[2].setColor(Color.YELLOW);
-    mPaints[2].setStyle(Paint.Style.FILL);
-    mPaints[2].setAntiAlias(true);
-
-    mPaints[3] = new TextPaint();//PURPLE
-    mPaints[3].setColor(Color.rgb(163, 73, 164));
-    mPaints[3].setStyle(Paint.Style.FILL);
-    mPaints[3].setAntiAlias(true);
-
-    mPaints[4] = new TextPaint();//GRAY
-    mPaints[4].setColor(Color.LTGRAY);
-    mPaints[4].setStyle(Paint.Style.FILL);
-    mPaints[4].setAntiAlias(true);
-
-    mPaints[5] = new TextPaint();//GREEN
-    mPaints[5].setColor(Color.rgb(21, 183, 46));
-    mPaints[5].setStyle(Paint.Style.FILL);
-    mPaints[5].setAntiAlias(true);
-
-    mPaints[6] = new TextPaint(); // DKGRAY for pushed buttons
-    mPaints[6].setColor(Color.DKGRAY);
-    mPaints[6].setStyle(Paint.Style.FILL);
-    mPaints[6].setAntiAlias(true);
+    for (int i = 0 ; i < paintColors.length; ++i) {
+      initPaint(i);
+    }
     mPaints[6].setAlpha(175);
 
 
@@ -111,24 +91,21 @@ public class GameState extends BaseState implements GameBoardListener {
     dbc.setOnActionListener(6, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener() {
       @Override
       public void onActionPerformed() {
-        new Thread(new Runnable() {
-          public void run() {
+        new Thread(() ->  {
             GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
             //OpenSettings;
             StateMachine.getIns().pushState(BaseState.statesIDs.OPTION);
           }
-        }).start();
+        ).start();
       }
     });
 
     dbc.setOnActionListener(7, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener() {
       @Override
       public void onActionPerformed() {
-        GameActivity.instance.runOnUiThread(new Runnable() {
-          public void run() {
-            GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
-            showRestartDialog();
-          }
+        GameActivity.instance.runOnUiThread(() -> {
+          GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
+          showRestartDialog();
         });
       }
     });
@@ -143,9 +120,7 @@ public class GameState extends BaseState implements GameBoardListener {
     createDefaultBoard();
   }
 
-  /**
-   * Register each button to colorize certain color
-   */
+  /** Register each button to colorize certain color */
   private void registerButtonToColorize(final int i) {
     dbc.setOnActionListener(i, DrawButtonContainer.RELEASE_EVENT, new DrawButton.ActionListener() {
       @Override
@@ -155,11 +130,7 @@ public class GameState extends BaseState implements GameBoardListener {
           //play sound
           GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);
 
-          new Thread(new Runnable() {
-            public void run() {
-              mColorBoard.colorize(i);
-            }
-          }).start();
+          new Thread(() -> mColorBoard.colorize(i)).start();
         }
       }
     });
@@ -177,8 +148,8 @@ public class GameState extends BaseState implements GameBoardListener {
   }
 
   /**
-   * Check that the tutorial has been completed, if not start it
-   * if the tutorial was completed, check if there is a game saved.
+   * Check that the tutorial has been completed, if not start it if the tutorial was completed,
+   * check if there is a game saved.
    */
   private void checkTutoAndSavedGame() {
     //new Thread(new Runnable(){public void run(){
@@ -352,9 +323,7 @@ public class GameState extends BaseState implements GameBoardListener {
 
   }
 
-  /**
-   * Draw the text on the canvas
-   */
+  /** Draw the text on the canvas */
   public void drawText(Canvas canvas) {
     if (mColorBoard == null) return;
 
@@ -374,9 +343,7 @@ public class GameState extends BaseState implements GameBoardListener {
     movesTextPaint.setTextScaleX(1.0f);
   }
 
-  /**
-   * Draw UI units capable to react to touch events
-   */
+  /** Draw UI units capable to react to touch events */
   public void drawButtons(Canvas canvas) {
     if (mColorBoard == null) return;
 
@@ -390,9 +357,7 @@ public class GameState extends BaseState implements GameBoardListener {
     }
   }
 
-  /**
-   * Draw board on surface's canvas
-   */
+  /** Draw board on surface's canvas */
   public void drawBoard(Canvas canvas) {
     if (mColorBoard == null) return;
     mColorBoard.updateBoard(canvas, mRectFs[0], mPaints);
@@ -424,11 +389,9 @@ public class GameState extends BaseState implements GameBoardListener {
               if (!mRectFs[0].contains((int) event.getX(i), (int) event.getY(i)))
                 return true;
             }
-            Thread solver = new Thread(new Runnable() {
-              public void run() {
-                int mov_lim = BoardSolver.getOptimalPath(mColorBoard);
-                mColorBoard.setTotalMoves(mov_lim);
-              }
+            Thread solver = new Thread(() -> {
+              int mov_lim = BoardSolver.getOptimalPath(mColorBoard);
+              mColorBoard.setTotalMoves(mov_lim);
             });
             solver.setPriority(Thread.MAX_PRIORITY);
             solver.start();
@@ -457,23 +420,19 @@ public class GameState extends BaseState implements GameBoardListener {
     return false;
   }
 
-  /**
-   * Ignore saved game and load normal board
-   */
+  /** Enables the ignoring of saved gameand load normal board */
   public void setIgnoreSavedGame(boolean ignore) {
     ignoreSavedGame = ignore;
   }
 
-  /**
-   * ask player if he wishes to play saved game
-   */
+  /** Asks player if he wishes to play saved game */
   public void setAskToPlaySavedGame(boolean ask) {
     askToPlaySavedGame = ask;
   }
 
   /**
-   * If there is any progress in the game, save it in case the user
-   * wants to continue the next time he gets back to the game
+   * If there is any progress in the game, save it in case the user wants to continue the next time
+   * he gets back to the game
    */
   private void saveProgress() {
 		/* Save the board if:
@@ -488,8 +447,8 @@ public class GameState extends BaseState implements GameBoardListener {
   }
 
   /**
-   * Display dialog informing that there is a gamestate saved
-   * and ask if the user wants to play it or prefers a new match
+   * Display dialog informing that there is a gamestate saved and ask if the user wants to play it
+   * or prefers a new match
    */
   private void showSavedGameDialog() {
     //if we are still on the list
@@ -501,23 +460,13 @@ public class GameState extends BaseState implements GameBoardListener {
         //Use the Builder class for convenient dialog Constantsruction
         new AlertDialog.Builder(GameActivity.instance)
             .setMessage(R.string.saved_game_confirmation)
-            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-              public void onClick(DialogInterface dialog, int id) {
-                Screen.setFullScreen(GameActivity.instance);
-              }
+            .setPositiveButton(R.string.ok,
+                (dialog, id) -> Screen.setFullScreen(GameActivity.instance))
+            .setNegativeButton(R.string.cancel, (dialog, id) -> {
+              restartBoard(true);
+              Screen.setFullScreen(GameActivity.instance);
             })
-            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-              public void onClick(DialogInterface dialog, int id) {
-                restartBoard(true);
-                Screen.setFullScreen(GameActivity.instance);
-              }
-            })
-            .setOnCancelListener(new DialogInterface.OnCancelListener() {
-              @Override
-              public void onCancel(DialogInterface arg0) {
-                Screen.setFullScreen(GameActivity.instance);
-              }
-            })
+            .setOnCancelListener(arg0 -> Screen.setFullScreen(GameActivity.instance))
             .create()
             .show();
       }
@@ -531,31 +480,18 @@ public class GameState extends BaseState implements GameBoardListener {
    */
   public void showRestartDialog() {
     //Use the Builder class for convenient dialog Constantsruction
-    GameActivity.instance.runOnUiThread(new Runnable() {
-      public void run() {
-        new AlertDialog.Builder(GameActivity.instance)
-            .setMessage(R.string.restart_game_confirmation)
-            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-              public void onClick(DialogInterface dialog, int id) {
-                restartBoard(true);
-                Screen.setFullScreen(GameActivity.instance);
-              }
-            })
-            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-              public void onClick(DialogInterface dialog, int id) {// dismiss menu
-                Screen.setFullScreen(GameActivity.instance);
-              }
-            })
-            .setOnCancelListener(new DialogInterface.OnCancelListener() {
-              @Override
-              public void onCancel(DialogInterface arg0) {
-                Screen.setFullScreen(GameActivity.instance);
-              }
-            })
-            .create()
-            .show();
-      }
-    });
+    GameActivity.instance.runOnUiThread(() -> new AlertDialog.Builder(GameActivity.instance)
+        .setMessage(R.string.restart_game_confirmation)
+        .setPositiveButton(R.string.ok, (dialog, id) -> {
+          restartBoard(true);
+          Screen.setFullScreen(GameActivity.instance);
+        })
+        .setNegativeButton(R.string.cancel, (dialog, id) -> {// dismiss menu
+          Screen.setFullScreen(GameActivity.instance);
+        })
+        .setOnCancelListener(arg0 -> Screen.setFullScreen(GameActivity.instance))
+        .create()
+        .show());
   }
 
   /**
@@ -572,7 +508,8 @@ public class GameState extends BaseState implements GameBoardListener {
     ProgNPrefs.getIns().saveNewBoard(false, null);
 
     BaseState gameOver = BaseState.stateFactory(statesIDs.OVER);
-    ((GameFinishedListener) gameOver).onGameOver(win, mColorBoard.getMovesCount(), mColorBoard.getGameMode(), mColorBoard.getSize());
+    ((GameFinishedListener) gameOver).onGameOver(
+        win, mColorBoard.getMovesCount(), mColorBoard.getGameMode(), mColorBoard.getSize());
     StateMachine.getIns().pushState(gameOver);
   }
 
@@ -597,15 +534,13 @@ public class GameState extends BaseState implements GameBoardListener {
   @Override
   public void onBoardFloodingFinished(final boolean won) {
 
-    GameActivity.instance.runOnUiThread(new Runnable() {
-      public void run() {
-        if (won) {
-          GameActivity.instance.playSound(GameActivity.SoundType.WIN);
-          showGamOver(true);
-        } else if (mColorBoard.isStarted() && !mColorBoard.hasMovesRemaining()) {
-          GameActivity.instance.playSound(GameActivity.SoundType.LOSE);
-          showGamOver(false);
-        }
+    GameActivity.instance.runOnUiThread(() -> {
+      if (won) {
+        GameActivity.instance.playSound(GameActivity.SoundType.WIN);
+        showGamOver(true);
+      } else if (mColorBoard.isStarted() && !mColorBoard.hasMovesRemaining()) {
+        GameActivity.instance.playSound(GameActivity.SoundType.LOSE);
+        showGamOver(false);
       }
     });
   }
@@ -682,7 +617,7 @@ public class GameState extends BaseState implements GameBoardListener {
      *
      * @param win       if the player win this match
      * @param moves     the number of moves needed
-     * @param GameMode  game mode used in the game
+     * @param gameMode  game mode used in the game
      * @param boardSize the board size of game played {small,medium,large}
      */
     public void onGameOver(boolean win, int moves, int gameMode, int boardSize);

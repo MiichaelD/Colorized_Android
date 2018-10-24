@@ -503,7 +503,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
         FacebookDialog.ShareDialogFeature.SHARE_DIALOG)) {
       // Publish the post using the Share Dialog
       FacebookDialog shareDialog = new FacebookDialog.ShareDialogBuilder(this)
-          .setApplicationName("Color Flooded")
+          .setApplicationName(getString(R.string.app_name))
           //.setApplicationName("Invasión de Color")
           .setName(getString(R.string.app_name))
           .setCaption(text)
@@ -569,11 +569,12 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
       startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), RC_UNUSED);
       return true;
     } else {
-      if (isGAPPSavailable())
-//                showAlert(getString(R.string.achievements_not_available));
+      if (isGAPPSavailable()) {
+        // showAlert(getString(R.string.achievements_not_available));
         signInAndShow(ACHIEVEMENTS_AFTER_SIGNIN);
-      else
+      } else {
         StateMachine.getIns().pushState(BaseState.statesIDs.STATS);
+      }
     }
     return false;
   }
