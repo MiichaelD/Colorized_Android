@@ -9,12 +9,12 @@ android {
       storePassword 'android'
     }
   }
-  compileSdkVersion 27
-  buildToolsVersion '27.0.3'
+  compileSdkVersion 28
+  buildToolsVersion '28.0.0'
   defaultConfig {
     applicationId "com.webs.itmexicali.colorized"
     minSdkVersion 9
-    targetSdkVersion 27
+    targetSdkVersion 28
   }
   buildTypes {
     release {
@@ -34,6 +34,10 @@ android {
     // but continue the build even when errors are found:
     abortOnError false
   }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
 }
 
 dependencies {
