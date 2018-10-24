@@ -520,13 +520,11 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
       params.putString("link", getString(R.string.app_url));
       params.putString("picture", pictureURL);
 
-      WebDialog feedDialog = (
-          new WebDialog.FeedDialogBuilder(this,
-              Session.getActiveSession(),
-              params)).setOnCompleteListener(new OnCompleteListener() {
-
-        @Override
-        public void onComplete(Bundle values, FacebookException error) {
+      try {
+        WebDialog feedDialog = (
+            new WebDialog.FeedDialogBuilder(this,
+                Session.getActiveSession(),
+                params)).setOnCompleteListener((values, error) -> {
           if (error == null) {
             // When the story is posted, echo the success
             // and the post Id.
@@ -546,13 +544,16 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
             GameStatsSync.revealAchievement(getApiClient(), R.string.achievement_sharing_is_good);
           } else {
             // Generic, ex: network error
-            Log.d(GameActivity.class.getSimpleName(), "onShare error on webDialog: " + error.getStackTrace());
+            Log.d(GameActivity.class.getSimpleName(),
+                "onShare error on webDialog: " + error.getStackTrace());
             GameStatsSync.revealAchievement(getApiClient(), R.string.achievement_sharing_is_good);
           }
-        }
-      })
-          .build();
-      feedDialog.show();
+        }).build();
+        feedDialog.show();
+      } catch (FacebookException e) {
+        Log.e(GameActivity.class.getSimpleName(), e.getLocalizedMessage());
+        e.printStackTrace();
+      }
       Tracking.shared().onShare("Facebook");
     }
     return true;
@@ -580,7 +581,7 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
   }
 
   /**
-   * Try to show Leaderboards activity, if not signed in, show message
+   * Tries to show Leaderboards activity, if not signed in, show message
    *
    * @return true if Leaderboards were shown
    */
@@ -590,11 +591,12 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
       startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(getApiClient()), RC_UNUSED);
       return true;
     } else {
-      if (isGAPPSavailable())
-//            	showAlert(getString(R.string.leaderboards_not_available));
+      if (isGAPPSavailable()) {
+        // showAlert(getString(R.string.leaderboards_not_available));
         signInAndShow(LEADERBOARDS_AFTER_SIGNIN);
-      else
+      } else {
         StateMachine.getIns().pushState(BaseState.statesIDs.STATS);
+      }
     }
     return false;
   }
