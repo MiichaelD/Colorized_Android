@@ -56,6 +56,10 @@
     <meta-data
         android:name="com.facebook.sdk.ApplicationId"
         android:value="@string/fb_app_id"/>
+
+    <provider android:authorities="com.facebook.app.FacebookContentProvider544594058974778"
+        android:name="com.facebook.FacebookContentProvider"
+        android:exported="true"/>
     <!-- Facebook share END-->
 
     <!-- AdMob Implementation START -->
