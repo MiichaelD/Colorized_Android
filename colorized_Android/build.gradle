@@ -13,7 +13,7 @@ android {
   buildToolsVersion '28.0.3'
   defaultConfig {
     applicationId "com.webs.itmexicali.colorized"
-    minSdkVersion 9
+    minSdkVersion 15
     targetSdkVersion 28
   }
   buildTypes {
@@ -44,7 +44,8 @@ android {
 dependencies {
   implementation project(':mixpanelandroid')
   implementation project(':baseGameUtils')
-  implementation 'com.android.support:appcompat-v7:23.1.1'
+  implementation 'com.facebook.android:facebook-share:[4,5)'
+  implementation 'com.android.support:appcompat-v7:28.0.0'
   implementation 'com.google.android.gms:play-services:7.8.0'
   implementation files('libs/com-xsqhbao-bipppts201390.jar')
   implementation files('libs/Communication.jar')
