@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import android.widget.LinearLayout.LayoutParams;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -49,6 +50,9 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 
   private static final String APP_PLAY_STORE_URL =
       "https://play.google.com/store/apps/details?id=com.webs.itmexicali.colorized";
+
+  private LinearLayout rootView;
+  private GameView gameView;
 
   private CallbackManager callbackManager;
   private ShareDialog shareDialog;
@@ -94,14 +98,16 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
     }
     setContentView(R.layout.game_screen); // Set the game screen
     // Set surface listener to reposition Sign-In Button
-    ((GameView) findViewById(R.id.gameView)).setSurfaceListener(this);
+    rootView = findViewById(R.id.LayMain);
+    gameView = findViewById(R.id.gameView);
+    gameView.setSurfaceListener(this);
+
+    initAds();
+    Notifier.getInstance(this).clearAll();
 
     callbackManager = CallbackManager.Factory.create();
     shareDialog = new ShareDialog(this);
     shareDialog.registerCallback(callbackManager, facebookCallback);
-
-    initAds();
-    Notifier.getInstance(this).clearAll();
   }
 
   private final FacebookCallback<Result> facebookCallback = new FacebookCallback<Result>() {
@@ -140,24 +146,24 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
    * the corresponding one AirPush or AdMob
    */
   private void initAds() {
-
 		/* Now the ads object is just created once, not destroying it and loading it if
      * it already exists, to change dad, remove the pAds == null validation from next
 		 * if clause*/
     if (Advertising.SHOW_ADS && pAds == null) {
-      LinearLayout layout = (LinearLayout) findViewById(R.id.LayMain);
-
-			/* If we want to create a new banner, destroy and remove current if it exists*/
+			/* If we want to create a new banner, destroy and remove current if it exists
       if (pAds != null && pAds.getBanner() != null) {
-        layout.removeView(pAds.getBanner());
+        rootView.removeView(pAds.getBanner());
         pAds.destroyBanner();
       }
+      */
 
-      LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-      params.gravity = android.view.Gravity.CENTER_HORIZONTAL;
-
-      pAds = Advertising.instantiate(this);
-      pAds.getBanner().setLayoutParams(params);
+      try {
+        pAds = Advertising.instantiate(this);
+      } catch (Throwable e) {
+        Log.e(GameActivity.class.getSimpleName(), "Error initAds: " + e.getLocalizedMessage());
+        e.printStackTrace();
+        return;
+      }
 
 			/* When the game_Screen.xml root tag used to be RelativeLayout, the ad was just
 	         OVER the GameView, now the ad shares the screen size with GameView
@@ -169,12 +175,14 @@ public class GameActivity extends BaseGameActivity implements GameFinishedListen
 
       // Add the AdView to the view hierarchy. The view will have no size
       // until the ad is loaded.
-      layout.addView(pAds.getBanner());
+      LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+      params.gravity = android.view.Gravity.CENTER_HORIZONTAL;
+      rootView.addView(pAds.getBanner(), params);
     }
   }
 
   public View getBannerView() {
-    return pAds.getBanner();
+    return pAds == null ? null : pAds.getBanner();
   }
 
   /**

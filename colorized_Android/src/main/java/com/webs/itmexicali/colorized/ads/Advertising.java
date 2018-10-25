@@ -20,8 +20,8 @@ public abstract class Advertising {
   public static final String APIKEY = "1409523218201390512";
   public final static int ADS_ADMOB = 0, ADS_AIRPUSH_BUNDLE = 1, ADS_AIRPUSH_STANDARD = 2;
   public final static int AD_SERVICE = ADS_AIRPUSH_STANDARD;
-  public static int APPID = 236182;
-  protected Activity pAct = null;
+  public final static int APPID = 236182;
+  protected Activity pAct;
 
 
   /**
