@@ -10,6 +10,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.view.MotionEvent;
 
+import android.view.View;
 import com.plattysoft.leonids.ParticleSystem;
 import com.plattysoft.leonids.modifiers.ScaleModifier;
 import com.webs.itmexicali.colorized.GameActivity;
@@ -216,7 +217,10 @@ public class GameOverState extends BaseState implements GameFinishedListener {
           .setFadeOut(2000)
           .addModifier(new ScaleModifier(0f, 1f, 0, 1500));
       //.oneShot(GameView.getIns(), 12);
-      effect.oneShot(GameActivity.instance.getBannerView(), 30);
+      View emiter = GameActivity.instance.getBannerView() == null
+          ? GameView.getIns()
+          : GameActivity.instance.getBannerView();
+      effect.oneShot(emiter, 30);
 
     }
   }
