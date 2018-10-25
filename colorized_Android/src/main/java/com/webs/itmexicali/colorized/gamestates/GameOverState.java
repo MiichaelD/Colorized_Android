@@ -82,11 +82,11 @@ public class GameOverState extends BaseState implements GameFinishedListener {
       GameActivity.instance.onGoogleShareRequested(pShareText);
     });
 
-    //SHARE FB
-    // pButtons.setOnActionListener(3, DrawButtonContainer.RELEASE_EVENT, () -> {
-    //   GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);  //play sound
-    //   GameActivity.instance.onFbShareRequested(pShareText, null);
-    // });
+    // SHARE FB
+    pButtons.setOnActionListener(3, DrawButtonContainer.RELEASE_EVENT, () -> {
+      GameActivity.instance.playSound(GameActivity.SoundType.TOUCH);  //play sound
+      GameActivity.instance.onFbShareRequested(pShareText, null);
+    });
 
     mPaints = new TextPaint[3];
 
@@ -167,12 +167,12 @@ public class GameOverState extends BaseState implements GameFinishedListener {
     }
 
     // FB share
-    // if (mBitmaps[2] != null && mBitmaps[3] != null) {
-    //   canvas.drawBitmap(pButtons.getDButton(3).isPressed() ?
-    //           mBitmaps[3] : mBitmaps[2],
-    //       pButtons.getDButton(3).left,
-    //       pButtons.getDButton(3).top, null);
-    // }
+    if (mBitmaps[2] != null && mBitmaps[3] != null) {
+      canvas.drawBitmap(pButtons.getDButton(3).isPressed() ?
+              mBitmaps[3] : mBitmaps[2],
+          pButtons.getDButton(3).left,
+          pButtons.getDButton(3).top, null);
+    }
 
     pButtons.drawButtonsAndText(0, 2, canvas, MainState.roundness,
         mPaints[1], mPaints[0], bgColorText, whiteText);

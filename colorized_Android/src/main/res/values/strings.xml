@@ -3,6 +3,7 @@
 
   <string name="company_name" translatable="false">MD Games</string>
   <string name="app_name">Color Flooded</string>
+  <string name="app_hashtag">#ColorFlooded</string>
   <string name="app_codename_no_space" translatable="false">colorized</string>
   <string name="app_url" translatable="false">"https://play.google.com/store/apps/details?id=com.webs.itmexicali.colorized"</string>
 

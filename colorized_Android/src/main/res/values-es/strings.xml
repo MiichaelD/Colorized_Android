@@ -2,6 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
   <string name="app_name">Invasión de Color</string>
+  <string name="app_hashtag">#InvasiónDeColor</string>
   <string name="greeting_player">Hola, <xliff:g id="name">%1$s</xliff:g></string>
   <string name="cancel">Cancelar</string>
 
